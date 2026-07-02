@@ -1,0 +1,14 @@
+=== BACKUP ===
+'globe_cityspace_open/frontend/main.js' -> 'globe_cityspace_open/frontend/main.js.bak_v129_0_6_20260618_183624'
+'globe_cityspace_open/frontend/index.html' -> 'globe_cityspace_open/frontend/index.html.bak_v129_0_6_20260618_183624'
+OK: patches V129 antigos removidos e V129.0.6 aplicado.
+=== CONFERÊNCIA ===
+1815:/* PATCH V129.0.6 — FLUXO FINAL LIMPO */
+1817:  console.log("PATCH V129.0.6 ativo");
+1820:    "Para evoluir esta área para um Projeto de Gêmeo Digital com Mesa Tangível, " +
+1847:      if (cities.ipt) cities.ipt.name = "IPT-Edifícios";
+1871:          <option value="ipt_edificios">IPT-Edifícios</option>
+1896:    s.innerHTML = `<option value="8867" selected>Escala validada: 1:8867</option>`;
+1996:      Projeto: IPT-Edifícios<br>
+1997:      Escala validada: 1:8867<br>
+=== REINICIANDO DOCKER ===

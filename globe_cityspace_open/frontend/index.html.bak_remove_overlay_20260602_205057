@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Globe-CitySpace</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.122/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.122/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <div id="topbar">
+    <strong>Globe-CitySpace</strong>
+
+    <select id="citySelect">
+      <option value="sjc">São José dos Campos</option>
+      <option value="sao_paulo">São Paulo</option>
+      <option value="ipt">IPT - Campus Principal</option>
+      <option value="santos">Santos</option>
+      <option value="sorocaba">Sorocaba</option>
+    </select>
+
+    <button id="openCity">Abrir cidade</button>
+
+    <button id="viewTop">Vista topo</button>
+    <button id="viewOblique">Vista oblíqua</button>
+    <button id="viewNorth">Norte</button>
+
+    <button id="enablePickPoint">Escolher ponto</button>
+
+    <select id="scaleSelect">
+      <option value="500">1:500</option>
+      <option value="1000">1:1000</option>
+      <option value="2500">1:2500</option>
+      <option value="5000" selected>1:5000</option>
+      <option value="10000">1:10000</option>
+    </select>
+
+    <button id="createArea">Gerar Área CitySpace</button>
+    <label class="topCheck"><input type="checkbox" id="showIptOverlay" checked> Overlay IPT</label>
+    <button id="clearArea">Limpar Área/Grid</button>
+    <button id="exportGrid">Exportar Grid JSON</button>
+    <button id="exportSpatialProject">Gerar Spatial Project</button>
+    <button id="openProjectionMapping">Projection Mapping</button>
+  </div>
+
+  <div id="coordPanel">
+    <strong>Ponto de Referência</strong>
+    <div id="coordInfo">
+      Use “Abrir cidade”, navegue e depois clique em “Escolher ponto”.
+    </div>
+    <hr>
+    <strong>Cursor</strong>
+    <div id="cursorInfo">Lat/Lon: --</div>
+  </div>
+
+  <div id="helpPanel">
+    <strong>Navegação</strong><br>
+    Mouse esquerdo: mover<br>
+    Scroll: zoom<br>
+    Mouse direito / Ctrl + mouse: girar e inclinar<br>
+    Escolher ponto: define o centro da Área CitySpace
+  </div>
+
+  <div id="infoPanel">
+    <strong>Área CitySpace</strong>
+    <div id="areaInfo">Nenhuma área criada.</div>
+  </div>
+
+  <div id="cesiumContainer"></div>
+
+  <script src="main.js"></script>
+<script>
+document.getElementById("openProjectionMapping").addEventListener("click", function () {
+  window.open("/frontend/projection_layers/", "_blank");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+./config/system_paths.py:18:    "offline/products/scientific/grid_metrics_utm.csv"
+./config/system_paths.py:47:GRID_METRICS_UTM_CSV = BASE_DIR / "grid_metrics_utm.csv"
+./fix_grid_path_v2.py:14:GRID_METRICS_UTM_CSV = BASE_DIR / "grid_metrics_utm.csv"
+./offline/adapters/scientific_to_semantic_adapter.py:5:Converte grid_metrics_utm.csv
+./offline/adapters/scientific_to_semantic_adapter.py:31:INPUT_CSV = SCIENTIFIC_DIR / "grid_metrics_utm.csv"
+./offline/adapters/scientific_to_semantic_adapter.py.bak:5:Converte grid_metrics_utm.csv
+./offline/config/system_paths.py:24:GRID_METRICS_UTM_CSV = SCIENTIFIC_PRODUCTS / "grid_metrics_utm.csv"
+./offline/pipeline/01_build_scientific_grid_BACKUP.py:20:df.to_csv(OUT/"grid_metrics_utm.csv",index=False)
+./offline/pipeline/02_join_grid_metrics_with_geom.py:10:CSV_PATH = BASE / "grid_metrics_utm.csv"
+./offline/pipeline/04_generate_actuator_plan.py:16:    csv_path = Path("offline/products/scientific/grid_metrics_utm.csv")
+./offline/tools/audit_alignment_grid_raster.py:13:GRID_CSV = ENGINE_ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+./offline/tools/audit_scientific_grid.py:8:path = ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+./online/ui/dash_v0_base.py:10:CSV_PATH = "offline/products/scientific/grid_metrics_utm.csv"
+./online/ui/Dash_v87_image_lock.py:16:CSV_PATH = "offline/products/scientific/grid_metrics_utm.csv"
+./scan07042026.txt:4:./config/system_paths.py:    "offline/products/scientific/grid_metrics_utm.csv"
+./scan07042026.txt:723:./offline/adapters/scientific_to_semantic_adapter.py:Converte grid_metrics_utm.csv
+./scan07042026.txt:724:./offline/adapters/scientific_to_semantic_adapter.py:INPUT_CSV = SCIENTIFIC_DIR / "grid_metrics_utm.csv"
+./scan07042026.txt:726:./offline/adapters/scientific_to_semantic_adapter.py.bak:Converte grid_metrics_utm.csv
+./scan07042026.txt:731:./offline/config/system_paths.py:GRID_METRICS_UTM_CSV = SCIENTIFIC_PRODUCTS / "grid_metrics_utm.csv"
+./scan07042026.txt:757:./offline/pipeline/01_build_scientific_grid.py:out_path = OUT / "grid_metrics_utm.csv"
+./scan07042026.txt:758:./offline/pipeline/01_build_scientific_grid.py:print("✅ grid_metrics_utm.csv gerado:", out_path)
+./scan07042026.txt:759:./offline/pipeline/01_build_scientific_grid_BACKUP.py:out_path = OUT / "grid_metrics_utm.csv"
+./scan07042026.txt:760:./offline/pipeline/01_build_scientific_grid_BACKUP.py:print("✅ grid_metrics_utm.csv gerado:", out_path)
+./scan07042026.txt:762:./offline/pipeline/02_join_grid_metrics_with_geom.py:CSV_PATH = BASE / "grid_metrics_utm.csv"
+./scan07042026.txt:772:./offline/pipeline/04_generate_actuator_plan.py:    csv_path = Path("offline/products/scientific/grid_metrics_utm.csv")
+./scan07042026.txt:1031:./offline/tools/audit_alignment_grid_raster.py:GRID_CSV = ENGINE_ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+./scan07042026.txt:1059:./offline/tools/audit_scientific_grid.py:path = ROOT / "offline/products/scientific/grid_metrics_utm.csv"

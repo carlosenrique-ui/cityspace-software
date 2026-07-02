@@ -1,0 +1,722 @@
+========================================
+1) PIPELINE FILES
+========================================
+-rwxrwxrwx 1 carlos carlos 2.1K Apr 17 16:16 offline/pipeline/01_build_scientific_grid.py
+-rwxrwxrwx 1 carlos carlos  510 Apr 11 18:54 offline/pipeline/01_build_scientific_grid_BACKUP.py
+-rwxrwxrwx 1 carlos carlos  308 Mar 26 16:48 offline/pipeline/02_compute_cell_metrics.py
+-rwxrwxrwx 1 carlos carlos 1.7K Apr  7 10:35 offline/pipeline/02_join_grid_metrics_with_geom.py
+-rwxrwxrwx 1 carlos carlos 1.5K Apr 25 18:58 offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py
+-rwxrwxrwx 1 carlos carlos 1.8K Apr  7 15:56 offline/pipeline/03_generate_contours_clean.py
+-rwxrwxrwx 1 carlos carlos  338 Mar 26 16:48 offline/pipeline/03_scientific_to_semantic.py
+-rwxrwxrwx 1 carlos carlos 2.1K Apr 25 17:11 offline/pipeline/03b_generate_contours_clean_UI.py
+-rwxrwxrwx 1 carlos carlos 1.7K Apr 25 17:21 offline/pipeline/03c_generate_contours_from_DTM_TRUE.py
+-rwxrwxrwx 1 carlos carlos 2.4K Apr 25 17:33 offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py
+-rwxrwxrwx 1 carlos carlos 3.5K Apr 25 18:38 offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py
+-rwxrwxrwx 1 carlos carlos 3.5K Apr 25 18:46 offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py
+-rwxrwxrwx 1 carlos carlos 3.8K Apr 21 20:16 offline/pipeline/04_generate_actuator_plan.py
+-rwxrwxrwx 1 carlos carlos  680 Apr  7 11:44 offline/pipeline/04b_generate_actuator_geospatial.py
+-rwxrwxrwx 1 carlos carlos 1.9K Apr 21 20:26 offline/pipeline/05_apply_rotation_to_contours.py
+
+========================================
+2) BUSCAR z_terrain / DTM / nodata / normalize
+========================================
+offline/adapters/scientific_to_semantic_adapter.py:72:    terrain = np.zeros_like(z_total)
+offline/adapters/scientific_to_semantic_adapter.py:86:        pino_cm = np.clip(pino_cm, 0, PIN_MAX_CM)
+offline/adapters/scientific_to_semantic_adapter.py:89:    grid_uint8 = np.clip(grid_uint8, 0, UINT8_MAX)
+offline/adapters/scientific_to_semantic_adapter.py:98:    np.savetxt(OUT_DIR / "grid_terrain_m.csv", terrain, delimiter=";", fmt="%.3f")
+offline/config/system_paths.py:34:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/config/system_paths.py:37:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/ingestion/auto_dataset_ingestion.py:11:detectar DSM / DTM
+offline/ingestion/auto_dataset_ingestion.py:68:print("\n[4] Procurando rasters DSM / DTM...\n")
+offline/ingestion/auto_dataset_ingestion.py:73:DTM = None
+offline/ingestion/auto_dataset_ingestion.py:79:    if "dtm" in name:
+offline/ingestion/auto_dataset_ingestion.py:80:        DTM = f
+offline/ingestion/auto_dataset_ingestion.py:86:        print("DTM detectado:", DTM)
+offline/ingestion/auto_dataset_ingestion.py:88:    if DSM is None or DTM is None:
+offline/ingestion/auto_dataset_ingestion.py:89:        print("\nERRO: DSM ou DTM não identificados.")
+offline/ingestion/auto_dataset_ingestion.py:100:DTM_TARGET = RAW / "IPT-2018-DTM.tif"
+offline/ingestion/auto_dataset_ingestion.py:103:print("Destino DTM:", DTM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:108:shutil.copy(DTM, DTM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:111:print("✔ DTM copiado")
+offline/loading/load_raster.py:11:    Lê um raster (DSM ou DTM) e retorna:
+offline/loading/load_raster.py:16:    - NÃO normaliza
+offline/loading/offline_product.py:44:            raise ValueError("grid deve estar normalizado em uint8 (0–255)")
+offline/pipeline/01_build_scientific_grid.py:90:print(">>> PRONTO PARA AMOSTRAGEM DSM/DTM")
+offline/pipeline/01_build_scientific_grid_BACKUP.py:19:df=pd.DataFrame(data,columns=["row","col","z_terrain_m","z_building_m","z_total_m"])
+offline/pipeline/03b_generate_contours_clean_UI.py:2:# IPT-CITYSPACE — CURVAS DTM LIMPAS PARA UI
+offline/pipeline/03b_generate_contours_clean_UI.py:15:INPUT = PROJECT / "offline/products/terrain/curvas_nivel_terreno_suavizadas_UI.geojson"
+offline/pipeline/03b_generate_contours_clean_UI.py:53:clip_geom = box(
+offline/pipeline/03b_generate_contours_clean_UI.py:60:clip_gdf = gpd.GeoDataFrame(
+offline/pipeline/03b_generate_contours_clean_UI.py:61:    geometry=[clip_geom],
+offline/pipeline/03b_generate_contours_clean_UI.py:65:gdf = gpd.clip(gdf, clip_gdf)
+offline/pipeline/03b_generate_contours_clean_UI.py:67:print("rows após clip:", len(gdf))
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:2:# IPT-CITYSPACE — CONTOURS DIRETO DO DTM REAL
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:15:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:17:OUTPUT = BASE / "offline/products/scientific/curvas_dtm_true_2m.gpkg"
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:23:if not DTM.exists():
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:24:    raise FileNotFoundError(f"DTM não encontrado: {DTM}")
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:26:print("DTM:", DTM)
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:36:    str(DTM),
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:12:INPUT = BASE / "offline/products/scientific/curvas_dtm_true_2m.gpkg"
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:13:OUTPUT = BASE / "offline/products/scientific/curvas_dtm_rotated_scientific.gpkg"
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:19:gdf = gpd.read_file(INPUT, layer="curvas_dtm_true_2m")
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:77:clip_geom = box(
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:84:clip_gdf = gpd.GeoDataFrame(geometry=[clip_geom], crs=gdf.crs)
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:86:gdf = gpd.clip(gdf, clip_gdf)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:15:OUT_GEOJSON = BASE / "offline/products/scientific/curvas_grid_terrain_2m_nan_polygon.geojson"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:16:OUT_MASK_NPY = BASE / "offline/products/scientific/grid_terrain_nan_polygon.npy"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:31:    df.pivot(index="row", columns="col", values="z_terrain_m")
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:16:OUT_GEOJSON = BASE / "offline/products/scientific/curvas_rbf_terrain_2m_polygon.geojson"
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:17:OUT_SURFACE_NPY = BASE / "offline/products/scientific/rbf_terrain_surface_polygon.npy"
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:32:    df.pivot(index="row", columns="col", values="z_terrain_m")
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:91:Z_masked = Z.copy()
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:92:Z_masked[~mask] = np.nan
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:94:np.save(OUT_SURFACE_NPY, Z_masked)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:96:zmin = np.nanmin(Z_masked)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:97:zmax = np.nanmax(Z_masked)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:108:cs = ax.contour(X, Y, Z_masked, levels=levels)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:127:                "source": "RBF_z_terrain_m_polygon",
+offline/pipeline/03_generate_contours_clean.py:18:gdf = gdf[(gdf['z_terrain_m'] > 0) | (gdf['z_building_m'] > 0)]
+offline/pipeline/03_generate_contours_clean.py:30:    Z[int(r['row']), int(r['col'])] = r['z_terrain_m']
+offline/pipeline/04_generate_actuator_plan.py:47:    required = ["row", "col", "x", "y", "z_terrain_m", "z_building_m", "z_total_m"]
+offline/pipeline/04_generate_actuator_plan.py:57:    z_terrain = df_out["z_terrain_m"].astype(float).to_numpy()
+offline/pipeline/04_generate_actuator_plan.py:62:        raise ValueError(f"z_total_m inválido para normalização: zmax={zmax}")
+offline/pipeline/04_generate_actuator_plan.py:66:    ratio_terrain = np.divide(
+offline/pipeline/04_generate_actuator_plan.py:67:        z_terrain,
+offline/pipeline/04_generate_actuator_plan.py:81:    df_out["z_terrain_cm"] = z_cm * ratio_terrain
+offline/pipeline_dag.py:21:"offline/data/raw/dtm/*.tif",
+offline/pipeline_dag.py:26:"offline/data/stage1_reproject/dtm/*.tif",
+offline/pipeline_dag.py:36:"offline/data/stage1_reproject/dtm/*.tif",
+offline/pipeline_dag.py:41:"offline/data/stage2_rotate/dtm/*.tif",
+offline/pipeline_dag.py:47:"name": "clip_domain",
+offline/pipeline_dag.py:48:"script": "offline/processing/clip_raster.py",
+offline/pipeline_dag.py:51:"offline/data/stage2_rotate/dtm/*.tif"
+offline/pipeline_dag.py:55:"offline/data/stage3_clip/dtm/*.tif"
+offline/pipeline_dag.py:60:"name": "normalize_height",
+offline/pipeline_dag.py:61:"script": "offline/processing/normalize.py",
+offline/pipeline_dag.py:64:"offline/data/stage3_clip/dtm/*.tif"
+offline/pipeline_dag.py:68:"offline/data/stage4_normalize/Z_total.tif"
+offline/pipeline_dag.py:77:"offline/data/stage4_normalize/Z_total.tif"
+offline/processing/clip_raster.py:5:def clip_raster_by_vector(raster_array, raster_meta, vector_gdf):
+offline/processing/clip_raster.py:27:                nodata=raster_meta.get("nodata", 0)
+offline/processing/compute_heights.py:3:def compute_heights(dsm, dtm, mask):
+offline/processing/compute_heights.py:7:    Calcula nDSM fisico (DSM - DTM) com mascara de edificios.
+offline/processing/compute_heights.py:18:    dtm = dtm.astype(np.float32)
+offline/processing/compute_heights.py:20:    ndsm = dsm - dtm
+offline/processing/normalize.py:4:def normalize_ndsm(ndsm):
+offline/processing/normalize.py:22:    norm = np.clip(norm, 0, 1)
+offline/processing/normalize.py:35:def normalize_vertical_reference(dtm, dsm=None, nodata=None):
+offline/processing/normalize.py:37:    Define a cota zero local baseada na menor cota do DTM.
+offline/processing/normalize.py:40:    - DTM
+offline/processing/normalize.py:47:    ZERO LOCAL = min(DTM)
+offline/processing/normalize.py:55:    if nodata is not None:
+offline/processing/normalize.py:56:        dtm = np.where(dtm == nodata, np.nan, dtm)
+offline/processing/normalize.py:58:    zero_local = np.nanmin(dtm)
+offline/processing/normalize.py:60:    print("Local terrain zero:", zero_local)
+offline/processing/normalize.py:62:    dtm_local = dtm - zero_local
+offline/processing/normalize.py:64:    print("DTM min (new):", np.nanmin(dtm_local))
+offline/processing/normalize.py:65:    print("DTM max (new):", np.nanmax(dtm_local))
+offline/processing/normalize.py:69:        return dtm_local, dsm_local, zero_local
+offline/processing/normalize.py:71:    return dtm_local, None, zero_local
+offline/raster/core/clip_raster_by_envelope.py:7:def clip_raster_by_envelope(raster_path, envelope_path, output_path):
+offline/raster/core/compute_ndsm.py:13:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/compute_ndsm.py:25:with rasterio.open(DTM) as dtm:
+offline/raster/core/compute_ndsm.py:26:t = dtm.read(1)
+offline/raster/core/normalize_raster_to_scientific_system.py:35:DTM_UTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:38:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:84:    shift_raster(DTM_UTM, DTM_LOCAL)
+offline/raster/core/normalize_vertical_reference.py:4:Sincroniza DSM e DTM no mesmo zero
+offline/raster/core/normalize_vertical_reference.py:14:DTM_IN = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/normalize_vertical_reference.py:17:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/normalize_vertical_reference.py:23:with rasterio.open(DTM_IN) as dtm:
+offline/raster/core/normalize_vertical_reference.py:26:dtm_data = dtm.read(1)
+offline/raster/core/normalize_vertical_reference.py:27:meta = dtm.meta.copy()
+offline/raster/core/normalize_vertical_reference.py:29:valid = dtm_data != dtm.nodata
+offline/raster/core/normalize_vertical_reference.py:30:z0 = np.min(dtm_data[valid])
+offline/raster/core/normalize_vertical_reference.py:35:with rasterio.open(DTM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:41:with rasterio.open(DTM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:55:print("✔ DSM e DTM sincronizados\n")
+offline/raster/core/reclip_rasters_to_domain.py:17:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/reclip_rasters_to_domain.py:25:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_DOMAIN.tif"
+offline/raster/core/reclip_rasters_to_domain.py:29:def clip_raster(input_path, output_path, domain_geom):
+offline/raster/core/reclip_rasters_to_domain.py:62:    for p in [DTM_ROT, DSM_ROT, DOMAIN_PATH]:
+offline/raster/core/reclip_rasters_to_domain.py:77:    clip_raster(DTM_ROT, DTM_OUT, domain_geom)
+offline/raster/core/reclip_rasters_to_domain.py:78:    clip_raster(DSM_ROT, DSM_OUT, domain_geom)
+offline/raster/core/reproject_rasters_to_utm.py:18:DTM_IN = BASE / "offline/data/raw/IPT-2018-DTM.tif"
+offline/raster/core/reproject_rasters_to_utm.py:21:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/core/reproject_rasters_to_utm.py:67:reproject_raster(DTM_IN, DTM_OUT)
+offline/raster/pipeline/scientific_raster_runner.py:23:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:26:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/raster/pipeline/scientific_raster_runner.py:58:def clip_raster(input_raster, output_raster, geom):
+offline/raster/pipeline/scientific_raster_runner.py:126:    with rasterio.open(DTM_CLIP) as dtm:
+offline/raster/pipeline/scientific_raster_runner.py:127:        dtm_data = dtm.read(1)
+offline/raster/pipeline/scientific_raster_runner.py:133:    ndsm = dsm_data - dtm_data
+offline/raster/pipeline/scientific_raster_runner.py:164:    height_total = dtm_data + height
+offline/raster/pipeline/scientific_raster_runner.py:216:    clip_raster(DSM_LOCAL, DSM_CLIP, geom)
+offline/raster/pipeline/scientific_raster_runner.py:217:    clip_raster(DTM_LOCAL, DTM_CLIP, geom)
+offline/scientific_cell_metrics_utm.py:7:DTM = "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/scientific_cell_metrics_utm.py:16:    dtm = rasterio.open(DTM)
+offline/scientific_cell_metrics_utm.py:18:    rb = box(*dtm.bounds)
+offline/scientific_cell_metrics_utm.py:28:            dtm_img, _ = mask(dtm, geom, crop=True)
+offline/scientific_cell_metrics_utm.py:33:        dtm_vals = dtm_img[0]
+offline/scientific_cell_metrics_utm.py:35:        m = (dsm_vals != dsm.nodata) & (dtm_vals != dtm.nodata)
+offline/scientific_cell_metrics_utm.py:41:        dtm_vals = dtm_vals[m]
+offline/scientific_cell_metrics_utm.py:43:        z_terrain = np.median(dtm_vals)
+offline/scientific_cell_metrics_utm.py:44:        z_building = np.max(dsm_vals - dtm_vals)
+offline/scientific_cell_metrics_utm.py:45:        z_total = z_terrain + z_building
+offline/scientific_cell_metrics_utm.py:51:                "z_terrain": float(z_terrain),
+offline/scientific_cell_metrics_utm.py:61:    df["z_terrain"] += shift
+offline/scientific_grid_builder.py:14:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/scientific_grid_builder.py:23:    with rasterio.open(DTM_PATH) as r:
+offline/tests/test_grid_to_pin_height.py:29:def test_invalid_normalized_value():
+offline/tools/05_recompute_rotation_from_grid.py:56:# normalizar para [0,360]
+offline/tools/05_recompute_rotation_from_grid.py:58:print(f"Angle normalized: {angle_norm:.6f}")
+offline/tools/06_recompute_rotation_true.py:54:print(f"Angle normalized: {angle_norm:.6f}")
+offline/tools/07_detect_rotation_from_envelope.py:42:print(f"Angle normalized: {angle_norm:.6f}")
+offline/tools/align_raster_to_envelope.py:13:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/align_raster_to_envelope.py:53:shift_raster(DTM)
+offline/tools/apply_rigid_transform_raster_scientific.py:16:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/tools/apply_rigid_transform_raster_scientific.py:21:OUT_DTM = BASE / "offline/products/scientific/dtm_local.tif"
+offline/tools/apply_rigid_transform_raster_scientific.py:87:    print("Transforming DTM...")
+offline/tools/apply_rigid_transform_raster_scientific.py:88:    transform_raster(DTM, OUT_DTM, affine)
+offline/tools/audit_altimetry_rasters.py:9:"offline/products/snapshots/ipt_fase0/z_terrain_real.tif",
+offline/tools/audit_lowest_points_dtm_dsm.py:3:Audit Lowest Points of DTM and DSM
+offline/tools/audit_lowest_points_dtm_dsm.py:30:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/audit_lowest_points_dtm_dsm.py:44:        # ignorar nodata
+offline/tools/audit_lowest_points_dtm_dsm.py:45:        mask = data != src.nodata
+offline/tools/audit_lowest_points_dtm_dsm.py:73:    dtm_val, dtm_r, dtm_c, dtm_x, dtm_y = find_lowest(DTM)
+offline/tools/audit_lowest_points_dtm_dsm.py:76:    print("DTM lowest point")
+offline/tools/audit_lowest_points_dtm_dsm.py:78:    print("value :", dtm_val)
+offline/tools/audit_lowest_points_dtm_dsm.py:79:    print("row   :", dtm_r)
+offline/tools/audit_lowest_points_dtm_dsm.py:80:    print("col   :", dtm_c)
+offline/tools/audit_lowest_points_dtm_dsm.py:81:    print("x     :", dtm_x)
+offline/tools/audit_lowest_points_dtm_dsm.py:82:    print("y     :", dtm_y)
+offline/tools/audit_lowest_points_dtm_dsm.py:94:    dx = dsm_x - dtm_x
+offline/tools/audit_lowest_points_dtm_dsm.py:95:    dy = dsm_y - dtm_y
+offline/tools/audit_raster_minmax.py:13:    "offline/products/snapshots/ipt_fase0/z_terrain_real.tif",
+offline/tools/build_pipeline_execution_order.py:40:"offline/raster/core/reclip_rasters_to_domain.py",
+offline/tools/build_pipeline_execution_order.py:41:"offline/raster/core/normalize_raster_to_scientific_system.py",
+offline/tools/build_pipeline_execution_order.py:51:"offline/products/generate_contours_from_dtm.py",
+offline/tools/fix_raster_vertical_alignment.py:9:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/fix_raster_vertical_alignment.py:58:    shift_raster(DTM, dy)
+offline/tools/generate_grid_aligned_watermark.py:78:def normalize_to_grid_frame(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+offline/tools/generate_grid_aligned_watermark.py:84:        raise ValueError("Bounds inválidos para normalização.")
+offline/tools/generate_grid_aligned_watermark.py:100:    print(f"[OK] bounds normalizados: {tuple(gdf2.total_bounds)}", flush=True)
+offline/tools/generate_grid_aligned_watermark.py:137:    gdf_grid = normalize_to_grid_frame(gdf)
+offline/tools/generate_grid_aligned_watermark_v2.py:77:def normalize_to_grid_frame(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+offline/tools/generate_grid_aligned_watermark_v2.py:83:        raise ValueError("Bounds inválidos para normalização.")
+offline/tools/generate_grid_aligned_watermark_v2.py:99:    print(f"[OK] bounds normalizados: {tuple(gdf2.total_bounds)}", flush=True)
+offline/tools/generate_grid_aligned_watermark_v2.py:136:    gdf_grid = normalize_to_grid_frame(gdf)
+offline/tools/list_rasters.py:3:List all raster files (DTM / DSM)
+offline/tools/list_rasters.py:15:    print("Searching for DTM / DSM rasters")
+offline/tools/list_rasters.py:25:            if "dtm" in name or "dsm" in name:
+offline/tools/reanchor_raster_to_envelope.py:11:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/reanchor_raster_to_envelope.py:35:reanchor(DTM)
+offline/tools/rebuild_scientific_raster_runner.py:27:DTM_INPUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/rebuild_scientific_raster_runner.py:30:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/tools/rebuild_scientific_raster_runner.py:33:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/tools/rebuild_scientific_raster_runner.py:108:def clip_raster(src_path, dst_path):
+offline/tools/rebuild_scientific_raster_runner.py:127:            print("Abortando clip")
+offline/tools/rebuild_scientific_raster_runner.py:160:    rotate_raster(DTM_INPUT, DTM_ROT, params)
+offline/tools/rebuild_scientific_raster_runner.py:162:    clip_raster(DSM_ROT, DSM_CLIP)
+offline/tools/rebuild_scientific_raster_runner.py:163:    clip_raster(DTM_ROT, DTM_CLIP)
+offline/tools/recompute_altimetry_ndsm.py:24:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/tools/recompute_altimetry_ndsm.py:27:OUT_TERRAIN = BASE / "offline/products/grid_terrain_m.csv"
+offline/tools/recompute_altimetry_ndsm.py:56:    with rasterio.open(DTM_PATH) as dtm_ds:
+offline/tools/recompute_altimetry_ndsm.py:57:        dtm = dtm_ds.read(1)
+offline/tools/recompute_altimetry_ndsm.py:62:    print("✔ DTM shape:", dtm.shape)
+offline/tools/recompute_altimetry_ndsm.py:65:    ndsm = dsm - dtm
+offline/tools/recompute_altimetry_ndsm.py:67:    height, width = dtm.shape
+offline/tools/recompute_altimetry_ndsm.py:75:    grid_terrain = np.full((GRID_ROWS, GRID_COLS), np.nan)
+offline/tools/recompute_altimetry_ndsm.py:89:            dtm_cell = dtm[y0:y1, x0:x1]
+offline/tools/recompute_altimetry_ndsm.py:92:            valid_mask = dtm_cell > NODATA_LIMIT
+offline/tools/recompute_altimetry_ndsm.py:98:            dtm_valid = dtm_cell[valid_mask]
+offline/tools/recompute_altimetry_ndsm.py:105:            z_terrain = float(np.mean(dtm_valid))
+offline/tools/recompute_altimetry_ndsm.py:122:            z_total = z_terrain + z_building
+offline/tools/recompute_altimetry_ndsm.py:124:            grid_terrain[i, j] = z_terrain
+offline/tools/recompute_altimetry_ndsm.py:130:                f"T={z_terrain:6.2f} "
+offline/tools/recompute_altimetry_ndsm.py:141:    min_terrain = np.nanmin(grid_terrain)
+offline/tools/recompute_altimetry_ndsm.py:142:    print("✔ Min terrain:", min_terrain)
+offline/tools/recompute_altimetry_ndsm.py:144:    grid_terrain -= min_terrain
+offline/tools/recompute_altimetry_ndsm.py:145:    grid_total -= min_terrain
+offline/tools/recompute_altimetry_ndsm.py:151:    grid_terrain = np.nan_to_num(grid_terrain, nan=0.0)
+offline/tools/recompute_altimetry_ndsm.py:160:    np.savetxt(OUT_TERRAIN, grid_terrain, fmt="%.3f", delimiter=";")
+offline/tools/recompute_transform_from_envelope.py:9:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/tools/recompute_transform_from_envelope.py:19:    # --- DTM bounds (UTM)
+offline/tools/recompute_transform_from_envelope.py:20:    with rasterio.open(DTM) as src:
+offline/tools/shift_raster_to_envelope.py:14:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/shift_raster_to_envelope.py:43:with rasterio.open(DTM) as src:
+offline/tools/shift_raster_to_envelope.py:52:with rasterio.open(DTM, "w", **profile) as dst:
+offline/validation/audit_altitude_statistics.py:4:Analisa valores DSM e DTM
+offline/validation/audit_altitude_statistics.py:14:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/validation/audit_altitude_statistics.py:26:    data = data[data != src.nodata]
+offline/validation/audit_altitude_statistics.py:37:stats("DTM", DTM)
+offline/validation/audit_raster_alignment.py:5:Verifica alinhamento entre DTM e DSM
+offline/validation/audit_raster_alignment.py:17:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/validation/audit_raster_alignment.py:20:print("DTM:", DTM_PATH)
+offline/validation/audit_raster_alignment.py:23:print("\n--- DTM ---")
+offline/validation/audit_raster_alignment.py:25:with rasterio.open(DTM_PATH) as dtm:
+offline/validation/audit_raster_alignment.py:27:    print("bounds:", dtm.bounds)
+offline/validation/audit_raster_alignment.py:28:    print("width:", dtm.width)
+offline/validation/audit_raster_alignment.py:29:    print("height:", dtm.height)
+offline/validation/audit_raster_alignment.py:30:    print("resolution:", dtm.res)
+offline/validation/audit_raster_alignment.py:31:    print("crs:", dtm.crs)
+offline/validation/contract_registry.py:67:                "z_terrain_m",
+offline/validation/contract_registry.py:75:                "z_total_m = z_terrain_m + z_building_m",
+offline/validation/contract_registry.py:189:            "source": "DTM",
+offline/validation/contract_registry.py:191:            "cota_zero_definition": "minimum_DTM_within_urbanism_area",
+offline/validation/contract_registry.py:203:                "DTM -> z_terrain_m",
+offline/validation/contract_registry.py:205:                "z_terrain_m + z_building_m -> z_total_m",
+offline/validation/contract_registry.py:241:                "title": "Escolha algor\u00edtmica da melhor quadr\u00edcula quadrada",
+offline/validation/contract_registry.py:242:                "description": "A regra est\u00e1 definida conceitualmente, mas ainda precisa de formaliza\u00e7\u00e3o algor\u00edtmica centralizada.",
+offline/validation/validate_contract_master.py:133:    if "z_terrain_m" in df.columns and "z_building_m" in df.columns and "z_total_m" in df.columns:
+offline/validation/validate_contract_master.py:134:        total_expected = df["z_terrain_m"] + df["z_building_m"]
+offline/validation/validate_contract_master.py:142:                "z_total_m difere de z_terrain_m + z_building_m.",
+offline/validation/validate_contract_master.py:151:                "z_total_m = z_terrain_m + z_building_m.",
+offline/validation/validate_contract_master.py:354:    if contract["contours"]["source"] == "DTM":
+offline/validation/validate_contract_master.py:357:            "Contours derivados do DTM",
+offline/validation/validate_contract_master.py:358:            "O contrato define que contours derivam do DTM.",
+offline/validation/validate_contract_master.py:365:            "Contours derivam da menor cota do DTM dentro do urbanismo.",
+offline/validation/validate_contract_master.py:368:            proposed_contract_additive="A cota zero dos contours deve ser definida pela menor cota do DTM dentro do urbanismo.",
+offline/validation/validate_grid_vs_raster_alignment.py:3:GRID 8x16 (UTM) vs Raster DTM/DSM
+offline/validation/validate_grid_vs_raster_alignment.py:15:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_grid_vs_raster_alignment.py:24:    with rasterio.open(DTM_PATH) as src:
+offline/validation/validate_raster_local_offset.py:17:normalização espacial do raster antes da rotação.
+offline/validation/validate_raster_local_offset.py:35:RASTER_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_rotation_pca_grid.py:18:def normalize_0_180(angle_deg: float) -> float:
+offline/validation/validate_rotation_pca_grid.py:25:def normalize_signed_180(angle_deg: float) -> float:
+offline/validation/validate_rotation_pca_grid.py:35:    return normalize_0_180(math.degrees(math.atan2(vy, vx)))
+offline/validation/validate_rotation_pca_grid.py:57:    pca = normalize_0_180(pca_angle_deg)
+offline/validation/validate_rotation_pca_grid.py:59:    rot_to_x = normalize_signed_180(-pca)
+offline/validation/validate_rotation_pca_grid.py:60:    rot_to_y = normalize_signed_180(90.0 - pca)
+offline/validation/validate_rotation_pca_grid.py:62:    residual_x = abs(normalize_signed_180(pca + rot_to_x))
+offline/validation/validate_rotation_pca_grid.py:63:    residual_y = abs(normalize_signed_180((pca + rot_to_y) - 90.0))
+offline/validation/validate_rotation_pca_grid.py:108:                normalize_signed_180(pca_angle_deg - float(current["current_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:112:                normalize_signed_180(pca_angle_deg - float(geo["target_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:116:                normalize_signed_180(pca_angle_deg - float(phy["target_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:120:                normalize_signed_180(float(geo["source_orientation_deg"]) - float(phy["source_orientation_deg"])),
+offline/vector/core/apply_rigid_transform_clean.py:58:    Base científica para DTM, DSM, curvas de nível.
+
+========================================
+3) PRINT PRINCIPAIS SCRIPTS
+========================================
+
+========================================
+FILE: offline/pipeline/01_build_scientific_grid.py
+========================================
+# =========================================
+# IPT-CitySpace – GRID BUILDER (SQUARE FIX)
+# =========================================
+
+import geopandas as gpd
+import numpy as np
+
+ROWS = 8
+COLS = 16
+
+INPUT_GPKG = "offline/products/scientific/grid_8x16_metric.gpkg"
+OUTPUT_DEBUG = "offline/products/scientific/grid_square_debug.txt"
+
+print(">>> LOAD GRID ORIGINAL")
+gdf = gpd.read_file(INPUT_GPKG)
+
+xmin, ymin, xmax, ymax = gdf.total_bounds
+
+dx = xmax - xmin
+dy = ymax - ymin
+
+print("\n>>> ORIGINAL DOMAIN")
+print("DX:", dx)
+print("DY:", dy)
+
+# =========================================
+# 🔥 STEP 1 — CALCULAR CÉLULA QUADRADA
+# =========================================
+cell = max(dx / COLS, dy / ROWS)
+cell_x = cell
+cell_y = cell
+
+cell = max(cell_x, cell_y)
+
+print("\n>>> CELL ORIGINAL")
+print("cell_x:", cell_x)
+print("cell_y:", cell_y)
+
+print("\n>>> CELL FINAL (SQUARE)")
+print("cell:", cell)
+
+# =========================================
+# 🔥 STEP 2 — NOVO DOMÍNIO
+# =========================================
+new_dx = cell * COLS
+new_dy = cell * ROWS
+
+offset_x = (new_dx - dx) / 2
+offset_y = (new_dy - dy) / 2
+
+xmin_new = xmin - offset_x
+xmax_new = xmax + offset_x
+
+ymin_new = ymin - offset_y
+ymax_new = ymax + offset_y
+
+print("\n>>> NEW DOMAIN")
+print("DX:", new_dx)
+print("DY:", new_dy)
+
+print("\n>>> OFFSET")
+print("offset_x:", offset_x)
+print("offset_y:", offset_y)
+
+# =========================================
+# 🔥 STEP 3 — GERAR GRID QUADRADO (COORDENADAS)
+# =========================================
+grid_cells = []
+
+for r in range(ROWS):
+    for c in range(COLS):
+        x0 = xmin_new + c * cell
+        x1 = x0 + cell
+
+        y0 = ymin_new + r * cell
+        y1 = y0 + cell
+
+        grid_cells.append((r, c, x0, y0, x1, y1))
+
+print("\n>>> TOTAL CELLS:", len(grid_cells))
+
+# =========================================
+# DEBUG SAVE
+# =========================================
+with open(OUTPUT_DEBUG, "w") as f:
+    for row in grid_cells:
+        f.write(str(row) + "\n")
+
+print("\n>>> GRID SQUARE GERADO")
+print(">>> PRONTO PARA AMOSTRAGEM DSM/DTM")
+
+========================================
+FILE: offline/pipeline/02_compute_cell_metrics.py
+========================================
+# ==========================================================
+# PIPELINE STEP 02
+# Compute Cell Metrics
+# ==========================================================
+
+from offline.scientific_cell_metrics_utm import main
+
+if __name__ == "__main__":
+
+    print("\nSTEP 02 – COMPUTE CELL METRICS\n")
+
+    main()
+========================================
+FILE: offline/pipeline/02_join_grid_metrics_with_geom.py
+========================================
+import pandas as pd
+import geopandas as gpd
+from pathlib import Path
+
+# =========================================
+# PATHS
+# =========================================
+BASE = Path("offline/products/scientific")
+
+CSV_PATH = BASE / "grid_metrics_utm.csv"
+GPKG_PATH = BASE / "grid_8x16_metric.gpkg"
+OUT_PATH = BASE / "grid_8x16_enriched.gpkg"
+
+# =========================================
+# LOAD
+# =========================================
+print("📥 Loading CSV...")
+df = pd.read_csv(CSV_PATH)
+
+print("📥 Loading GPKG...")
+gdf = gpd.read_file(GPKG_PATH)
+
+print("📊 Shapes:")
+print("CSV:", df.shape)
+print("GPKG:", gdf.shape)
+
+# =========================================
+# CHECK KEYS
+# =========================================
+required_cols = ["row", "col"]
+
+for col in required_cols:
+    if col not in df.columns:
+        raise Exception(f"❌ CSV missing column: {col}")
+    if col not in gdf.columns:
+        raise Exception(f"❌ GPKG missing column: {col}")
+
+# =========================================
+# JOIN
+# =========================================
+print("🔗 Performing JOIN on (row, col)...")
+
+gdf_merged = gdf.merge(df, on=["row", "col"], how="left")
+
+# =========================================
+# VALIDATION
+# =========================================
+nulls = gdf_merged["z_total_m"].isna().sum()
+
+if nulls > 0:
+    print(f"⚠️ WARNING: {nulls} células sem match!")
+else:
+    print("✅ JOIN completo (sem perdas)")
+
+# =========================================
+# EXPORT
+# =========================================
+print("💾 Saving enriched GPKG...")
+gdf_merged.to_file(OUT_PATH, driver="GPKG")
+
+print("✅ OUTPUT:", OUT_PATH)
+
+========================================
+FILE: offline/pipeline/03_generate_contours_clean.py
+========================================
+import geopandas as gpd
+import numpy as np
+import matplotlib.pyplot as plt
+from shapely.geometry import LineString
+from shapely.affinity import rotate
+from pathlib import Path
+
+BASE = Path('offline/products/scientific')
+IN_PATH = BASE / 'grid_8x16_enriched.gpkg'
+OUT_PATH = BASE / 'grid_contours_clean.gpkg'
+
+print('STEP 03 – CLEAN CONTOURS (UTM FIX)')
+
+# carregar
+gdf = gpd.read_file(IN_PATH, engine='pyogrio')
+
+# 🔥 filtro urbano
+gdf = gdf[(gdf['z_terrain_m'] > 0) | (gdf['z_building_m'] > 0)]
+
+# ordenar
+gdf = gdf.sort_values(['row','col'])
+
+rows = int(gdf['row'].max() + 1)
+cols = int(gdf['col'].max() + 1)
+
+# matriz Z
+Z = np.full((rows, cols), np.nan)
+
+for _, r in gdf.iterrows():
+    Z[int(r['row']), int(r['col'])] = r['z_terrain_m']
+
+print('Z min/max:', np.nanmin(Z), np.nanmax(Z))
+
+# 🔥 coordenadas UTM reais (CENTRO DAS CÉLULAS)
+xs = gdf.groupby('col')['geometry'].first().centroid.x.sort_index().values
+ys = gdf.groupby('row')['geometry'].first().centroid.y.sort_index().values
+
+X, Y = np.meshgrid(xs, ys)
+
+# níveis
+levels = np.linspace(np.nanmin(Z), np.nanmax(Z), 10)
+
+# contours
+cs = plt.contour(X, Y, Z, levels=levels)
+
+lines = []
+values = []
+
+for i, level in enumerate(cs.levels):
+    segs = cs.allsegs[i]
+    for seg in segs:
+        if len(seg) > 1:
+            lines.append(LineString(seg))
+            values.append(level)
+
+# 🔥 CRS correto
+contours = gpd.GeoDataFrame({
+    'elevation': values,
+    'geometry': lines
+}, crs=gdf.crs)
+
+# 🔥 máscara urbana (agora FUNCIONA)
+mask = gdf.geometry.union_all()
+contours = contours[contours.intersects(mask)]
+
+# rotação opcional
+angle = 0
+contours['geometry'] = contours['geometry'].apply(lambda g: rotate(g, angle, origin='center'))
+
+# salvar
+contours.to_file(OUT_PATH, driver='GPKG', engine='pyogrio')
+
+print('Contours FINAL:', OUT_PATH)
+
+========================================
+FILE: offline/config/system_parameters.py
+========================================
+"""
+CitySpace Scientific Parameters
+Central configuration for grid, altimetry and runner
+"""
+
+# ===============================
+# GRID CONFIGURATION
+# ===============================
+
+GRID_ROWS = 8
+GRID_COLS = 16
+
+GRID_NAME = f"{GRID_ROWS}x{GRID_COLS}"
+
+# ===============================
+# GRID ALIGNMENT
+# ===============================
+CENTER_URBAN_ON_GRID = True
+
+
+# ===============================
+# GRID ALIGNMENT
+# ===============================
+CENTER_URBAN_ON_GRID = True
+
+
+# ===============================
+# GRID ALIGNMENT
+# ===============================
+
+CENTER_URBAN_ON_GRID = True
+
+# ===============================
+# CELL PARAMETERS
+# ===============================
+
+CELL_SIZE_METERS = 1.0
+
+# ===============================
+# PIN / ACTUATOR PARAMETERS
+# ===============================
+
+PIN_HEIGHT_SCALE = 1.0
+PIN_MIN_HEIGHT = 0.0
+PIN_MAX_HEIGHT = 100.0
+
+# ===============================
+# HEIGHT MODEL PARAMETERS
+# ===============================
+
+HEIGHT_PERCENTILE_BUILDING = 95
+HEIGHT_PERCENTILE_TERRAIN = 10
+
+MIN_BUILDING_FOOTPRINT_RATIO = 0.15
+
+# ===============================
+# RUNNER PARAMETERS
+# ===============================
+
+FRAME_RATE = 10
+SCANNER_SPEED = 1.0
+
+# ROTATION (FIXED)
+ROTATION_DEG = 154.63
+
+========================================
+FILE: offline/scientific_grid_builder.py
+========================================
+import geopandas as gpd
+import rasterio
+from shapely.geometry import Polygon
+from pathlib import Path
+
+# =========================================
+# CONFIG
+# =========================================
+GRID_ROWS = 8
+GRID_COLS = 16
+
+BASE = Path(__file__).resolve().parents[1]
+
+DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+OUTPUT = BASE / "offline/products/scientific/grid_8x16_metric.gpkg"
+
+
+# =========================================
+# BUILD GRID FROM RASTER (REAL UTM)
+# =========================================
+def build_grid():
+
+    with rasterio.open(DTM_PATH) as r:
+
+        xmin, ymin, xmax, ymax = r.bounds
+
+        width = xmax - xmin
+        height = ymax - ymin
+
+        cell_size = max(width / GRID_COLS, height / GRID_ROWS)
+
+        grid_width = GRID_COLS * cell_size
+        grid_height = GRID_ROWS * cell_size
+
+        center_x = xmin + width / 2
+        center_y = ymin + height / 2
+
+        xmin = center_x - grid_width / 2
+        ymin = center_y - grid_height / 2
+
+        print("========================================")
+        print("GRID DOMAIN (REAL UTM)")
+        print("========================================")
+        print("Raster bounds:", r.bounds)
+        print("Grid size:", grid_width, grid_height)
+        print("Cell size:", cell_size)
+
+        cells = []
+
+        for r_i in range(GRID_ROWS):
+            for c_i in range(GRID_COLS):
+
+                x1 = xmin + c_i * cell_size
+                y1 = ymin + r_i * cell_size
+
+                x2 = x1 + cell_size
+                y2 = y1 + cell_size
+
+                poly = Polygon([(x1, y1), (x2, y1), (x2, y2), (x1, y2)])
+
+                centroid = poly.centroid
+
+                cells.append(
+                    {
+                        "row": r_i,
+                        "col": c_i,
+                        "cx": centroid.x,
+                        "cy": centroid.y,
+                        "geometry": poly,
+                    }
+                )
+
+        gdf = gpd.GeoDataFrame(cells, crs=r.crs)
+
+        return gdf
+
+
+# =========================================
+# MAIN
+# =========================================
+def main():
+
+    print("\n=================================================")
+    print("CITYSPACE – GRID BUILDER (UTM CORRECT)")
+    print("=================================================")
+
+    gdf = build_grid()
+
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+
+    gdf.to_file(OUTPUT, driver="GPKG")
+
+    print("Grid saved:", OUTPUT)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,30 @@
+from pathlib import Path
+import pandas as pd
+import sys
+
+# Ajustar path para importar runner
+BASE = Path(__file__).resolve().parents[2]
+sys.path.append(str(BASE))
+
+from runner.scientific_runner_engine import build_sequence_from_csv
+
+CSV_PATH = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+
+def test_csv_exists():
+    assert CSV_PATH.exists(), "CSV científico não encontrado."
+
+def test_runner_sequence_generation():
+    sequence = build_sequence_from_csv(CSV_PATH)
+
+    assert len(sequence) == 128, "Sequência deve conter 128 estados."
+
+    # Verificar unicidade de células
+    coords = [(s["row"], s["col"]) for s in sequence]
+    assert len(set(coords)) == 128, "Existem células duplicadas na sequência."
+
+def test_height_consistency():
+    sequence = build_sequence_from_csv(CSV_PATH)
+
+    for state in sequence:
+        assert state["altura_total_m"] >= state["altura_terreno_m"]
+        assert state["altura_edificio_m"] >= 0

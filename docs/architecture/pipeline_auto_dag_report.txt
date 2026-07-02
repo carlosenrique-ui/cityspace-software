@@ -1,0 +1,13 @@
+========================================
+IPT-CitySpace Pipeline Dependency Report
+========================================
+
+Modules scanned: 81
+
+offline.scientific_grid_builder -> offline.config.experiment_config
+offline.adapters.scientific_to_semantic_adapter -> offline.config.experiment_config
+offline.tests.test_generate_contours_layer -> offline.geo.contours.csv_to_contours
+offline.tests.test_geojson_to_grid -> offline.geo.geojson_to_grid
+offline.tests.test_grid_to_pin_height -> offline.geo.grid_to_pin_height
+offline.tests.test_grid_to_temporal_sequence -> offline.geo.grid_to_temporal_sequence
+offline.products.snapshots.ipt_fase2_semantic.tests.test_mask_local_grid -> offline.processing.build_mask_local_grid

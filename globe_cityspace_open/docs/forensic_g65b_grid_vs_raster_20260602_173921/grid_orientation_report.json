@@ -1,0 +1,127 @@
+{
+  "grid_shape": [
+    8,
+    16
+  ],
+  "z_total_min": 0.0,
+  "z_total_max": 42.492,
+  "pin_min": 0.0,
+  "pin_max": 10.0,
+  "sample_cells": {
+    "upper_left": {
+      "row": 1,
+      "col": 1,
+      "cell_id_column_zigzag": "P001",
+      "z_total_m": 0.0,
+      "pin_cm": 0.0
+    },
+    "upper_right": {
+      "row": 1,
+      "col": 16,
+      "cell_id_column_zigzag": "P121",
+      "z_total_m": 14.312,
+      "pin_cm": 3.368
+    },
+    "lower_left": {
+      "row": 8,
+      "col": 1,
+      "cell_id_column_zigzag": "P008",
+      "z_total_m": 0.0,
+      "pin_cm": 0.0
+    },
+    "lower_right": {
+      "row": 8,
+      "col": 16,
+      "cell_id_column_zigzag": "P128",
+      "z_total_m": 0.0,
+      "pin_cm": 0.0
+    },
+    "center_approx": {
+      "row": 5,
+      "col": 9,
+      "cell_id_column_zigzag": "P069",
+      "z_total_m": 17.374,
+      "pin_cm": 4.089
+    }
+  },
+  "row_sums_z_total": [
+    45.79,
+    94.833,
+    119.103,
+    137.402,
+    275.941,
+    371.397,
+    335.879,
+    166.592
+  ],
+  "col_sums_z_total": [
+    64.669,
+    133.79,
+    89.759,
+    72.536,
+    70.896,
+    113.254,
+    105.736,
+    116.652,
+    120.546,
+    121.13,
+    112.166,
+    108.398,
+    100.793,
+    76.453,
+    84.131,
+    56.028
+  ],
+  "transform_signatures": {
+    "original": {
+      "shape": [
+        8,
+        16
+      ],
+      "upper_left": 0.0,
+      "upper_right": 14.312,
+      "lower_left": 0.0,
+      "lower_right": 0.0
+    },
+    "flipud": {
+      "shape": [
+        8,
+        16
+      ],
+      "upper_left": 0.0,
+      "upper_right": 0.0,
+      "lower_left": 0.0,
+      "lower_right": 14.312
+    },
+    "fliplr": {
+      "shape": [
+        8,
+        16
+      ],
+      "upper_left": 14.312,
+      "upper_right": 0.0,
+      "lower_left": 0.0,
+      "lower_right": 0.0
+    },
+    "rot180": {
+      "shape": [
+        8,
+        16
+      ],
+      "upper_left": 0.0,
+      "upper_right": 0.0,
+      "lower_left": 14.312,
+      "lower_right": 0.0
+    },
+    "transpose": {
+      "shape": [
+        16,
+        8
+      ],
+      "upper_left": 0.0,
+      "upper_right": 0.0,
+      "lower_left": 14.312,
+      "lower_right": 0.0
+    }
+  }
+}

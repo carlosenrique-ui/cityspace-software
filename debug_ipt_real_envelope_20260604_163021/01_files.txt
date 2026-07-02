@@ -1,0 +1,4 @@
+globe_cityspace_open/projects/ipt_north_5000/ipt_north_5000_cells.csv
+globe_cityspace_open/projects/ipt_north_5000/manifest_ipt_north_5000.json
+offline/products/snapshots/final_freeze_20260408_1121/scientific/grid_8x16_actuators.gpkg
+offline/products/snapshots/final_freeze_20260408_1121/scientific/grid_contours_rotated_146.gpkg

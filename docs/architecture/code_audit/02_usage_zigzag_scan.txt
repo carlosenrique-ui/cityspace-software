@@ -1,0 +1,17 @@
+./legacy/cleanup_20260305_164029/geo/grid_scan.py:def zigzag_scan(cols, rows):
+./legacy/cleanup_20260305_164029/geo/grid_to_temporal_sequence.py:from offline.geo.grid_scan import zigzag_scan
+./legacy/cleanup_20260305_164029/geo/grid_to_temporal_sequence.py:    scan = zigzag_scan(cols, rows)
+./offline/pipeline_runner.py:from runner.path import zigzag_scan
+./offline/pipeline_runner.py:    path = zigzag_scan(cols=cols, rows=rows)
+./runner/path.py:def zigzag_scan(rows: int, cols: int) -> List[Tuple[int, int]]:
+./tests/test_path.py:from runner.path import zigzag_scan
+./tests/test_path.py:def test_zigzag_scan_size():
+./tests/test_path.py:    path = zigzag_scan(rows, cols)
+./tests/test_path.py:def test_zigzag_scan_unique_cells():
+./tests/test_path.py:    path = zigzag_scan(rows, cols)
+./tests/test_path.py:def test_zigzag_scan_bounds():
+./tests/test_path.py:    path = zigzag_scan(rows, cols)
+./tests/test_path.py:def test_zigzag_scan_order_first_rows():
+./tests/test_path.py:    path = zigzag_scan(rows, cols)
+./tests/test_runner_engine.py:from runner.path import zigzag_scan
+./tests/test_runner_engine.py:    path = zigzag_scan(cols=cols, rows=rows)

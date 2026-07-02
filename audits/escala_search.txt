@@ -1,0 +1,195 @@
+online/ui/dash_v125_polygon_alignment_calibrator.py:294:        dcc.Slider(0.2, 2.5, 0.01, value=1, id="sx", marks={0.2: "0.2", 1: "1", 2.5: "2.5"}),
+online/ui/dash_v125_polygon_alignment_calibrator.py:297:        dcc.Slider(0.2, 2.5, 0.01, value=1, id="sy", marks={0.2: "0.2", 1: "1", 2.5: "2.5"}),
+online/ui/dash_v127_final_operational_table.py:506:        if step >= TOTAL_STEPS - 1:
+online/ui/dash_v128_2_fixed_no_regression.py:546:        if step >= TOTAL_STEPS - 1:
+online/ui/dash_v128_7_10_final_ajustes_finos.py:522:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_10_final_ajustes_finos.py:604:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_10_final_ajustes_finos.py:607:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_10_final_ajustes_finos.py:609:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_10_final_ajustes_finos.py:610:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_11_menu_final.py:513:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_11_menu_final.py:595:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_11_menu_final.py:598:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_11_menu_final.py:600:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_11_menu_final.py:601:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_12_sem_projetor_labels.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_12_sem_projetor_labels.py:603:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_12_sem_projetor_labels.py:606:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_12_sem_projetor_labels.py:608:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_12_sem_projetor_labels.py:609:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:603:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:606:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:608:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:609:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:604:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:607:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:609:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:610:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:604:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:607:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:609:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:610:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:604:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:607:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:609:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:610:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:603:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:606:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:608:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:609:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:602:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:605:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:607:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:608:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_19_menu_final.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_19_menu_final.py:594:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_19_menu_final.py:597:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_19_menu_final.py:599:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_19_menu_final.py:600:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_20_work_from_719.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_20_work_from_719.py:594:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_20_work_from_719.py:597:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_20_work_from_719.py:599:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_20_work_from_719.py:600:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_21_debug_no_fix_v42.py:518:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_21_debug_no_fix_v42.py:591:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_21_debug_no_fix_v42.py:594:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_21_debug_no_fix_v42.py:596:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_21_debug_no_fix_v42.py:597:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_22_ipt_north_layers.py:526:            href="http://127.0.0.1:8088",
+online/ui/dash_v128_7_22_ipt_north_layers.py:573:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_22_ipt_north_layers.py:646:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_22_ipt_north_layers.py:649:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_22_ipt_north_layers.py:651:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_22_ipt_north_layers.py:652:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_22_ipt_north_layers_G70_before_backlink.py:560:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_22_ipt_north_layers_G70_before_backlink.py:633:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_22_ipt_north_layers_G70_before_backlink.py:636:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_22_ipt_north_layers_G70_before_backlink.py:638:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_22_ipt_north_layers_G70_before_backlink.py:639:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_22_ipt_north_layers_G71_before_backlink.py:560:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_22_ipt_north_layers_G71_before_backlink.py:633:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_22_ipt_north_layers_G71_before_backlink.py:636:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_22_ipt_north_layers_G71_before_backlink.py:638:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_22_ipt_north_layers_G71_before_backlink.py:639:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_22_ipt_north_layers_G72_before_backlink_fix.py:560:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_22_ipt_north_layers_G72_before_backlink_fix.py:633:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_22_ipt_north_layers_G72_before_backlink_fix.py:636:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_22_ipt_north_layers_G72_before_backlink_fix.py:638:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_22_ipt_north_layers_G72_before_backlink_fix.py:639:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_22_ipt_north_layers_G73_before_return_fix.py:573:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_22_ipt_north_layers_G73_before_return_fix.py:646:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_22_ipt_north_layers_G73_before_return_fix.py:649:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_22_ipt_north_layers_G73_before_return_fix.py:651:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_22_ipt_north_layers_G73_before_return_fix.py:652:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_23_clean_virtual_screen.py:560:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_23_clean_virtual_screen.py:633:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_23_clean_virtual_screen.py:636:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_23_clean_virtual_screen.py:638:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_23_clean_virtual_screen.py:639:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_23_clean_virtual_screen_G79_before_no_return.py:560:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_23_clean_virtual_screen_G79_before_no_return.py:633:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_23_clean_virtual_screen_G79_before_no_return.py:636:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_23_clean_virtual_screen_G79_before_no_return.py:638:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_23_clean_virtual_screen_G79_before_no_return.py:639:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_24_virtual_like_marked.py:556:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_24_virtual_like_marked.py:629:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_24_virtual_like_marked.py:632:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_24_virtual_like_marked.py:634:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_24_virtual_like_marked.py:635:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_24_virtual_like_marked_before_grid_gray.py:556:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_24_virtual_like_marked_before_grid_gray.py:629:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_24_virtual_like_marked_before_grid_gray.py:632:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_24_virtual_like_marked_before_grid_gray.py:634:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_24_virtual_like_marked_before_grid_gray.py:635:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_25_layer_groups_test.py:556:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_25_layer_groups_test.py:629:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_25_layer_groups_test.py:632:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_25_layer_groups_test.py:634:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_25_layer_groups_test.py:635:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_26_layer_groups_visual.py:575:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_26_layer_groups_visual.py:648:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_26_layer_groups_visual.py:651:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_26_layer_groups_visual.py:653:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_26_layer_groups_visual.py:654:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_27_semantic_guided_layers.py:588:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_27_semantic_guided_layers.py:661:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_27_semantic_guided_layers.py:664:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_27_semantic_guided_layers.py:666:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_27_semantic_guided_layers.py:667:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_28_semantic_mesa_total.py:626:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_28_semantic_mesa_total.py:699:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_28_semantic_mesa_total.py:702:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_28_semantic_mesa_total.py:704:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_28_semantic_mesa_total.py:705:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_28_semantic_mesa_total.py:921:        f"Escala: {scale} | "
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151451:588:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151451:661:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151451:664:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151451:666:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151451:667:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151630:588:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151630:661:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151630:664:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151630:666:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_add_back_button_20260609_151630:667:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_back_to_globe_20260609_150434:588:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_back_to_globe_20260609_150434:661:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_back_to_globe_20260609_150434:664:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_back_to_globe_20260609_150434:666:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_back_to_globe_20260609_150434:667:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_docker_png_candidate_20260609_163440:606:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_docker_png_candidate_20260609_163440:679:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_docker_png_candidate_20260609_163440:682:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_docker_png_candidate_20260609_163440:684:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_docker_png_candidate_20260609_163440:685:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_move_back_button_to_menu_20260609_151836:604:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_move_back_button_to_menu_20260609_151836:677:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_move_back_button_to_menu_20260609_151836:680:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_move_back_button_to_menu_20260609_151836:682:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_move_back_button_to_menu_20260609_151836:683:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_171156:608:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_171156:681:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_171156:684:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_171156:686:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_171156:687:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_183038:626:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_183038:699:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_183038:702:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_183038:704:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_183038:705:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_params_20260609_183038:921:        f"Escala: {scale} | "
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_query_params_20260609_150748:605:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_query_params_20260609_150748:678:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_query_params_20260609_150748:681:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_query_params_20260609_150748:683:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_28_semantic_mesa_total.py.bak_query_params_20260609_150748:684:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_29_semantic_mesa_forces_total.py:588:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_29_semantic_mesa_forces_total.py:661:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_29_semantic_mesa_forces_total.py:664:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_29_semantic_mesa_forces_total.py:666:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_29_semantic_mesa_forces_total.py:667:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_7_30_semantic_mesa_note_north.py:511:            html.Div(id="cartographic-scale", style={
+online/ui/dash_v128_7_30_semantic_mesa_note_north.py:584:    Output("cartographic-scale", "children"),
+online/ui/dash_v128_7_30_semantic_mesa_note_north.py:587:def update_cartographic_scale(cell_mode):
+online/ui/dash_v128_7_30_semantic_mesa_note_north.py:589:        return "Escala Cartográfica: 1:4433"
+online/ui/dash_v128_7_30_semantic_mesa_note_north.py:590:    return "Escala Cartográfica: 1:8867"
+online/ui/dash_v128_final_clean_operational_ui.py:537:        if step >= TOTAL_STEPS - 1:
+online/ui/dash_v128_final_operational_table.py:506:        if step >= TOTAL_STEPS - 1:
+online/ui/dash_v70_master_final.py:102:        if diff < 0.01:
+online/ui/dash_v70_master_final.py:113:    if max_val < 1:
+online/ui/dash_v95_2d.py:17:    if (cols - c) % 2 == 1:
+online/ui/dash_v96_3clocks_watermark_test.py:102:        # relógio 1: UI
+online/ui/dash_v96_3clocks_watermark_test.py.bak_before_v3_png:102:        # relógio 1: UI
+online/ui/dash_v96_3clocks_watermark_test.py.bak_white_arrows:102:        # relógio 1: UI
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:521:            html.Div(id="cartographic-scale", style={
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:594:    Output("cartographic-scale", "children"),
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:597:def update_cartographic_scale(cell_mode):
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:599:        return "Escala Cartográfica: 1:4433"
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:600:    return "Escala Cartográfica: 1:8867"

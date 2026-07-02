@@ -1,0 +1,384 @@
+{
+  "summary": {
+    "OK": 14,
+    "WARNING": 0,
+    "ERROR": 0,
+    "TODO-CONTRACT": 8,
+    "CONTRACT-ADDITIVE-REQUIRED": 12
+  },
+  "details": [
+    {
+      "level": "OK",
+      "rule_id": "DATA-000",
+      "title": "CSV científico presente",
+      "description": "Arquivo científico canônico encontrado.",
+      "evidence": "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/products/scientific/grid_metrics_utm.csv",
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "DATA-001",
+      "title": "Schema científico base válido",
+      "description": "Colunas científicas base presentes.",
+      "evidence": {
+        "columns": [
+          "row",
+          "col",
+          "x",
+          "y",
+          "z_terrain_m",
+          "z_building_m",
+          "z_total_m"
+        ]
+      },
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "DATA-002",
+      "title": "Relação z_total_m consistente",
+      "description": "z_total_m = z_terrain_m + z_building_m.",
+      "evidence": null,
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "TODO-CONTRACT",
+      "rule_id": "DATA-003",
+      "title": "z_cm ainda não presente no CSV científico base",
+      "description": "z_cm foi tratado como derivação operacional posterior, não como coluna obrigatória do CSV base atual.",
+      "evidence": null,
+      "impact": "MÉDIO",
+      "recommendation": "Formalizar esta regra e evoluir o validador.",
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "DATA-004",
+      "title": "Coordenadas científicas x/y presentes",
+      "description": "O CSV científico contém x e y no sistema científico/intermediário.",
+      "evidence": {
+        "columns": [
+          "x",
+          "y"
+        ]
+      },
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "GRID-001",
+      "title": "Sem duplicidade row/col",
+      "description": "Cada célula possui chave row/col única.",
+      "evidence": null,
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "TABLE-001",
+      "title": "Malha default detectada",
+      "description": "Malha atual corresponde ao protótipo default.",
+      "evidence": {
+        "rows": 8,
+        "cols": 16
+      },
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "TABLE-002",
+      "title": "Contrato de células quadradas ativo",
+      "description": "A mesa é tratada por contrato como formada por células quadradas.",
+      "evidence": null,
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "TABLE-003",
+      "title": "Contrato de varredura zigzag ativo",
+      "description": "A ordem operacional da mesa é zigzag.",
+      "evidence": {
+        "scan_mode": "zigzag"
+      },
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "TABLE-004",
+      "title": "Contrato de atuação no centroide ativo",
+      "description": "O acionador atua no centroide da célula.",
+      "evidence": null,
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "REF-001",
+      "title": "Sistemas de referência oficiais definidos",
+      "description": "UTM, cartesiano trigonométrico e mesa física estão explicitamente definidos.",
+      "evidence": [
+        "utm",
+        "cartesian_trigonometric",
+        "physical_table"
+      ],
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "GEO-001",
+      "title": "Rotação histórica versionada",
+      "description": "O sistema tem histórico de rotações ~146 e ~154, o que exige parâmetro versionado por fase.",
+      "evidence": [
+        146.815825,
+        154.0
+      ],
+      "impact": "CRÍTICO",
+      "recommendation": "Formalizar rotação por fase/objetivo no contrato e no pipeline.",
+      "proposed_contract_additive": "Ângulos de rotação devem ser tratados como parâmetros versionados e auditáveis, não constantes cegas."
+    },
+    {
+      "level": "OK",
+      "rule_id": "GEO-002",
+      "title": "PCA como linha principal de orientação",
+      "description": "O contrato reconhece PCA como linha principal para decisão de rotação/encaixe.",
+      "evidence": null,
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "GEO-003",
+      "title": "Escalas horizontal e vertical parametrizadas",
+      "description": "As escalas são parâmetros explícitos do contrato, mas ainda não estão validadas automaticamente.",
+      "evidence": null,
+      "impact": "ALTO",
+      "recommendation": "Ligar validação de escala ao pipeline e aos metadados.",
+      "proposed_contract_additive": "As transformações geométricas devem registrar escala horizontal e vertical como parâmetros auditáveis."
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "GEO-004",
+      "title": "Inclinação do norte parametrizada",
+      "description": "O ângulo de inclinação do norte é parâmetro explícito, mas ainda não é validado automaticamente.",
+      "evidence": null,
+      "impact": "ALTO",
+      "recommendation": "Registrar e validar north_tilt_angle_deg nos metadados.",
+      "proposed_contract_additive": "As transformações geométricas devem registrar inclinação do norte como parâmetro auditável."
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "DOMAIN-001",
+      "title": "Envelope versus bounding-box",
+      "description": "O domínio válido deve ser envelope urbano, não bounding-box puro.",
+      "evidence": null,
+      "impact": "ALTO",
+      "recommendation": "Formalizar distinção no contrato e validar no pipeline.",
+      "proposed_contract_additive": "Bounding-box não é domínio válido sem envelope; o envelope urbano define o domínio efetivo do sistema."
+    },
+    {
+      "level": "TODO-CONTRACT",
+      "rule_id": "DOMAIN-002",
+      "title": "NaN fora do domínio",
+      "description": "A regra existe, mas a validação geométrica explícita contra envelope ainda não foi ligada.",
+      "evidence": null,
+      "impact": "MÉDIO",
+      "recommendation": "Formalizar esta regra e evoluir o validador.",
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "DOMAIN-003",
+      "title": "Semântica formal de NaN",
+      "description": "NaN fora da área válida significa ausência de levantamento aerofotogramétrico por drone.",
+      "evidence": {
+        "survey_year": 2018
+      },
+      "impact": "CRÍTICO",
+      "recommendation": "Preservar essa semântica e bloquear conversões indevidas para zero.",
+      "proposed_contract_additive": "Valores NaN fora da área válida indicam ausência de levantamento aerofotogramétrico por drone e não devem ser tratados como zero."
+    },
+    {
+      "level": "OK",
+      "rule_id": "CONTOUR-001",
+      "title": "Contours derivados do DTM",
+      "description": "O contrato define que contours derivam do DTM.",
+      "evidence": null,
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "CONTOUR-002",
+      "title": "Cota zero local para contours",
+      "description": "Contours derivam da menor cota do DTM dentro do urbanismo.",
+      "evidence": null,
+      "impact": "ALTO",
+      "recommendation": "Formalizar e validar essa derivação no pipeline.",
+      "proposed_contract_additive": "A cota zero dos contours deve ser definida pela menor cota do DTM dentro do urbanismo."
+    },
+    {
+      "level": "OK",
+      "rule_id": "TEMP-001",
+      "title": "Eixo x temporal reconhecido",
+      "description": "O contrato reconhece que o eixo x pode representar o tempo.",
+      "evidence": {
+        "start": 1940,
+        "end": 2020,
+        "step": 5
+      },
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "TODO-CONTRACT",
+      "rule_id": "TEMP-002",
+      "title": "Contrato temporal completo ainda não validado",
+      "description": "As faixas históricas do IPT ainda não estão sendo validadas automaticamente no runtime.",
+      "evidence": null,
+      "impact": "MÉDIO",
+      "recommendation": "Formalizar esta regra e evoluir o validador.",
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "TODO-CONTRACT",
+      "rule_id": "SYNC-001",
+      "title": "Sincronismo UI/mesa real",
+      "description": "A regra existe, mas a validação automática ainda não foi integrada ao runtime físico.",
+      "evidence": null,
+      "impact": "MÉDIO",
+      "recommendation": "Formalizar esta regra e evoluir o validador.",
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "OK",
+      "rule_id": "DXF-001",
+      "title": "DXF reconhecido como entrada oficial",
+      "description": "O DXF de referência em CAD é tratado como entrada oficial do sistema.",
+      "evidence": null,
+      "impact": null,
+      "recommendation": null,
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "DXF-002",
+      "title": "DXF como validador de coerência altura ↔ edificação",
+      "description": "O DXF pode validar coerência entre altura e presença de prédio.",
+      "evidence": null,
+      "impact": "ALTO",
+      "recommendation": "Conectar checagem DXF ↔ alturas ao pipeline.",
+      "proposed_contract_additive": "O DXF de referência pode atuar como validação geométrica e semântica entre altura e edificação."
+    },
+    {
+      "level": "TODO-CONTRACT",
+      "rule_id": "FORM-001",
+      "title": "Mapeamento matemático completo entre UTM, cartesiano e mesa",
+      "description": "Falta consolidar em especificação única as fórmulas e parâmetros entre os três sistemas.",
+      "evidence": null,
+      "impact": "MÉDIO",
+      "recommendation": "Formalizar esta regra e evoluir o validador.",
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "TODO-CONTRACT",
+      "rule_id": "FORM-002",
+      "title": "Validação geométrica explícita de NaN fora do envelope",
+      "description": "A regra existe, mas o validador ainda precisa cruzar grid científico com máscara/envelope oficial.",
+      "evidence": null,
+      "impact": "MÉDIO",
+      "recommendation": "Formalizar esta regra e evoluir o validador.",
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "TODO-CONTRACT",
+      "rule_id": "FORM-003",
+      "title": "Escolha algorítmica da melhor quadrícula quadrada",
+      "description": "A regra está definida conceitualmente, mas ainda precisa de formalização algorítmica centralizada.",
+      "evidence": null,
+      "impact": "MÉDIO",
+      "recommendation": "Formalizar esta regra e evoluir o validador.",
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "TODO-CONTRACT",
+      "rule_id": "FORM-004",
+      "title": "Contrato temporal completo da construção do IPT",
+      "description": "A camada temporal está presente no sistema, mas ainda não foi fundida em especificação única.",
+      "evidence": null,
+      "impact": "MÉDIO",
+      "recommendation": "Formalizar esta regra e evoluir o validador.",
+      "proposed_contract_additive": null
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "ADD-001",
+      "title": "Rotação parametrizada por fase e melhor encaixe",
+      "description": "O histórico mostra coexistência de rotações ~146 e ~154 em fases distintas.",
+      "evidence": null,
+      "impact": "CRÍTICO",
+      "recommendation": "Confirmar com Carlos se deve virar aditivo oficial do contrato.",
+      "proposed_contract_additive": "O ângulo de rotação deve ser tratado como parâmetro versionado por fase e por critério de melhor encaixe com a quadrícula."
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "ADD-002",
+      "title": "Envelope versus bounding-box",
+      "description": "Bounding-box não pode ser tratada como domínio válido sem envelope.",
+      "evidence": null,
+      "impact": "ALTO",
+      "recommendation": "Confirmar com Carlos se deve virar aditivo oficial do contrato.",
+      "proposed_contract_additive": "O envelope urbano define o domínio efetivo do sistema."
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "ADD-003",
+      "title": "Escalas e inclinação do norte como parâmetros explícitos",
+      "description": "O sistema deve registrar escala horizontal, escala vertical, ângulo de rotação e inclinação do norte.",
+      "evidence": null,
+      "impact": "ALTO",
+      "recommendation": "Confirmar com Carlos se deve virar aditivo oficial do contrato.",
+      "proposed_contract_additive": "As transformações geométricas devem registrar escala horizontal, escala vertical, ângulo de rotação e inclinação do norte."
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "ADD-004",
+      "title": "Semântica formal de NaN fora do domínio",
+      "description": "NaN fora da área válida significa ausência de levantamento aerofotogramétrico por drone.",
+      "evidence": null,
+      "impact": "CRÍTICO",
+      "recommendation": "Confirmar com Carlos se deve virar aditivo oficial do contrato.",
+      "proposed_contract_additive": "Valores NaN fora da área válida indicam ausência de levantamento aerofotogramétrico por drone e não devem ser tratados como zero."
+    },
+    {
+      "level": "CONTRACT-ADDITIVE-REQUIRED",
+      "rule_id": "ADD-005",
+      "title": "DXF como entrada oficial de validação",
+      "description": "O DXF é entrada oficial e pode validar coerência entre altura e edificação.",
+      "evidence": null,
+      "impact": "ALTO",
+      "recommendation": "Confirmar com Carlos se deve virar aditivo oficial do contrato.",
+      "proposed_contract_additive": "O DXF de referência em CAD é entrada oficial do sistema e pode atuar como layer, marca d'água e validação geométrica/semântica."
+    }
+  ]
+}

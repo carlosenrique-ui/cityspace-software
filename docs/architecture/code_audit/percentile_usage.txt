@@ -1,0 +1,3 @@
+offline/processing/normalize.py:    p2, p98 = np.percentile(valid, [2, 98])
+offline/products/snapshots/ipt_fase1_1cm/metadata.json:  "percentiles": [
+offline/tools/buildings_height_model.py:            h_p90 = float(np.percentile(data, 90))

@@ -1,0 +1,159 @@
+offline/pipeline/01_build_scientific_grid.py:INPUT_GPKG = "offline/products/scientific/grid_8x16_metric.gpkg"
+offline/pipeline/01_build_scientific_grid.py:OUTPUT_DEBUG = "offline/products/scientific/grid_square_debug.txt"
+offline/pipeline/01_build_scientific_grid.py:gdf = gpd.read_file(INPUT_GPKG)
+offline/pipeline/01_build_scientific_grid.py:with open(OUTPUT_DEBUG, "w") as f:
+offline/pipeline/01_build_scientific_grid_BACKUP.py:OUT=Path("offline/products/scientific")
+offline/pipeline/01_build_scientific_grid_BACKUP.py:OUT.mkdir(parents=True,exist_ok=True)
+offline/pipeline/01_build_scientific_grid_BACKUP.py:df.to_csv(OUT/"grid_metrics_utm.csv",index=False)
+offline/pipeline/01_build_scientific_grid_BACKUP.py:print("OK CSV")
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:print("BUILD grid_metrics_utm.csv FROM MATRIX CSVs")
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:df.to_csv(out, index=False)
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:print("OUTPUT:", out)
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:INPUT = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:OUTPUT = BASE / "offline/products/scientific/poligono_urbanismo_ipt_outer.gpkg"
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:gdf = gpd.read_file(INPUT)
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:print("INPUT:", INPUT)
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:out.to_file(OUTPUT)
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:print("OUTPUT:", OUTPUT)
+offline/pipeline/02_join_grid_metrics_with_geom.py:# PATHS
+offline/pipeline/02_join_grid_metrics_with_geom.py:CSV_PATH = BASE / "grid_metrics_utm.csv"
+offline/pipeline/02_join_grid_metrics_with_geom.py:GPKG_PATH = BASE / "grid_8x16_metric.gpkg"
+offline/pipeline/02_join_grid_metrics_with_geom.py:OUT_PATH = BASE / "grid_8x16_enriched.gpkg"
+offline/pipeline/02_join_grid_metrics_with_geom.py:print("📥 Loading CSV...")
+offline/pipeline/02_join_grid_metrics_with_geom.py:df = pd.read_csv(CSV_PATH)
+offline/pipeline/02_join_grid_metrics_with_geom.py:print("📥 Loading GPKG...")
+offline/pipeline/02_join_grid_metrics_with_geom.py:gdf = gpd.read_file(GPKG_PATH)
+offline/pipeline/02_join_grid_metrics_with_geom.py:print("CSV:", df.shape)
+offline/pipeline/02_join_grid_metrics_with_geom.py:print("GPKG:", gdf.shape)
+offline/pipeline/02_join_grid_metrics_with_geom.py:        raise Exception(f"❌ CSV missing column: {col}")
+offline/pipeline/02_join_grid_metrics_with_geom.py:        raise Exception(f"❌ GPKG missing column: {col}")
+offline/pipeline/02_join_grid_metrics_with_geom.py:print("💾 Saving enriched GPKG...")
+offline/pipeline/02_join_grid_metrics_with_geom.py:gdf_merged.to_file(OUT_PATH, driver="GPKG")
+offline/pipeline/02_join_grid_metrics_with_geom.py:print("✅ OUTPUT:", OUT_PATH)
+offline/pipeline/03b_generate_contours_clean_UI.py:# PATHS
+offline/pipeline/03b_generate_contours_clean_UI.py:INPUT = PROJECT / "offline/products/terrain/curvas_nivel_terreno_suavizadas_UI.geojson"
+offline/pipeline/03b_generate_contours_clean_UI.py:OUTPUT = BASE / "offline/products/scientific/curvas_ui_clean_2m.gpkg"
+offline/pipeline/03b_generate_contours_clean_UI.py:gdf = gpd.read_file(INPUT)
+offline/pipeline/03b_generate_contours_clean_UI.py:print("INPUT:", INPUT)
+offline/pipeline/03b_generate_contours_clean_UI.py:OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+offline/pipeline/03b_generate_contours_clean_UI.py:gdf.to_file(OUTPUT)
+offline/pipeline/03b_generate_contours_clean_UI.py:print("OUTPUT:", OUTPUT)
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:# PATHS
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:OUTPUT = BASE / "offline/products/scientific/curvas_dtm_true_2m.gpkg"
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:    str(OUTPUT)
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:gdf = gpd.read_file(OUTPUT)
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:gdf.to_file(OUTPUT)
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:print("OUTPUT:", OUTPUT)
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:# PATHS
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:INPUT = BASE / "offline/products/scientific/curvas_dtm_true_2m.gpkg"
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:OUTPUT = BASE / "offline/products/scientific/curvas_dtm_rotated_scientific.gpkg"
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:gdf = gpd.read_file(INPUT, layer="curvas_dtm_true_2m")
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:print("INPUT:", INPUT)
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:gdf.to_file(OUTPUT)
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:print("OUTPUT:", OUTPUT)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:GRID_PATH = BASE / "offline/products/scientific/grid_metrics_utm.csv"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:POLYGON_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:OUT_GEOJSON = BASE / "offline/products/scientific/curvas_grid_terrain_2m_nan_polygon.geojson"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:OUT_MASK_NPY = BASE / "offline/products/scientific/grid_terrain_nan_polygon.npy"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:df = pd.read_csv(GRID_PATH)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:poly = gpd.read_file(POLYGON_PATH).dissolve().geometry.iloc[0]
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:minx, miny, maxx, maxy = gpd.read_file(POLYGON_PATH).total_bounds
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:np.save(OUT_MASK_NPY, fine)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:OUT_GEOJSON.write_text(json.dumps(geojson))
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:print("OUTPUT:", OUT_GEOJSON)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:GRID_GPKG = BASE / "offline/products/scientific/grid_8x16_enriched.gpkg"
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:OUT_POLY = BASE / "offline/products/scientific/poligono_urbanismo_ipt_outer_real.gpkg"
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:OUT_GEOJSON = BASE / "offline/products/scientific/curvas_rbf_terrain_2m_real.geojson"
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:OUT_SURFACE = BASE / "offline/products/scientific/rbf_terrain_surface_real.npz"
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:grid = gpd.read_file(GRID_GPKG)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:poly_gdf = gpd.read_file(POLY_SRC)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:poly.to_file(OUT_POLY, driver="GPKG")
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:np.savez_compressed(OUT_SURFACE, x=x, y=y, z=Z_masked)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:OUT_GEOJSON.write_text(json.dumps(geojson), encoding="utf-8")
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:print("OUT_POLY:", OUT_POLY)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:print("OUT_GEOJSON:", OUT_GEOJSON)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:print("OUT_SURFACE:", OUT_SURFACE)
+offline/pipeline/03_generate_contours_clean.py:IN_PATH = BASE / 'grid_8x16_enriched.gpkg'
+offline/pipeline/03_generate_contours_clean.py:OUT_PATH = BASE / 'grid_contours_clean.gpkg'
+offline/pipeline/03_generate_contours_clean.py:gdf = gpd.read_file(IN_PATH, engine='pyogrio')
+offline/pipeline/03_generate_contours_clean.py:contours.to_file(OUT_PATH, driver='GPKG', engine='pyogrio')
+offline/pipeline/03_generate_contours_clean.py:print('Contours FINAL:', OUT_PATH)
+offline/pipeline/03_scientific_to_semantic.py:    print("\nSTEP 03 – SCIENTIFIC TO SEMANTIC GRID\n")
+offline/pipeline/04b_generate_actuator_geospatial.py:IN_PATH = BASE / 'grid_8x16_enriched.gpkg'
+offline/pipeline/04b_generate_actuator_geospatial.py:OUT_PATH = BASE / 'grid_8x16_actuators.gpkg'
+offline/pipeline/04b_generate_actuator_geospatial.py:gdf = gpd.read_file(IN_PATH, engine='pyogrio')
+offline/pipeline/04b_generate_actuator_geospatial.py:gdf.to_file(OUT_PATH, driver='GPKG', engine='pyogrio')
+offline/pipeline/04b_generate_actuator_geospatial.py:print('OUTPUT:', OUT_PATH)
+offline/pipeline/04_generate_actuator_plan.py:INPUT_GPKG = ENGINE_ROOT / "offline/products/scientific/grid_8x16_enriched.gpkg"
+offline/pipeline/04_generate_actuator_plan.py:MASK_GPKG = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/pipeline/04_generate_actuator_plan.py:OUTPUT_DIR = ENGINE_ROOT / "offline/products/final"
+offline/pipeline/04_generate_actuator_plan.py:OUTPUT_CSV = OUTPUT_DIR / "grid_height.csv"
+offline/pipeline/04_generate_actuator_plan.py:    if not INPUT_GPKG.exists():
+offline/pipeline/04_generate_actuator_plan.py:        raise FileNotFoundError(f"GPKG enriquecido não encontrado: {INPUT_GPKG}")
+offline/pipeline/04_generate_actuator_plan.py:    if not MASK_GPKG.exists():
+offline/pipeline/04_generate_actuator_plan.py:        raise FileNotFoundError(f"Máscara/envelope não encontrado: {MASK_GPKG}")
+offline/pipeline/04_generate_actuator_plan.py:    gdf = gpd.read_file(INPUT_GPKG)
+offline/pipeline/04_generate_actuator_plan.py:    mask = gpd.read_file(MASK_GPKG)
+offline/pipeline/04_generate_actuator_plan.py:    # o GPKG enriquecido atual traz cx, cy.
+offline/pipeline/04_generate_actuator_plan.py:        raise ValueError(f"Colunas obrigatórias ausentes no GPKG enriquecido: {missing}")
+offline/pipeline/04_generate_actuator_plan.py:    os.makedirs(OUTPUT_DIR, exist_ok=True)
+offline/pipeline/04_generate_actuator_plan.py:    df_out.to_csv(OUTPUT_CSV, index=False)
+offline/pipeline/04_generate_actuator_plan.py:    print(">>> FINAL CSV GERADO")
+offline/pipeline/04_generate_actuator_plan.py:    print(f">>> OUTPUT: {OUTPUT_CSV}")
+offline/pipeline/04_generate_actuator_plan.py:    print(f"INPUT GPKG: {INPUT_GPKG}")
+offline/pipeline/04_generate_actuator_plan.py:    print(f"MASK GPKG: {MASK_GPKG}")
+offline/pipeline/05_apply_rotation_to_contours.py:print("STEP 05 – APPLY SCIENTIFIC ROTATION")
+offline/pipeline/05_apply_rotation_to_contours.py:IN_PATH  = BASE / "grid_contours_clean.gpkg"
+offline/pipeline/05_apply_rotation_to_contours.py:OUT_PATH = BASE / "grid_contours_rotated_scientific.gpkg"
+offline/pipeline/05_apply_rotation_to_contours.py:if not IN_PATH.exists():
+offline/pipeline/05_apply_rotation_to_contours.py:    raise Exception(f"❌ Input não encontrado: {IN_PATH}")
+offline/pipeline/05_apply_rotation_to_contours.py:gdf = gpd.read_file(IN_PATH, engine="pyogrio")
+offline/pipeline/05_apply_rotation_to_contours.py:gdf.to_file(OUT_PATH, driver="GPKG", engine="pyogrio")
+offline/pipeline/05_apply_rotation_to_contours.py:print("✅ OUTPUT:", OUT_PATH)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:GRID_GPKG = BASE / "offline/products/scientific/grid_8x16_enriched.gpkg"
+offline/pipeline/05_generate_grid_mask_from_polygon.py:GRID_CSV = BASE / "offline/products/scientific/grid_metrics_utm.csv"
+offline/pipeline/05_generate_grid_mask_from_polygon.py:OUT_GPKG = BASE / "offline/products/scientific/grid_8x16_enriched_masked.gpkg"
+offline/pipeline/05_generate_grid_mask_from_polygon.py:OUT_CSV = BASE / "offline/products/scientific/grid_metrics_utm_masked.csv"
+offline/pipeline/05_generate_grid_mask_from_polygon.py:grid = gpd.read_file(GRID_GPKG)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:poly = gpd.read_file(polygon_path)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:grid.to_file(OUT_GPKG, driver="GPKG")
+offline/pipeline/05_generate_grid_mask_from_polygon.py:df = pd.read_csv(GRID_CSV)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:df.to_csv(OUT_CSV, index=False)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:print("OUTPUT_CSV:", OUT_CSV)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:print("OUTPUT_GPKG:", OUT_GPKG)
+offline/pipeline/06b_esri_to_grid_simple.py:OUT = BASE / "offline/products/snapshots/ipt_fase2_semantic/esri_overlay_grid.png"
+offline/pipeline/06b_esri_to_grid_simple.py:gdf = gpd.read_file(GRID)
+offline/pipeline/06b_esri_to_grid_simple.py:OUT.parent.mkdir(parents=True, exist_ok=True)
+offline/pipeline/06b_esri_to_grid_simple.py:img_resized.save(OUT)
+offline/pipeline/06b_esri_to_grid_simple.py:print("OK:", OUT)
+offline/pipeline/06_generate_esri_overlay_grid.py:OUT = BASE / "offline/products/snapshots/ipt_fase2_semantic/esri_overlay_grid.png"
+offline/pipeline/06_generate_esri_overlay_grid.py:OUT.parent.mkdir(parents=True, exist_ok=True)
+offline/pipeline/06_generate_esri_overlay_grid.py:gdf = gpd.read_file(GRID)
+offline/pipeline/06_generate_esri_overlay_grid.py:print("OUT:", OUT)
+offline/pipeline/06_generate_esri_overlay_grid.py:OUT.write_bytes(r.content)
+offline/pipeline/06_generate_esri_overlay_grid.py:print("OK:", OUT)
+offline/pipeline/06_generate_esri_overlay_grid.py:print("bytes:", OUT.stat().st_size)
+offline/pipeline_runner.py:# PATHS
+offline/pipeline_runner.py:GRID_PATH = BASE / "grid_cm.npy"
+offline/pipeline_runner.py:OUTPUT_PATH = BASE / "actuator_plan.json"
+offline/pipeline_runner.py:if not GRID_PATH.exists():
+offline/pipeline_runner.py:    raise Exception(f"❌ grid_cm.npy não encontrado: {GRID_PATH}")
+offline/pipeline_runner.py:grid = np.load(GRID_PATH).tolist()
+offline/pipeline_runner.py:# PATH (zigzag)
+offline/pipeline_runner.py:with open(OUTPUT_PATH, "w") as f:
+offline/pipeline_runner.py:    json.dump(plan, f, indent=2)
+offline/scientific_runner.py:SCIENTIFIC RUNNER – FASE 1
+offline/scientific_runner.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/scientific_runner.py:OUTPUT_PATH = BASE / "offline/products/scientific/domain_rect_1x2.gpkg"
+offline/scientific_runner.py:LAYER_INPUT = "urban_envelope_scientific_rotated_clean"
+offline/scientific_runner.py:LAYER_OUTPUT = "domain_rect_1x2"
+offline/scientific_runner.py:    print("IPT-CitySpace – SCIENTIFIC RUNNER")
+offline/scientific_runner.py:    print(f"INPUT : {INPUT_PATH}")
+offline/scientific_runner.py:    print(f"OUTPUT: {OUTPUT_PATH}\n")
+offline/scientific_runner.py:    if not INPUT_PATH.exists():
+offline/scientific_runner.py:    with fiona.open(INPUT_PATH, layer=LAYER_INPUT) as src:
+offline/scientific_runner.py:    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+offline/scientific_runner.py:        OUTPUT_PATH,
+offline/scientific_runner.py:        driver="GPKG",
+offline/scientific_runner.py:        layer=LAYER_OUTPUT
+offline/scientific_runner.py:    print(f"Arquivo gerado: {OUTPUT_PATH.name}\n")

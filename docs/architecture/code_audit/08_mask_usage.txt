@@ -1,0 +1,116 @@
+offline/data/output/maquete_final/maquete_log.txt:nDSM_masked: min=0.000, max=32775.980
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: Máscara de edifícios encontrado em /mnt/c/IPT-CitySpace-2018/data/mask_edificios.tif
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] Máscara binária criada (mask > 0 → 1).
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:41] nDSM_masked stats: min=0.000, max=0.000
+offline/data/output/maquete_mask/maquete_from_mask.log:Calculando Z_total = DTM + nDSM_masked (somente onde há prédio)...
+offline/data/pipeline_log.txt:[LOG] Máscara raster salva em: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.tif
+offline/data/pipeline_log.txt:[LOG] PNG da máscara salvo: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.png
+offline/data/pipeline_log_gpkg.txt:[LOG] Máscara raster salva em: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.tif
+offline/data/pipeline_log_gpkg.txt:[LOG] PNG da máscara salvo em: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.png
+offline/processing/build_mask_local_grid.py:def build_mask_local_grid(grid_meta, shapefile_path):
+offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+offline/processing/build_mask_local_grid.py:                    mask[r, c] = 1
+offline/processing/build_mask_local_grid.py:    pixels = int(mask.sum())
+offline/processing/build_mask_local_grid.py:    return mask
+offline/processing/clip_raster.py:from rasterio.mask import mask
+offline/processing/clip_raster.py:            out_image, out_transform = mask(
+offline/processing/compute_heights.py:def compute_heights(dsm, dtm, mask):
+offline/processing/compute_heights.py:    ndsm[mask == 0] = 0
+offline/processing/rasterize_mask.py:def rasterize_mask(vector_gdf, raster_meta):
+offline/processing/rasterize_mask.py:    mask = rasterize(
+offline/processing/rasterize_mask.py:    pixels = int(mask.sum())
+offline/processing/rasterize_mask.py:    return mask
+offline/products/generate_contours_from_dtm.py:        layer="urban_mask",
+offline/products/generate_contours_matplotlib.py:mask = unary_union(envelope.geometry)
+offline/products/generate_contours_matplotlib.py:    inter = geom.intersection(mask)
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:mask = build_mask_local_grid(
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:print(" Shape da máscara:", mask.shape)
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:print(" Células de edifício:", int(mask.sum()))
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:for row in mask:
+offline/raster/core/reclip_rasters_to_domain.py:from rasterio.mask import mask
+offline/raster/core/reclip_rasters_to_domain.py:        out_image, out_transform = mask(
+offline/raster/pipeline/scientific_raster_runner.py:from rasterio.mask import mask
+offline/raster/pipeline/scientific_raster_runner.py:        out_image, out_transform = mask(src, [geom], crop=True)
+offline/raster/pipeline/scientific_raster_runner.py:    valid_mask = dtm_data != nodata
+offline/raster/pipeline/scientific_raster_runner.py:    cota_zero = dtm_data[valid_mask].min()
+offline/scientific_cell_metrics.py:from rasterio.mask import mask
+offline/scientific_cell_metrics.py:            out_image, _ = mask(src, [geom], crop=True)
+offline/scientific_cell_metrics_utm.py:from rasterio.mask import mask
+offline/scientific_cell_metrics_utm.py:            out_image, _ = mask(src, [geom], crop=True)
+offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    buildings = geometries_sorted[1:]
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Total edifícios:", len(buildings))
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg(buildings, OUTPUT_BUILDINGS, "buildings")
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics.py:        buildings = [shape(f["geometry"]) for f in bld]
+offline/scientific_cell_metrics.py:    print(f"Total edifícios: {len(buildings)}")
+offline/scientific_cell_metrics.py:        for b in buildings:
+offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics_utm.py:        buildings = [shape(f["geometry"]) for f in bld]
+offline/scientific_cell_metrics_utm.py:    print(f"Total edifícios: {len(buildings)}")
+offline/scientific_cell_metrics_utm.py:        for b in buildings:
+offline/processing/apply_rigid_transform_vector_scientific.py:ENVELOPE_PATH  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:OUT_ENVELOPE  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:    print("Processando envelope urbano...")
+offline/processing/build_official_urban_envelope_rotated.py:OUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/processing/build_official_urban_envelope_rotated.py:    envelope = Polygon(largest.exterior)
+offline/processing/build_official_urban_envelope_rotated.py:    print("Área do envelope externo:", envelope.area)
+offline/processing/build_official_urban_envelope_rotated.py:    envelope_rot = rotate(envelope, angle, origin=(cx, cy), use_radians=False)
+offline/processing/build_official_urban_envelope_rotated.py:    envelope_rot = translate(envelope_rot, xoff=dx, yoff=dy)
+offline/processing/build_official_urban_envelope_rotated.py:        geometry=[envelope_rot],
+offline/processing/build_official_urban_envelope_rotated.py:        layer="urban_envelope_scientific_rotated",
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_ENVELOPE = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    envelope = geometries_sorted[0]
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Área envelope:", envelope.area)
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Salvando envelope científico...")
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg([envelope], OUTPUT_ENVELOPE, "urban_envelope")
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific.gpkg",
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/products/generate_contours_from_dtm.py:URBAN_MASK = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/products/generate_contours_matplotlib.py:URBAN_ENVELOPE = PROJECT_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/products/generate_contours_matplotlib.py:envelope = pyogrio.read_dataframe(URBAN_ENVELOPE)
+offline/products/generate_contours_matplotlib.py:print("Envelope bounds:", envelope.total_bounds)
+offline/products/generate_contours_matplotlib.py:# STEP 10 – Clip by envelope
+offline/products/generate_contours_matplotlib.py:print("\nSTEP 10 — Clipping by envelope")
+offline/products/generate_contours_matplotlib.py:mask = unary_union(envelope.geometry)
+offline/products/generate_contours_matplotlib.py:    crs=envelope.crs
+offline/raster/pipeline/scientific_raster_runner.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/raster/validation/validate_rigid_transform.py:ORIG_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/raster/validation/validate_rigid_transform.py:ROT_PATH  = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/raster/validation/validate_rigid_transform.py:LAYER_ORIG = "urban_envelope_scientific"
+offline/raster/validation/validate_rigid_transform.py:LAYER_ROT = "urban_envelope_scientific_rotated_clean"
+offline/scientific_runner.py:Cria o retângulo fixo 1:2 centrado no envelope científico rotacionado.
+offline/scientific_runner.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/scientific_runner.py:LAYER_INPUT = "urban_envelope_scientific_rotated_clean"
+offline/scientific_runner.py:    print("[2/6] Lendo envelope científico rotacionado...")
+offline/tools/build_pipeline_execution_order.py:"offline/processing/build_official_urban_envelope_rotated.py",
+offline/validate_dxf_ipt_original_rotated_clean.py:#   - Origem = centro do envelope do DXF
+offline/validation/fix_validation_scripts.py:TARGET_FILE = BASE / "offline/validation/validate_rotated_raster_vs_envelope.py"
+offline/validation/validate_rigid_transform_full.py:- Verificar coerência com envelope rotacionado
+offline/validation/validate_rigid_transform_full.py:ROTATED_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/validation/validate_rigid_transform_full.py:    # 2) Ler envelope rotacionado
+offline/validation/validate_rigid_transform_parameters.py:ORIGINAL_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_original.gpkg"
+offline/validation/validate_rigid_transform_parameters.py:ROTATED_PATH  = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/validation/validate_rigid_transform_parameters.py:LAYER_ORIGINAL = "urban_envelope_original"
+offline/validation/validate_rigid_transform_parameters.py:LAYER_ROTATED  = "urban_envelope_scientific_rotated_clean"
+offline/validation/validate_rotated_raster_vs_envelope.py:ENVELOPE_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/validation/validate_rotated_raster_vs_envelope.py:print("\n[2/2] Lendo envelope rotacionado...")
+offline/validation/validate_rotated_raster_vs_envelope.py:print("\nΔX (envelope - raster):", dx)
+offline/validation/validate_rotated_raster_vs_envelope.py:print("ΔY (envelope - raster):", dy)
+offline/vector/core/apply_rigid_transform_clean.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/vector/core/apply_rigid_transform_clean.py:OUTPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/vector/core/apply_rigid_transform_clean.py:LAYER_INPUT = "urban_envelope_scientific"
+offline/vector/core/apply_rigid_transform_clean.py:LAYER_OUTPUT = "urban_envelope_scientific_rotated_clean"
+offline/vector/core/apply_rigid_transform_clean.py:    print("\n[2/5] Abrindo envelope original...")
+offline/vector/core/build_domain_1x2_utm.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/vector/core/build_domain_1x2_utm.py:INPUT_LAYER = "urban_envelope_scientific_rotated_clean"
+offline/vector/core/build_domain_1x2_utm.py:    print("[1/5] Lendo envelope rotacionado (UTM)...")
+offline/vector/core/build_domain_1x2_utm.py:    print(f"Largura envelope : {largura:.3f} m")
+offline/vector/core/build_domain_1x2_utm.py:    print(f"Altura envelope  : {altura:.3f} m")

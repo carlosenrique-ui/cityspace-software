@@ -1,0 +1,78 @@
+import numpy as np
+import pandas as pd
+from pathlib import Path
+from PIL import Image
+
+from offline.geo.grid_to_pin_height import grid_to_pin_height
+
+print("========================================")
+print("STEP FINAL – EXPORT MESA (OFICIAL)")
+print("========================================")
+
+BASE = Path("offline/products")
+RUN  = BASE / "runtime"
+
+# -----------------------------------------
+# INPUT
+# -----------------------------------------
+grid_path = RUN / "grid.npy"
+
+if not grid_path.exists():
+    raise Exception(f"❌ grid.npy não encontrado: {grid_path}")
+
+grid_total = np.load(grid_path)
+
+print("Grid shape:", grid_total.shape)
+
+# -----------------------------------------
+# NORMALIZAÇÃO (0–1)
+# -----------------------------------------
+z_max = np.nanmax(grid_total)
+
+if z_max == 0:
+    raise Exception("❌ grid sem variação")
+
+grid_norm = grid_total / z_max
+
+# -----------------------------------------
+# CONVERSÃO → ALTURA FÍSICA (cm)
+# -----------------------------------------
+pin_heights = grid_to_pin_height(
+    grid_norm,
+    min_cm=0.0,
+    max_cm=10.0
+)
+
+# transformar em matriz
+rows, cols = grid_total.shape
+grid_cm = np.zeros((rows, cols))
+
+for (i, j), h in pin_heights.items():
+    grid_cm[i, j] = h
+
+np.save(RUN / "grid_cm.npy", grid_cm)
+
+print("✔ grid_cm.npy salvo")
+
+# -----------------------------------------
+# BMP (0–255)
+# -----------------------------------------
+img16 = (grid_norm * 255).astype(np.uint8)
+Image.fromarray(img16).save(RUN / "mesa_16x8.bmp")
+
+# upscale 2x
+img32 = np.repeat(np.repeat(img16, 2, axis=0), 2, axis=1)
+Image.fromarray(img32).save(RUN / "mesa_32x16.bmp")
+
+print("✔ BMPs gerados")
+
+# -----------------------------------------
+# CSV
+# -----------------------------------------
+pd.DataFrame(grid_cm).to_csv(RUN / "mesa_grid_cm.csv", index=False)
+
+print("✔ CSV (cm) gerado")
+
+print("========================================")
+print("✅ EXPORT FINAL OK")
+print("========================================")

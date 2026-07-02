@@ -1,0 +1,131 @@
+frontend/index.html:5:  <title>Globe-CitySpace</title>
+frontend/index.html:6:  <script src="https://cesium.com/downloads/cesiumjs/releases/1.122/Build/Cesium/Cesium.js"></script>
+frontend/index.html:12:    <strong>Globe-CitySpace</strong>
+frontend/index.html:14:    <select id="citySelect">
+frontend/index.html:15:      <option value="sjc">São José dos Campos</option>
+frontend/index.html:17:      <option value="ipt">IPT - Campus Principal</option>
+frontend/index.html:18:      <option value="santos">Santos</option>
+frontend/index.html:19:      <option value="sorocaba">Sorocaba</option>
+frontend/index.html:20:    </select>
+frontend/index.html:22:    <button id="openCity">Abrir cidade</button>
+frontend/index.html:24:    <button id="viewTop">Vista topo</button>
+frontend/index.html:25:    <button id="viewOblique">Vista oblíqua</button>
+frontend/index.html:26:    <button id="viewNorth">Norte</button>
+frontend/index.html:28:    <button id="enablePickPoint">Escolher ponto</button>
+frontend/index.html:30:    <select id="scaleSelect">
+frontend/index.html:34:      <option value="5000" selected>1:5000</option>
+frontend/index.html:36:    </select>
+frontend/index.html:38:    <button id="createArea">Gerar Área CitySpace</button>
+frontend/index.html:39:    <button id="clearArea">Limpar Área/Grid</button>
+frontend/index.html:40:    <button id="exportGrid">Exportar Grid JSON</button>
+frontend/index.html:41:    <button id="exportSpatialProject">Gerar Spatial Project</button>
+frontend/index.html:42:    <button id="openProjectionMapping">Projection Mapping</button>
+frontend/index.html:60:    Escolher ponto: define o centro da Área CitySpace
+frontend/index.html:64:    <strong>Área CitySpace</strong>
+frontend/index.html:70:  <script src="main.js"></script>
+frontend/index.html:71:<script>
+frontend/index.html:72:document.getElementById("openProjectionMapping").addEventListener("click", function () {
+frontend/index.html:73:  window.open("/frontend/projection_layers/", "_blank");
+frontend/index.html:75:</script>
+frontend/main.js:15:  homeButton: true,
+frontend/main.js:17:  baseLayerPicker: false,
+frontend/main.js:18:  navigationHelpButton: true,
+frontend/main.js:20:  selectionIndicator: false,
+frontend/main.js:25:viewer.imageryLayers.removeAll();
+frontend/main.js:26:viewer.imageryLayers.addImageryProvider(osm);
+frontend/main.js:34:const cities = {
+frontend/main.js:35:  sjc: {
+frontend/main.js:55:  ipt: {
+frontend/main.js:56:    name: "IPT - Campus Principal",
+frontend/main.js:65:  santos: {
+frontend/main.js:66:    name: "Santos",
+frontend/main.js:75:  sorocaba: {
+frontend/main.js:76:    name: "Sorocaba",
+frontend/main.js:87:let activeCityKey = "sjc";
+frontend/main.js:90:  name: cities.sjc.name,
+frontend/main.js:91:  lat: cities.sjc.centerLat,
+frontend/main.js:92:  lon: cities.sjc.centerLon
+frontend/main.js:97:let gridEntities = [];
+frontend/main.js:98:let currentGrid = null;
+frontend/main.js:101:function getActiveCity() {
+frontend/main.js:102:  return cities[activeCityKey];
+frontend/main.js:105:function clearGrid() {
+frontend/main.js:106:  gridEntities.forEach(e => viewer.entities.remove(e));
+frontend/main.js:107:  gridEntities = [];
+frontend/main.js:149:function openCity() {
+frontend/main.js:150:  activeCityKey = document.getElementById("citySelect").value;
+frontend/main.js:151:  const city = getActiveCity();
+frontend/main.js:154:    `${city.name} - Centroide`,
+frontend/main.js:155:    city.centerLat,
+frontend/main.js:156:    city.centerLon
+frontend/main.js:160:    city.west,
+frontend/main.js:161:    city.south,
+frontend/main.js:162:    city.east,
+frontend/main.js:163:    city.north
+frontend/main.js:166:  viewer.camera.flyTo({
+frontend/main.js:176:  const city = getActiveCity();
+frontend/main.js:178:  viewer.camera.flyTo({
+frontend/main.js:182:      city.cameraHeight
+frontend/main.js:194:  const city = getActiveCity();
+frontend/main.js:196:  viewer.camera.flyTo({
+frontend/main.js:200:      city.cameraHeight
+frontend/main.js:214:  viewer.camera.flyTo({
+frontend/main.js:251:function drawGrid(west, south, east, north) {
+frontend/main.js:252:  clearGrid();
+frontend/main.js:260:    gridEntities.push(
+frontend/main.js:277:    gridEntities.push(
+frontend/main.js:299:      gridEntities.push(
+frontend/main.js:321:    document.getElementById("scaleSelect").value,
+frontend/main.js:351:  currentGrid = {
+frontend/main.js:363:  drawGrid(west, south, east, north);
+frontend/main.js:366:  viewer.camera.flyTo({
+frontend/main.js:375:    Grid: ${TABLE_COLS} x ${TABLE_ROWS} = ${TABLE_COLS * TABLE_ROWS} pinos<br>
+frontend/main.js:381:function exportGridJSON() {
+frontend/main.js:382:  if (!currentGrid) {
+frontend/main.js:387:  const dLon = (currentGrid.east - currentGrid.west) / TABLE_COLS;
+frontend/main.js:388:  const dLat = (currentGrid.north - currentGrid.south) / TABLE_ROWS;
+frontend/main.js:397:      const centerLon = currentGrid.west + (c + 0.5) * dLon;
+frontend/main.js:398:      const centerLat = currentGrid.north - (r + 0.5) * dLat;
+frontend/main.js:411:    application: "Globe-CitySpace",
+frontend/main.js:412:    contract_type: "spatial_grid",
+frontend/main.js:413:    grid_rows: TABLE_ROWS,
+frontend/main.js:414:    grid_cols: TABLE_COLS,
+frontend/main.js:416:    scale: currentGrid.scale,
+frontend/main.js:417:    width_m: currentGrid.widthM,
+frontend/main.js:418:    height_m: currentGrid.heightM,
+frontend/main.js:419:    center_lat: currentGrid.centerLat,
+frontend/main.js:420:    center_lon: currentGrid.centerLon,
+frontend/main.js:422:      west: currentGrid.west,
+frontend/main.js:423:      south: currentGrid.south,
+frontend/main.js:424:      east: currentGrid.east,
+frontend/main.js:425:      north: currentGrid.north
+frontend/main.js:438:  a.download = "globe_cityspace_grid_16x8.json";
+frontend/main.js:486:document.getElementById("openCity").addEventListener("click", openCity);
+frontend/main.js:492:document.getElementById("exportGrid").addEventListener("click", exportGridJSON);
+frontend/main.js:505:  if (!currentGrid) {
+frontend/main.js:506:    alert("Crie uma Área CitySpace antes de gerar o Spatial Project.");
+frontend/main.js:510:  const city = getActiveCity();
+frontend/main.js:511:  const scale = currentGrid.scale;
+frontend/main.js:514:  const projectName = city.name + " - " + currentPoint.name + " - 1:" + scale;
+frontend/main.js:519:    application: "Globe-CitySpace",
+frontend/main.js:525:      city_key: activeCityKey,
+frontend/main.js:526:      city_name: city.name,
+frontend/main.js:531:      lat: currentGrid.centerLat,
+frontend/main.js:532:      lon: currentGrid.centerLon
+frontend/main.js:537:    grid: {
+frontend/main.js:547:      west: currentGrid.west,
+frontend/main.js:548:      south: currentGrid.south,
+frontend/main.js:549:      east: currentGrid.east,
+frontend/main.js:550:      north: currentGrid.north
+frontend/main.js:555:      numbering_mode: "ipt_column_zigzag",
+frontend/main.js:563:      globe_cityspace_role: "producer_of_spatial_contract",
+frontend/main.js:564:      ipt_cityspace_role: "physical_runtime_consumer",
+frontend/main.js:569:      target: "IPT-CitySpace Runtime",
+frontend/main.js:573:        "Projection Mapping",
+frontend/main.js:575:        "Mesa Virtual",
+frontend/main.js:615:openCity();
+frontend/main.js:649:function clearAreaAndGrid() {
+frontend/main.js:655:  clearGrid();
+frontend/main.js:656:  currentGrid = null;
+frontend/main.js:659:    "Área e Grid limpos. Escolha um ponto e gere uma nova Área CitySpace.";
+frontend/main.js:666:  clearAreaAndGrid

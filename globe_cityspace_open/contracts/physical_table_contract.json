@@ -1,0 +1,30 @@
+{
+  "contract_name": "Physical Table Contract",
+  "contract_version": "G5.0",
+
+  "supported_cell_sizes_cm": [
+    1,
+    2
+  ],
+
+  "default_cell_size_cm": 2,
+
+  "rows": 8,
+  "cols": 16,
+
+  "pin_count": 128,
+
+  "max_pin_height_cm": 10,
+
+  "gray_scale": {
+    "min": 0,
+    "max": 255
+  },
+
+  "height_model": {
+    "min_cm": 0,
+    "max_cm": 10
+  },
+
+  "scan_mode": "zigzag"
+}

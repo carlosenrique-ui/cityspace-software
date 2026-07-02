@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>IPT-CitySpace Demo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+    .wrap {
+      max-width: 920px;
+      margin: 60px auto;
+      padding: 32px;
+    }
+    h1 {
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #94a3b8;
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .card {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 22px;
+      min-height: 180px;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: white;
+    }
+    .card p {
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: #0f766e;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 34px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>IPT-CitySpace Demo</h1>
+    <div class="subtitle">
+      Globe-CitySpace · Projeção Mapeada · Mesa Virtual 3D
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h2>1. Globe-CitySpace</h2>
+        <p>Entrada Lat/Lon, cidades parceiras, área CitySpace e navegação geoespacial.</p>
+        <a class="btn" href="index.html">Abrir Globe</a>
+      </div>
+
+      <div class="card">
+        <h2>2. IPT-CitySpace</h2>
+        <p>Projeção mapeada, grid 16×8, pinos, BMP e operação da mesa virtual.</p>
+        <a class="btn" href="http://127.0.0.1:8050">Abrir IPT-CitySpace</a>
+      </div>
+
+      <div class="card">
+        <h2>3. Mesa Virtual 3D</h2>
+        <p>Visualização 3D dos 128 pinos, percurso ZigZag e equivalência BMP → 0–10 cm.</p>
+        <a class="btn" href="http://127.0.0.1:8060">Abrir Mesa 3D</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      Favorito recomendado: http://localhost:8088/demo.html
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #020617;
+  color: #e5e7eb;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  height: 48px;
+  background: #0f172a;
+  border-bottom: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 18px;
+}
+
+header span { color: #93c5fd; }
+
+main {
+  height: calc(100vh - 48px);
+  display: flex;
+}
+
+aside {
+  width: 330px;
+  background: #0f172a;
+  border-right: 1px solid #334155;
+  padding: 18px;
+  overflow-y: auto;
+}
+
+h2 {
+  margin-top: 0;
+  color: #93c5fd;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+select, button {
+  width: 100%;
+  padding: 9px;
+  border-radius: 8px;
+  border: 1px solid #475569;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+button {
+  margin-top: 10px;
+  background: #2563eb;
+  border: 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #334155;
+  margin: 16px 0;
+}
+
+.link {
+  display: block;
+  margin-top: 8px;
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+#info {
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.45;
+  border-top: 1px solid #334155;
+  padding-top: 12px;
+}
+
+#viewer {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+#north {
+  position: absolute;
+  top: 20px;
+  right: 36px;
+  color: #facc15;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#legend {
+  position: absolute;
+  right: 34px;
+  bottom: 34px;
+  text-align: center;
+  font-size: 12px;
+}
+
+#legend .bar {
+  width: 24px;
+  height: 180px;
+  margin: 6px auto;
+  background: linear-gradient(to top, #440154, #31688e, #35b779, #fde725);
+  border: 1px solid #cbd5e1;
+}
+
+#table {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(16, 48px);
+  grid-template-rows: repeat(8, 48px);
+  gap: 7px;
+  padding: 38px;
+  background: #1e293b;
+  border: 2px solid #64748b;
+  transform-style: preserve-3d;
+}
+
+#table.oblique { transform: rotateX(58deg) rotateZ(0deg); }
+#table.top { transform: rotateX(0deg) rotateZ(0deg); }
+
+.cell {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,0.65);
+  transform-style: preserve-3d;
+}
+
+.pin {
+  position: absolute;
+  left: 9px;
+  bottom: 0;
+  width: 30px;
+  transform-origin: bottom;
+  border: 1px solid rgba(255,255,255,0.75);
+}
+
+.label {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  font-size: 8px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+
+.check {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.check input {
+  width: auto;
+  margin-right: 6px;
+}
+
+#baseLayer {
+  position: absolute;
+  inset: 38px;
+  background-image: url("../../projects/ipt_north_5000/ipt_base_overlay.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.42;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cell {
+  z-index: 1;
+}
+
+body.hide-pins .pin {
+  display: none;
+}
+
+body.hide-base #baseLayer {
+  display: none;
+}

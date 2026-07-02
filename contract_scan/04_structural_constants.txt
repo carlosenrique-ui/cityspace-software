@@ -1,0 +1,1425 @@
+./config/system_parameters.py:19:def get_cell_size_meters():
+./config/system_parameters.py:32:def meters_to_pin_cm(z_m):
+./contract_scan/01_files_relevant.txt:131:./offline/render_dxf_ipt_para_mesa_16x8.py
+./contract_scan/01_files_relevant.txt:143:./offline/tests/test_grid_to_pin_height.py
+./contract_scan/01_files_relevant.txt:162:./offline/tools/audit_fix_set_pin.py
+./contract_scan/01_files_relevant.txt:18:./docs/architecture/code_audit/04_usage_set_pin.txt
+./contract_scan/01_files_relevant.txt:19:./docs/architecture/code_audit/05_set_pin_offline.txt
+./contract_scan/01_files_relevant.txt:20:./docs/architecture/code_audit/06_set_pin_global.txt
+./contract_scan/01_files_relevant.txt:23:./docs/architecture/code_audit/audit_set_pin_fixed.txt
+./contract_scan/01_files_relevant.txt:240:./online/core/grid_pin_adapter.py
+./contract_scan/01_files_relevant.txt:241:./online/core/grid_pin_mapper.py
+./contract_scan/01_files_relevant.txt:24:./docs/architecture/code_audit/audit_set_pin_found.txt
+./contract_scan/01_files_relevant.txt:256:./online/core/test_grid_pin_integration.py
+./contract_scan/01_files_relevant.txt:257:./online/core/test_grid_pin_mapper.py
+./contract_scan/01_files_relevant.txt:272:./online/hardware/mock_pin.py
+./contract_scan/01_files_relevant.txt:397:./online/ui/dash_v84_active_pin.py
+./contract_scan/01_files_relevant.txt:78:./offline/grid_to_pin_height.py
+./contract_scan/02_files_named_like_contract.txt:46:./offline/tools/audit_fix_set_pin.py
+./contract_scan/02_files_named_like_contract.txt:8:./docs/architecture/code_audit/audit_set_pin_fixed.txt
+./contract_scan/02_files_named_like_contract.txt:9:./docs/architecture/code_audit/audit_set_pin_found.txt
+./contract_scan/03_contract_terms.txt:1003:./offline/grid_to_pin_height.py:21:            grid[rr][cc] = r["z_cm"]
+./contract_scan/03_contract_terms.txt:1004:./offline/grid_to_pin_height.py:44:    df["z_cm"] = (df["z_total"] / zmax) * MAX_PIN_CM
+./contract_scan/03_contract_terms.txt:1005:./offline/grid_to_pin_height.py:7:INPUT = BASE / "products/final/grid_height.csv"
+./contract_scan/03_contract_terms.txt:1013:./offline/pipeline/04_generate_actuator_plan.py:106:    return 0.0 if not mask_union.contains(p) else row["z_cm"]
+./contract_scan/03_contract_terms.txt:1014:./offline/pipeline/04_generate_actuator_plan.py:108:df_out["z_cm"] = df_out.apply(apply_mask, axis=1)
+./contract_scan/03_contract_terms.txt:1022:./offline/pipeline/04_generate_actuator_plan.py:54:    z_cm = z_norm * PIN_MAX
+./contract_scan/03_contract_terms.txt:1023:./offline/pipeline/04_generate_actuator_plan.py:55:    z_total_cm = z_cm  # total em cm (igual ao pino)
+./contract_scan/03_contract_terms.txt:1024:./offline/pipeline/04_generate_actuator_plan.py:63:    z_terrain_cm = z_cm * ratio_terrain
+./contract_scan/03_contract_terms.txt:1025:./offline/pipeline/04_generate_actuator_plan.py:64:    z_building_cm = z_cm * ratio_building
+./contract_scan/03_contract_terms.txt:1026:./offline/pipeline/04_generate_actuator_plan.py:72:    df_out["z_cm"] = z_cm
+./contract_scan/03_contract_terms.txt:1028:./offline/pipeline/04_generate_actuator_plan.py:85:    return row["z_cm"]
+./contract_scan/03_contract_terms.txt:1029:./offline/pipeline/04_generate_actuator_plan.py:87:df["z_cm"] = df.apply(apply_mask, axis=1)
+./contract_scan/03_contract_terms.txt:1033:./offline/pipeline/99_export_final_mesa.py:61:Image.fromarray(img16).save(RUN / "mesa_16x8.bmp")
+./contract_scan/03_contract_terms.txt:1042:./offline/processing/build_mask_local_grid.py:26:    mesa_width  = n_cols * cell_size   # 16 cm
+./contract_scan/03_contract_terms.txt:1043:./offline/processing/build_mask_local_grid.py:27:    mesa_height = n_rows * cell_size   # 8 cm
+./contract_scan/03_contract_terms.txt:1058:./offline/processing/compute_heights.py:12:    - NaN -> 0
+./contract_scan/03_contract_terms.txt:1073:./offline/products/scientific/rotation_detected.json:3:  "method": "PCA_on_grid"
+./contract_scan/03_contract_terms.txt:1085:./offline/render_dxf_ipt_para_mesa_16x8.py:23:OUT_PNG = "visualization/debug/ipt_dxf_mesa_16x8.png"
+./contract_scan/03_contract_terms.txt:1086:./offline/render_dxf_ipt_para_mesa_16x8.py:9:# - Gerar PNG limpo para fundo da mesa virtual e real
+./contract_scan/03_contract_terms.txt:1101:./offline/tools/05_recompute_rotation_from_grid.py:40:# PCA → DIREÇÃO PRINCIPAL
+./contract_scan/03_contract_terms.txt:1103:./offline/tools/05_recompute_rotation_from_grid.py:65:    "method": "PCA_on_grid"
+./contract_scan/03_contract_terms.txt:1106:./offline/tools/07_detect_rotation_from_envelope.py:27:# PCA
+./contract_scan/03_contract_terms.txt:1139:./offline/tools/build_pipeline_execution_order.py:68:"offline/render_dxf_ipt_para_mesa_16x8.py",
+./contract_scan/03_contract_terms.txt:1226:./offline/validation/validate_scientific_grid_metrics.py.bak:53:    log(f"Contém NaN? {np.isnan(z_total).any()}")
+./contract_scan/03_contract_terms.txt:1227:./offline/validation/validate_scientific_grid_metrics.py.bak:7:- Detectar NaNs
+./contract_scan/03_contract_terms.txt:1228:./offline/validation/validate_scientific_grid_metrics.py:53:    log(f"Contém NaN? {np.isnan(z_total).any()}")
+./contract_scan/03_contract_terms.txt:1229:./offline/validation/validate_scientific_grid_metrics.py:7:- Detectar NaNs
+./contract_scan/03_contract_terms.txt:1276:./online/core/grid_pin_mapper.py:6:    para pin_id físico da mesa.
+./contract_scan/03_contract_terms.txt:1291:./online/core/test_grid_pin_integration.py:2:from online.core.temporal_state import TemporalState
+./contract_scan/03_contract_terms.txt:1292:./online/core/test_grid_pin_integration.py:3:from online.core.temporal_conductor import TemporalConductor
+./contract_scan/03_contract_terms.txt:1322:./online/renderers/fase3/FASE_3_4_mesa_legenda.py:28:rows = meta["grid_mesa"]["rows"]
+./contract_scan/03_contract_terms.txt:1323:./online/renderers/fase3/FASE_3_4_mesa_legenda.py:29:cols = meta["grid_mesa"]["cols"]
+./contract_scan/03_contract_terms.txt:1324:./online/renderers/fase3/FASE_3_4_mesa_legenda.py:30:cell_cm = meta["grid_mesa"]["cell_size_cm"]
+./contract_scan/03_contract_terms.txt:1325:./online/renderers/fase3/FASE_3_4_mesa_legenda.py:36:mesa = np.zeros((rows, cols), dtype=np.float32)
+./contract_scan/03_contract_terms.txt:1331:./online/renderers/fase3/FASE_3_5_verificacao_contrato.py:50:    meta["grid_mesa"]["rows"] == 8 and meta["grid_mesa"]["cols"] == 16,
+./contract_scan/03_contract_terms.txt:1334:./online/renderers/faseC/FASE_C_1_contrato_temporal.py:14:rows = meta["grid_mesa"]["rows"]
+./contract_scan/03_contract_terms.txt:1335:./online/renderers/faseC/FASE_C_1_contrato_temporal.py:15:cols = meta["grid_mesa"]["cols"]
+./contract_scan/03_contract_terms.txt:1336:./online/renderers/faseC/FASE_C_1_contrato_temporal.py:31:assert mask.shape == (rows, cols), "Máscara incompatível com contrato temporal"
+./contract_scan/03_contract_terms.txt:1339:./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:27:rows = meta["grid_mesa"]["rows"]
+./contract_scan/03_contract_terms.txt:1340:./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:28:cols = meta["grid_mesa"]["cols"]
+./contract_scan/03_contract_terms.txt:1349:./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:27:rows = meta["grid_mesa"]["rows"]
+./contract_scan/03_contract_terms.txt:1350:./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:28:cols = meta["grid_mesa"]["cols"]
+./contract_scan/03_contract_terms.txt:1382:./online/renderers/render_mesa_ipt_2d25_canonico.py:27:# Extent físico da mesa (coordenadas abstratas de pino)
+./contract_scan/03_contract_terms.txt:1413:./online/renderers/renderer2d.py:33:        :param grid_shape: Dimensão da mesa (linhas, colunas)
+./contract_scan/03_contract_terms.txt:1447:./online/tests/test_temporal_conductor.py:38:            z_cm = int(grid[y, x])
+./contract_scan/03_contract_terms.txt:1448:./online/tests/test_temporal_conductor.py:44:                z_pin_cm=z_cm,
+./contract_scan/03_contract_terms.txt:1449:./online/tests/test_temporal_conductor.py:45:                z_real_m=z_cm / 100.0,
+./contract_scan/03_contract_terms.txt:1453:./online/tests/test_temporal_conductor_eventbus.py:38:            z_cm = int(grid[y, x])
+./contract_scan/03_contract_terms.txt:1454:./online/tests/test_temporal_conductor_eventbus.py:44:                z_pin_cm=z_cm,
+./contract_scan/03_contract_terms.txt:1455:./online/tests/test_temporal_conductor_eventbus.py:45:                z_real_m=z_cm / 100.0,
+./contract_scan/03_contract_terms.txt:1461:./online/tests/test_temporal_statechart.py:67:            z_cm = int(grid[y, x])
+./contract_scan/03_contract_terms.txt:1462:./online/tests/test_temporal_statechart.py:73:                z_pin_cm=z_cm,
+./contract_scan/03_contract_terms.txt:1463:./online/tests/test_temporal_statechart.py:74:                z_real_m=z_cm / 100.0,
+./contract_scan/03_contract_terms.txt:1472:./online/ui/console_player.py:63:            z_cm = int(grid[y, x])
+./contract_scan/03_contract_terms.txt:1474:./online/ui/console_player.py:70:                    z_pin_cm=z_cm,
+./contract_scan/03_contract_terms.txt:1475:./online/ui/console_player.py:71:                    z_real_m=z_cm / 100.0,
+./contract_scan/03_contract_terms.txt:1488:./online/ui/dash_temporal_player.py:43:            z_cm = int(grid[y, x])
+./contract_scan/03_contract_terms.txt:1489:./online/ui/dash_temporal_player.py:50:                    z_real_m=z_cm / 100.0,
+./contract_scan/03_contract_terms.txt:1490:./online/ui/dash_temporal_player.py:51:                    z_pin_cm=z_cm,
+./contract_scan/03_contract_terms.txt:1581:./online/ui/dash_v72_cityspace_official.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1585:./online/ui/dash_v73_cityspace_gridfix.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1589:./online/ui/dash_v74_cityspace_centered.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1595:./online/ui/dash_v75_2_restored.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1599:./online/ui/dash_v75_3_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1601:./online/ui/dash_v75_cityspace_controls.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1607:./online/ui/dash_v76_time_continuous.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1610:./online/ui/dash_v77_cityspace_physics.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1614:./online/ui/dash_v77_visual_layer.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1618:./online/ui/dash_v78_1_zoom_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1623:./online/ui/dash_v78_zoom_centered.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1627:./online/ui/dash_v79_physical_grid_zoom.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1631:./online/ui/dash_v80_1_scale_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1635:./online/ui/dash_v80_true_physical_scale.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1639:./online/ui/dash_v81_physical_elevation.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1643:./online/ui/dash_v83_grid_border.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1647:./online/ui/dash_v84_LOCKED.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1648:./online/ui/dash_v84_active_pin.py:62: return dash.callback_context.triggered_id=="play"
+./contract_scan/03_contract_terms.txt:1649:./online/ui/dash_v84_active_pin.py:66: return -1 if dash.callback_context.triggered_id=="back" else 1
+./contract_scan/03_contract_terms.txt:1650:./online/ui/dash_v84_active_pin.py:8:df=pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./contract_scan/03_contract_terms.txt:1651:./online/ui/dash_v84_active_pin.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1653:./online/ui/dash_v85_LOCKED.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:1659:./online/ui/dash_v85_visual_fit.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:1661:./online/ui/dash_v85_visual_refined.py:23:    grid[int(r["row"])][int(r["col"])]=r["z_cm"]
+./contract_scan/03_contract_terms.txt:1666:./online/ui/dash_v86_visual_clean.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1672:./online/ui/dash_v88_fix_path_bounds.py:128:    return -1 if dash.callback_context.triggered_id == "back" else 1
+./contract_scan/03_contract_terms.txt:1674:./online/ui/dash_v88_grid_fix.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1676:./online/ui/dash_v89_final_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1681:./online/ui/dash_v90_urban_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1683:./online/ui/dash_v91_altimetric_motion.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1685:./online/ui/dash_v91_speed_control.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:1687:./online/ui/dash_v92_real_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:1689:./online/ui/dash_v93_centroid_final.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1691:./online/ui/dash_v93_robust_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:1695:./online/ui/dash_v94_clean_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1697:./online/ui/dash_v94_clean_no_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1700:./online/ui/dash_v94_real_legend.py:13:z_cm_max = df["z_cm"].max()
+./contract_scan/03_contract_terms.txt:1702:./online/ui/dash_v94_real_legend.py:15:scale_m_per_cm = z_m_max / z_cm_max if z_cm_max > 0 else 0
+./contract_scan/03_contract_terms.txt:1704:./online/ui/dash_v94_real_legend.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1705:./online/ui/dash_v94_real_pipeline.py:10:# 🔥 usar diretamente z_cm (já normalizado pelo pipeline)
+./contract_scan/03_contract_terms.txt:1706:./online/ui/dash_v94_real_pipeline.py:11:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1708:./online/ui/dash_v95_1_real_transparente.py:12:z_cm_max = df["z_cm"].max()
+./contract_scan/03_contract_terms.txt:1710:./online/ui/dash_v95_1_real_transparente.py:14:scale_m_per_cm = z_m_max / z_cm_max if z_cm_max > 0 else 0
+./contract_scan/03_contract_terms.txt:1712:./online/ui/dash_v95_1_real_transparente.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1714:./online/ui/dash_v95_2_real_base.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1715:./online/ui/dash_v95_2_real_final.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1716:./online/ui/dash_v95_2_real_final.py:18:z_cm_max = df["z_cm"].max()
+./contract_scan/03_contract_terms.txt:1718:./online/ui/dash_v95_2_real_final.py:20:scale_m_per_cm = z_m_max / z_cm_max if z_cm_max > 0 else 0
+./contract_scan/03_contract_terms.txt:1721:./online/ui/dash_v95_2d.py:6:grid = df.pivot(index="row", columns="col", values="z_cm")
+./contract_scan/03_contract_terms.txt:1723:./online/ui/dash_v95_2d_final_corrigido.py:8:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1725:./online/ui/dash_v95_3_clean_callbacks.py:16:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:1726:./online/ui/dash_v95_3_real_hard.py:18:# 🔥 USA z_cm REAL
+./contract_scan/03_contract_terms.txt:1727:./online/ui/dash_v95_3_real_hard.py:19:grid = df.pivot(index="row", columns="col", values="z_cm")
+./contract_scan/03_contract_terms.txt:1728:./online/ui/dash_v95_3_real_hard.py:33:z_cm_max = df["z_cm"].max()
+./contract_scan/03_contract_terms.txt:1730:./online/ui/dash_v95_3_real_hard.py:36:scale = z_m_max / z_cm_max if z_cm_max else 0
+./contract_scan/03_contract_terms.txt:1733:./online/ui/dash_v95_3d_urban.py:6:Z = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1735:./online/ui/dash_v95_4_blindado.py:20:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:1736:./online/ui/dash_v95_4_real_correct.py:12:z_cm_max = df["z_cm"].max()
+./contract_scan/03_contract_terms.txt:1738:./online/ui/dash_v95_4_real_correct.py:14:scale = z_m_max / z_cm_max if z_cm_max else 0
+./contract_scan/03_contract_terms.txt:1740:./online/ui/dash_v95_4_real_correct.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1742:./online/ui/dash_v95_5_debug.py:17:grid = df.pivot(index="row", columns="col", values="z_cm")
+./contract_scan/03_contract_terms.txt:1744:./online/ui/dash_v95_5_incremental.py:27:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:1746:./online/ui/dash_v95_6_hard_stable.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:1748:./online/ui/dash_v95_6_stable.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:1749:./online/ui/dash_v95_real_corrigido.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1752:./online/ui/dash_v96_engine_separado.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:1754:./online/ui/dash_v96_modo_fisico.py:9:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:1758:./online/ui/dash_v97_2_metodoB.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:1760:./online/ui/dash_v97_2_metodoB_fix.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:1764:./online/ui/dash_v97_tempo_fisico.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:1766:./online/ui/dash_v99_3d_buildings_zigzag.py:6:Z0 = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:1776:./online/ui/legacy/app.py:25:# Sequência temporal dummy (16 pinos)
+./contract_scan/03_contract_terms.txt:1791:./online/ui/temporal_player_grid_app.py:65:            z_cm = int(grid[y, x])
+./contract_scan/03_contract_terms.txt:1792:./online/ui/temporal_player_grid_app.py:72:                    z_pin_cm=z_cm,
+./contract_scan/03_contract_terms.txt:1793:./online/ui/temporal_player_grid_app.py:73:                    z_real_m=z_cm / 100.0,
+./contract_scan/03_contract_terms.txt:1800:./online/ui/temporal_player_grid_controls_app.py:48:            z_cm = int(grid[y, x])
+./contract_scan/03_contract_terms.txt:1801:./online/ui/temporal_player_grid_controls_app.py:54:                    z_pin_cm=z_cm,
+./contract_scan/03_contract_terms.txt:1802:./online/ui/temporal_player_grid_controls_app.py:55:                    z_real_m=z_cm / 100.0,
+./contract_scan/03_contract_terms.txt:1808:./project_tree.txt:168:│   ├── render_dxf_ipt_para_mesa_16x8.py
+./contract_scan/03_contract_terms.txt:185:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:10:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./contract_scan/03_contract_terms.txt:187:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:12:./visualization/render_temporal_gif.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./contract_scan/03_contract_terms.txt:189:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:14:./visualization/render_temporal_gif_v1.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./contract_scan/03_contract_terms.txt:191:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:16:./visualization/render_temporal_gif_v10.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:193:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:18:./visualization/render_temporal_gif_v11.py:    trajetoria_base = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:195:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:20:./visualization/render_temporal_gif_v12.py:    traj = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:1966:./python_files.txt:67:./offline/render_dxf_ipt_para_mesa_16x8.py
+./contract_scan/03_contract_terms.txt:1978:./runner/virtual_actuator.py:5:Atuador virtual para simular a mesa de pinos.
+./contract_scan/03_contract_terms.txt:197:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:22:./visualization/render_temporal_gif_v13.py:    traj = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:200:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:25:./visualization/render_temporal_gif_v2.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./contract_scan/03_contract_terms.txt:202:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:27:./visualization/render_temporal_gif_v3.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./contract_scan/03_contract_terms.txt:204:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:29:./visualization/render_temporal_gif_v4.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./contract_scan/03_contract_terms.txt:206:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:31:./visualization/render_temporal_gif_v5.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./contract_scan/03_contract_terms.txt:208:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:33:./visualization/render_temporal_gif_v6.py:    scanner_dados = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:2109:./scan07042026.txt:1280:./offline/validation/validate_rigid_transform_parameters.py:ROTATED_PATH  = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./contract_scan/03_contract_terms.txt:210:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:35:./visualization/render_temporal_gif_v7.py:    trajetoria_dados = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:2110:./scan07042026.txt:1281:./offline/validation/validate_rigid_transform_parameters.py:LAYER_ORIGINAL = "urban_envelope_original"
+./contract_scan/03_contract_terms.txt:2111:./scan07042026.txt:1282:./offline/validation/validate_rigid_transform_parameters.py:LAYER_ROTATED  = "urban_envelope_scientific_rotated_clean"
+./contract_scan/03_contract_terms.txt:2112:./scan07042026.txt:128:./docs/architecture/code_audit/09_mask_consumers.txt:offline/validation/validate_rotated_raster_vs_envelope.py:ENVELOPE_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./contract_scan/03_contract_terms.txt:212:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:37:./visualization/render_temporal_gif_v8.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:214:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:39:./visualization/render_temporal_gif_v9.py:    traj = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:215:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:5:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:from offline.scanners import ZigZagColumnScanner
+./contract_scan/03_contract_terms.txt:216:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:6:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./contract_scan/03_contract_terms.txt:217:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:7:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:from offline.scanners import ZigZagColumnScanner
+./contract_scan/03_contract_terms.txt:218:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:8:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./contract_scan/03_contract_terms.txt:219:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:9:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:from offline.scanners import ZigZagColumnScanner
+./contract_scan/03_contract_terms.txt:221:./docs/architecture/code_audit/02_usage_zigzag_scan.txt:3:./legacy/cleanup_20260305_164029/geo/grid_to_temporal_sequence.py:    scan = zigzag_scan(cols, rows)
+./contract_scan/03_contract_terms.txt:2235:./scan07042026.txt:19:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:./visualization/render_temporal_gif_v10.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:2236:./scan07042026.txt:20:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:./visualization/render_temporal_gif_v8.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./contract_scan/03_contract_terms.txt:2242:./scan07042026.txt:232:./docs/architecture/code_audit/height_usage.txt:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./contract_scan/03_contract_terms.txt:2296:./scan07042026.txt:413:./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./contract_scan/03_contract_terms.txt:2394:./scan07042026.txt:964:./offline/render_dxf_ipt_para_mesa_16x8.py:# - Ler o DXF ORIGINAL do IPT
+./contract_scan/03_contract_terms.txt:2395:./scan07042026.txt:965:./offline/render_dxf_ipt_para_mesa_16x8.py:from shapely.affinity import rotate
+./contract_scan/03_contract_terms.txt:2396:./scan07042026.txt:966:./offline/render_dxf_ipt_para_mesa_16x8.py:ANGLE_DEG = 154.63  # rotação trigonométrica validada
+./contract_scan/03_contract_terms.txt:2397:./scan07042026.txt:967:./offline/render_dxf_ipt_para_mesa_16x8.py:    print(f"Rotação: {ANGLE_DEG}°")
+./contract_scan/03_contract_terms.txt:2398:./scan07042026.txt:968:./offline/render_dxf_ipt_para_mesa_16x8.py:        lambda geom: rotate(
+./contract_scan/03_contract_terms.txt:2399:./scan07042026.txt:969:./offline/render_dxf_ipt_para_mesa_16x8.py:            ANGLE_DEG,
+./contract_scan/03_contract_terms.txt:2401:./scan07042026.txt:970:./offline/render_dxf_ipt_para_mesa_16x8.py:            origin=(cx, cy),
+./contract_scan/03_contract_terms.txt:2443:./usage_pivot.txt:10:./online/ui/dash_v75_3_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2444:./usage_pivot.txt:11:./online/ui/dash_v75_cityspace_controls.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2445:./usage_pivot.txt:12:./online/ui/dash_v76_time_continuous.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2446:./usage_pivot.txt:13:./online/ui/dash_v77_cityspace_physics.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2447:./usage_pivot.txt:14:./online/ui/dash_v77_visual_layer.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2448:./usage_pivot.txt:15:./online/ui/dash_v78_1_zoom_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2449:./usage_pivot.txt:16:./online/ui/dash_v78_zoom_centered.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2450:./usage_pivot.txt:17:./online/ui/dash_v79_physical_grid_zoom.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2451:./usage_pivot.txt:18:./online/ui/dash_v80_1_scale_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2452:./usage_pivot.txt:19:./online/ui/dash_v80_true_physical_scale.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2454:./usage_pivot.txt:20:./online/ui/dash_v81_physical_elevation.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2455:./usage_pivot.txt:21:./online/ui/dash_v83_grid_border.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2456:./usage_pivot.txt:22:./online/ui/dash_v84_active_pin.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2457:./usage_pivot.txt:23:./online/ui/dash_v84_LOCKED.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2458:./usage_pivot.txt:24:./online/ui/dash_v85_LOCKED.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:2459:./usage_pivot.txt:25:./online/ui/dash_v85_visual_fit.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2460:./usage_pivot.txt:27:./online/ui/dash_v86_visual_clean.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2461:./usage_pivot.txt:31:./online/ui/dash_v88_grid_fix.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2462:./usage_pivot.txt:32:./online/ui/dash_v89_final_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2463:./usage_pivot.txt:34:./online/ui/dash_v90_urban_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2464:./usage_pivot.txt:35:./online/ui/dash_v91_altimetric_motion.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2465:./usage_pivot.txt:36:./online/ui/dash_v91_speed_control.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:2466:./usage_pivot.txt:37:./online/ui/dash_v92_real_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:2467:./usage_pivot.txt:38:./online/ui/dash_v93_centroid_final.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2468:./usage_pivot.txt:39:./online/ui/dash_v93_robust_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:2471:./usage_pivot.txt:41:./online/ui/dash_v94_clean_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2472:./usage_pivot.txt:42:./online/ui/dash_v94_clean_no_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2473:./usage_pivot.txt:43:./online/ui/dash_v94_real_legend.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2474:./usage_pivot.txt:44:./online/ui/dash_v94_real_pipeline.py:11:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2475:./usage_pivot.txt:45:./online/ui/dash_v95_1_real_transparente.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2476:./usage_pivot.txt:46:./online/ui/dash_v95_2d.py:6:grid = df.pivot(index="row", columns="col", values="z_cm")
+./contract_scan/03_contract_terms.txt:2477:./usage_pivot.txt:49:./online/ui/dash_v95_2d_final_corrigido.py:8:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2479:./usage_pivot.txt:50:./online/ui/dash_v95_2_real_base.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2480:./usage_pivot.txt:51:./online/ui/dash_v95_2_real_final.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2481:./usage_pivot.txt:52:./online/ui/dash_v95_3d_urban.py:6:Z = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2482:./usage_pivot.txt:53:./online/ui/dash_v95_3_clean_callbacks.py:16:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:2483:./usage_pivot.txt:54:./online/ui/dash_v95_3_real_hard.py:19:grid = df.pivot(index="row", columns="col", values="z_cm")
+./contract_scan/03_contract_terms.txt:2484:./usage_pivot.txt:55:./online/ui/dash_v95_4_blindado.py:20:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:2485:./usage_pivot.txt:56:./online/ui/dash_v95_4_real_correct.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2486:./usage_pivot.txt:57:./online/ui/dash_v95_5_debug.py:17:grid = df.pivot(index="row", columns="col", values="z_cm")
+./contract_scan/03_contract_terms.txt:2487:./usage_pivot.txt:58:./online/ui/dash_v95_5_incremental.py:27:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:2488:./usage_pivot.txt:59:./online/ui/dash_v95_6_hard_stable.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:2490:./usage_pivot.txt:60:./online/ui/dash_v95_6_stable.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:2491:./usage_pivot.txt:61:./online/ui/dash_v95_real_corrigido.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2492:./usage_pivot.txt:62:./online/ui/dash_v96_engine_separado.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:2493:./usage_pivot.txt:63:./online/ui/dash_v96_modo_fisico.py:9:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./contract_scan/03_contract_terms.txt:2494:./usage_pivot.txt:64:./online/ui/dash_v97_2_metodoB.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:2495:./usage_pivot.txt:65:./online/ui/dash_v97_2_metodoB_fix.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:2496:./usage_pivot.txt:66:./online/ui/dash_v97_tempo_fisico.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./contract_scan/03_contract_terms.txt:2497:./usage_pivot.txt:67:./online/ui/dash_v99_3d_buildings_zigzag.py:6:Z0 = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./contract_scan/03_contract_terms.txt:2500:./usage_pivot.txt:6:./online/ui/dash_v72_cityspace_official.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2502:./usage_pivot.txt:7:./online/ui/dash_v73_cityspace_gridfix.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2503:./usage_pivot.txt:8:./online/ui/dash_v74_cityspace_centered.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2504:./usage_pivot.txt:9:./online/ui/dash_v75_2_restored.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./contract_scan/03_contract_terms.txt:2521:./usage_readcsv.txt:36:./online/ui/dash_v84_active_pin.py:8:df=pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./contract_scan/03_contract_terms.txt:262:./docs/architecture/code_audit/08_mask_usage.txt:81:offline/products/generate_contours_matplotlib.py:print("\nSTEP 10 — Clipping by envelope")
+./contract_scan/03_contract_terms.txt:332:./docs/architecture/code_audit/height_usage.txt:72:offline/tests/test_grid_to_temporal_sequence.py:    pin_heights = {
+./contract_scan/03_contract_terms.txt:333:./docs/architecture/code_audit/height_usage.txt:73:offline/tests/test_grid_to_temporal_sequence.py:        pin_heights,
+./contract_scan/03_contract_terms.txt:334:./docs/architecture/code_audit/height_usage.txt:7:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./contract_scan/03_contract_terms.txt:409:./docs/architecture/code_audit/urban_height_audit.txt:122:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./contract_scan/03_contract_terms.txt:416:./docs/architecture/code_audit/urban_height_audit.txt:334:offline/tests/test_grid_to_temporal_sequence.py:    pin_heights = {
+./contract_scan/03_contract_terms.txt:417:./docs/architecture/code_audit/urban_height_audit.txt:335:offline/tests/test_grid_to_temporal_sequence.py:        pin_heights,
+./contract_scan/03_contract_terms.txt:462:./docs/architecture/code_search/21_render.txt:3:./offline/tools/build_pipeline_execution_order.py:"offline/render_dxf_ipt_para_mesa_16x8.py",
+./contract_scan/03_contract_terms.txt:494:./docs/architecture/code_search/23_visualization.txt:139:./visualization/mesa_virtual_pinos.py:Saída: imagem PNG (validação visual).
+./contract_scan/03_contract_terms.txt:495:./docs/architecture/code_search/23_visualization.txt:140:./visualization/mesa_virtual_pinos.py:OUT_DIR = ENGINE_ROOT / "visualization" / "debug"
+./contract_scan/03_contract_terms.txt:496:./docs/architecture/code_search/23_visualization.txt:141:./visualization/mesa_virtual_pinos_anim.py:OUT_DIR = ENGINE_ROOT / "visualization" / "debug"
+./contract_scan/03_contract_terms.txt:497:./docs/architecture/code_search/23_visualization.txt:142:./visualization/mesa_virtual_pinos_temporal_gif.py:- Edifícios pequenos com ganho visual
+./contract_scan/03_contract_terms.txt:498:./docs/architecture/code_search/23_visualization.txt:143:./visualization/mesa_virtual_pinos_temporal_gif.py:- Altura visual: metros
+./contract_scan/03_contract_terms.txt:499:./docs/architecture/code_search/23_visualization.txt:144:./visualization/mesa_virtual_pinos_temporal_real_gif.py:OUT_DIR = ENGINE_ROOT / "visualization/debug"
+./contract_scan/03_contract_terms.txt:500:./docs/architecture/code_search/23_visualization.txt:145:./visualization/mesa_virtual_pinos_temporal_semantico.py:- Altura visual: metros reais
+./contract_scan/03_contract_terms.txt:501:./docs/architecture/code_search/23_visualization.txt:146:./visualization/mesa_virtual_pinos_temporal_semantico.py:- Edifícios com ganho visual
+./contract_scan/03_contract_terms.txt:502:./docs/architecture/code_search/23_visualization.txt:147:./visualization/mesa_virtual_pinos_temporal_semantico.py:EDIFICIO_GANHO = 2.5       # ganho visual APENAS para edifícios
+./contract_scan/03_contract_terms.txt:503:./docs/architecture/code_search/23_visualization.txt:148:./visualization/mesa_virtual_pinos_temporal_semantico.py:# Edifício (pequeno, mas com ganho visual)
+./contract_scan/03_contract_terms.txt:504:./docs/architecture/code_search/23_visualization.txt:149:./visualization/mesa_virtual_pinos_temporal_semantico.py:# Altura visual em metros
+./contract_scan/03_contract_terms.txt:505:./docs/architecture/code_search/23_visualization.txt:150:./visualization/mesa_virtual_pinos_temporal_semantico.py:z_visual_m = (z_terreno_cm + z_edificio_cm) * METROS_POR_CM
+./contract_scan/03_contract_terms.txt:506:./docs/architecture/code_search/23_visualization.txt:151:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:OUT_DIR = ENGINE_ROOT / "visualization/debug"
+./contract_scan/03_contract_terms.txt:507:./docs/architecture/code_search/23_visualization.txt:152:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:OUT_DIR = ENGINE_ROOT / "visualization/debug"
+./contract_scan/03_contract_terms.txt:508:./docs/architecture/code_search/23_visualization.txt:153:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:OUT_DIR = ENGINE_ROOT / "visualization/output"
+./contract_scan/03_contract_terms.txt:519:./docs/architecture/code_search/23_visualization.txt:164:./visualization/render_temporal_gif_v11.py:                # visualmente o pino desce, mas o estado acumulado NÃO muda
+./contract_scan/03_contract_terms.txt:521:./docs/architecture/code_search/23_visualization.txt:166:./visualization/render_temporal_gif_v12.py:    inicio_visual = (0, rows - 1)
+./contract_scan/03_contract_terms.txt:525:./docs/architecture/code_search/23_visualization.txt:170:./visualization/render_temporal_gif_v13.py:    inicio_visual = (0, rows - 1)
+./contract_scan/03_contract_terms.txt:585:./docs/architecture/code_search/23_visualization.txt:229:./visualization/render_temporal_gif_v9.py:    # visualmente: (x=0, y_draw=0) → y = rows-1
+./contract_scan/03_contract_terms.txt:586:./docs/architecture/code_search/23_visualization.txt:230:./visualization/render_temporal_gif_v9.py:    inicio_visual = (0, rows - 1)
+./contract_scan/03_contract_terms.txt:596:./docs/architecture/code_search/23_visualization.txt:32:./offline/render_dxf_ipt_para_mesa_16x8.py:OUT_PNG = "visualization/debug/ipt_dxf_mesa_16x8.png"
+./contract_scan/03_contract_terms.txt:597:./docs/architecture/code_search/23_visualization.txt:33:./offline/render_dxf_ipt_para_mesa_16x8.py:    os.makedirs("visualization/debug", exist_ok=True)
+./contract_scan/03_contract_terms.txt:5:./contract_scan/01_files_relevant.txt:131:./offline/render_dxf_ipt_para_mesa_16x8.py
+./contract_scan/03_contract_terms.txt:666:./docs/architecture/code_search/24_ui.txt:213:./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:        cbar.set_label("Altura do pino (m) — equivalente real IPT")
+./contract_scan/03_contract_terms.txt:710:./docs/architecture/code_search/24_ui.txt:277:./online/ui/temporal_player_grid_app.py:    ui = AsciiGridObserver(rows, cols, state_manager)
+./contract_scan/03_contract_terms.txt:711:./docs/architecture/code_search/24_ui.txt:278:./online/ui/temporal_player_grid_app.py:    bus.subscribe("MOVE_PIN", ui.on_move_pin)
+./contract_scan/03_contract_terms.txt:739:./docs/architecture/code_search/24_ui.txt:374:./visualization/mesa_virtual_pinos_layers.py:grid_building = grid_total * 0.6
+./contract_scan/03_contract_terms.txt:740:./docs/architecture/code_search/24_ui.txt:375:./visualization/mesa_virtual_pinos_layers.py:pins_building = to_pins(grid_building)
+./contract_scan/03_contract_terms.txt:741:./docs/architecture/code_search/24_ui.txt:376:./visualization/mesa_virtual_pinos_layers.py:pins_total = to_pins(grid_dtm + grid_building)
+./contract_scan/03_contract_terms.txt:742:./docs/architecture/code_search/24_ui.txt:377:./visualization/mesa_virtual_pinos_layers.py:datasets = [pins_dtm, pins_building, pins_total]
+./contract_scan/03_contract_terms.txt:743:./docs/architecture/code_search/24_ui.txt:378:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./contract_scan/03_contract_terms.txt:744:./docs/architecture/code_search/24_ui.txt:379:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./contract_scan/03_contract_terms.txt:745:./docs/architecture/code_search/24_ui.txt:380:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:grid_uint8 = np.loadtxt(GRID_UINT8, delimiter=";", dtype=np.uint8)
+./contract_scan/03_contract_terms.txt:746:./docs/architecture/code_search/24_ui.txt:381:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:rows, cols = grid_uint8.shape
+./contract_scan/03_contract_terms.txt:747:./docs/architecture/code_search/24_ui.txt:382:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./contract_scan/03_contract_terms.txt:917:./docs/architecture/code_search/25_layers.txt:38:./offline/render_dxf_ipt_para_mesa_16x8.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./contract_scan/03_contract_terms.txt:960:./docs/architecture/pipeline_execution_order.txt:23:21 offline/render_dxf_ipt_para_mesa_16x8.py
+./contract_scan/03_contract_terms.txt:965:./docs/development/workflow_method.md:170:mesa física de pinos
+./contract_scan/03_contract_terms.txt:991:./estrutura_offline.txt:98:├── render_dxf_ipt_para_mesa_16x8.py
+./docs/TESTE_CALIBRACAO_E_RENDER_V43_2025-02-08.md:145:   - pinos como elevação sobre o terreno.
+./docs/TESTE_CALIBRACAO_E_RENDER_V43_2025-02-08.md:14:- validação de alinhamento urbano no grid 16x8
+./docs/TESTE_CALIBRACAO_E_RENDER_V43_2025-02-08.md:80:  - edifícios/pinos (coloridos)
+./docs/TESTE_TEMPORAL_FINAL_2025-02-07.md:94:   - subida de pinos
+./docs/TESTE_TEMPORAL_FINAL_2025-02-07.md:95:   - descida de pinos
+./docs/TESTE_TEMPORAL_FINAL_2025-02-07.md:96:3. Preparar pipeline 2x2 para maior precisão.
+./docs/architecture/cityspace_coordinate_systems.md:68:rows = 8
+./docs/architecture/cityspace_coordinate_systems.md:69:cols = 16
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:10:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:12:./visualization/render_temporal_gif.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:14:./visualization/render_temporal_gif_v1.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:16:./visualization/render_temporal_gif_v10.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:18:./visualization/render_temporal_gif_v11.py:    trajetoria_base = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:20:./visualization/render_temporal_gif_v12.py:    traj = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:22:./visualization/render_temporal_gif_v13.py:    traj = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:25:./visualization/render_temporal_gif_v2.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:27:./visualization/render_temporal_gif_v3.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:29:./visualization/render_temporal_gif_v4.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:31:./visualization/render_temporal_gif_v5.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:33:./visualization/render_temporal_gif_v6.py:    scanner_dados = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:35:./visualization/render_temporal_gif_v7.py:    trajetoria_dados = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:37:./visualization/render_temporal_gif_v8.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:39:./visualization/render_temporal_gif_v9.py:    traj = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:5:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:from offline.scanners import ZigZagColumnScanner
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:6:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:7:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:from offline.scanners import ZigZagColumnScanner
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:8:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:9:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:from offline.scanners import ZigZagColumnScanner
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:11:./tests/test_path.py:    path = zigzag_scan(rows, cols)
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:13:./tests/test_path.py:    path = zigzag_scan(rows, cols)
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:14:./tests/test_path.py:def test_zigzag_scan_order_first_rows():
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:15:./tests/test_path.py:    path = zigzag_scan(rows, cols)
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:17:./tests/test_runner_engine.py:    path = zigzag_scan(cols=cols, rows=rows)
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:1:./legacy/cleanup_20260305_164029/geo/grid_scan.py:def zigzag_scan(cols, rows):
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:3:./legacy/cleanup_20260305_164029/geo/grid_to_temporal_sequence.py:    scan = zigzag_scan(cols, rows)
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:5:./offline/pipeline_runner.py:    path = zigzag_scan(cols=cols, rows=rows)
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:6:./runner/path.py:def zigzag_scan(rows: int, cols: int) -> List[Tuple[int, int]]:
+./docs/architecture/code_audit/02_usage_zigzag_scan.txt:9:./tests/test_path.py:    path = zigzag_scan(rows, cols)
+./docs/architecture/code_audit/04_usage_set_pin.txt:10:./online/tests/test_plan_player.py:    assert actuator.events[2]["type"] == "set_pin"
+./docs/architecture/code_audit/04_usage_set_pin.txt:11:./online/tests/test_plan_player.py:    assert actuator.events[4]["type"] == "set_pin"
+./docs/architecture/code_audit/04_usage_set_pin.txt:12:./runner/base_actuator.py:    def set_pin_height(self, row: int, col: int, height_cm: float):
+./docs/architecture/code_audit/04_usage_set_pin.txt:13:./runner/runner_engine.py:            self.actuator.set_pin(height)
+./docs/architecture/code_audit/04_usage_set_pin.txt:14:./runner/virtual_actuator.py:    def set_pin(self, value: float):
+./docs/architecture/code_audit/04_usage_set_pin.txt:15:./runner/virtual_actuator.py:            "type": "set_pin",
+./docs/architecture/code_audit/04_usage_set_pin.txt:16:./tests/test_plan_player_adapter.py:        {"type": "set_pin", "value": 5.0},
+./docs/architecture/code_audit/04_usage_set_pin.txt:17:./tests/test_plan_player_adapter.py:        bus.subscribe("set_pin", handler)
+./docs/architecture/code_audit/04_usage_set_pin.txt:18:./tests/test_plan_player_adapter.py:        assert e3.event_type == "set_pin"
+./docs/architecture/code_audit/04_usage_set_pin.txt:19:./tests/test_plan_player_adapter.py:        assert received[2].event_type == "set_pin"
+./docs/architecture/code_audit/04_usage_set_pin.txt:1:./online/actuators/virtual_actuator.py:    def set_pin(self, value: float):
+./docs/architecture/code_audit/04_usage_set_pin.txt:20:./tests/test_runner_engine.py:    - aciona move + set_pin
+./docs/architecture/code_audit/04_usage_set_pin.txt:21:./tests/test_runner_engine.py:    pin_events = [e for e in events if e["type"] == "set_pin"]
+./docs/architecture/code_audit/04_usage_set_pin.txt:22:./tests/test_runner_engine.py:    pin_events = [e for e in actuator.events if e["type"] == "set_pin"]
+./docs/architecture/code_audit/04_usage_set_pin.txt:23:./tests/test_virtual_actuator_legacy.py:    act.set_pin(5.0)
+./docs/architecture/code_audit/04_usage_set_pin.txt:24:./tests/test_virtual_actuator_legacy.py:    assert act.events[2]["type"] == "set_pin"
+./docs/architecture/code_audit/04_usage_set_pin.txt:2:./online/actuators/virtual_actuator.py:            "type": "set_pin",
+./docs/architecture/code_audit/04_usage_set_pin.txt:3:./online/core/state_manager.py:    def set_pin(self, value: float):
+./docs/architecture/code_audit/04_usage_set_pin.txt:4:./online/runtime/plan_player_adapter.py:        elif etype == "set_pin":
+./docs/architecture/code_audit/04_usage_set_pin.txt:5:./online/runtime/plan_player_adapter.py:            self.actuator.set_pin(event["value"])
+./docs/architecture/code_audit/04_usage_set_pin.txt:6:./online/tests/test_plan_execution_runner.py:        {"type": "set_pin", "value": 5.0},
+./docs/architecture/code_audit/04_usage_set_pin.txt:7:./online/tests/test_plan_execution_runner.py:        assert e3.name == "set_pin"
+./docs/architecture/code_audit/04_usage_set_pin.txt:8:./online/tests/test_plan_player.py:        {"type": "set_pin", "value": 1.0},
+./docs/architecture/code_audit/04_usage_set_pin.txt:9:./online/tests/test_plan_player.py:        {"type": "set_pin", "value": 2.0},
+./docs/architecture/code_audit/06_set_pin_global.txt:10:./online/tests/test_plan_player.py:    assert actuator.events[2]["type"] == "set_pin"
+./docs/architecture/code_audit/06_set_pin_global.txt:11:./online/tests/test_plan_player.py:    assert actuator.events[4]["type"] == "set_pin"
+./docs/architecture/code_audit/06_set_pin_global.txt:12:./runner/base_actuator.py:    def set_pin_height(self, row: int, col: int, height_cm: float):
+./docs/architecture/code_audit/06_set_pin_global.txt:13:./runner/runner_engine.py:            self.actuator.set_pin(height)
+./docs/architecture/code_audit/06_set_pin_global.txt:14:./runner/virtual_actuator.py:    def set_pin(self, value: float):
+./docs/architecture/code_audit/06_set_pin_global.txt:15:./runner/virtual_actuator.py:            "type": "set_pin",
+./docs/architecture/code_audit/06_set_pin_global.txt:16:./tests/test_plan_player_adapter.py:        {"type": "set_pin", "value": 5.0},
+./docs/architecture/code_audit/06_set_pin_global.txt:17:./tests/test_plan_player_adapter.py:        bus.subscribe("set_pin", handler)
+./docs/architecture/code_audit/06_set_pin_global.txt:18:./tests/test_plan_player_adapter.py:        assert e3.event_type == "set_pin"
+./docs/architecture/code_audit/06_set_pin_global.txt:19:./tests/test_plan_player_adapter.py:        assert received[2].event_type == "set_pin"
+./docs/architecture/code_audit/06_set_pin_global.txt:1:./online/actuators/virtual_actuator.py:    def set_pin(self, value: float):
+./docs/architecture/code_audit/06_set_pin_global.txt:20:./tests/test_runner_engine.py:    - aciona move + set_pin
+./docs/architecture/code_audit/06_set_pin_global.txt:21:./tests/test_runner_engine.py:    pin_events = [e for e in events if e["type"] == "set_pin"]
+./docs/architecture/code_audit/06_set_pin_global.txt:22:./tests/test_runner_engine.py:    pin_events = [e for e in actuator.events if e["type"] == "set_pin"]
+./docs/architecture/code_audit/06_set_pin_global.txt:23:./tests/test_virtual_actuator_legacy.py:    act.set_pin(5.0)
+./docs/architecture/code_audit/06_set_pin_global.txt:24:./tests/test_virtual_actuator_legacy.py:    assert act.events[2]["type"] == "set_pin"
+./docs/architecture/code_audit/06_set_pin_global.txt:2:./online/actuators/virtual_actuator.py:            "type": "set_pin",
+./docs/architecture/code_audit/06_set_pin_global.txt:3:./online/core/state_manager.py:    def set_pin(self, value: float):
+./docs/architecture/code_audit/06_set_pin_global.txt:4:./online/runtime/plan_player_adapter.py:        elif etype == "set_pin":
+./docs/architecture/code_audit/06_set_pin_global.txt:5:./online/runtime/plan_player_adapter.py:            self.actuator.set_pin(event["value"])
+./docs/architecture/code_audit/06_set_pin_global.txt:6:./online/tests/test_plan_execution_runner.py:        {"type": "set_pin", "value": 5.0},
+./docs/architecture/code_audit/06_set_pin_global.txt:7:./online/tests/test_plan_execution_runner.py:        assert e3.name == "set_pin"
+./docs/architecture/code_audit/06_set_pin_global.txt:8:./online/tests/test_plan_player.py:        {"type": "set_pin", "value": 1.0},
+./docs/architecture/code_audit/06_set_pin_global.txt:9:./online/tests/test_plan_player.py:        {"type": "set_pin", "value": 2.0},
+./docs/architecture/code_audit/08_mask_usage.txt:11:offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./docs/architecture/code_audit/08_mask_usage.txt:81:offline/products/generate_contours_matplotlib.py:print("\nSTEP 10 — Clipping by envelope")
+./docs/architecture/code_audit/audit_set_pin_fixed.txt:6:/mnt/c/IPT-CitySpace-2018/ipt-cityspace-engine/offline/tools/audit_fix_set_pin.py
+./docs/architecture/code_audit/audit_set_pin_found.txt:7:/mnt/c/IPT-CitySpace-2018/ipt-cityspace-engine/offline/tools/audit_fix_set_pin.py
+./docs/architecture/code_audit/height_usage.txt:3:offline/pipeline_dag.py:"name": "generate_pin_heights",
+./docs/architecture/code_audit/height_usage.txt:57:offline/tests/test_generate_contours_topografico.py:    height_cm = nrows * CELL_SIZE_CM
+./docs/architecture/code_audit/height_usage.txt:5:offline/pipeline_dag.py:"offline/products/runtime/grid_pin_heights.csv"
+./docs/architecture/code_audit/height_usage.txt:60:offline/tests/test_grid_to_pin_height.py:# tests/test_grid_to_pin_height.py
+./docs/architecture/code_audit/height_usage.txt:61:offline/tests/test_grid_to_pin_height.py:from offline.geo.grid_to_pin_height import grid_to_pin_height
+./docs/architecture/code_audit/height_usage.txt:62:offline/tests/test_grid_to_pin_height.py:def test_pin_height_basic():
+./docs/architecture/code_audit/height_usage.txt:63:offline/tests/test_grid_to_pin_height.py:    heights = grid_to_pin_height(grid_norm, min_cm=0.0, max_cm=10.0)
+./docs/architecture/code_audit/height_usage.txt:64:offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 0)] == 0.0
+./docs/architecture/code_audit/height_usage.txt:65:offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 1)] == 5.0
+./docs/architecture/code_audit/height_usage.txt:66:offline/tests/test_grid_to_pin_height.py:    assert heights[(1, 0)] == 10.0
+./docs/architecture/code_audit/height_usage.txt:67:offline/tests/test_grid_to_pin_height.py:def test_pin_height_custom_range():
+./docs/architecture/code_audit/height_usage.txt:68:offline/tests/test_grid_to_pin_height.py:    heights = grid_to_pin_height(grid_norm, min_cm=2.0, max_cm=6.0)
+./docs/architecture/code_audit/height_usage.txt:69:offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 0)] == 4.0
+./docs/architecture/code_audit/height_usage.txt:6:offline/pipeline_dag.py:"offline/products/runtime/grid_pin_heights.csv"
+./docs/architecture/code_audit/height_usage.txt:70:offline/tests/test_grid_to_pin_height.py:        grid_to_pin_height(grid_norm)
+./docs/architecture/code_audit/height_usage.txt:71:offline/tests/test_grid_to_pin_height.py:        grid_to_pin_height(grid_norm, min_cm=10.0, max_cm=5.0)
+./docs/architecture/code_audit/height_usage.txt:72:offline/tests/test_grid_to_temporal_sequence.py:    pin_heights = {
+./docs/architecture/code_audit/height_usage.txt:73:offline/tests/test_grid_to_temporal_sequence.py:        pin_heights,
+./docs/architecture/code_audit/height_usage.txt:75:offline/tools/audit_fix_set_pin.py:    set_height_cm  -> set_height_cm
+./docs/architecture/code_audit/height_usage.txt:76:offline/tools/audit_fix_set_pin.py:        if "set_height_cm" in text:
+./docs/architecture/code_audit/height_usage.txt:77:offline/tools/audit_fix_set_pin.py:        "set_height_cm",
+./docs/architecture/code_audit/height_usage.txt:78:offline/tools/audit_fix_set_pin.py:    print("IPT CitySpace – set_height_cm AUDIT")
+./docs/architecture/code_audit/height_usage.txt:79:offline/tools/audit_fix_set_pin.py:    print(f"Files containing set_height_cm: {len(found)}")
+./docs/architecture/code_audit/height_usage.txt:7:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./docs/architecture/code_audit/mask_usage.txt:11:offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./docs/architecture/code_audit/raster_usage.txt:14:offline/products/generate_contours_simple.py:        xs, ys = rasterio.transform.xy(transform, rows, cols)
+./docs/architecture/code_audit/urban_height_audit.txt:115:offline/pipeline_dag.py:"name": "generate_pin_heights",
+./docs/architecture/code_audit/urban_height_audit.txt:117:offline/pipeline_dag.py:"offline/products/runtime/grid_pin_heights.csv"
+./docs/architecture/code_audit/urban_height_audit.txt:118:offline/pipeline_dag.py:"offline/products/runtime/grid_pin_heights.csv"
+./docs/architecture/code_audit/urban_height_audit.txt:122:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./docs/architecture/code_audit/urban_height_audit.txt:125:offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./docs/architecture/code_audit/urban_height_audit.txt:319:offline/tests/test_generate_contours_topografico.py:    height_cm = nrows * CELL_SIZE_CM
+./docs/architecture/code_audit/urban_height_audit.txt:322:offline/tests/test_grid_to_pin_height.py:# tests/test_grid_to_pin_height.py
+./docs/architecture/code_audit/urban_height_audit.txt:323:offline/tests/test_grid_to_pin_height.py:from offline.geo.grid_to_pin_height import grid_to_pin_height
+./docs/architecture/code_audit/urban_height_audit.txt:324:offline/tests/test_grid_to_pin_height.py:def test_pin_height_basic():
+./docs/architecture/code_audit/urban_height_audit.txt:325:offline/tests/test_grid_to_pin_height.py:    heights = grid_to_pin_height(grid_norm, min_cm=0.0, max_cm=10.0)
+./docs/architecture/code_audit/urban_height_audit.txt:326:offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 0)] == 0.0
+./docs/architecture/code_audit/urban_height_audit.txt:327:offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 1)] == 5.0
+./docs/architecture/code_audit/urban_height_audit.txt:328:offline/tests/test_grid_to_pin_height.py:    assert heights[(1, 0)] == 10.0
+./docs/architecture/code_audit/urban_height_audit.txt:329:offline/tests/test_grid_to_pin_height.py:def test_pin_height_custom_range():
+./docs/architecture/code_audit/urban_height_audit.txt:330:offline/tests/test_grid_to_pin_height.py:    heights = grid_to_pin_height(grid_norm, min_cm=2.0, max_cm=6.0)
+./docs/architecture/code_audit/urban_height_audit.txt:331:offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 0)] == 4.0
+./docs/architecture/code_audit/urban_height_audit.txt:332:offline/tests/test_grid_to_pin_height.py:        grid_to_pin_height(grid_norm)
+./docs/architecture/code_audit/urban_height_audit.txt:333:offline/tests/test_grid_to_pin_height.py:        grid_to_pin_height(grid_norm, min_cm=10.0, max_cm=5.0)
+./docs/architecture/code_audit/urban_height_audit.txt:334:offline/tests/test_grid_to_temporal_sequence.py:    pin_heights = {
+./docs/architecture/code_audit/urban_height_audit.txt:335:offline/tests/test_grid_to_temporal_sequence.py:        pin_heights,
+./docs/architecture/code_audit/urban_height_audit.txt:341:offline/tools/audit_fix_set_pin.py:    set_height_cm  -> set_height_cm
+./docs/architecture/code_audit/urban_height_audit.txt:342:offline/tools/audit_fix_set_pin.py:        if "set_height_cm" in text:
+./docs/architecture/code_audit/urban_height_audit.txt:343:offline/tools/audit_fix_set_pin.py:        "set_height_cm",
+./docs/architecture/code_audit/urban_height_audit.txt:344:offline/tools/audit_fix_set_pin.py:    print("IPT CitySpace – set_height_cm AUDIT")
+./docs/architecture/code_audit/urban_height_audit.txt:345:offline/tools/audit_fix_set_pin.py:    print(f"Files containing set_height_cm: {len(found)}")
+./docs/architecture/code_search/01_pipeline.txt:23:offline/pipeline_runner.py:    events, timing, rows, cols = run_offline_pipeline(grid_demo)
+./docs/architecture/code_search/21_render.txt:3:./offline/tools/build_pipeline_execution_order.py:"offline/render_dxf_ipt_para_mesa_16x8.py",
+./docs/architecture/code_search/21_render.txt:66:./online/renderers/tests/test_renderer2d_multilayer.py:    renderer = Renderer2D(grid_shape=shape)
+./docs/architecture/code_search/21_render.txt:74:./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    renderer = Renderer2D(None, grid_shape=shape)
+./docs/architecture/code_search/21_render.txt:85:./online/renderers/tests/test_timeline_renderer2d.py:    renderer = Renderer2D(grid_shape=(rows, cols))
+./docs/architecture/code_search/22_renderer.txt:44:./online/renderers/tests/test_renderer2d_multilayer.py:    renderer = Renderer2D(grid_shape=shape)
+./docs/architecture/code_search/22_renderer.txt:52:./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    renderer = Renderer2D(None, grid_shape=shape)
+./docs/architecture/code_search/22_renderer.txt:63:./online/renderers/tests/test_timeline_renderer2d.py:    renderer = Renderer2D(grid_shape=(rows, cols))
+./docs/architecture/code_search/23_visualization.txt:139:./visualization/mesa_virtual_pinos.py:Saída: imagem PNG (validação visual).
+./docs/architecture/code_search/23_visualization.txt:140:./visualization/mesa_virtual_pinos.py:OUT_DIR = ENGINE_ROOT / "visualization" / "debug"
+./docs/architecture/code_search/23_visualization.txt:141:./visualization/mesa_virtual_pinos_anim.py:OUT_DIR = ENGINE_ROOT / "visualization" / "debug"
+./docs/architecture/code_search/23_visualization.txt:142:./visualization/mesa_virtual_pinos_temporal_gif.py:- Edifícios pequenos com ganho visual
+./docs/architecture/code_search/23_visualization.txt:143:./visualization/mesa_virtual_pinos_temporal_gif.py:- Altura visual: metros
+./docs/architecture/code_search/23_visualization.txt:144:./visualization/mesa_virtual_pinos_temporal_real_gif.py:OUT_DIR = ENGINE_ROOT / "visualization/debug"
+./docs/architecture/code_search/23_visualization.txt:145:./visualization/mesa_virtual_pinos_temporal_semantico.py:- Altura visual: metros reais
+./docs/architecture/code_search/23_visualization.txt:146:./visualization/mesa_virtual_pinos_temporal_semantico.py:- Edifícios com ganho visual
+./docs/architecture/code_search/23_visualization.txt:147:./visualization/mesa_virtual_pinos_temporal_semantico.py:EDIFICIO_GANHO = 2.5       # ganho visual APENAS para edifícios
+./docs/architecture/code_search/23_visualization.txt:148:./visualization/mesa_virtual_pinos_temporal_semantico.py:# Edifício (pequeno, mas com ganho visual)
+./docs/architecture/code_search/23_visualization.txt:149:./visualization/mesa_virtual_pinos_temporal_semantico.py:# Altura visual em metros
+./docs/architecture/code_search/23_visualization.txt:150:./visualization/mesa_virtual_pinos_temporal_semantico.py:z_visual_m = (z_terreno_cm + z_edificio_cm) * METROS_POR_CM
+./docs/architecture/code_search/23_visualization.txt:151:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:OUT_DIR = ENGINE_ROOT / "visualization/debug"
+./docs/architecture/code_search/23_visualization.txt:152:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:OUT_DIR = ENGINE_ROOT / "visualization/debug"
+./docs/architecture/code_search/23_visualization.txt:153:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:OUT_DIR = ENGINE_ROOT / "visualization/output"
+./docs/architecture/code_search/23_visualization.txt:164:./visualization/render_temporal_gif_v11.py:                # visualmente o pino desce, mas o estado acumulado NÃO muda
+./docs/architecture/code_search/23_visualization.txt:166:./visualization/render_temporal_gif_v12.py:    inicio_visual = (0, rows - 1)
+./docs/architecture/code_search/23_visualization.txt:170:./visualization/render_temporal_gif_v13.py:    inicio_visual = (0, rows - 1)
+./docs/architecture/code_search/23_visualization.txt:229:./visualization/render_temporal_gif_v9.py:    # visualmente: (x=0, y_draw=0) → y = rows-1
+./docs/architecture/code_search/23_visualization.txt:230:./visualization/render_temporal_gif_v9.py:    inicio_visual = (0, rows - 1)
+./docs/architecture/code_search/23_visualization.txt:32:./offline/render_dxf_ipt_para_mesa_16x8.py:OUT_PNG = "visualization/debug/ipt_dxf_mesa_16x8.png"
+./docs/architecture/code_search/23_visualization.txt:33:./offline/render_dxf_ipt_para_mesa_16x8.py:    os.makedirs("visualization/debug", exist_ok=True)
+./docs/architecture/code_search/23_visualization.txt:55:./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:cbar.set_label("Altura normalizada do pino (referência visual)")
+./docs/architecture/code_search/24_ui.txt:213:./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:        cbar.set_label("Altura do pino (m) — equivalente real IPT")
+./docs/architecture/code_search/24_ui.txt:23:./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:            pino_cm[r, c] = (grid_uint8[r, c] / UINT8_MAX) * PIN_MAX_CM
+./docs/architecture/code_search/24_ui.txt:277:./online/ui/temporal_player_grid_app.py:    ui = AsciiGridObserver(rows, cols, state_manager)
+./docs/architecture/code_search/24_ui.txt:278:./online/ui/temporal_player_grid_app.py:    bus.subscribe("MOVE_PIN", ui.on_move_pin)
+./docs/architecture/code_search/24_ui.txt:374:./visualization/mesa_virtual_pinos_layers.py:grid_building = grid_total * 0.6
+./docs/architecture/code_search/24_ui.txt:375:./visualization/mesa_virtual_pinos_layers.py:pins_building = to_pins(grid_building)
+./docs/architecture/code_search/24_ui.txt:376:./visualization/mesa_virtual_pinos_layers.py:pins_total = to_pins(grid_dtm + grid_building)
+./docs/architecture/code_search/24_ui.txt:377:./visualization/mesa_virtual_pinos_layers.py:datasets = [pins_dtm, pins_building, pins_total]
+./docs/architecture/code_search/24_ui.txt:378:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./docs/architecture/code_search/24_ui.txt:379:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./docs/architecture/code_search/24_ui.txt:380:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:grid_uint8 = np.loadtxt(GRID_UINT8, delimiter=";", dtype=np.uint8)
+./docs/architecture/code_search/24_ui.txt:381:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:rows, cols = grid_uint8.shape
+./docs/architecture/code_search/24_ui.txt:382:./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./docs/architecture/code_search/24_ui.txt:46:./offline/adapters/scientific_to_semantic_adapter.py:    grid_uint8 = (pino_cm / PIN_MAX_CM) * UINT8_MAX
+./docs/architecture/code_search/24_ui.txt:68:./offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./docs/architecture/code_search/25_layers.txt:198:./online/ui/legacy/app.py:                dl.LayerGroup(id="pins-layer"),
+./docs/architecture/code_search/25_layers.txt:199:./online/ui/legacy/app.py:    Output("pins-layer", "children"),
+./docs/architecture/code_search/25_layers.txt:38:./offline/render_dxf_ipt_para_mesa_16x8.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./docs/architecture/pipeline_auto_dag_report.txt:11:offline.tests.test_grid_to_pin_height -> offline.geo.grid_to_pin_height
+./docs/architecture/pipeline_execution_flow.md:104:- mapping
+./docs/architecture/pipeline_execution_flow.md:69:- typing
+./docs/architecture/pipeline_execution_order.txt:23:21 offline/render_dxf_ipt_para_mesa_16x8.py
+./docs/development/workflow_method.md:170:mesa física de pinos
+./estrutura_offline.txt:111:│   ├── test_grid_to_pin_height.py
+./estrutura_offline.txt:134:│   ├── audit_fix_set_pin.py
+./estrutura_offline.txt:76:│           ├── grid_pino_cm.csv
+./estrutura_offline.txt:98:├── render_dxf_ipt_para_mesa_16x8.py
+./offline/adapters/scientific_to_semantic_adapter.py.bak:73:        pino_cm = np.zeros_like(z_total)
+./offline/adapters/scientific_to_semantic_adapter.py.bak:75:        pino_cm = (z_total / z_max) * PIN_MAX_CM
+./offline/adapters/scientific_to_semantic_adapter.py.bak:76:        pino_cm = np.clip(pino_cm, 0, PIN_MAX_CM)
+./offline/adapters/scientific_to_semantic_adapter.py.bak:78:    grid_uint8 = (pino_cm / PIN_MAX_CM) * UINT8_MAX
+./offline/adapters/scientific_to_semantic_adapter.py.bak:87:    np.savetxt(OUT_DIR / "grid_pino_cm.csv", pino_cm, delimiter=";", fmt="%.3f")
+./offline/adapters/scientific_to_semantic_adapter.py.bak:94:        "grid_shape": [GRID_ROWS, GRID_COLS],
+./offline/adapters/scientific_to_semantic_adapter.py.bak:95:        "pin_max_cm": PIN_MAX_CM,
+./offline/adapters/scientific_to_semantic_adapter.py:104:        "grid_shape": [GRID_ROWS, GRID_COLS],
+./offline/adapters/scientific_to_semantic_adapter.py:105:        "pin_max_cm": PIN_MAX_CM,
+./offline/adapters/scientific_to_semantic_adapter.py:83:        pino_cm = np.zeros_like(z_total)
+./offline/adapters/scientific_to_semantic_adapter.py:85:        pino_cm = (z_total / z_max) * PIN_MAX_CM
+./offline/adapters/scientific_to_semantic_adapter.py:86:        pino_cm = np.clip(pino_cm, 0, PIN_MAX_CM)
+./offline/adapters/scientific_to_semantic_adapter.py:88:    grid_uint8 = (pino_cm / PIN_MAX_CM) * UINT8_MAX
+./offline/adapters/scientific_to_semantic_adapter.py:97:    np.savetxt(OUT_DIR / "grid_pino_cm.csv", pino_cm, delimiter=";", fmt="%.3f")
+./offline/config/experiment_config.py:19:PIN_MAX_CM = 10  # altura máxima física do pino
+./offline/config/system_paths.py:27:PIN_HEIGHTS_CSV = SCIENTIFIC_PRODUCTS / "pin_heights.csv"
+./offline/grid_to_pin_height.py:17:    for _, r in df.iterrows():
+./offline/grid_to_pin_height.py:21:            grid[rr][cc] = r["z_cm"]
+./offline/grid_to_pin_height.py:44:    df["z_cm"] = (df["z_total"] / zmax) * MAX_PIN_CM
+./offline/grid_to_pin_height.py:50:        "meta": {"rows": ROWS, "cols": COLS, "pin_max_cm": MAX_PIN_CM},
+./offline/pipeline/02_join_grid_metrics_with_geom.py:30:required_cols = ["row", "col"]
+./offline/pipeline/02_join_grid_metrics_with_geom.py:32:for col in required_cols:
+./offline/pipeline/03_generate_contours_clean.py:23:rows = int(gdf['row'].max() + 1)
+./offline/pipeline/03_generate_contours_clean.py:24:cols = int(gdf['col'].max() + 1)
+./offline/pipeline/03_generate_contours_clean.py:27:Z = np.full((rows, cols), np.nan)
+./offline/pipeline/03_generate_contours_clean.py:29:for _, r in gdf.iterrows():
+./offline/pipeline/04_generate_actuator_plan.py:106:    return 0.0 if not mask_union.contains(p) else row["z_cm"]
+./offline/pipeline/04_generate_actuator_plan.py:108:df_out["z_cm"] = df_out.apply(apply_mask, axis=1)
+./offline/pipeline/04_generate_actuator_plan.py:29:    rows = int(df["row"].max() + 1)
+./offline/pipeline/04_generate_actuator_plan.py:30:    cols = int(df["col"].max() + 1)
+./offline/pipeline/04_generate_actuator_plan.py:32:    grid = np.zeros((rows, cols))
+./offline/pipeline/04_generate_actuator_plan.py:34:    for _, r in df.iterrows():
+./offline/pipeline/04_generate_actuator_plan.py:54:    z_cm = z_norm * PIN_MAX
+./offline/pipeline/04_generate_actuator_plan.py:55:    z_total_cm = z_cm  # total em cm (igual ao pino)
+./offline/pipeline/04_generate_actuator_plan.py:63:    z_terrain_cm = z_cm * ratio_terrain
+./offline/pipeline/04_generate_actuator_plan.py:64:    z_building_cm = z_cm * ratio_building
+./offline/pipeline/04_generate_actuator_plan.py:72:    df_out["z_cm"] = z_cm
+./offline/pipeline/04_generate_actuator_plan.py:85:    return row["z_cm"]
+./offline/pipeline/04_generate_actuator_plan.py:87:df["z_cm"] = df.apply(apply_mask, axis=1)
+./offline/pipeline/99_export_final_mesa.py:40:pin_heights = grid_to_pin_height(
+./offline/pipeline/99_export_final_mesa.py:47:rows, cols = grid_total.shape
+./offline/pipeline/99_export_final_mesa.py:48:grid_cm = np.zeros((rows, cols))
+./offline/pipeline/99_export_final_mesa.py:50:for (i, j), h in pin_heights.items():
+./offline/pipeline/99_export_final_mesa.py:61:Image.fromarray(img16).save(RUN / "mesa_16x8.bmp")
+./offline/pipeline/99_export_final_mesa.py:6:from offline.geo.grid_to_pin_height import grid_to_pin_height
+./offline/pipeline_dag.py.bak:103:"offline/products/runtime/grid_pin_heights.csv"
+./offline/pipeline_dag.py.bak:86:"name": "generate_pin_heights",
+./offline/pipeline_dag.py.bak:94:"offline/products/runtime/grid_pin_heights.csv"
+./offline/pipeline_dag.py:107:"offline/products/runtime/grid_pin_heights.csv"
+./offline/pipeline_dag.py:116:"offline/products/runtime/grid_pin_heights.csv"
+./offline/pipeline_dag.py:99:"name": "generate_pin_heights",
+./offline/pipeline_runner.py:25:rows = len(grid)
+./offline/pipeline_runner.py:26:cols = len(grid[0])
+./offline/pipeline_runner.py:31:print("Grid:", rows, "x", cols)
+./offline/pipeline_runner.py:36:path = zigzag_scan(cols=cols, rows=rows)
+./offline/pipeline_runner.py:45:    "pin": 0.3,
+./offline/pipeline_runner.py:64:        "rows": rows,
+./offline/pipeline_runner.py:65:        "cols": cols,
+./offline/pipeline_runner.py:66:        "cell_size_cm": 1,
+./offline/pipeline_runner.py:67:        "pin_max_cm": 10,
+./offline/processing/build_mask_local_grid.py:22:    n_rows = grid_meta["rows"]      # 8
+./offline/processing/build_mask_local_grid.py:23:    n_cols = grid_meta["cols"]      # 16
+./offline/processing/build_mask_local_grid.py:24:    cell_size = grid_meta["cell_size"]  # 1 cm
+./offline/processing/build_mask_local_grid.py:26:    mesa_width  = n_cols * cell_size   # 16 cm
+./offline/processing/build_mask_local_grid.py:27:    mesa_height = n_rows * cell_size   # 8 cm
+./offline/processing/build_mask_local_grid.py:72:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./offline/processing/build_mask_local_grid.py:74:    for r in range(n_rows):
+./offline/processing/build_mask_local_grid.py:75:        for c in range(n_cols):
+./offline/processing/build_mask_local_grid.py:76:            x0 = c * cell_size
+./offline/processing/build_mask_local_grid.py:77:            y0 = r * cell_size
+./offline/processing/build_mask_local_grid.py:78:            x1 = x0 + cell_size
+./offline/processing/build_mask_local_grid.py:79:            y1 = y0 + cell_size
+./offline/processing/compute_heights.py:12:    - NaN -> 0
+./offline/products/runtime/actuator_plan.json:12:    "pin": 0.3,
+./offline/products/runtime/actuator_plan.json:3:    "rows": 2,
+./offline/products/runtime/actuator_plan.json:4:    "cols": 3,
+./offline/products/runtime/actuator_plan.json:5:    "cell_size_cm": 1,
+./offline/products/runtime/actuator_plan.json:6:    "pin_max_cm": 10,
+./offline/products/runtime/metadata.json:2:  "rows": 8,
+./offline/products/runtime/metadata.json:3:  "cols": 16,
+./offline/products/scientific/rotation_detected.json:3:  "method": "PCA_on_grid"
+./offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:12:    "pin": 0.3,
+./offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:3:    "rows": 2,
+./offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:4:    "cols": 3,
+./offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:5:    "cell_size_cm": 1,
+./offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:6:    "pin_max_cm": 10,
+./offline/products/snapshots/final_freeze_20260408_1121/runtime/metadata.json:2:  "rows": 8,
+./offline/products/snapshots/final_freeze_20260408_1121/runtime/metadata.json:3:  "cols": 16,
+./offline/products/snapshots/ipt_fase2_semantic/metadata.json:3:  "grid_shape": [
+./offline/products/snapshots/ipt_fase2_semantic/metadata.json:7:  "pin_max_cm": 10,
+./offline/render_dxf_ipt_para_mesa_16x8.py:23:OUT_PNG = "visualization/debug/ipt_dxf_mesa_16x8.png"
+./offline/render_dxf_ipt_para_mesa_16x8.py:30:    print("IPT | FUNDO CANÔNICO DA MESA 16x8")
+./offline/render_dxf_ipt_para_mesa_16x8.py:3:# IPT — FUNDO CANÔNICO DA MESA (16 x 8)
+./offline/scientific_cell_metrics.py.bak:116:        writer.writerows(results)
+./offline/scientific_cell_metrics_utm.py.bak:115:        writer.writerows(results)
+./offline/scientific_cell_metrics_utm.py.bak:76:        print(f"→ Célula {i+1}/128")
+./offline/scientific_cell_metrics_utm.py:21:    rows = []
+./offline/scientific_cell_metrics_utm.py:23:    for _, row in gdf.iterrows():
+./offline/scientific_cell_metrics_utm.py:47:        rows.append(
+./offline/scientific_cell_metrics_utm.py:57:    df = pd.DataFrame(rows)
+./offline/scientific_grid_builder.py:30:        cell_size = max(width / GRID_COLS, height / GRID_ROWS)
+./offline/scientific_grid_builder.py:32:        grid_width = GRID_COLS * cell_size
+./offline/scientific_grid_builder.py:33:        grid_height = GRID_ROWS * cell_size
+./offline/scientific_grid_builder.py:46:        print("Cell size:", cell_size)
+./offline/scientific_grid_builder.py:53:                x1 = xmin + c_i * cell_size
+./offline/scientific_grid_builder.py:54:                y1 = ymin + r_i * cell_size
+./offline/scientific_grid_builder.py:56:                x2 = x1 + cell_size
+./offline/scientific_grid_builder.py:57:                y2 = y1 + cell_size
+./offline/scientific_runner.py:132:            "geometry": mapping(rect),
+./offline/scientific_runner.py:19:from shapely.geometry import shape, mapping, box
+./offline/tests/test_generate_contours_topografico.py:107:    width_cm = ncols * CELL_SIZE_CM
+./offline/tests/test_generate_contours_topografico.py:108:    height_cm = nrows * CELL_SIZE_CM
+./offline/tests/test_generate_contours_topografico.py:11:NÃO representa controle físico dos pinos.
+./offline/tests/test_generate_contours_topografico.py:92:    nrows, ncols = z.shape
+./offline/tests/test_generate_contours_topografico.py:93:    x = np.arange(0.5, ncols + 0.5) * CELL_SIZE_CM
+./offline/tests/test_generate_contours_topografico.py:94:    y = np.arange(0.5, nrows + 0.5) * CELL_SIZE_CM
+./offline/tests/test_geojson_to_grid.py:45:        rows=8,
+./offline/tests/test_geojson_to_grid.py:46:        cols=16,
+./offline/tests/test_geojson_to_grid.py:47:        cell_size_cm=1.0,
+./offline/tests/test_grid_to_pin_height.py:14:    heights = grid_to_pin_height(grid_norm, min_cm=0.0, max_cm=10.0)
+./offline/tests/test_grid_to_pin_height.py:1:# tests/test_grid_to_pin_height.py
+./offline/tests/test_grid_to_pin_height.py:21:def test_pin_height_custom_range():
+./offline/tests/test_grid_to_pin_height.py:24:    heights = grid_to_pin_height(grid_norm, min_cm=2.0, max_cm=6.0)
+./offline/tests/test_grid_to_pin_height.py:33:        grid_to_pin_height(grid_norm)
+./offline/tests/test_grid_to_pin_height.py:40:        grid_to_pin_height(grid_norm, min_cm=10.0, max_cm=5.0)
+./offline/tests/test_grid_to_pin_height.py:4:from offline.geo.grid_to_pin_height import grid_to_pin_height
+./offline/tests/test_grid_to_pin_height.py:7:def test_pin_height_basic():
+./offline/tests/test_grid_to_temporal_sequence.py:14:        pin_heights,
+./offline/tests/test_grid_to_temporal_sequence.py:15:        cols=3,
+./offline/tests/test_grid_to_temporal_sequence.py:16:        rows=2
+./offline/tests/test_grid_to_temporal_sequence.py:4:    pin_heights = {
+./offline/tests/test_scientific_runner_integration.py.bak:19:    assert len(sequence) == 128, "Sequência deve conter 128 estados."
+./offline/tests/test_scientific_runner_integration.py.bak:23:    assert len(set(coords)) == 128, "Existem células duplicadas na sequência."
+./offline/tests/test_scientific_runner_integration.py:19:    assert len(sequence) == 128, "Sequência deve conter 128 estados."
+./offline/tests/test_scientific_runner_integration.py:23:    assert len(set(coords)) == 128, "Existem células duplicadas na sequência."
+./offline/tools/05_recompute_rotation_from_grid.py:40:# PCA → DIREÇÃO PRINCIPAL
+./offline/tools/05_recompute_rotation_from_grid.py:65:    "method": "PCA_on_grid"
+./offline/tools/07_detect_rotation_from_envelope.py:27:# PCA
+./offline/tools/08_generate_grid_npy.py:24:rows = int(gdf["row"].max() + 1)
+./offline/tools/08_generate_grid_npy.py:25:cols = int(gdf["col"].max() + 1)
+./offline/tools/08_generate_grid_npy.py:27:print("Grid size:", rows, cols)
+./offline/tools/08_generate_grid_npy.py:30:grid = np.zeros((rows, cols))
+./offline/tools/08_generate_grid_npy.py:32:for _, r in gdf.iterrows():
+./offline/tools/audit_csv_products.py:106:            print("rows:", stats["rows"], "cols:", stats["cols"])
+./offline/tools/audit_csv_products.py:47:        "rows": df.shape[0],
+./offline/tools/audit_csv_products.py:48:        "cols": df.shape[1],
+./offline/tools/audit_fix_set_pin.py:24:python offline/tools/audit_fix_set_pin.py
+./offline/tools/audit_fix_set_pin.py:36:REPORT_FOUND = REPORT_DIR / "audit_set_pin_found.txt"
+./offline/tools/audit_fix_set_pin.py:37:REPORT_FIXED = REPORT_DIR / "audit_set_pin_fixed.txt"
+./offline/tools/audit_fix_set_pin.py:93:        r"\bset_pin\b",
+./offline/tools/audit_grid_dimensions.py:24:    rows = df["row"].nunique()
+./offline/tools/audit_grid_dimensions.py:25:    cols = df["col"].nunique()
+./offline/tools/audit_grid_dimensions.py:27:    print("rows detected:", rows)
+./offline/tools/audit_grid_dimensions.py:28:    print("cols detected:", cols)
+./offline/tools/build_pipeline_execution_order.py:68:"offline/render_dxf_ipt_para_mesa_16x8.py",
+./offline/tools/export_z_total_to_excel.py:47:    rows, cols = grid.shape
+./offline/tools/export_z_total_to_excel.py:49:    print("Grid detectado:", rows, "x", cols)
+./offline/tools/export_z_total_to_excel.py:55:    df.columns = [f"col_{i}" for i in range(cols)]
+./offline/tools/generate_actuator_plan_from_csv.py:22:    grid_rows = len(lines)
+./offline/tools/generate_actuator_plan_from_csv.py:23:    grid_cols = None
+./offline/tools/generate_actuator_plan_from_csv.py:29:        if grid_cols is None:
+./offline/tools/generate_actuator_plan_from_csv.py:30:            grid_cols = len(values)
+./offline/tools/generate_actuator_plan_from_csv.py:48:        "grid_rows": grid_rows,
+./offline/tools/generate_actuator_plan_from_csv.py:49:        "grid_cols": grid_cols,
+./offline/tools/generate_actuator_plan_from_csv.py:56:    print(f"Grid: {grid_rows} x {grid_cols}")
+./offline/validation/validate_scientific_grid_metrics.py.bak:53:    log(f"Contém NaN? {np.isnan(z_total).any()}")
+./offline/validation/validate_scientific_grid_metrics.py.bak:7:- Detectar NaNs
+./offline/validation/validate_scientific_grid_metrics.py:53:    log(f"Contém NaN? {np.isnan(z_total).any()}")
+./offline/validation/validate_scientific_grid_metrics.py:7:- Detectar NaNs
+./offline/vector/core/apply_rigid_transform_clean.py:100:from shapely.geometry import shape, mapping
+./offline/vector/core/apply_rigid_transform_clean.py:170:                    "geometry": mapping(geom_final),
+./offline/vector/core/build_domain_1x2_utm.py:2:from shapely.geometry import shape, box, mapping
+./offline/vector/core/build_domain_1x2_utm.py:92:            "geometry": mapping(domain),
+./online/actuators/virtual_actuator.py:1:from typing import List, Dict, Any
+./online/contracts/README.md:138:DRAW	create element or raise pin
+./online/contracts/README.md:139:ERASE	remove element or lower pin
+./online/contracts/actuator_commands.py:3:from typing import Dict, Any
+./online/contracts/construction_frame.py:2:from typing import List, Dict, Any
+./online/contracts/temporal_event.py:3:from typing import Optional
+./online/controllers/temporal_controller.py:31:        for pin_id, data in snapshot.items():
+./online/controllers/temporal_controller.py:32:            entity = ("pin", data["x"], data["y"])
+./online/controllers/temporal_controller.py:34:            if pin_id not in self._last_snapshot:
+./online/controllers/temporal_controller.py:36:            elif data != self._last_snapshot[pin_id]:
+./online/controllers/temporal_controller.py:42:        for pin_id, data in self._last_snapshot.items():
+./online/controllers/temporal_controller.py:43:            if pin_id not in snapshot:
+./online/controllers/temporal_controller.py:44:                entity = ("pin", data["x"], data["y"])
+./online/controllers/test_temporal_controller.py:24:                    z_pin_cm=10 * (index + 1),
+./online/core/actuator_events.py:15:from typing import Optional
+./online/core/actuator_events.py:23:    MOVE_PIN = "move_pin"
+./online/core/actuator_events.py:24:    PIN_REACHED = "pin_reached"
+./online/core/actuator_events.py:45:    pin_id: int
+./online/core/actuator_events.py:51:    z_pin_cm: float     # altura do pino (cm)
+./online/core/actuator_events.py:59:    pin_id: int
+./online/core/actuator_events.py:60:    z_pin_cm: float
+./online/core/calibration.py:22:    Calibração lógica individual de pino.
+./online/core/calibration.py:37:        pin_calibrations: Dict[int, PinCalibration] | None = None,
+./online/core/calibration.py:40:        self.pins = pin_calibrations or {}
+./online/core/calibration.py:44:        pin_id: int,
+./online/core/calibration.py:4:from typing import Dict, Tuple
+./online/core/calibration.py:56:        pin = self.pins.get(pin_id)
+./online/core/calibration.py:57:        if pin:
+./online/core/calibration.py:58:            if pin.disabled:
+./online/core/calibration.py:60:            z = z * pin.scale + pin.offset_cm
+./online/core/grid_pin_adapter.py:10:    e drivers físicos (pin_id).
+./online/core/grid_pin_adapter.py:17:    def handle_move_pin(self, event: MovePinEvent):
+./online/core/grid_pin_adapter.py:1:# online/core/grid_pin_adapter.py
+./online/core/grid_pin_adapter.py:20:        Converte para pin_id e repassa ao driver.
+./online/core/grid_pin_adapter.py:23:        pin_id = self.mapper.to_pin_id(event.y, event.x)
+./online/core/grid_pin_adapter.py:25:        self.driver.move_pin(
+./online/core/grid_pin_adapter.py:26:            pin_id=pin_id,
+./online/core/grid_pin_adapter.py:27:            height_cm=event.z_pin_cm
+./online/core/grid_pin_adapter.py:3:from online.core.grid_pin_mapper import GridPinMapper
+./online/core/grid_pin_mapper.py:13:    def __init__(self, rows: int, cols: int):
+./online/core/grid_pin_mapper.py:14:        self.rows = rows
+./online/core/grid_pin_mapper.py:15:        self.cols = cols
+./online/core/grid_pin_mapper.py:16:        self.total_pins = rows * cols
+./online/core/grid_pin_mapper.py:18:    def to_pin_id(self, row: int, col: int) -> int:
+./online/core/grid_pin_mapper.py:1:# online/core/grid_pin_mapper.py
+./online/core/grid_pin_mapper.py:20:        Converte (row, col) em pin_id físico.
+./online/core/grid_pin_mapper.py:23:        if not (0 <= row < self.rows):
+./online/core/grid_pin_mapper.py:26:        if not (0 <= col < self.cols):
+./online/core/grid_pin_mapper.py:32:            pin_id = row * self.cols + (self.cols - 1 - col)
+./online/core/grid_pin_mapper.py:35:            pin_id = row * self.cols + col
+./online/core/grid_pin_mapper.py:37:        return pin_id
+./online/core/grid_pin_mapper.py:39:    def to_row_col(self, pin_id: int):
+./online/core/grid_pin_mapper.py:41:        Converte pin_id físico de volta para (row, col).
+./online/core/grid_pin_mapper.py:45:        if not (0 <= pin_id < self.total_pins):
+./online/core/grid_pin_mapper.py:46:            raise ValueError(f"pin_id inválido: {pin_id}")
+./online/core/grid_pin_mapper.py:48:        row = pin_id // self.cols
+./online/core/grid_pin_mapper.py:49:        offset = pin_id % self.cols
+./online/core/grid_pin_mapper.py:52:            col = self.cols - 1 - offset
+./online/core/grid_pin_mapper.py:6:    para pin_id físico da mesa.
+./online/core/grid_profile.py:17:    rows: int
+./online/core/grid_profile.py:18:    cols: int
+./online/core/grid_profile.py:21:    cell_size_cm: float
+./online/core/grid_profile.py:32:        return LogicalGrid(rows=self.rows, cols=self.cols)
+./online/core/grid_profile.py:37:    def pin_to_physical_cm(self, x: int, y: int) -> Tuple[float, float]:
+./online/core/grid_profile.py:42:        X_cm = x * self.cell_size_cm
+./online/core/grid_profile.py:43:        Y_cm = y * self.cell_size_cm
+./online/core/grid_profile.py:49:    def pin_to_geo(self, x: int, y: int) -> Tuple[float, float]:
+./online/core/grid_profile.py:4:from typing import Tuple
+./online/core/grid_profile.py:51:        Converte um pino (x,y) para coordenadas geográficas (lon, lat),
+./online/core/grid_profile.py:54:        u, v = self.logical_grid.pin_to_uv(x, y)
+./online/core/logical_grid.py:18:    rows: int
+./online/core/logical_grid.py:19:    cols: int
+./online/core/logical_grid.py:24:    def pin_to_uv(self, x: int, y: int) -> tuple[float, float]:
+./online/core/logical_grid.py:26:        Converte coordenada discreta do pino (x,y)
+./online/core/logical_grid.py:29:        if not (0 <= x < self.cols and 0 <= y < self.rows):
+./online/core/logical_grid.py:33:        u = 1.0 - (x / (self.cols - 1))
+./online/core/logical_grid.py:34:        v = y / (self.rows - 1)
+./online/core/logical_grid.py:41:    def uv_to_pin(self, u: float, v: float) -> tuple[int, int]:
+./online/core/logical_grid.py:44:        para pino discreto mais próximo (x,y).
+./online/core/logical_grid.py:49:        x = round((1.0 - u) * (self.cols - 1))
+./online/core/logical_grid.py:50:        y = round(v * (self.rows - 1))
+./online/core/modes.py:23:    rows: int
+./online/core/modes.py:24:    cols: int
+./online/core/modes.py:25:    cell_size_cm: float
+./online/core/modes.py:43:            rows=self.rows,
+./online/core/modes.py:44:            cols=self.cols,
+./online/core/modes.py:45:            cell_size_cm=self.cell_size_cm,
+./online/core/modes.py:4:from typing import Literal, Dict
+./online/core/modes.py:59:        rows=8,
+./online/core/modes.py:60:        cols=16,
+./online/core/modes.py:61:        cell_size_cm=1.0,
+./online/core/modes.py:72:        rows=8,
+./online/core/modes.py:73:        cols=16,
+./online/core/modes.py:74:        cell_size_cm=2.0,   # cada célula representa área maior
+./online/core/modes.py:85:        rows=4,
+./online/core/modes.py:86:        cols=32,
+./online/core/modes.py:87:        cell_size_cm=1.5,
+./online/core/physical_motion_profile.py:52:        Altura final do pino (metros)
+./online/core/state.py:6:from typing import Optional, Any
+./online/core/temporal_core_directional.py:33:        self.reset_all_pins()
+./online/core/temporal_core_directional.py:54:    def reset_all_pins(self):
+./online/core/temporal_event.py:6:from typing import Optional, Dict, Any
+./online/core/temporal_player.py:12:from typing import Optional
+./online/core/temporal_sequence.py:14:    def __init__(self, grid_rows: int, grid_cols: int):
+./online/core/temporal_sequence.py:15:        self.grid_rows = grid_rows
+./online/core/temporal_sequence.py:16:        self.grid_cols = grid_cols
+./online/core/temporal_sequence.py:25:            for y in range(self.grid_rows):
+./online/core/temporal_sequence.py:26:                for x in range(self.grid_cols):
+./online/core/temporal_sequence.py:28:                    z_pin_cm = min(z_real_m * 100.0, 10.0)
+./online/core/temporal_sequence.py:36:                        z_pin_cm=z_pin_cm,
+./online/core/temporal_sequence.py:3:from typing import List
+./online/core/temporal_state.py:14:    z_pin_cm: float
+./online/core/test_calibration.py:18:    pins = {
+./online/core/test_calibration.py:23:    engine = CalibrationEngine(grid, pins)
+./online/core/test_grid_pin_integration.py:12:    mapper = GridPinMapper(rows=8, cols=16)
+./online/core/test_grid_pin_integration.py:16:    bus.subscribe("MOVE_PIN", adapter.handle_move_pin)
+./online/core/test_grid_pin_integration.py:27:            z_pin_cm=10.0
+./online/core/test_grid_pin_integration.py:35:            z_pin_cm=20.0
+./online/core/test_grid_pin_integration.py:48:    test_grid_pin_integration()
+./online/core/test_grid_pin_integration.py:4:from online.core.grid_pin_mapper import GridPinMapper
+./online/core/test_grid_pin_integration.py:5:from online.core.grid_pin_adapter import GridPinAdapter
+./online/core/test_grid_pin_integration.py:9:def test_grid_pin_integration():
+./online/core/test_grid_pin_mapper.py:10:    assert mapper.to_pin_id(0, 0) == 15
+./online/core/test_grid_pin_mapper.py:13:    assert mapper.to_pin_id(0, 15) == 0
+./online/core/test_grid_pin_mapper.py:16:    assert mapper.to_pin_id(1, 0) == 16
+./online/core/test_grid_pin_mapper.py:17:    assert mapper.to_pin_id(1, 15) == 31
+./online/core/test_grid_pin_mapper.py:1:# online/core/test_grid_pin_mapper.py
+./online/core/test_grid_pin_mapper.py:22:            pid = mapper.to_pin_id(row, col)
+./online/core/test_grid_pin_mapper.py:30:    test_grid_pin_mapper()
+./online/core/test_grid_pin_mapper.py:3:from online.core.grid_pin_mapper import GridPinMapper
+./online/core/test_grid_pin_mapper.py:6:def test_grid_pin_mapper():
+./online/core/test_grid_pin_mapper.py:7:    mapper = GridPinMapper(rows=8, cols=16)
+./online/core/test_grid_profile.py:10:        cell_size_cm=1.0,  # modo BAIRRO
+./online/core/test_grid_profile.py:17:    X, Y = profile.pin_to_physical_cm(0, 0)
+./online/core/test_grid_profile.py:20:    X, Y = profile.pin_to_physical_cm(15, 7)
+./online/core/test_grid_profile.py:27:    lon, lat = profile.pin_to_geo(0, 0)
+./online/core/test_grid_profile.py:30:    lon, lat = profile.pin_to_geo(15, 7)
+./online/core/test_grid_profile.py:8:        rows=8,
+./online/core/test_grid_profile.py:9:        cols=16,
+./online/core/test_logical_grid.py:10:    u, v = grid.pin_to_uv(0, 0)
+./online/core/test_logical_grid.py:14:    u, v = grid.pin_to_uv(15, 7)
+./online/core/test_logical_grid.py:18:    x, y = grid.uv_to_pin(u, v)
+./online/core/test_logical_grid.py:7:    grid = LogicalGrid(rows=8, cols=16)
+./online/core/test_modes.py:14:        print(f"  grid: {grid_profile.rows} x {grid_profile.cols}")
+./online/core/test_modes.py:15:        print(f"  cell size: {grid_profile.cell_size_cm} cm")
+./online/core/test_temporal_conductor.py:16:    grid_rows = 8
+./online/core/test_temporal_conductor.py:17:    grid_cols = 16
+./online/core/test_temporal_conductor.py:18:    grid_m = np.zeros((grid_rows, grid_cols))
+./online/core/test_temporal_conductor.py:31:        grid_rows=grid_rows,
+./online/core/test_temporal_conductor.py:32:        grid_cols=grid_cols
+./online/core/test_temporal_conductor.py:42:    # 🔧 ATENÇÃO: grid_cols NÃO EXISTE MAIS NO CONSTRUCTOR
+./online/core/test_temporal_conductor_player.py:16:from typing import List, Optional
+./online/core/test_temporal_conductor_player.py:33:        grid_cols: int,
+./online/core/test_temporal_conductor_player.py:37:        self.grid_cols = grid_cols
+./online/core/test_temporal_conductor_player.py:64:        pin_id = state.y * self.grid_cols + state.x
+./online/core/test_temporal_conductor_player.py:69:            pin_id=pin_id,
+./online/core/test_temporal_conductor_player.py:73:            z_pin_cm=state.z_pin_cm,
+./online/core/test_temporal_player.py:32:                    z_pin_cm=10.0,
+./online/legacy/construction_timeline/test_construction_timeline.py:10:        rows=rows,
+./online/legacy/construction_timeline/test_construction_timeline.py:11:        cols=cols,
+./online/legacy/construction_timeline/test_construction_timeline.py:19:    for _ in range(rows * cols):
+./online/legacy/construction_timeline/test_construction_timeline.py:22:    assert state["frame"] == rows * cols
+./online/legacy/construction_timeline/test_construction_timeline.py:23:    assert state["grid"].sum() == rows * cols * 10.0
+./online/legacy/construction_timeline/test_construction_timeline.py:28:    for _ in range(rows * cols):
+./online/legacy/construction_timeline/test_construction_timeline.py:7:    rows, cols = 4, 6
+./online/legacy/time_event_driven/temporal_conductor_event_driven.py:4:from typing import Optional
+./online/physical/motion_profile.py:20:from typing import Dict, Tuple
+./online/physical/motion_profile.py:43:        :param vertical_speed: velocidade constante do pino (mm/s)
+./online/physical/motion_profile.py:79:        :param target_height: altura do pino (mm)
+./online/renderers/fase3/FASE_3_1_mesa_virtual.py:80:    arrowprops=dict(arrowstyle="->", linewidth=2),
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:121:    arrowprops=dict(arrowstyle="->", linewidth=2),
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:28:rows = meta["grid_mesa"]["rows"]
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:29:cols = meta["grid_mesa"]["cols"]
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:30:cell_cm = meta["grid_mesa"]["cell_size_cm"]
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:36:mesa = np.zeros((rows, cols), dtype=np.float32)
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:38:for r in range(rows):
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:39:    for c in range(cols):
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:57:ax.set_xticks(np.arange(-0.5, cols, 1))
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:58:ax.set_yticks(np.arange(-0.5, rows, 1))
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:66:ax.set_xticks(range(cols))
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:67:ax.set_yticks(range(rows))
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:68:ax.set_xticklabels([f"{i} cm" for i in range(cols)])
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:69:ax.set_yticklabels([f"{i} cm" for i in range(rows)])
+./online/renderers/fase3/FASE_3_5_verificacao_contrato.py:50:    meta["grid_mesa"]["rows"] == 8 and meta["grid_mesa"]["cols"] == 16,
+./online/renderers/faseC/FASE_C_1_contrato_temporal.py:14:rows = meta["grid_mesa"]["rows"]
+./online/renderers/faseC/FASE_C_1_contrato_temporal.py:15:cols = meta["grid_mesa"]["cols"]
+./online/renderers/faseC/FASE_C_1_contrato_temporal.py:20:time_axis = list(range(cols))
+./online/renderers/faseC/FASE_C_1_contrato_temporal.py:23:print(f"  Mesa           : {cols} colunas x {rows} linhas")
+./online/renderers/faseC/FASE_C_1_contrato_temporal.py:31:assert mask.shape == (rows, cols), "Máscara incompatível com contrato temporal"
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:27:rows = meta["grid_mesa"]["rows"]
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:28:cols = meta["grid_mesa"]["cols"]
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:37:base = np.zeros((rows, cols), dtype=np.float32)
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:51:ax.set_xticks(range(cols))
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:52:ax.set_yticks(range(rows))
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:53:ax.set_xticklabels([f"t={i}" for i in range(cols)])
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:54:ax.set_yticklabels(range(rows))
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:64:for t in range(cols):
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:67:    frame = np.zeros((rows, cols), dtype=np.float32)
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:27:rows = meta["grid_mesa"]["rows"]
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:28:cols = meta["grid_mesa"]["cols"]
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:35:profile = np.zeros((rows, cols), dtype=np.float32)
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:38:col_bins = np.linspace(0, w, cols + 1, dtype=int)
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:39:row_bins = np.linspace(0, h, rows + 1, dtype=int)
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:41:for r in range(rows):
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:42:    for c in range(cols):
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:75:ax.set_xticks(range(cols))
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:76:ax.set_yticks(range(rows))
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:77:ax.set_xticklabels([f"t={i}" for i in range(cols)])
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:78:ax.set_yticklabels(range(rows))
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:90:for t in range(cols):
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:127:cbar.set_label("Altura normalizada do pino (referência visual)")
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:98:    arrowstyle="->",
+./online/renderers/generate_gif_planta_baixa_ipt.py:51:    rows, cols = 8, 16
+./online/renderers/generate_gif_planta_baixa_ipt.py:52:    shape = (rows, cols)
+./online/renderers/generate_gif_planta_baixa_ipt.py:67:        grid_shape=shape
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v1.py:118:cbar.set_label("Altura total real (terreno + pino) [m]")
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v1.py:9:# - Validar Z_total_real (terreno + pino)
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v2_gif.py:164:    cbar.set_label("Altura total real (terreno + pino) [m]")
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:188:        cbar.set_label("Altura total real (terreno + pino) [m]")
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:142:        ax.set_xlabel("Coluna do pino (Oeste → Leste)")
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:143:        ax.set_ylabel("Linha do pino (Norte → Sul)")
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:175:        cbar.set_label("Altura do pino (m) — equivalente real IPT")
+./online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:192:        f"Célula {idx}/128 | Z_total = {estado[r, c]:.2f} m",
+./online/renderers/render_mesa_ipt_2d25_canonico.py:115:    # Grade leve para leitura de pinos
+./online/renderers/render_mesa_ipt_2d25_canonico.py:27:# Extent físico da mesa (coordenadas abstratas de pino)
+./online/renderers/render_mesa_ipt_2d25_canonico.py:6:# - Grid físico 8x16 (pinos)
+./online/renderers/render_mesa_ipt_2d25_integrada.py:91:def zigzag_path(rows, cols):
+./online/renderers/render_mesa_ipt_2d25_integrada.py:93:    for c in range(cols):
+./online/renderers/render_mesa_ipt_2d25_integrada.py:95:            for r in range(rows):
+./online/renderers/render_mesa_ipt_2d25_integrada.py:98:            for r in reversed(range(rows)):
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:65:def zigzag_path(rows, cols):
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:67:    for c in range(cols):
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:69:            for r in range(rows):
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:72:            for r in reversed(range(rows)):
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:80:def prepare_dxf(gdf, rows, cols):
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:94:        x = (np.array(x) - minx) / (maxx - minx) * cols
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:95:        y = (np.array(y) - miny) / (maxy - miny) * rows
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:105:def gerar_ordem_zigzag(rows, cols):
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:115:    for c in range(cols):
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:117:            for r in range(rows):
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:120:            for r in reversed(range(rows)):
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:183:            f"Célula {idx+1:03d}/128 | "
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:208:            f"Célula {idx+1}/128 | Altura normalizada = {altura:.2f}",
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:47:    rows = range(ROWS) if c % 2 == 0 else reversed(range(ROWS))
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:48:    for r in rows:
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:100:            for r in reversed(range(rows)):
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:88:def zigzag_path(rows, cols):
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:95:    for c in range(cols):
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:97:            for r in range(rows):
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:85:        rows = range(ROWS) if col % 2 == 0 else reversed(range(ROWS))
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:87:        for row in rows:
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:145:            f"Célula {idx+1:03d}/128 | "
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:197:            f"Célula {idx+1}/128",
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:115:        log(f"[SCAN] Célula {i+1:03d}/128 | (x={x}, y={y}) | h={h:.2f} m | frames={n_frames}")
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:142:                f"Célula {i+1}/128 | (x={x}, y={y}) | Altura = {h:.2f} m",
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:151:            for spine in ax.spines.values():
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:152:                spine.set_edgecolor("white")
+./online/renderers/render_temporal_gif_v41_2.py:103:def zigzag(rows, cols):
+./online/renderers/render_temporal_gif_v41_2.py:105:    for x in range(cols):
+./online/renderers/render_temporal_gif_v41_2.py:106:        ys = range(rows) if x % 2 == 0 else range(rows - 1, -1, -1)
+./online/renderers/render_temporal_gif_v41_2.py:131:    rows, cols = grid_cm.shape
+./online/renderers/render_temporal_gif_v41_2.py:132:    anos = np.linspace(1940, 2015, cols).astype(int)
+./online/renderers/render_temporal_gif_v41_2.py:137:    traj = zigzag(rows, cols)
+./online/renderers/render_temporal_gif_v41_2.py:139:    print(f"[3] Grid: {rows}x{cols}")
+./online/renderers/render_temporal_gif_v41_2.py:153:            print(f"[{idx:03d}/128] x={x} y={y} | {fase_nome}")
+./online/renderers/render_temporal_gif_v41_2.py:155:            ry = int((y / rows) * raster.shape[0])
+./online/renderers/render_temporal_gif_v41_2.py:156:            rx = int((x / cols) * raster.shape[1])
+./online/renderers/render_temporal_gif_v41_2.py:171:                extent=(-0.5, cols-0.5, rows-0.5, -0.5),
+./online/renderers/render_temporal_gif_v41_2.py:41:GRID_PINO_CM = DATA_DIR / "grid_pino_cm.csv"
+./online/renderers/render_temporal_gif_v42_2.py:118:    rows, cols = grid_cm.shape
+./online/renderers/render_temporal_gif_v42_2.py:122:    traj = zigzag(rows, cols)
+./online/renderers/render_temporal_gif_v42_2.py:124:    print(f"[Grid] {rows}x{cols}")
+./online/renderers/render_temporal_gif_v42_2.py:135:            ry = int((y / rows) * raster.shape[0])
+./online/renderers/render_temporal_gif_v42_2.py:136:            rx = int((x / cols) * raster.shape[1])
+./online/renderers/render_temporal_gif_v42_2.py:155:                extent=(-0.5, cols-0.5, rows-0.5, -0.5),
+./online/renderers/render_temporal_gif_v42_2.py:42:GRID_PINO_CM = DATA_DIR / "grid_pino_cm.csv"
+./online/renderers/render_temporal_gif_v42_2.py:94:def zigzag(rows, cols):
+./online/renderers/render_temporal_gif_v42_2.py:96:    for x in range(cols):
+./online/renderers/render_temporal_gif_v42_2.py:97:        ys = range(rows) if x % 2 == 0 else range(rows - 1, -1, -1)
+./online/renderers/renderer2d.py:113:        plt.xlabel("X (pinos)")
+./online/renderers/renderer2d.py:114:        plt.ylabel("Y (pinos)")
+./online/renderers/renderer2d.py:27:    - Mesa física (pinos eletromecânicos)
+./online/renderers/renderer2d.py:30:    def __init__(self, actuator, grid_shape=(8, 16)):
+./online/renderers/renderer2d.py:33:        :param grid_shape: Dimensão da mesa (linhas, colunas)
+./online/renderers/renderer2d.py:36:        self.rows, self.cols = grid_shape
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:31:    rows, cols = 8, 16
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:32:    shape = (rows, cols)
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:36:        grid_shape=shape
+./online/renderers/tests/test_renderer2d.py:20:    rows, cols = 8, 16
+./online/renderers/tests/test_renderer2d.py:26:    grid_m = np.zeros((rows, cols), dtype=float)
+./online/renderers/tests/test_renderer2d.py:29:    for x in range(cols):
+./online/renderers/tests/test_renderer2d.py:30:        y_range = range(rows) if x % 2 == 0 else reversed(range(rows))
+./online/renderers/tests/test_renderer2d.py:40:        grid_shape=(rows, cols)
+./online/renderers/tests/test_renderer2d_multilayer.py:11:    rows, cols = 8, 16
+./online/renderers/tests/test_renderer2d_multilayer.py:12:    shape = (rows, cols)
+./online/renderers/tests/test_renderer2d_multilayer.py:14:    renderer = Renderer2D(grid_shape=shape)
+./online/renderers/tests/test_renderer2d_multilayer.py:19:    terrain = np.linspace(0, 5, rows * cols).reshape(shape)
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:31:    rows, cols = 8, 16
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:32:    shape = (rows, cols)
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:35:    renderer = Renderer2D(None, grid_shape=shape)
+./online/renderers/tests/test_timeline_renderer2d.py:10:    rows, cols = 8, 16
+./online/renderers/tests/test_timeline_renderer2d.py:13:        rows=rows,
+./online/renderers/tests/test_timeline_renderer2d.py:14:        cols=cols,
+./online/renderers/tests/test_timeline_renderer2d.py:19:    renderer = Renderer2D(grid_shape=(rows, cols))
+./online/renderers/tests/test_visual_snapshot_adapter.py:16:            ("pin", 0, 0, 5.0),
+./online/renderers/tests/test_visual_snapshot_adapter.py:17:            ("pin", 0, 1, 8.0),
+./online/renderers/tests/test_visual_snapshot_adapter.py:18:            ("pin", 1, 1, 12.0),
+./online/renderers/tests/test_visual_snapshot_adapter.py:21:            ("pin", 1, 0, 3.0),
+./online/renderers/visual_snapshot_adapter.py:14:    def __init__(self, rows: int, cols: int, default_value: float = 0.0):
+./online/renderers/visual_snapshot_adapter.py:15:        self.rows = rows
+./online/renderers/visual_snapshot_adapter.py:16:        self.cols = cols
+./online/renderers/visual_snapshot_adapter.py:22:        Retorna: np.ndarray (rows x cols) com z_real_m
+./online/renderers/visual_snapshot_adapter.py:26:            (self.rows, self.cols),
+./online/renderers/visual_snapshot_adapter.py:31:        for pin_id, data in snapshot.items():
+./online/renderers/visual_snapshot_adapter.py:42:            if 0 <= y < self.rows and 0 <= x < self.cols:
+./online/runtime/bootstrap_mock.py:12:    mapper = GridPinMapper(rows=8, cols=16)
+./online/runtime/bootstrap_mock.py:19:        handler=adapter.handle_move_pin
+./online/runtime/bootstrap_mock.py:4:from online.core.grid_pin_mapper import GridPinMapper
+./online/runtime/bootstrap_mock.py:5:from online.core.grid_pin_adapter import GridPinAdapter
+./online/runtime/plan_execution_runner.py:3:from typing import Optional
+./online/runtime/plan_player.py:1:from typing import Optional
+./online/states/actuator_statechart.py:103:                pin_id=self.current_event.pin_id,
+./online/states/actuator_statechart.py:104:                z_pin_cm=self.current_event.z_pin_cm,
+./online/states/actuator_statechart.py:59:        self.bus.subscribe(MovePinEvent, self.on_move_pin)
+./online/states/actuator_statechart.py:65:    def on_move_pin(self, event: MovePinEvent):
+./online/states/actuator_statechart.py:91:        dz = abs(self.current_event.z_pin_cm)
+./online/tests/run_ensaio_geral.py:101:            pin_id=evt.pin_id,
+./online/tests/run_ensaio_geral.py:102:            z_pin_cm=evt.z_pin_cm,
+./online/tests/run_ensaio_geral.py:109:        f"[OK ] pin={evt.pin_id:03d} "
+./online/tests/run_ensaio_geral.py:110:        f"z_pin={evt.z_pin_cm:.1f} cm"
+./online/tests/run_ensaio_geral.py:136:    grid_rows=8,
+./online/tests/run_ensaio_geral.py:137:    grid_cols=16,
+./online/tests/run_ensaio_geral.py:138:    cell_size_cm=1.0,
+./online/tests/run_ensaio_geral.py:86:        pin_id=evt.pin_id,
+./online/tests/run_ensaio_geral.py:90:        z_pin_cm=evt.z_pin_cm,
+./online/tests/run_ensaio_geral.py:94:    driver.move_pin(cmd)
+./online/tests/test_eventbus_state_manager.py:58:        pin_id=1,
+./online/tests/test_eventbus_state_manager.py:62:        z_pin_cm=10.0,
+./online/tests/test_offline_product_loader.py:59:    assert "grid_shape" in metadata, "grid_shape ausente no metadata"
+./online/tests/test_temporal_conductor.py:13:from typing import List
+./online/tests/test_temporal_conductor.py:32:    rows, cols = grid.shape
+./online/tests/test_temporal_conductor.py:34:    for y in range(rows):
+./online/tests/test_temporal_conductor.py:35:        x_range = range(cols) if y % 2 == 0 else reversed(range(cols))
+./online/tests/test_temporal_conductor.py:38:            z_cm = int(grid[y, x])
+./online/tests/test_temporal_conductor.py:44:                z_pin_cm=z_cm,
+./online/tests/test_temporal_conductor.py:45:                z_real_m=z_cm / 100.0,
+./online/tests/test_temporal_conductor_eventbus.py:13:from typing import List
+./online/tests/test_temporal_conductor_eventbus.py:32:    rows, cols = grid.shape
+./online/tests/test_temporal_conductor_eventbus.py:34:    for y in range(rows):
+./online/tests/test_temporal_conductor_eventbus.py:35:        x_range = range(cols) if y % 2 == 0 else reversed(range(cols))
+./online/tests/test_temporal_conductor_eventbus.py:38:            z_cm = int(grid[y, x])
+./online/tests/test_temporal_conductor_eventbus.py:44:                z_pin_cm=z_cm,
+./online/tests/test_temporal_conductor_eventbus.py:45:                z_real_m=z_cm / 100.0,
+./online/tests/test_temporal_statechart.py:143:            pin_id=None,
+./online/tests/test_temporal_statechart.py:147:            z_pin_cm=None,
+./online/tests/test_temporal_statechart.py:62:    rows, cols = grid.shape
+./online/tests/test_temporal_statechart.py:64:    for y in range(rows):
+./online/tests/test_temporal_statechart.py:65:        x_range = range(cols) if y % 2 == 0 else reversed(range(cols))
+./online/tests/test_temporal_statechart.py:67:            z_cm = int(grid[y, x])
+./online/tests/test_temporal_statechart.py:73:                z_pin_cm=z_cm,
+./online/tests/test_temporal_statechart.py:74:                z_real_m=z_cm / 100.0,
+./online/ui/console_player.py:141:    bus.subscribe("MOVE_PIN", observer.on_move_pin)
+./online/ui/console_player.py:164:            pin_id=None,
+./online/ui/console_player.py:168:            z_pin_cm=None,
+./online/ui/console_player.py:58:    rows, cols = grid.shape
+./online/ui/console_player.py:60:    for y in range(rows):
+./online/ui/console_player.py:61:        x_range = range(cols) if y % 2 == 0 else reversed(range(cols))
+./online/ui/console_player.py:63:            z_cm = int(grid[y, x])
+./online/ui/console_player.py:70:                    z_pin_cm=z_cm,
+./online/ui/console_player.py:71:                    z_real_m=z_cm / 100.0,
+./online/ui/console_player.py:87:    def on_move_pin(self, event: MovePinEvent):
+./online/ui/console_player.py:97:            f"Z={event.z_pin_cm:3d} cm"
+./online/ui/dash_eventbus_grid_app.py:280:    rows, cols = product.grid.shape
+./online/ui/dash_eventbus_grid_app.py:282:    snapshot = Snapshot(rows, cols)
+./online/ui/dash_eventbus_grid_app.py:72:    rows, cols = grid.shape
+./online/ui/dash_eventbus_grid_app.py:74:    for y in range(rows):
+./online/ui/dash_eventbus_grid_app.py:75:        xs = range(cols) if y % 2 == 0 else reversed(range(cols))
+./online/ui/dash_eventbus_grid_app.py:83:                    z_pin_cm=z,
+./online/ui/dash_eventbus_grid_app.py:96:    def __init__(self, rows, cols):
+./online/ui/dash_eventbus_grid_app.py:98:        self.grid = np.zeros((rows, cols), float)
+./online/ui/dash_temporal_player.py:38:    rows, cols = grid.shape
+./online/ui/dash_temporal_player.py:40:    for y in range(rows):
+./online/ui/dash_temporal_player.py:41:        x_range = range(cols) if y % 2 == 0 else reversed(range(cols))
+./online/ui/dash_temporal_player.py:43:            z_cm = int(grid[y, x])
+./online/ui/dash_temporal_player.py:50:                    z_real_m=z_cm / 100.0,
+./online/ui/dash_temporal_player.py:51:                    z_pin_cm=z_cm,
+./online/ui/dash_temporal_player.py:63:    def __init__(self, rows, cols):
+./online/ui/dash_temporal_player.py:65:        self.grid = np.zeros((rows, cols), dtype=float)
+./online/ui/dash_temporal_player.py:67:    def on_move_pin(self, event: MovePinEvent):
+./online/ui/dash_temporal_player.py:79:rows, cols = grid.shape
+./online/ui/dash_temporal_player.py:84:snapshot = EventSnapshot(rows, cols)
+./online/ui/dash_temporal_player.py:88:    lambda evt: snapshot.on_move_pin(evt),
+./online/ui/dash_v44_full_digital_twin.py:52:def zigzag(rows, cols):
+./online/ui/dash_v44_full_digital_twin.py:54:    for x in range(cols):
+./online/ui/dash_v44_full_digital_twin.py:55:        ys = range(rows) if x % 2 == 0 else range(rows - 1, -1, -1)
+./online/ui/dash_v45_full_real.py:53:def zigzag(rows, cols):
+./online/ui/dash_v45_full_real.py:55:    for x in range(cols):
+./online/ui/dash_v45_full_real.py:56:        ys = range(rows) if x % 2 == 0 else range(rows - 1, -1, -1)
+./online/ui/dash_v72_cityspace_official.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v73_cityspace_gridfix.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v73_cityspace_gridfix.py:74: rows,cols=z.shape
+./online/ui/dash_v73_cityspace_gridfix.py:83:  range=[-0.5,cols-0.5],
+./online/ui/dash_v73_cityspace_gridfix.py:91:  range=[rows-0.5,-0.5],
+./online/ui/dash_v74_cityspace_centered.py:100:  range=[rows-0.5,-0.5],
+./online/ui/dash_v74_cityspace_centered.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v74_cityspace_centered.py:70: rows,cols=z.shape
+./online/ui/dash_v74_cityspace_centered.py:91:  range=[-0.5,cols-0.5],
+./online/ui/dash_v75_2_restored.py:83: rows,cols=z.shape
+./online/ui/dash_v75_2_restored.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v75_3_fixed.py:90: rows,cols=z.shape
+./online/ui/dash_v75_3_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v75_cityspace_controls.py:100:  range=[-0.5,cols-0.5],
+./online/ui/dash_v75_cityspace_controls.py:108:  range=[rows-0.5,-0.5],
+./online/ui/dash_v75_cityspace_controls.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v75_cityspace_controls.py:79: rows,cols=z.shape
+./online/ui/dash_v76_time_continuous.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v77_cityspace_physics.py:106: fig.update_xaxes(range=[-0.5,cols-0.5],scaleanchor="y",scaleratio=1)
+./online/ui/dash_v77_cityspace_physics.py:107: fig.update_yaxes(range=[rows-0.5,-0.5])
+./online/ui/dash_v77_cityspace_physics.py:92: rows,cols=z.shape
+./online/ui/dash_v77_cityspace_physics.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v77_visual_layer.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v78_1_zoom_fixed.py:120: rows,cols=z.shape
+./online/ui/dash_v78_1_zoom_fixed.py:122: cx=cols//2
+./online/ui/dash_v78_1_zoom_fixed.py:123: cy=rows//2
+./online/ui/dash_v78_1_zoom_fixed.py:126:  span_x=cols//4
+./online/ui/dash_v78_1_zoom_fixed.py:127:  span_y=rows//4
+./online/ui/dash_v78_1_zoom_fixed.py:129:  span_x=cols//2
+./online/ui/dash_v78_1_zoom_fixed.py:130:  span_y=rows//2
+./online/ui/dash_v78_1_zoom_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v78_zoom_centered.py:120: rows,cols=z.shape
+./online/ui/dash_v78_zoom_centered.py:123: cx=cols//2
+./online/ui/dash_v78_zoom_centered.py:124: cy=rows//2
+./online/ui/dash_v78_zoom_centered.py:127:  span_x=cols//4
+./online/ui/dash_v78_zoom_centered.py:128:  span_y=rows//4
+./online/ui/dash_v78_zoom_centered.py:130:  span_x=cols//2
+./online/ui/dash_v78_zoom_centered.py:131:  span_y=rows//2
+./online/ui/dash_v78_zoom_centered.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v79_physical_grid_zoom.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v80_1_scale_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v80_true_physical_scale.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v81_physical_elevation.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v83_grid_border.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v84_LOCKED.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v84_active_pin.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v85_LOCKED.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v85_LOCKED.py:8:# 🔥 FORÇA GRID 16x8
+./online/ui/dash_v85_visual_fit.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v85_visual_refined.py:110:            x=0,y=rows,
+./online/ui/dash_v85_visual_refined.py:111:            sizex=cols,sizey=rows,
+./online/ui/dash_v85_visual_refined.py:18:rows=df["row"].max()+1
+./online/ui/dash_v85_visual_refined.py:19:cols=df["col"].max()+1
+./online/ui/dash_v85_visual_refined.py:21:grid=np.zeros((rows,cols))
+./online/ui/dash_v85_visual_refined.py:22:for _,r in df.iterrows():
+./online/ui/dash_v85_visual_refined.py:23:    grid[int(r["row"])][int(r["col"])]=r["z_cm"]
+./online/ui/dash_v86_visual_clean.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v87_fix_zigzag.py:29:def zigzag(rows, cols):
+./online/ui/dash_v87_fix_zigzag.py:31:    for x in range(cols):
+./online/ui/dash_v87_fix_zigzag.py:32:        ys = range(rows) if x % 2 == 0 else range(rows - 1, -1, -1)
+./online/ui/dash_v87_fix_zigzag.py:38:rows, cols = grid.shape
+./online/ui/dash_v87_fix_zigzag.py:39:path = zigzag(rows, cols)
+./online/ui/dash_v88_fix_path_bounds.py:29:def zigzag(rows, cols):
+./online/ui/dash_v88_fix_path_bounds.py:31:    for x in range(cols):
+./online/ui/dash_v88_fix_path_bounds.py:32:        ys = range(rows) if x % 2 == 0 else range(rows - 1, -1, -1)
+./online/ui/dash_v88_fix_path_bounds.py:38:rows, cols = grid.shape
+./online/ui/dash_v88_fix_path_bounds.py:39:path = zigzag(rows, cols)
+./online/ui/dash_v88_grid_fix.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v89_final_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v90_urban_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v91_altimetric_motion.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v91_speed_control.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v92_real_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v93_centroid_final.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v93_robust_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v94_2_normalizado.py:175:            colorbar=dict(title=f"Pino (cm)\n0–10 cm\n≙ 0–{ZMAX_REAL_M:.1f} m"),
+./online/ui/dash_v94_clean_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_clean_no_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_real_legend.py:13:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v94_real_legend.py:15:scale_m_per_cm = z_m_max / z_cm_max if z_cm_max > 0 else 0
+./online/ui/dash_v94_real_legend.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_real_pipeline.py:10:# 🔥 usar diretamente z_cm (já normalizado pelo pipeline)
+./online/ui/dash_v94_real_pipeline.py:11:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_1_real_transparente.py:12:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v95_1_real_transparente.py:14:scale_m_per_cm = z_m_max / z_cm_max if z_cm_max > 0 else 0
+./online/ui/dash_v95_1_real_transparente.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_2_real_base.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_2_real_final.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_2_real_final.py:18:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v95_2_real_final.py:20:scale_m_per_cm = z_m_max / z_cm_max if z_cm_max > 0 else 0
+./online/ui/dash_v95_2d.py:14:cols = 16
+./online/ui/dash_v95_2d.py:15:rows = 8
+./online/ui/dash_v95_2d.py:16:for c in reversed(range(cols)):
+./online/ui/dash_v95_2d.py:17:    if (cols - c) % 2 == 1:
+./online/ui/dash_v95_2d.py:18:        for r in range(rows):
+./online/ui/dash_v95_2d.py:21:        for r in reversed(range(rows)):
+./online/ui/dash_v95_2d.py:6:grid = df.pivot(index="row", columns="col", values="z_cm")
+./online/ui/dash_v95_2d_final_corrigido.py:8:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_3_clean_callbacks.py:16:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v95_3_real_hard.py:18:# 🔥 USA z_cm REAL
+./online/ui/dash_v95_3_real_hard.py:19:grid = df.pivot(index="row", columns="col", values="z_cm")
+./online/ui/dash_v95_3_real_hard.py:33:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v95_3_real_hard.py:36:scale = z_m_max / z_cm_max if z_cm_max else 0
+./online/ui/dash_v95_3d_urban.py:6:Z = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_4_blindado.py:20:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v95_4_blindado.py:44:if len(p) != 128:
+./online/ui/dash_v95_4_real_correct.py:12:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v95_4_real_correct.py:14:scale = z_m_max / z_cm_max if z_cm_max else 0
+./online/ui/dash_v95_4_real_correct.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_5_debug.py:17:grid = df.pivot(index="row", columns="col", values="z_cm")
+./online/ui/dash_v95_5_incremental.py:27:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v95_5_incremental.py:51:if len(p) != 128:
+./online/ui/dash_v95_6_hard_stable.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v95_6_hard_stable.py:51:if N != 128:
+./online/ui/dash_v95_6_hard_stable.py:52:    raise Exception("PLAN INVALIDO – NAO TEM 128")
+./online/ui/dash_v95_6_stable.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v95_real_corrigido.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v96_engine_separado.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v96_engine_separado.py:26:# PLAN REAL (128)
+./online/ui/dash_v96_engine_separado.py:49:if N != 128:
+./online/ui/dash_v96_modo_fisico.py:9:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v96_rotation_fix.py:113:    estado = np.zeros((COLS, ROWS))  # (16 x 8)
+./online/ui/dash_v97_2_metodoB.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v97_2_metodoB.py:25:# PLAN (128)
+./online/ui/dash_v97_2_metodoB.py:44:if N != 128:
+./online/ui/dash_v97_2_metodoB.py:47:print(">>> PLAN OK (128)", flush=True)
+./online/ui/dash_v97_2_metodoB_fix.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v97_2_metodoB_fix.py:44:if N != 128:
+./online/ui/dash_v97_tempo_fisico.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v97_tempo_fisico.py:26:# PLAN (128)
+./online/ui/dash_v97_tempo_fisico.py:47:if N != 128:
+./online/ui/dash_v97_tempo_fisico.py:50:print(">>> PLAN OK (128)", flush=True)
+./online/ui/dash_v99_3d_buildings_zigzag.py:6:Z0 = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/legacy/app.py:108:    Output("pins-layer", "children"),
+./online/ui/legacy/app.py:112:def update_pins(idx):
+./online/ui/legacy/app.py:115:    pins = adapter.get_pins()
+./online/ui/legacy/app.py:118:    for pin in pins:
+./online/ui/legacy/app.py:119:        lat, lon = grid_to_latlon(pin["x"], pin["y"])
+./online/ui/legacy/app.py:124:                radius=pin["z_pin_cm"],  # altura → raio
+./online/ui/legacy/app.py:131:    return circles, f"Pinos ativos: {len(pins)} | frame={idx}"
+./online/ui/legacy/app.py:25:# Sequência temporal dummy (16 pinos)
+./online/ui/legacy/app.py:34:        z_pin_cm=5 + (i % 4) * 5,
+./online/ui/legacy/app.py:95:                dl.LayerGroup(id="pins-layer"),
+./online/ui/legacy/player2d_app.py:7:MAX_FRAMES = 128
+./online/ui/temporal_player_grid_app.py:104:        for y in range(self.rows):
+./online/ui/temporal_player_grid_app.py:106:            for x in range(self.cols):
+./online/ui/temporal_player_grid_app.py:115:    def on_move_pin(self, event: MovePinEvent):
+./online/ui/temporal_player_grid_app.py:137:    rows, cols = grid.shape
+./online/ui/temporal_player_grid_app.py:159:    ui = AsciiGridObserver(rows, cols, state_manager)
+./online/ui/temporal_player_grid_app.py:160:    bus.subscribe("MOVE_PIN", ui.on_move_pin)
+./online/ui/temporal_player_grid_app.py:183:            pin_id=None,
+./online/ui/temporal_player_grid_app.py:187:            z_pin_cm=None,
+./online/ui/temporal_player_grid_app.py:60:    rows, cols = grid.shape
+./online/ui/temporal_player_grid_app.py:62:    for y in range(rows):
+./online/ui/temporal_player_grid_app.py:63:        x_range = range(cols) if y % 2 == 0 else reversed(range(cols))
+./online/ui/temporal_player_grid_app.py:65:            z_cm = int(grid[y, x])
+./online/ui/temporal_player_grid_app.py:72:                    z_pin_cm=z_cm,
+./online/ui/temporal_player_grid_app.py:73:                    z_real_m=z_cm / 100.0,
+./online/ui/temporal_player_grid_app.py:86:    def __init__(self, rows, cols, state_manager: StateManager):
+./online/ui/temporal_player_grid_app.py:87:        self.rows = rows
+./online/ui/temporal_player_grid_app.py:88:        self.cols = cols
+./online/ui/temporal_player_grid_controls_app.py:43:    rows, cols = grid.shape
+./online/ui/temporal_player_grid_controls_app.py:45:    for y in range(rows):
+./online/ui/temporal_player_grid_controls_app.py:46:        x_range = range(cols) if y % 2 == 0 else reversed(range(cols))
+./online/ui/temporal_player_grid_controls_app.py:48:            z_cm = int(grid[y, x])
+./online/ui/temporal_player_grid_controls_app.py:54:                    z_pin_cm=z_cm,
+./online/ui/temporal_player_grid_controls_app.py:55:                    z_real_m=z_cm / 100.0,
+./online/ui/test_visual_adapter.py:14:    # emite dois eventos simulando pinos
+./online/ui/test_visual_adapter.py:18:        pin_id=1,
+./online/ui/test_visual_adapter.py:22:        z_pin_cm=5.0,
+./online/ui/test_visual_adapter.py:29:        pin_id=2,
+./online/ui/test_visual_adapter.py:33:        z_pin_cm=12.0,
+./online/ui/test_visual_adapter.py:37:    pins = adapter.get_pins()
+./online/ui/test_visual_adapter.py:39:    assert len(pins) == 2
+./online/ui/test_visual_adapter.py:40:    assert pins[0]["pin_id"] in (1, 2)
+./online/ui/test_visual_adapter.py:41:    assert "x" in pins[0]
+./online/ui/test_visual_adapter.py:42:    assert "z_pin_cm" in pins[0]
+./online/ui/visual_adapter.py:12:    def get_pins(self):
+./online/ui/visual_adapter.py:14:        Retorna lista de pinos em formato amigável para UI.
+./online/ui/visual_adapter.py:18:        pins = []
+./online/ui/visual_adapter.py:19:        for pin_id, data in snapshot.items():
+./online/ui/visual_adapter.py:20:            pins.append({
+./online/ui/visual_adapter.py:21:                "pin_id": pin_id,
+./online/ui/visual_adapter.py:24:                "z_pin_cm": data["z_pin_cm"],
+./online/ui/visual_adapter.py:28:        return pins
+./products/actuator_plan.json:12:    "pin": 0.3,
+./products/actuator_plan.json:3:    "rows": 2,
+./products/actuator_plan.json:4:    "cols": 3,
+./products/actuator_plan.json:5:    "cell_size_cm": 1,
+./products/actuator_plan.json:6:    "pin_max_cm": 10,
+./products/final/actuator_plan.json:3:    "rows": 8,
+./products/final/actuator_plan.json:4:    "cols": 16,
+./products/final/actuator_plan.json:5:    "pin_max_cm": 10.0
+./products/final/actuator_plan.json:672:      "value_cm": 4.279609631289507
+./products/final/actuator_plan_zigzag.json:685:      "value_cm": 4.279609631289507
+./products/latest/actuator_plan.json:12:    "pin": 0.3,
+./products/latest/actuator_plan.json:3:    "rows": 2,
+./products/latest/actuator_plan.json:4:    "cols": 3,
+./products/latest/actuator_plan.json:5:    "cell_size_cm": 1,
+./products/latest/actuator_plan.json:6:    "pin_max_cm": 10,
+./products_files.txt:14:./offline/products/snapshots/ipt_fase2_semantic/grid_pino_cm.csv
+./project_tree.txt:101:│   ├── grid_to_pin_height.py
+./project_tree.txt:168:│   ├── render_dxf_ipt_para_mesa_16x8.py
+./project_tree.txt:181:│   │   ├── test_grid_to_pin_height.py
+./project_tree.txt:19:│   │   │   ├── 04_usage_set_pin.txt
+./project_tree.txt:203:│   │   ├── audit_fix_set_pin.py
+./project_tree.txt:20:│   │   │   ├── 05_set_pin_offline.txt
+./project_tree.txt:21:│   │   │   ├── 06_set_pin_global.txt
+./project_tree.txt:24:│   │   │   ├── audit_set_pin_fixed.txt
+./project_tree.txt:25:│   │   │   ├── audit_set_pin_found.txt
+./project_tree.txt:297:│   │   ├── grid_pin_adapter.py
+./project_tree.txt:298:│   │   ├── grid_pin_mapper.py
+./project_tree.txt:313:│   │   ├── test_grid_pin_integration.py
+./project_tree.txt:314:│   │   ├── test_grid_pin_mapper.py
+./project_tree.txt:331:│   │   ├── mock_pin.py
+./project_tree.txt:482:│   │   ├── dash_v84_active_pin.py
+./python_files.txt:168:./online/core/grid_pin_adapter.py
+./python_files.txt:169:./online/core/grid_pin_mapper.py
+./python_files.txt:184:./online/core/test_grid_pin_integration.py
+./python_files.txt:185:./online/core/test_grid_pin_mapper.py
+./python_files.txt:200:./online/hardware/mock_pin.py
+./python_files.txt:20:./offline/grid_to_pin_height.py
+./python_files.txt:324:./online/ui/dash_v84_active_pin.py
+./python_files.txt:67:./offline/render_dxf_ipt_para_mesa_16x8.py
+./python_files.txt:76:./offline/tests/test_grid_to_pin_height.py
+./python_files.txt:94:./offline/tools/audit_fix_set_pin.py
+./runner/base_actuator.py:17:    def set_pin_height(self, row: int, col: int, height_cm: float):
+./runner/base_actuator.py:18:        """Define a altura do pino em cm."""
+./runner/base_actuator.py:8:    - real (motores, pinos, hardware)
+./runner/path.py:20:    for row in range(rows):
+./runner/path.py:22:            cols_iter = range(cols)
+./runner/path.py:24:            cols_iter = reversed(range(cols))
+./runner/path.py:26:        for col in cols_iter:
+./runner/path.py:3:from typing import List, Tuple
+./runner/path.py:6:def zigzag_scan(rows: int, cols: int) -> List[Tuple[int, int]]:
+./runner/runner_engine.py:12:from typing import List, Tuple, Dict
+./runner/runner_engine.py:31:        self.rows = len(grid)
+./runner/runner_engine.py:32:        self.cols = len(grid[0]) if self.rows > 0 else 0
+./runner/runner_engine.py:49:            # subir pino
+./runner/runner_engine.py:51:            self._wait(self.timing.get("pin", 0.0))
+./runner/runner_engine.py:64:        if 0 <= row < self.rows and 0 <= col < self.cols:
+./runner/runner_engine.py:8:- Tempo: deslocamento + subida/descida de pino
+./runner/virtual_actuator.py:5:Atuador virtual para simular a mesa de pinos.
+./scan07042026.txt:1049:./offline/tools/audit_fix_set_pin.py:    original = text
+./scan07042026.txt:1050:./offline/tools/audit_fix_set_pin.py:    if text != original:
+./scan07042026.txt:1353:./online/core/calibration.py:            z = z * pin.scale + pin.offset_cm
+./scan07042026.txt:1354:./online/core/grid_pin_adapter.py:    Adaptador entre eventos lógicos (row, col)
+./scan07042026.txt:1355:./online/core/grid_pin_adapter.py:    e drivers físicos (pin_id).
+./scan07042026.txt:1411:./online/renderers/renderer2d.py:    - Mesa física (pinos eletromecânicos)
+./scan07042026.txt:1538:./online/ui/dash_v77_cityspace_physics.py: fig.update_xaxes(range=[-0.5,cols-0.5],scaleanchor="y",scaleratio=1)
+./scan07042026.txt:1573:./online/ui/dash_v84_active_pin.py: scale=2 if zoom==2 else 1
+./scan07042026.txt:1574:./online/ui/dash_v84_active_pin.py: fig.add_trace(go.Heatmap(z=z,colorscale="Jet",zmin=0,zmax=10,xgap=2,ygap=2,opacity=0.65,colorbar=dict(title="Altura (cm / m)")))
+./scan07042026.txt:1575:./online/ui/dash_v84_active_pin.py: width=base_w*scale,
+./scan07042026.txt:1576:./online/ui/dash_v84_active_pin.py: height=base_h*scale,
+./scan07042026.txt:1577:./online/ui/dash_v84_active_pin.py:  source="/assets/ipt_mask_rotated_simple.png",
+./scan07042026.txt:1578:./online/ui/dash_v84_active_pin.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./scan07042026.txt:1579:./online/ui/dash_v84_active_pin.py: status=f"STEP {step}/{TOTAL} | {val:.1f} cm | {m:.2f} m | GRID {scale}x"
+./scan07042026.txt:19:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:./visualization/render_temporal_gif_v10.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./scan07042026.txt:20:./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:./visualization/render_temporal_gif_v8.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./scan07042026.txt:22:./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./scan07042026.txt:232:./docs/architecture/code_audit/height_usage.txt:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./scan07042026.txt:255:./docs/architecture/code_audit/mask_usage.txt:offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./scan07042026.txt:281:./docs/architecture/code_audit/raster_usage.txt:offline/products/generate_contours_simple.py:        xs, ys = rasterio.transform.xy(transform, rows, cols)
+./scan07042026.txt:413:./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./scan07042026.txt:416:./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./scan07042026.txt:585:./docs/architecture/code_search/24_ui.txt:./offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./scan07042026.txt:964:./offline/render_dxf_ipt_para_mesa_16x8.py:# - Ler o DXF ORIGINAL do IPT
+./scan07042026.txt:965:./offline/render_dxf_ipt_para_mesa_16x8.py:from shapely.affinity import rotate
+./scan07042026.txt:966:./offline/render_dxf_ipt_para_mesa_16x8.py:ANGLE_DEG = 154.63  # rotação trigonométrica validada
+./scan07042026.txt:967:./offline/render_dxf_ipt_para_mesa_16x8.py:    print(f"Rotação: {ANGLE_DEG}°")
+./scan07042026.txt:968:./offline/render_dxf_ipt_para_mesa_16x8.py:        lambda geom: rotate(
+./scan07042026.txt:969:./offline/render_dxf_ipt_para_mesa_16x8.py:            ANGLE_DEG,
+./scan07042026.txt:970:./offline/render_dxf_ipt_para_mesa_16x8.py:            origin=(cx, cy),
+./tests/test_geo_cells.py:8:    # célula 1x1
+./tests/test_path.py:10:    assert len(path) == rows * cols
+./tests/test_path.py:14:    rows, cols = 8, 16
+./tests/test_path.py:15:    path = zigzag_scan(rows, cols)
+./tests/test_path.py:17:    assert len(set(path)) == rows * cols
+./tests/test_path.py:21:    rows, cols = 8, 16
+./tests/test_path.py:22:    path = zigzag_scan(rows, cols)
+./tests/test_path.py:25:        assert 0 <= row < rows
+./tests/test_path.py:26:        assert 0 <= col < cols
+./tests/test_path.py:29:def test_zigzag_scan_order_first_rows():
+./tests/test_path.py:30:    rows, cols = 3, 4
+./tests/test_path.py:31:    path = zigzag_scan(rows, cols)
+./tests/test_path.py:7:    rows, cols = 8, 16
+./tests/test_path.py:8:    path = zigzag_scan(rows, cols)
+./tests/test_runner_engine.py:15:    # Grid simples 2x2
+./tests/test_runner_engine.py:21:    rows = 2
+./tests/test_runner_engine.py:22:    cols = 2
+./tests/test_runner_engine.py:24:    path = zigzag_scan(cols=cols, rows=rows)
+./tests/test_runner_engine.py:30:        "pin": 0.0,
+./tests/test_runner_engine.py:55:    pin_events = [e for e in events if e["type"] == "set_height_cm"]
+./tests/test_runner_engine.py:57:    assert len(move_events) == rows * cols
+./tests/test_runner_engine.py:58:    assert len(pin_events) == rows * cols
+./tests/test_runner_engine.py:64:    for (row, col), pin_event in zip(path, pin_events):
+./tests/test_runner_engine.py:65:        assert pin_event["value"] == grid[row][col]
+./tests/test_runner_engine.py:86:        timing={"move": 0.0, "pin": 0.0, "hold": 0.0},
+./tests/test_runner_engine.py:92:    pin_events = [e for e in actuator.events if e["type"] == "set_height_cm"]
+./tests/test_runner_engine.py:94:    assert pin_events[0]["value"] == 1.0
+./tests/test_runner_engine.py:95:    assert pin_events[1]["value"] == 0.0
+./usage_pivot.txt:10:./online/ui/dash_v75_3_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:11:./online/ui/dash_v75_cityspace_controls.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:12:./online/ui/dash_v76_time_continuous.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:13:./online/ui/dash_v77_cityspace_physics.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:14:./online/ui/dash_v77_visual_layer.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:15:./online/ui/dash_v78_1_zoom_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:16:./online/ui/dash_v78_zoom_centered.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:17:./online/ui/dash_v79_physical_grid_zoom.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:18:./online/ui/dash_v80_1_scale_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:19:./online/ui/dash_v80_true_physical_scale.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:20:./online/ui/dash_v81_physical_elevation.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:21:./online/ui/dash_v83_grid_border.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:22:./online/ui/dash_v84_active_pin.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:23:./online/ui/dash_v84_LOCKED.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:24:./online/ui/dash_v85_LOCKED.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./usage_pivot.txt:25:./online/ui/dash_v85_visual_fit.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:27:./online/ui/dash_v86_visual_clean.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:31:./online/ui/dash_v88_grid_fix.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:32:./online/ui/dash_v89_final_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:34:./online/ui/dash_v90_urban_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:35:./online/ui/dash_v91_altimetric_motion.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:36:./online/ui/dash_v91_speed_control.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./usage_pivot.txt:37:./online/ui/dash_v92_real_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./usage_pivot.txt:38:./online/ui/dash_v93_centroid_final.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:39:./online/ui/dash_v93_robust_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./usage_pivot.txt:41:./online/ui/dash_v94_clean_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:42:./online/ui/dash_v94_clean_no_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:43:./online/ui/dash_v94_real_legend.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:44:./online/ui/dash_v94_real_pipeline.py:11:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:45:./online/ui/dash_v95_1_real_transparente.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:46:./online/ui/dash_v95_2d.py:6:grid = df.pivot(index="row", columns="col", values="z_cm")
+./usage_pivot.txt:49:./online/ui/dash_v95_2d_final_corrigido.py:8:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:50:./online/ui/dash_v95_2_real_base.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:51:./online/ui/dash_v95_2_real_final.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:52:./online/ui/dash_v95_3d_urban.py:6:Z = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:53:./online/ui/dash_v95_3_clean_callbacks.py:16:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./usage_pivot.txt:54:./online/ui/dash_v95_3_real_hard.py:19:grid = df.pivot(index="row", columns="col", values="z_cm")
+./usage_pivot.txt:55:./online/ui/dash_v95_4_blindado.py:20:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./usage_pivot.txt:56:./online/ui/dash_v95_4_real_correct.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:57:./online/ui/dash_v95_5_debug.py:17:grid = df.pivot(index="row", columns="col", values="z_cm")
+./usage_pivot.txt:58:./online/ui/dash_v95_5_incremental.py:27:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./usage_pivot.txt:59:./online/ui/dash_v95_6_hard_stable.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./usage_pivot.txt:60:./online/ui/dash_v95_6_stable.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./usage_pivot.txt:61:./online/ui/dash_v95_real_corrigido.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:62:./online/ui/dash_v96_engine_separado.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./usage_pivot.txt:63:./online/ui/dash_v96_modo_fisico.py:9:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./usage_pivot.txt:64:./online/ui/dash_v97_2_metodoB.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./usage_pivot.txt:65:./online/ui/dash_v97_2_metodoB_fix.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./usage_pivot.txt:66:./online/ui/dash_v97_tempo_fisico.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./usage_pivot.txt:67:./online/ui/dash_v99_3d_buildings_zigzag.py:6:Z0 = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./usage_pivot.txt:6:./online/ui/dash_v72_cityspace_official.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:7:./online/ui/dash_v73_cityspace_gridfix.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:8:./online/ui/dash_v74_cityspace_centered.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_pivot.txt:9:./online/ui/dash_v75_2_restored.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./usage_readcsv.txt:36:./online/ui/dash_v84_active_pin.py:8:df=pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./usage_readcsv.txt:3:./offline/grid_to_pin_height.py:38:    df = pd.read_csv(INPUT)

@@ -1,0 +1,84 @@
+offline/products/scientific/rotation_detected.json:3:  "method": "PCA_on_grid"
+offline/run_offline_pipeline.py:8:from offline.validation.validate_rotation_pca_grid import run as _rotation_pca_grid_run
+offline/run_offline_pipeline.py:14:def _run_pca_alignment_gate() -> None:
+offline/run_offline_pipeline.py:16:    Gate de alinhamento PCA.
+offline/run_offline_pipeline.py:21:    report = _rotation_pca_grid_run(base_dir)
+offline/run_offline_pipeline.py:26:    print("\n================ PCA ALIGNMENT GATE ================")
+offline/run_offline_pipeline.py:38:            "Gate de alinhamento PCA bloqueou o pipeline: alignment_status != OK"
+offline/run_offline_pipeline.py:44:    _run_pca_alignment_gate()
+offline/tools/05_recompute_rotation_from_grid.py:40:# PCA → DIREÇÃO PRINCIPAL
+offline/tools/05_recompute_rotation_from_grid.py:65:    "method": "PCA_on_grid"
+offline/tools/07_detect_rotation_from_envelope.py:27:# PCA
+offline/tools/07_detect_rotation_from_envelope.py:48:    "source": "envelope_pca"
+offline/validation/contract_registry.py:49:                    "description": "Sistema intermedi\u00e1rio para rota\u00e7\u00f5es, transla\u00e7\u00f5es, PCA e alinhamentos.",
+offline/validation/contract_registry.py:132:            "pca_fit": {
+offline/validation/contract_registry.py:133:                "pca_is_principal_orientation_line": True,
+offline/validation/contract_registry.py:134:                "rotation_may_be_determined_by_pca_vs_grid": True,
+offline/validation/contract_registry.py:135:                "description": "O PCA \u00e9 entendido como a linha principal cuja interse\u00e7\u00e3o/rela\u00e7\u00e3o com a quadr\u00edcula pode determinar a rota\u00e7\u00e3o, se necess\u00e1rio.",
+offline/validation/contract_registry.py:152:                    "current_pca_deg": 0.0,
+offline/validation/contract_registry.py:160:                        "target_pca_deg": 0.0,
+offline/validation/contract_registry.py:166:                        "target_pca_deg": 0.0,
+offline/validation/contract_registry_BASE_SAFE.py:46:            "pca_guided": True,
+offline/validation/reports/contract_registry_expanded.txt:59:                    "description": "Sistema intermediário para rotações, translações, PCA e alinhamentos."
+offline/validation/reports/contract_registry_expanded.txt:138:            "pca_fit": {
+offline/validation/reports/contract_registry_expanded.txt:139:                "pca_is_principal_orientation_line": True,
+offline/validation/reports/contract_registry_expanded.txt:140:                "rotation_may_be_determined_by_pca_vs_grid": True,
+offline/validation/reports/contract_registry_expanded.txt:142:                    "O PCA é entendido como a linha principal cuja interseção/relação "
+offline/validation/reports/contract_report.json:160:      "title": "PCA como linha principal de orientação",
+offline/validation/reports/contract_report.json:161:      "description": "O contrato reconhece PCA como linha principal para decisão de rotação/encaixe.",
+offline/validation/reports/rotation_pca_grid_report.json:4:    "pca_alignment_tolerance_deg": 0.5,
+offline/validation/reports/rotation_pca_grid_report.json:7:  "pca": {
+offline/validation/reports/rotation_pca_grid_report.json:11:    "pca_angle_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_report.json:21:      "current_pca_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_report.json:26:      "pca_vs_current_contract_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_report.json:27:      "pca_vs_geospatial_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_report.json:28:      "pca_vs_physical_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_report.json:37:        "target_pca_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_report.json:43:        "target_pca_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_stdout.txt:2:================ ROTATION PCA + GRID FIT ================
+offline/validation/reports/rotation_pca_grid_stdout.txt:4:pca principal angle (deg): 0.0
+offline/validation/reports/rotation_pca_grid_stdout.txt:8:contract comparison: {'pca_vs_geospatial_deg': -154.63, 'pca_vs_physical_deg': -146.82, 'geospatial_vs_physical_deg': 7.81}
+offline/validation/reports/rotation_pca_grid_stdout.txt:10:[OK] Report written to: /mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/validation/reports/rotation_pca_grid_report.json
+offline/validation/reports/rotation_pca_grid_stdout_v2.txt:2:================ ROTATION PCA + GRID FIT ================
+offline/validation/reports/rotation_pca_grid_stdout_v2.txt:4:pca principal angle (deg): 0.0
+offline/validation/reports/rotation_pca_grid_stdout_v2.txt:8:contract comparison: {'pca_vs_current_contract_deg': 0.0, 'pca_vs_geospatial_deg': 0.0, 'pca_vs_physical_deg': 0.0, 'geospatial_vs_physical_deg': 7.81, 'computed_historical_delta_deg': 7.81, 'contract_historical_delta_deg': 7.81}
+offline/validation/reports/rotation_pca_grid_stdout_v2.txt:10:[OK] Report written to: /mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/validation/reports/rotation_pca_grid_report.json
+offline/validation/validate_contract_master.py:293:    if contract["geometry"]["pca_fit"]["pca_is_principal_orientation_line"]:
+offline/validation/validate_contract_master.py:296:            "PCA como linha principal de orientação",
+offline/validation/validate_contract_master.py:297:            "O contrato reconhece PCA como linha principal para decisão de rotação/encaixe.",
+offline/validation/validate_rotation_pca_grid.py:14:PCA_ALIGNMENT_TOLERANCE_DEG = 0.5
+offline/validation/validate_rotation_pca_grid.py:38:def pca_angle_from_xy(x: np.ndarray, y: np.ndarray) -> float:
+offline/validation/validate_rotation_pca_grid.py:42:        raise ValueError("Pontos insuficientes para PCA.")
+offline/validation/validate_rotation_pca_grid.py:56:def compute_grid_fit(pca_angle_deg: float) -> Dict[str, float]:
+offline/validation/validate_rotation_pca_grid.py:57:    pca = normalize_0_180(pca_angle_deg)
+offline/validation/validate_rotation_pca_grid.py:59:    rot_to_x = normalize_signed_180(-pca)
+offline/validation/validate_rotation_pca_grid.py:60:    rot_to_y = normalize_signed_180(90.0 - pca)
+offline/validation/validate_rotation_pca_grid.py:62:    residual_x = abs(normalize_signed_180(pca + rot_to_x))
+offline/validation/validate_rotation_pca_grid.py:63:    residual_y = abs(normalize_signed_180((pca + rot_to_y) - 90.0))
+offline/validation/validate_rotation_pca_grid.py:75:        "pca_angle_deg": round(pca, 6),
+offline/validation/validate_rotation_pca_grid.py:91:def compare_with_rotation_state(pca_angle_deg: float, rotation_state: Dict[str, Any]) -> Dict[str, Any]:
+offline/validation/validate_rotation_pca_grid.py:107:            "pca_vs_current_contract_deg": round(
+offline/validation/validate_rotation_pca_grid.py:108:                normalize_signed_180(pca_angle_deg - float(current["current_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:111:            "pca_vs_geospatial_deg": round(
+offline/validation/validate_rotation_pca_grid.py:112:                normalize_signed_180(pca_angle_deg - float(geo["target_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:115:            "pca_vs_physical_deg": round(
+offline/validation/validate_rotation_pca_grid.py:116:                normalize_signed_180(pca_angle_deg - float(phy["target_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:131:    current_pca = float(report["pca"]["principal_angle_deg"])
+offline/validation/validate_rotation_pca_grid.py:132:    current_contract = float(report["contract_comparison"]["current_frame"]["current_pca_deg"])
+offline/validation/validate_rotation_pca_grid.py:133:    pca_delta = abs(current_pca - current_contract)
+offline/validation/validate_rotation_pca_grid.py:139:    if pca_delta > PCA_ALIGNMENT_TOLERANCE_DEG:
+offline/validation/validate_rotation_pca_grid.py:173:        raise ValueError("Nem x/y nem row/col disponíveis para PCA.")
+offline/validation/validate_rotation_pca_grid.py:175:    pca_angle_deg = pca_angle_from_xy(x, y)
+offline/validation/validate_rotation_pca_grid.py:176:    grid_fit = compute_grid_fit(pca_angle_deg)
+offline/validation/validate_rotation_pca_grid.py:179:    contract_cmp = compare_with_rotation_state(pca_angle_deg, rotation_state)
+offline/validation/validate_rotation_pca_grid.py:184:            "pca_alignment_tolerance_deg": PCA_ALIGNMENT_TOLERANCE_DEG,
+offline/validation/validate_rotation_pca_grid.py:187:        "pca": {
+offline/validation/validate_rotation_pca_grid.py:188:            "principal_angle_deg": round(pca_angle_deg, 6),
+offline/validation/validate_rotation_pca_grid.py:204:    out_path = out_dir / "rotation_pca_grid_report.json"
+offline/validation/validate_rotation_pca_grid.py:207:    print("\n================ ROTATION PCA + GRID FIT ================")
+offline/validation/validate_rotation_pca_grid.py:209:    print("pca principal angle (deg):", report["pca"]["principal_angle_deg"])
+online/ui/dash_v96_watermark_pca_calibrator.py:14:def pca_angle(points):
+online/ui/dash_v96_watermark_pca_calibrator.py:41:angle_grid = pca_angle(colored) if len(colored) > 2 else 0.0
+online/ui/dash_v96_watermark_pca_calibrator.py:51:angle_img = pca_angle(sample) if len(sample) > 2 else 0.0
+online/ui/dash_v96_watermark_pca_calibrator.py:169:    print(">>> DASH V96 PCA WATERMARK CALIBRATOR <<<", flush=True)
+online/ui/dash_v99_contours_mesa_space.py:108:# CONTOURS — SEM PCA / SEM NORMALIZE

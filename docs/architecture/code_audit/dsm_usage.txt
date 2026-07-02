@@ -1,0 +1,160 @@
+offline/data/output/log/pipeline_20251216_152553.log:Reamostrando máscara para alinhar com DSM
+offline/data/output/logs/pipeline_20251216_155020.log:Reamostrando máscara para alinhar com DSM
+offline/data/output/logs/pipeline_20251216_165155.log:Lendo DSM, DTM e máscara...
+offline/data/output/logs/pipeline_20251216_165155.log:Reamostrando máscara para alinhar com DSM
+offline/data/output/logs/pipeline_20251216_165155.log:Calculando nDSM físico
+offline/data/output/maquete/maquete_log.txt:[08:01:38] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/maquete_log.txt:[08:09:31] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/maquete_log.txt:[08:13:04] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/maquete_log.txt:[08:17:58] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/maquete_log.txt:[08:26:09] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/pipeline_maquete.log:Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/pipeline_maquete.log:DSM, DTM carregados com sucesso.
+offline/data/output/maquete/pipeline_maquete.log:Calculando nDSM (DSM - DTM)...
+offline/data/output/maquete/pipeline_maquete.log:Aplicando máscara de edifícios ao nDSM...
+offline/data/output/maquete_final/maquete_log.txt:[1] Lendo DSM, DTM e MÁSCARA...
+offline/data/output/maquete_final/maquete_log.txt:DSM shape:  (4771, 6894)
+offline/data/output/maquete_final/maquete_log.txt:[3] Calculando nDSM (DSM - DTM)...
+offline/data/output/maquete_final/maquete_log.txt:nDSM: min=0.000, max=32796.512
+offline/data/output/maquete_final/maquete_log.txt:nDSM_masked: min=0.000, max=32775.980
+offline/data/output/maquete_final/maquete_log.txt:[5] Normalizando nDSM para faixa 0–255...
+offline/data/output/maquete_final/pipeline.log:[1] Lendo DSM e DTM...
+offline/data/output/maquete_final/pipeline.log:[5] Calculando nDSM...
+offline/data/output/maquete_final/pipeline.log:[1] DSM e DTM carregados.
+offline/data/output/maquete_final/pipeline.log:[1] DSM e DTM carregados.
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: DSM encontrado em /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete_mask/maquete_from_mask.log:Lendo rasters (DSM, DTM, MASK)...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] DSM shape:  (4771, 6894)
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] DSM bounds: BoundingBox(left=322122.20267884457, bottom=7393451.14942566, right=323147.163387595, top=7394160.474569473)
+offline/data/output/maquete_mask/maquete_from_mask.log:Corrigindo valores negativos de DSM/DTM...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] Menor valor encontrado (DSM/DTM): -32767.000
+offline/data/output/maquete_mask/maquete_from_mask.log:Calculando nDSM = DSM - DTM (alturas relativas)...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:41] nDSM stats (antes da máscara): min=0.000, max=32796.512
+offline/data/output/maquete_mask/maquete_from_mask.log:Aplicando máscara de edifícios ao nDSM...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:41] nDSM_masked stats: min=0.000, max=0.000
+offline/data/output/maquete_mask/maquete_from_mask.log:Calculando Z_total = DTM + nDSM_masked (somente onde há prédio)...
+offline/data/output_maquete/log_pipeline.txt:↪ Reamostrando máscara para alinhar com DSM
+offline/data/pipeline_log.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/pipeline_log.txt:[LOG] ===== Etapa 2/10: Alinhar CRS do DXF ao DSM e exportar vetores =====
+offline/data/pipeline_log.txt:[LOG] CRS do DXF definido para o mesmo do DSM: EPSG:31983
+offline/data/pipeline_log.txt:[LOG] ===== Etapa 4/10: Calcular nDSM (DSM - DTM) =====
+offline/data/pipeline_log.txt:[LOG] Calculando nDSM (DSM - DTM)…
+offline/data/pipeline_log.txt:[LOG] nDSM calculado.
+offline/data/pipeline_log.txt:[LOG] ===== Etapa 5/10: Aplicar máscara ao nDSM =====
+offline/data/pipeline_log.txt:[LOG] Aplicando máscara ao nDSM para remover árvores e outras feições…
+offline/data/pipeline_log.txt:[LOG] ===== Etapa 6/10: Reduzir nDSM mascarado para grid 8×16 =====
+offline/data/pipeline_log_gpkg.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/pipeline_log_gpkg.txt:[LOG] ATENÇÃO: GPKG sem CRS definido. Atribuindo CRS do DSM.
+offline/data/pipeline_log_gpkg.txt:[LOG] ===== Etapa 3/9: Calcular nDSM (DSM - DTM) =====
+offline/data/pipeline_log_gpkg.txt:[LOG] Calculando nDSM (DSM - DTM)…
+offline/data/pipeline_log_gpkg.txt:[LOG] nDSM calculado.
+offline/data/pipeline_log_gpkg.txt:[LOG] ===== Etapa 4/9: Aplicar máscara ao nDSM =====
+offline/data/pipeline_log_gpkg.txt:[LOG] Aplicando máscara ao nDSM para remover árvores e outras feições…
+offline/data/pipeline_log_gpkg.txt:[LOG] nDSM mascarado salvo em: /mnt/c/IPT-CitySpace-2018/data/nDSM_mascarado.tif
+offline/data/pipeline_log_gpkg.txt:[LOG] ===== Etapa 5/9: Reduzir nDSM mascarado para grid 8×16 =====
+offline/data/processo_ipcityspace.log:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 2/11: Carregando DSM =====
+offline/data/processo_ipcityspace.log:[LOG] Carregando DSM: [###-----------------] 18%
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 3/11: Registro DXF → DSM =====
+offline/data/processo_ipcityspace.log:[LOG] Registro DXF → DSM: [#####---------------] 27%
+offline/data/processo_ipcityspace.log:[LOG] Registrando DXF automaticamente com base no DSM…
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 4/11: Cálculo do nDSM =====
+offline/data/processo_ipcityspace.log:[LOG] Cálculo do nDSM: [#######-------------] 36%
+offline/data/processo_ipcityspace.log:[LOG] Carregando DSM e DTM e calculando nDSM…
+offline/data/processo_ipcityspace.log:[LOG] nDSM calculado.
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 5/11: Limpeza do nDSM =====
+offline/data/processo_ipcityspace.log:[LOG] Limpeza do nDSM: [#########-----------] 45%
+offline/data/processo_ipcityspace.log:[LOG] Removendo antenas e ruídos do nDSM…
+offline/data/processo_ipcityspace.log:[LOG] nDSM limpo.
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 7/11: Rotação do DSM e DTM =====
+offline/data/processo_ipcityspace.log:[LOG] Rotação do DSM e DTM: [############--------] 63%
+offline/data/processo_ipcityspace.log:[LOG] Rotacionando raster: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif (ângulo 0.000°)
+offline/data/processo_ipcityspace.log:[LOG] Raster rotacionado salvo em: /mnt/c/IPT-CitySpace-2018/data/DSM_rot.tif
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 8/11: Recalcular nDSM rotacionado =====
+offline/data/processo_ipcityspace.log:[LOG] Recalcular nDSM rotacionado: [##############------] 72%
+offline/ingestion/auto_dataset_ingestion.py:detectar DSM / DTM
+offline/ingestion/auto_dataset_ingestion.py:print("\n[4] Procurando rasters DSM / DTM...\n")
+offline/ingestion/auto_dataset_ingestion.py:DSM = None
+offline/ingestion/auto_dataset_ingestion.py:        DSM = f
+offline/ingestion/auto_dataset_ingestion.py:        print("DSM detectado:", DSM)
+offline/ingestion/auto_dataset_ingestion.py:    if DSM is None or DTM is None:
+offline/ingestion/auto_dataset_ingestion.py:        print("\nERRO: DSM ou DTM não identificados.")
+offline/ingestion/auto_dataset_ingestion.py:DSM_TARGET = RAW / "IPT-2018-DSM.tif"
+offline/ingestion/auto_dataset_ingestion.py:print("Destino DSM:", DSM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:shutil.copy(DSM, DSM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:print("✔ DSM copiado")
+offline/loading/load_raster.py:    Lê um raster (DSM ou DTM) e retorna:
+offline/processing/compute_heights.py:    Estado OFF-LINE: ComputeHeights (nDSM)
+offline/processing/compute_heights.py:    Calcula nDSM fisico (DSM - DTM) com mascara de edificios.
+offline/processing/compute_heights.py:    print("[ComputeHeights] Calculando nDSM")
+offline/processing/compute_heights.py:    print("[ComputeHeights] nDSM calculado com sucesso\n")
+offline/processing/normalize.py:    Normaliza nDSM (metros) para uint8 (0–255).
+offline/processing/normalize.py:    print("[Normalize] Normalizando nDSM (2–98%)")
+offline/processing/normalize.py:    - DSM
+offline/processing/normalize.py:    - nDSM
+offline/raster/core/compute_ndsm.py:CÁLCULO NDSM
+offline/raster/core/compute_ndsm.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLEAN.tif"
+offline/raster/core/compute_ndsm.py:NDSM = BASE / "offline/data/processed/dsm/IPT_2018_NDSM.tif"
+offline/raster/core/compute_ndsm.py:print("CÁLCULO NDSM")
+offline/raster/core/compute_ndsm.py:with rasterio.open(DSM) as dsm:
+offline/raster/core/compute_ndsm.py:with rasterio.open(NDSM,"w",**meta) as dst:
+offline/raster/core/compute_ndsm.py:print("✔ NDSM gerado\n")
+offline/raster/core/filter_dsm_spikes.py:LIMPEZA DSM
+offline/raster/core/filter_dsm_spikes.py:DSM_IN = BASE / "offline/data/processed/dsm/IPT_2018_DSM_Z.tif"
+offline/raster/core/filter_dsm_spikes.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLEAN.tif"
+offline/raster/core/filter_dsm_spikes.py:print("LIMPEZA DSM")
+offline/raster/core/filter_dsm_spikes.py:with rasterio.open(DSM_IN) as src:
+offline/raster/core/filter_dsm_spikes.py:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/filter_dsm_spikes.py:print("✔ DSM limpo\n")
+offline/raster/core/normalize_raster_to_scientific_system.py:DSM_UTM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:DSM_LOCAL = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DSM_UTM, DSM_LOCAL)
+offline/raster/core/normalize_vertical_reference.py:Sincroniza DSM e DTM no mesmo zero
+offline/raster/core/normalize_vertical_reference.py:DSM_IN = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/raster/core/normalize_vertical_reference.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_Z.tif"
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DSM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:print("✔ DSM e DTM sincronizados\n")
+offline/raster/core/reclip_rasters_to_domain.py:DSM_ROT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/raster/core/reclip_rasters_to_domain.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_DOMAIN.tif"
+offline/raster/core/reclip_rasters_to_domain.py:    for p in [DTM_ROT, DSM_ROT, DOMAIN_PATH]:
+offline/raster/core/reclip_rasters_to_domain.py:    clip_raster(DSM_ROT, DSM_OUT, domain_geom)
+offline/raster/core/reproject_rasters_to_utm.py:DSM_IN = BASE / "offline/data/raw/IPT-2018-DSM.tif"
+offline/raster/core/reproject_rasters_to_utm.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/raster/core/reproject_rasters_to_utm.py:reproject_raster(DSM_IN, DSM_OUT)
+offline/raster/pipeline/scientific_raster_runner.py:DSM_LOCAL = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DSM_CLIP = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(DSM_CLIP) as dsm:
+offline/raster/pipeline/scientific_raster_runner.py:    print("Computing DSM − DTM")
+offline/raster/pipeline/scientific_raster_runner.py:    clip_raster(DSM_LOCAL, DSM_CLIP, geom)
+offline/scientific_cell_metrics.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/scientific_cell_metrics.py:        mean_dsm = mean_raster_in_geom(DSM_PATH, geom)
+offline/scientific_cell_metrics_utm.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/scientific_cell_metrics_utm.py:        mean_dsm = mean_raster_in_geom(DSM_PATH, geom)
+offline/tools/align_raster_to_envelope.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/align_raster_to_envelope.py:shift_raster(DSM)
+offline/tools/fix_raster_vertical_alignment.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/fix_raster_vertical_alignment.py:    with rasterio.open(DSM) as src:
+offline/tools/fix_raster_vertical_alignment.py:    shift_raster(DSM, dy)
+offline/tools/reanchor_raster_to_envelope.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/reanchor_raster_to_envelope.py:reanchor(DSM)
+offline/tools/rebuild_scientific_raster_runner.py:DSM_INPUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/rebuild_scientific_raster_runner.py:DSM_ROT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/tools/rebuild_scientific_raster_runner.py:DSM_CLIP = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DSM_INPUT, DSM_ROT, params)
+offline/tools/rebuild_scientific_raster_runner.py:    clip_raster(DSM_ROT, DSM_CLIP)
+offline/tools/shift_raster_to_envelope.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DSM) as src:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DSM, "w", **profile) as dst:
+offline/tools/snap_vector_to_raster_grid.py:RASTER = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/validation/audit_altitude_statistics.py:Analisa valores DSM e DTM
+offline/validation/audit_altitude_statistics.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/validation/audit_altitude_statistics.py:stats("DSM", DSM)
+offline/validation/audit_raster_alignment.py:Verifica alinhamento entre DTM e DSM
+offline/validation/audit_raster_alignment.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/validation/audit_raster_alignment.py:print("DSM:", DSM_PATH)
+offline/validation/audit_raster_alignment.py:print("\n--- DSM ---")
+offline/validation/audit_raster_alignment.py:with rasterio.open(DSM_PATH) as dsm:
+offline/validation/validate_grid_vs_raster_alignment.py:GRID 8x16 (UTM) vs Raster DTM/DSM
+offline/validation/validate_rotated_raster_vs_envelope.py:RASTER_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/vector/core/apply_rigid_transform_clean.py:    Base científica para DTM, DSM, curvas de nível.

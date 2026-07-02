@@ -1,0 +1,166 @@
+offline/adapters/scientific_to_semantic_adapter.py:    df = pd.read_csv(INPUT_CSV)
+offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_uint8.csv", grid_uint8, delimiter=";", fmt="%d")
+offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_pino_cm.csv", pino_cm, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_terrain_m.csv", terrain, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_building_m.csv", building, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_z_total_m.csv", z_total, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:        json.dump(metadata, f, indent=2)
+offline/grid_to_pin_height.py:    df = pd.read_csv(INPUT)
+offline/grid_to_pin_height.py:    df.to_csv(INPUT, index=False)
+offline/grid_to_pin_height.py:        json.dump(plan, f, indent=2)
+offline/loading/load_raster.py:    with rasterio.open(path) as src:
+offline/loading/load_vector.py:    gdf = gpd.read_file(path)
+offline/loading/offline_product.py:        np.savetxt(grid_path, self.grid, fmt="%d", delimiter=";", newline="\n")
+offline/loading/offline_product.py:            json.dump(self.metadata, f, indent=2)
+offline/pipeline/01_build_scientific_grid.py:gdf = gpd.read_file(INPUT_GPKG)
+offline/pipeline/01_build_scientific_grid_BACKUP.py:df.to_csv(OUT/"grid_metrics_utm.csv",index=False)
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:df.to_csv(out, index=False)
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:gdf = gpd.read_file(INPUT)
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:out.to_file(OUTPUT)
+offline/pipeline/02_join_grid_metrics_with_geom.py:df = pd.read_csv(CSV_PATH)
+offline/pipeline/02_join_grid_metrics_with_geom.py:gdf = gpd.read_file(GPKG_PATH)
+offline/pipeline/02_join_grid_metrics_with_geom.py:gdf_merged.to_file(OUT_PATH, driver="GPKG")
+offline/pipeline/03b_generate_contours_clean_UI.py:gdf = gpd.read_file(INPUT)
+offline/pipeline/03b_generate_contours_clean_UI.py:gdf.to_file(OUTPUT)
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:gdf = gpd.read_file(OUTPUT)
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:gdf.to_file(OUTPUT)
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:gdf = gpd.read_file(INPUT, layer="curvas_dtm_true_2m")
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:gdf.to_file(OUTPUT)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:df = pd.read_csv(GRID_PATH)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:poly = gpd.read_file(POLYGON_PATH).dissolve().geometry.iloc[0]
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:minx, miny, maxx, maxy = gpd.read_file(POLYGON_PATH).total_bounds
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:np.save(OUT_MASK_NPY, fine)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:OUT_GEOJSON.write_text(json.dumps(geojson))
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:grid = gpd.read_file(GRID_GPKG)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:poly_gdf = gpd.read_file(POLY_SRC)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:poly.to_file(OUT_POLY, driver="GPKG")
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:np.savez_compressed(OUT_SURFACE, x=x, y=y, z=Z_masked)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:OUT_GEOJSON.write_text(json.dumps(geojson), encoding="utf-8")
+offline/pipeline/03_generate_contours_clean.py:gdf = gpd.read_file(IN_PATH, engine='pyogrio')
+offline/pipeline/03_generate_contours_clean.py:contours.to_file(OUT_PATH, driver='GPKG', engine='pyogrio')
+offline/pipeline/04b_generate_actuator_geospatial.py:gdf = gpd.read_file(IN_PATH, engine='pyogrio')
+offline/pipeline/04b_generate_actuator_geospatial.py:gdf.to_file(OUT_PATH, driver='GPKG', engine='pyogrio')
+offline/pipeline/04_generate_actuator_plan.py:    gdf = gpd.read_file(INPUT_GPKG)
+offline/pipeline/04_generate_actuator_plan.py:    mask = gpd.read_file(MASK_GPKG)
+offline/pipeline/04_generate_actuator_plan.py:    df_out.to_csv(OUTPUT_CSV, index=False)
+offline/pipeline/05_apply_rotation_to_contours.py:gdf = gpd.read_file(IN_PATH, engine="pyogrio")
+offline/pipeline/05_apply_rotation_to_contours.py:gdf.to_file(OUT_PATH, driver="GPKG", engine="pyogrio")
+offline/pipeline/05_generate_grid_mask_from_polygon.py:grid = gpd.read_file(GRID_GPKG)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:poly = gpd.read_file(polygon_path)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:grid.to_file(OUT_GPKG, driver="GPKG")
+offline/pipeline/05_generate_grid_mask_from_polygon.py:df = pd.read_csv(GRID_CSV)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:df.to_csv(OUT_CSV, index=False)
+offline/pipeline/06b_esri_to_grid_simple.py:gdf = gpd.read_file(GRID)
+offline/pipeline/06_generate_esri_overlay_grid.py:gdf = gpd.read_file(GRID)
+offline/pipeline_runner.py:    json.dump(plan, f, indent=2)
+offline/processing/build_mask_local_grid.py:    gdf = gpd.read_file(shapefile_path)
+offline/raster/core/clip_raster_by_envelope.py:    with rasterio.open(raster_path) as src:
+offline/raster/core/clip_raster_by_envelope.py:    with rasterio.open(output_path, "w", **out_meta) as dest:
+offline/raster/core/compute_ndsm.py:with rasterio.open(DSM) as dsm:
+offline/raster/core/compute_ndsm.py:with rasterio.open(DTM) as dtm:
+offline/raster/core/compute_ndsm.py:with rasterio.open(NDSM,"w",**meta) as dst:
+offline/raster/core/filter_dsm_spikes.py:with rasterio.open(DSM_IN) as src:
+offline/raster/core/filter_dsm_spikes.py:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_raster_to_scientific_system.py:    with rasterio.open(input_path) as src:
+offline/raster/core/normalize_raster_to_scientific_system.py:        with rasterio.open(output_path, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_IN) as dtm:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DSM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/reclip_rasters_to_domain.py:    with rasterio.open(input_path) as src:
+offline/raster/core/reclip_rasters_to_domain.py:        with rasterio.open(output_path, "w", **out_meta) as dst:
+offline/raster/core/reproject_rasters_to_utm.py:    with rasterio.open(src_path) as src:
+offline/raster/core/reproject_rasters_to_utm.py:        with rasterio.open(dst_path, "w", **profile) as dst:
+offline/raster/core/rotate_raster_scientific.py:with rasterio.open(input_path) as src:
+offline/raster/core/rotate_raster_scientific.py:    with rasterio.open(output_path, "w", **meta) as dst:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(input_raster) as src:
+offline/raster/pipeline/scientific_raster_runner.py:        with rasterio.open(output_raster, "w", **profile) as dst:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(reference_raster) as src:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(DSM_CLIP) as dsm:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(DTM_CLIP) as dtm:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(HEIGHT, "w", **profile) as dst:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(HEIGHT_TOTAL, "w", **profile) as dst:
+offline/render_dxf_ipt_para_mesa_16x8.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+offline/scientific_cell_metrics_utm.py:    gdf = gpd.read_file(GRID, engine="pyogrio")
+offline/scientific_cell_metrics_utm.py:    dsm = rasterio.open(DSM)
+offline/scientific_cell_metrics_utm.py:    dtm = rasterio.open(DTM)
+offline/scientific_cell_metrics_utm.py:    df.to_csv(OUT, index=False)
+offline/scientific_grid_builder.py:    with rasterio.open(DTM_PATH) as r:
+offline/scientific_grid_builder.py:    gdf.to_file(OUTPUT, driver="GPKG")
+offline/tools/05_recompute_rotation_from_grid.py:gdf = gpd.read_file(GRID_PATH, engine="pyogrio")
+offline/tools/05_recompute_rotation_from_grid.py:    json.dump(out, f, indent=2)
+offline/tools/06_recompute_rotation_true.py:gdf_A = gpd.read_file(ORIG, engine="pyogrio")
+offline/tools/06_recompute_rotation_true.py:gdf_B = gpd.read_file(ROT, engine="pyogrio")
+offline/tools/07_detect_rotation_from_envelope.py:gdf = gpd.read_file(ENV_PATH, engine="pyogrio")
+offline/tools/07_detect_rotation_from_envelope.py:    json.dump(out, f, indent=2)
+offline/tools/08_generate_grid_npy.py:gdf = gpd.read_file(GPKG, engine="pyogrio")
+offline/tools/08_generate_grid_npy.py:np.save(OUT, grid)
+offline/tools/align_raster_to_envelope.py:    with rasterio.open(path) as src:
+offline/tools/align_raster_to_envelope.py:    with rasterio.open(path, "w", **profile) as dst:
+offline/tools/apply_rigid_transform_raster_scientific.py:    with rasterio.open(src_path) as src:
+offline/tools/apply_rigid_transform_raster_scientific.py:        with rasterio.open(
+offline/tools/audit_alignment_grid_raster.py:    df = pd.read_csv(GRID_CSV)
+offline/tools/audit_alignment_grid_raster.py:    with rasterio.open(RASTER) as src:
+offline/tools/audit_altimetry_rasters.py:    with rasterio.open(path) as src:
+offline/tools/audit_coordinate_systems.py:    with rasterio.open(path) as src:
+offline/tools/audit_csv_products.py:        df = pd.read_csv(path, sep=None, engine="python")
+offline/tools/audit_csv_products.py:            df = pd.read_csv(path, delimiter=";")
+offline/tools/audit_csv_products.py:        df1 = pd.read_csv(a, sep=None, engine="python")
+offline/tools/audit_csv_products.py:        df2 = pd.read_csv(b, sep=None, engine="python")
+offline/tools/audit_csv_products.py:            df1 = pd.read_csv(a, delimiter=";")
+offline/tools/audit_csv_products.py:            df2 = pd.read_csv(b, delimiter=";")
+offline/tools/audit_grid_dimensions.py:    df = pd.read_csv(GRID_METRICS_UTM_CSV)
+offline/tools/audit_grid_raster_crs_alignment.py:    with rasterio.open(RASTER) as src:
+offline/tools/audit_lowest_points_dtm_dsm.py:    with rasterio.open(raster_path) as src:
+offline/tools/audit_raster_minmax.py:        with rasterio.open(p) as src:
+offline/tools/audit_scientific_grid.py:df = pd.read_csv(path)
+offline/tools/buildings_height_model.py:    with rasterio.open(HEIGHT_RASTER) as src:
+offline/tools/fix_raster_vertical_alignment.py:    with rasterio.open(DSM) as src:
+offline/tools/fix_raster_vertical_alignment.py:    with rasterio.open(path) as src:
+offline/tools/fix_raster_vertical_alignment.py:    with rasterio.open(path, "w", **profile) as dst:
+offline/tools/fix_runner_envelope_loader.py:gdf = gpd.read_file(
+offline/tools/fix_runner_envelope_loader_v2.py:    'import geopandas as gpd\n    gdf = gpd.read_file(ENVELOPE)'
+offline/tools/fix_scientific_raster_runner_envelope.py:    gdf = gpd.read_file(
+offline/tools/generate_actuator_plan_from_csv.py:        json.dump(output, f, indent=2)
+offline/tools/generate_grid_aligned_watermark.py:    gdf = gpd.read_file(path)
+offline/tools/generate_grid_aligned_watermark_v2.py:    gdf = gpd.read_file(path)
+offline/tools/reanchor_raster_to_envelope.py:    with rasterio.open(path) as src:
+offline/tools/reanchor_raster_to_envelope.py:    with rasterio.open(path, "w", **profile) as dst:
+offline/tools/rebuild_scientific_raster_runner.py:    with rasterio.open(src_path) as src:
+offline/tools/rebuild_scientific_raster_runner.py:        with rasterio.open(dst_path, "w", **meta) as dst:
+offline/tools/rebuild_scientific_raster_runner.py:    with rasterio.open(src_path) as src:
+offline/tools/rebuild_scientific_raster_runner.py:        with rasterio.open(dst_path, "w", **meta) as dst:
+offline/tools/recompute_altimetry_ndsm.py:    with rasterio.open(DTM_PATH) as dtm_ds:
+offline/tools/recompute_altimetry_ndsm.py:    with rasterio.open(DSM_PATH) as dsm_ds:
+offline/tools/recompute_altimetry_ndsm.py:    np.savetxt(OUT_TERRAIN, grid_terrain, fmt="%.3f", delimiter=";")
+offline/tools/recompute_altimetry_ndsm.py:    np.savetxt(OUT_BUILDING, grid_building, fmt="%.3f", delimiter=";")
+offline/tools/recompute_altimetry_ndsm.py:    np.savetxt(OUT_TOTAL, grid_total, fmt="%.3f", delimiter=";")
+offline/tools/recompute_rigid_transform.py:        json.dump(params, f, indent=2)
+offline/tools/recompute_rigid_transform.py:    print(json.dumps(params, indent=2))
+offline/tools/recompute_rigid_transform_utm_to_local.py:        json.dump(params, f, indent=2)
+offline/tools/recompute_rigid_transform_utm_to_local.py:    print(json.dumps(params, indent=2))
+offline/tools/recompute_transform_from_envelope.py:    with rasterio.open(DTM) as src:
+offline/tools/recompute_transform_from_envelope.py:        json.dump(params, f, indent=2)
+offline/tools/recompute_transform_from_envelope.py:    print(json.dumps(params, indent=2))
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DSM) as src:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DSM, "w", **profile) as dst:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DTM) as src:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DTM, "w", **profile) as dst:
+offline/tools/snap_vector_to_raster_grid.py:    with rasterio.open(RASTER) as src:
+offline/validate_dxf_ipt_original_rotated_clean.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+offline/validation/audit_altitude_statistics.py:with rasterio.open(path) as src:
+offline/validation/audit_raster_alignment.py:with rasterio.open(DTM_PATH) as dtm:
+offline/validation/audit_raster_alignment.py:with rasterio.open(DSM_PATH) as dsm:
+offline/validation/validate_contract_master.py:    out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+offline/validation/validate_contract_master.py:        df = pd.read_csv(csv_path)
+offline/validation/validate_grid_vs_raster_alignment.py:    with rasterio.open(DTM_PATH) as src:
+offline/validation/validate_grid_z_total_vs_dxf.py:    gdf = gpd.read_file(DXF_IPT)
+offline/validation/validate_raster_local_offset.py:    with rasterio.open(RASTER_PATH) as src:
+offline/validation/validate_rigid_transform_full.py:    gdf = gpd.read_file(ROTATED_PATH)
+offline/validation/validate_rigid_transform_parameters.py:    gdf_orig = gpd.read_file(ORIGINAL_PATH, layer=LAYER_ORIGINAL)
+offline/validation/validate_rigid_transform_parameters.py:    gdf_rot  = gpd.read_file(ROTATED_PATH, layer=LAYER_ROTATED)
+offline/validation/validate_rotated_raster_vs_envelope.py:with rasterio.open(RASTER_PATH) as src:
+offline/validation/validate_rotation_pca_grid.py:    df = pd.read_csv(csv_path)
+offline/validation/validate_rotation_pca_grid.py:    out_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+offline/validation/validate_scientific_grid_metrics.py:    df = pd.read_csv(CSV_PATH)

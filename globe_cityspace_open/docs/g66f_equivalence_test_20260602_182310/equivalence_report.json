@@ -1,0 +1,16 @@
+{
+  "grid_shape": [
+    8,
+    16
+  ],
+  "max_value": 42.492,
+  "max_position": {
+    "row": 7,
+    "col": 1
+  },
+  "min_value": 0.0,
+  "min_position": {
+    "row": 0,
+    "col": 0
+  }
+}

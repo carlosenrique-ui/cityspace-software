@@ -1,0 +1,417 @@
+offline/adapters/scientific_to_semantic_adapter.py:    building = df["altura_edificio_m"].values.reshape(GRID_ROWS, GRID_COLS)
+offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_building_m.csv", building, delimiter=";", fmt="%.3f")
+offline/data/output/log/pipeline_20251216_152553.log:Reamostrando máscara para alinhar com DSM
+offline/data/output/logs/pipeline_20251216_155020.log:Reamostrando máscara para alinhar com DSM
+offline/data/output/logs/pipeline_20251216_165155.log:Lendo DSM, DTM e máscara...
+offline/data/output/logs/pipeline_20251216_165155.log:Reamostrando máscara para alinhar com DSM
+offline/data/output/logs/pipeline_20251216_165155.log:Calculando nDSM físico
+offline/data/output/maquete/maquete_log.txt:[08:01:38] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/maquete_log.txt:[08:09:31] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/maquete_log.txt:[08:13:04] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/maquete_log.txt:[08:17:58] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/maquete_log.txt:[08:26:09] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/pipeline_maquete.log:Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete/pipeline_maquete.log:Lendo DTM: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/output/maquete/pipeline_maquete.log:DSM, DTM carregados com sucesso.
+offline/data/output/maquete/pipeline_maquete.log:Calculando nDSM (DSM - DTM)...
+offline/data/output/maquete/pipeline_maquete.log:Aplicando máscara de edifícios ao nDSM...
+offline/data/output/maquete_final/maquete_log.txt:[1] Lendo DSM, DTM e MÁSCARA...
+offline/data/output/maquete_final/maquete_log.txt:DSM shape:  (4771, 6894)
+offline/data/output/maquete_final/maquete_log.txt:DTM shape:  (4771, 6894)
+offline/data/output/maquete_final/maquete_log.txt:[3] Calculando nDSM (DSM - DTM)...
+offline/data/output/maquete_final/maquete_log.txt:nDSM: min=0.000, max=32796.512
+offline/data/output/maquete_final/maquete_log.txt:nDSM_masked: min=0.000, max=32775.980
+offline/data/output/maquete_final/maquete_log.txt:[5] Normalizando nDSM para faixa 0–255...
+offline/data/output/maquete_final/pipeline.log:[1] Lendo DSM e DTM...
+offline/data/output/maquete_final/pipeline.log:[5] Calculando nDSM...
+offline/data/output/maquete_final/pipeline.log:[7] Calculando altura absoluta (DTM + edifício)...
+offline/data/output/maquete_final/pipeline.log:[1] DSM e DTM carregados.
+offline/data/output/maquete_final/pipeline.log:[1] DSM e DTM carregados.
+offline/data/output/maquete_final/pipeline.log:[5] Alturas absolutas calculadas (DTM + edifícios).
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: DSM encontrado em /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: DTM encontrado em /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: Máscara de edifícios encontrado em /mnt/c/IPT-CitySpace-2018/data/mask_edificios.tif
+offline/data/output/maquete_mask/maquete_from_mask.log:Lendo rasters (DSM, DTM, MASK)...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] DSM shape:  (4771, 6894)
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] DTM shape:  (4771, 6894)
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] DSM bounds: BoundingBox(left=322122.20267884457, bottom=7393451.14942566, right=323147.163387595, top=7394160.474569473)
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] Máscara binária criada (mask > 0 → 1).
+offline/data/output/maquete_mask/maquete_from_mask.log:Corrigindo valores negativos de DSM/DTM...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] Menor valor encontrado (DSM/DTM): -32767.000
+offline/data/output/maquete_mask/maquete_from_mask.log:Calculando nDSM = DSM - DTM (alturas relativas)...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:41] nDSM stats (antes da máscara): min=0.000, max=32796.512
+offline/data/output/maquete_mask/maquete_from_mask.log:Aplicando máscara de edifícios ao nDSM...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:41] nDSM_masked stats: min=0.000, max=0.000
+offline/data/output/maquete_mask/maquete_from_mask.log:Calculando Z_total = DTM + nDSM_masked (somente onde há prédio)...
+offline/data/output/Plano_Atuador.csv:step,row,col,height_8bit,height_mm,lift_time_s,t_start_s
+offline/data/output_maquete/log_pipeline.txt:↪ Reamostrando máscara para alinhar com DSM
+offline/data/pipeline_log.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/pipeline_log.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/pipeline_log.txt:[LOG] ===== Etapa 2/10: Alinhar CRS do DXF ao DSM e exportar vetores =====
+offline/data/pipeline_log.txt:[LOG] CRS do DXF definido para o mesmo do DSM: EPSG:31983
+offline/data/pipeline_log.txt:[LOG] Máscara raster salva em: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.tif
+offline/data/pipeline_log.txt:[LOG] PNG da máscara salvo: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.png
+offline/data/pipeline_log.txt:[LOG] ===== Etapa 4/10: Calcular nDSM (DSM - DTM) =====
+offline/data/pipeline_log.txt:[LOG] Calculando nDSM (DSM - DTM)…
+offline/data/pipeline_log.txt:[LOG] nDSM calculado.
+offline/data/pipeline_log.txt:[LOG] ===== Etapa 5/10: Aplicar máscara ao nDSM =====
+offline/data/pipeline_log.txt:[LOG] Aplicando máscara ao nDSM para remover árvores e outras feições…
+offline/data/pipeline_log.txt:[LOG] ===== Etapa 6/10: Reduzir nDSM mascarado para grid 8×16 =====
+offline/data/pipeline_log_gpkg.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/pipeline_log_gpkg.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/pipeline_log_gpkg.txt:[LOG] ATENÇÃO: GPKG sem CRS definido. Atribuindo CRS do DSM.
+offline/data/pipeline_log_gpkg.txt:[LOG] Máscara raster salva em: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.tif
+offline/data/pipeline_log_gpkg.txt:[LOG] PNG da máscara salvo em: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.png
+offline/data/pipeline_log_gpkg.txt:[LOG] ===== Etapa 3/9: Calcular nDSM (DSM - DTM) =====
+offline/data/pipeline_log_gpkg.txt:[LOG] Calculando nDSM (DSM - DTM)…
+offline/data/pipeline_log_gpkg.txt:[LOG] nDSM calculado.
+offline/data/pipeline_log_gpkg.txt:[LOG] ===== Etapa 4/9: Aplicar máscara ao nDSM =====
+offline/data/pipeline_log_gpkg.txt:[LOG] Aplicando máscara ao nDSM para remover árvores e outras feições…
+offline/data/pipeline_log_gpkg.txt:[LOG] nDSM mascarado salvo em: /mnt/c/IPT-CitySpace-2018/data/nDSM_mascarado.tif
+offline/data/pipeline_log_gpkg.txt:[LOG] ===== Etapa 5/9: Reduzir nDSM mascarado para grid 8×16 =====
+offline/data/processo_ipcityspace.log:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+offline/data/processo_ipcityspace.log:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 2/11: Carregando DSM =====
+offline/data/processo_ipcityspace.log:[LOG] Carregando DSM: [###-----------------] 18%
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 3/11: Registro DXF → DSM =====
+offline/data/processo_ipcityspace.log:[LOG] Registro DXF → DSM: [#####---------------] 27%
+offline/data/processo_ipcityspace.log:[LOG] Registrando DXF automaticamente com base no DSM…
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 4/11: Cálculo do nDSM =====
+offline/data/processo_ipcityspace.log:[LOG] Cálculo do nDSM: [#######-------------] 36%
+offline/data/processo_ipcityspace.log:[LOG] Carregando DSM e DTM e calculando nDSM…
+offline/data/processo_ipcityspace.log:[LOG] nDSM calculado.
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 5/11: Limpeza do nDSM =====
+offline/data/processo_ipcityspace.log:[LOG] Limpeza do nDSM: [#########-----------] 45%
+offline/data/processo_ipcityspace.log:[LOG] Removendo antenas e ruídos do nDSM…
+offline/data/processo_ipcityspace.log:[LOG] nDSM limpo.
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 7/11: Rotação do DSM e DTM =====
+offline/data/processo_ipcityspace.log:[LOG] Rotação do DSM e DTM: [############--------] 63%
+offline/data/processo_ipcityspace.log:[LOG] Rotacionando raster: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif (ângulo 0.000°)
+offline/data/processo_ipcityspace.log:[LOG] Raster rotacionado salvo em: /mnt/c/IPT-CitySpace-2018/data/DSM_rot.tif
+offline/data/processo_ipcityspace.log:[LOG] Rotacionando raster: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif (ângulo 0.000°)
+offline/data/processo_ipcityspace.log:[LOG] Raster rotacionado salvo em: /mnt/c/IPT-CitySpace-2018/data/DTM_rot.tif
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 8/11: Recalcular nDSM rotacionado =====
+offline/data/processo_ipcityspace.log:[LOG] Recalcular nDSM rotacionado: [##############------] 72%
+offline/ingestion/auto_dataset_ingestion.py:detectar DSM / DTM
+offline/ingestion/auto_dataset_ingestion.py:print("\n[4] Procurando rasters DSM / DTM...\n")
+offline/ingestion/auto_dataset_ingestion.py:DSM = None
+offline/ingestion/auto_dataset_ingestion.py:DTM = None
+offline/ingestion/auto_dataset_ingestion.py:        DTM = f
+offline/ingestion/auto_dataset_ingestion.py:        DSM = f
+offline/ingestion/auto_dataset_ingestion.py:        print("DSM detectado:", DSM)
+offline/ingestion/auto_dataset_ingestion.py:        print("DTM detectado:", DTM)
+offline/ingestion/auto_dataset_ingestion.py:    if DSM is None or DTM is None:
+offline/ingestion/auto_dataset_ingestion.py:        print("\nERRO: DSM ou DTM não identificados.")
+offline/ingestion/auto_dataset_ingestion.py:DSM_TARGET = RAW / "IPT-2018-DSM.tif"
+offline/ingestion/auto_dataset_ingestion.py:DTM_TARGET = RAW / "IPT-2018-DTM.tif"
+offline/ingestion/auto_dataset_ingestion.py:print("Destino DSM:", DSM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:print("Destino DTM:", DTM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:shutil.copy(DSM, DSM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:shutil.copy(DTM, DTM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:print("✔ DSM copiado")
+offline/ingestion/auto_dataset_ingestion.py:print("✔ DTM copiado")
+offline/loading/load_raster.py:    Lê um raster (DSM ou DTM) e retorna:
+offline/pipeline_dag.py:"name": "normalize_height",
+offline/pipeline_dag.py:"name": "generate_pin_heights",
+offline/pipeline_dag.py:"script": "offline/processing/compute_heights.py",
+offline/pipeline_dag.py:"offline/products/runtime/grid_pin_heights.csv"
+offline/pipeline_dag.py:"offline/products/runtime/grid_pin_heights.csv"
+offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/processing/build_mask_local_grid.py:def build_mask_local_grid(grid_meta, shapefile_path):
+offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+offline/processing/build_mask_local_grid.py:    print(f"[MaskLocal] Mesa física: {mesa_width} x {mesa_height} cm")
+offline/processing/build_mask_local_grid.py:    scale_y = mesa_height / maxy
+offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+offline/processing/build_mask_local_grid.py:                    mask[r, c] = 1
+offline/processing/build_mask_local_grid.py:    pixels = int(mask.sum())
+offline/processing/build_mask_local_grid.py:    return mask
+offline/processing/clip_raster.py:from rasterio.mask import mask
+offline/processing/clip_raster.py:            out_image, out_transform = mask(
+offline/processing/clip_raster.py:        "height": out_image.shape[1],
+offline/processing/compute_heights.py:def compute_heights(dsm, dtm, mask):
+offline/processing/compute_heights.py:    Estado OFF-LINE: ComputeHeights (nDSM)
+offline/processing/compute_heights.py:    Calcula nDSM fisico (DSM - DTM) com mascara de edificios.
+offline/processing/compute_heights.py:    print("[ComputeHeights] Calculando nDSM")
+offline/processing/compute_heights.py:    ndsm[mask == 0] = 0
+offline/processing/compute_heights.py:    print("[ComputeHeights] nDSM calculado com sucesso\n")
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    buildings = geometries_sorted[1:]
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Total edifícios:", len(buildings))
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg(buildings, OUTPUT_BUILDINGS, "buildings")
+offline/processing/fit_raster_to_vector.py:    height, width = raster_array.shape
+offline/processing/fit_raster_to_vector.py:    py = (maxy - miny) / height
+offline/processing/normalize.py:    Normaliza nDSM (metros) para uint8 (0–255).
+offline/processing/normalize.py:    print("[Normalize] Normalizando nDSM (2–98%)")
+offline/processing/normalize.py:    Define a cota zero local baseada na menor cota do DTM.
+offline/processing/normalize.py:    - DTM
+offline/processing/normalize.py:    - DSM
+offline/processing/normalize.py:    - nDSM
+offline/processing/normalize.py:    ZERO LOCAL = min(DTM)
+offline/processing/normalize.py:    print("DTM min (new):", np.nanmin(dtm_local))
+offline/processing/normalize.py:    print("DTM max (new):", np.nanmax(dtm_local))
+offline/processing/rasterize_mask.py:def rasterize_mask(vector_gdf, raster_meta):
+offline/processing/rasterize_mask.py:    height = raster_meta["height"]
+offline/processing/rasterize_mask.py:    print(f"[Rasterize] Raster shape: ({height}, {width})")
+offline/processing/rasterize_mask.py:    mask = rasterize(
+offline/processing/rasterize_mask.py:        out_shape=(height, width),
+offline/processing/rasterize_mask.py:    pixels = int(mask.sum())
+offline/processing/rasterize_mask.py:    return mask
+offline/processing/reproject_raster.py:    transform, width, height = calculate_default_transform(
+offline/processing/reproject_raster.py:        src_meta["height"],
+offline/processing/reproject_raster.py:    dst_array = np.zeros((height, width), dtype=src_array.dtype)
+offline/processing/reproject_raster.py:        "height": height
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+offline/products/generate_contours_cartographic.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_cartographic.py:        str(DTM),
+offline/products/generate_contours_cartographic_v2.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_cartographic_v2.py:        str(DTM),
+offline/products/generate_contours_cartographic_v3.py:DTM = ENGINE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_cartographic_v3.py:        str(DTM),
+offline/products/generate_contours_from_dtm.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_from_dtm.py:        str(DTM_PATH),
+offline/products/generate_contours_from_dtm.py:        layer="urban_mask",
+offline/products/generate_contours_matplotlib.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_matplotlib.py:    str(DTM_FILE),
+offline/products/generate_contours_matplotlib.py:with rasterio.open(DTM_FILE) as src:
+offline/products/generate_contours_matplotlib.py:mask = unary_union(envelope.geometry)
+offline/products/generate_contours_matplotlib.py:    inter = geom.intersection(mask)
+offline/products/generate_contours_methodB.py:# 1) ler DTM
+offline/products/generate_contours_methodB.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_methodB.py:        str(DTM_PATH),
+offline/products/generate_contours_simple.py:# IPT-CitySpace – Curvas de Nível (DTM simples)
+offline/products/generate_contours_simple.py:# ✔ usa apenas DTM
+offline/products/generate_contours_simple.py:print("IPT-CitySpace – Contours from DTM")
+offline/products/generate_contours_simple.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_simple.py:# Load DTM
+offline/products/generate_contours_simple.py:print("\nLoading DTM")
+offline/products/generate_contours_simple.py:print(DTM_FILE)
+offline/products/generate_contours_simple.py:with rasterio.open(DTM_FILE) as src:
+offline/products/generate_contours_simple.py:print("DTM shape:", dtm.shape)
+offline/products/scientific/grid_metrics_8x16_utm.csv:cell_id,mean_dtm_m,mean_dsm_m,altura_edificio_m,altura_total_m,percent_building,percent_terrain
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:mask = build_mask_local_grid(
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:print(" Shape da máscara:", mask.shape)
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:print(" Células de edifício:", int(mask.sum()))
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:for row in mask:
+offline/raster/core/clip_raster_by_envelope.py:from rasterio.mask import mask
+offline/raster/core/clip_raster_by_envelope.py:        out_image, out_transform = mask(
+offline/raster/core/clip_raster_by_envelope.py:            "height": out_image.shape[1],
+offline/raster/core/compute_ndsm.py:CÁLCULO NDSM
+offline/raster/core/compute_ndsm.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLEAN.tif"
+offline/raster/core/compute_ndsm.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/compute_ndsm.py:NDSM = BASE / "offline/data/processed/dsm/IPT_2018_NDSM.tif"
+offline/raster/core/compute_ndsm.py:print("CÁLCULO NDSM")
+offline/raster/core/compute_ndsm.py:with rasterio.open(DSM) as dsm:
+offline/raster/core/compute_ndsm.py:with rasterio.open(DTM) as dtm:
+offline/raster/core/compute_ndsm.py:with rasterio.open(NDSM,"w",**meta) as dst:
+offline/raster/core/compute_ndsm.py:print("✔ NDSM gerado\n")
+offline/raster/core/filter_dsm_spikes.py:LIMPEZA DSM
+offline/raster/core/filter_dsm_spikes.py:DSM_IN = BASE / "offline/data/processed/dsm/IPT_2018_DSM_Z.tif"
+offline/raster/core/filter_dsm_spikes.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLEAN.tif"
+offline/raster/core/filter_dsm_spikes.py:print("LIMPEZA DSM")
+offline/raster/core/filter_dsm_spikes.py:with rasterio.open(DSM_IN) as src:
+offline/raster/core/filter_dsm_spikes.py:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/filter_dsm_spikes.py:print("✔ DSM limpo\n")
+offline/raster/core/normalize_raster_to_scientific_system.py:DTM_UTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:DSM_UTM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:DSM_LOCAL = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DTM_UTM, DTM_LOCAL)
+offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DSM_UTM, DSM_LOCAL)
+offline/raster/core/normalize_vertical_reference.py:Sincroniza DSM e DTM no mesmo zero
+offline/raster/core/normalize_vertical_reference.py:DSM_IN = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/raster/core/normalize_vertical_reference.py:DTM_IN = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/normalize_vertical_reference.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_Z.tif"
+offline/raster/core/normalize_vertical_reference.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_IN) as dtm:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DSM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:print("✔ DSM e DTM sincronizados\n")
+offline/raster/core/reclip_rasters_to_domain.py:from rasterio.mask import mask
+offline/raster/core/reclip_rasters_to_domain.py:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/reclip_rasters_to_domain.py:DSM_ROT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/raster/core/reclip_rasters_to_domain.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_DOMAIN.tif"
+offline/raster/core/reclip_rasters_to_domain.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_DOMAIN.tif"
+offline/raster/core/reclip_rasters_to_domain.py:        out_image, out_transform = mask(
+offline/raster/core/reclip_rasters_to_domain.py:            "height": out_image.shape[1],
+offline/raster/core/reclip_rasters_to_domain.py:    for p in [DTM_ROT, DSM_ROT, DOMAIN_PATH]:
+offline/raster/core/reclip_rasters_to_domain.py:    clip_raster(DTM_ROT, DTM_OUT, domain_geom)
+offline/raster/core/reclip_rasters_to_domain.py:    clip_raster(DSM_ROT, DSM_OUT, domain_geom)
+offline/raster/core/reproject_rasters_to_utm.py:DSM_IN = BASE / "offline/data/raw/IPT-2018-DSM.tif"
+offline/raster/core/reproject_rasters_to_utm.py:DTM_IN = BASE / "offline/data/raw/IPT-2018-DTM.tif"
+offline/raster/core/reproject_rasters_to_utm.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/raster/core/reproject_rasters_to_utm.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/core/reproject_rasters_to_utm.py:        transform, width, height = calculate_default_transform(
+offline/raster/core/reproject_rasters_to_utm.py:            src.height,
+offline/raster/core/reproject_rasters_to_utm.py:            height=height
+offline/raster/core/reproject_rasters_to_utm.py:reproject_raster(DSM_IN, DSM_OUT)
+offline/raster/core/reproject_rasters_to_utm.py:reproject_raster(DTM_IN, DTM_OUT)
+offline/raster/core/rotate_raster_scientific.py:    height, width = data.shape
+offline/raster/core/rotate_raster_scientific.py:        height,
+offline/raster/core/rotate_raster_scientific.py:    new_height = int((new_top - new_bottom) / res_y)
+offline/raster/core/rotate_raster_scientific.py:        (new_height, new_width),
+offline/raster/core/rotate_raster_scientific.py:        "height": new_height,
+offline/raster/pipeline/scientific_raster_runner.py:from rasterio.mask import mask
+offline/raster/pipeline/scientific_raster_runner.py:DSM_LOCAL = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DSM_CLIP = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/raster/pipeline/scientific_raster_runner.py:HEIGHT = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/raster/pipeline/scientific_raster_runner.py:HEIGHT_TOTAL = BASE / "offline/data/processed/height/HEIGHT_TOTAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:        out_image, out_transform = mask(
+offline/raster/pipeline/scientific_raster_runner.py:        height=out_image.shape[1],
+offline/raster/pipeline/scientific_raster_runner.py:def compute_height_models():
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(DSM_CLIP) as dsm:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(DTM_CLIP) as dtm:
+offline/raster/pipeline/scientific_raster_runner.py:    print("Computing DSM − DTM")
+offline/raster/pipeline/scientific_raster_runner.py:    height = dsm_data - dtm_data
+offline/raster/pipeline/scientific_raster_runner.py:    height[height < 0] = 0
+offline/raster/pipeline/scientific_raster_runner.py:    height[height > 100] = 0
+offline/raster/pipeline/scientific_raster_runner.py:    height_total = dtm_data + height
+offline/raster/pipeline/scientific_raster_runner.py:        dst.write(height.astype("float32"), 1)
+offline/raster/pipeline/scientific_raster_runner.py:        dst.write(height_total.astype("float32"), 1)
+offline/raster/pipeline/scientific_raster_runner.py:    print("Height min:", np.nanmin(height))
+offline/raster/pipeline/scientific_raster_runner.py:    print("Height max:", np.nanmax(height))
+offline/raster/pipeline/scientific_raster_runner.py:    clip_raster(DSM_LOCAL, DSM_CLIP, geom)
+offline/raster/pipeline/scientific_raster_runner.py:    clip_raster(DTM_LOCAL, DTM_CLIP, geom)
+offline/raster/pipeline/scientific_raster_runner.py:    compute_height_models()
+offline/scientific_cell_metrics.py:from rasterio.mask import mask
+offline/scientific_cell_metrics.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/scientific_cell_metrics.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics.py:            out_image, _ = mask(src, [geom], crop=True)
+offline/scientific_cell_metrics.py:        buildings = [shape(f["geometry"]) for f in bld]
+offline/scientific_cell_metrics.py:    print(f"Total edifícios: {len(buildings)}")
+offline/scientific_cell_metrics.py:        mean_dtm = mean_raster_in_geom(DTM_PATH, geom)
+offline/scientific_cell_metrics.py:        mean_dsm = mean_raster_in_geom(DSM_PATH, geom)
+offline/scientific_cell_metrics.py:        for b in buildings:
+offline/scientific_cell_metrics.py:            "percent_building",
+offline/scientific_cell_metrics_utm.py:from rasterio.mask import mask
+offline/scientific_cell_metrics_utm.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/scientific_cell_metrics_utm.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics_utm.py:            out_image, _ = mask(src, [geom], crop=True)
+offline/scientific_cell_metrics_utm.py:        buildings = [shape(f["geometry"]) for f in bld]
+offline/scientific_cell_metrics_utm.py:    print(f"Total edifícios: {len(buildings)}")
+offline/scientific_cell_metrics_utm.py:        mean_dtm = mean_raster_in_geom(DTM_PATH, geom)
+offline/scientific_cell_metrics_utm.py:        mean_dsm = mean_raster_in_geom(DSM_PATH, geom)
+offline/scientific_cell_metrics_utm.py:        for b in buildings:
+offline/scientific_cell_metrics_utm.py:            "percent_building",
+offline/scientific_grid_builder.py:    cell_height = altura_total / ROWS
+offline/scientific_grid_builder.py:    print(f"Cell height : {cell_height:.3f} m")
+offline/scientific_grid_builder.py:                ymax = maxy - row * cell_height
+offline/scientific_grid_builder.py:                ymin = ymax - cell_height
+offline/scientific_grid_builder.py:                            "cell_h": cell_height,
+offline/scientific_runner.py:    height = maxy - miny
+offline/scientific_runner.py:    print(f"Altura atual : {height:.3f} m\n")
+offline/scientific_runner.py:    current_ratio = width / height
+offline/scientific_runner.py:        new_height = width / target_ratio
+offline/scientific_runner.py:        new_height = height
+offline/scientific_runner.py:        new_width = height * target_ratio
+offline/scientific_runner.py:    half_h = new_height / 2
+offline/scientific_runner.py:    print(f"Nova altura : {new_height:.3f} m\n")
+offline/tests/test_generate_contours_topografico.py:    height_cm = nrows * CELL_SIZE_CM
+offline/tests/test_generate_contours_topografico.py:        figsize=(width_cm / 2.54, height_cm / 2.54)
+offline/tests/test_generate_contours_topografico.py:    ax.set_ylim(height_cm, 0)
+offline/tests/test_grid_to_pin_height.py:# tests/test_grid_to_pin_height.py
+offline/tests/test_grid_to_pin_height.py:from offline.geo.grid_to_pin_height import grid_to_pin_height
+offline/tests/test_grid_to_pin_height.py:def test_pin_height_basic():
+offline/tests/test_grid_to_pin_height.py:    heights = grid_to_pin_height(grid_norm, min_cm=0.0, max_cm=10.0)
+offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 0)] == 0.0
+offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 1)] == 5.0
+offline/tests/test_grid_to_pin_height.py:    assert heights[(1, 0)] == 10.0
+offline/tests/test_grid_to_pin_height.py:def test_pin_height_custom_range():
+offline/tests/test_grid_to_pin_height.py:    heights = grid_to_pin_height(grid_norm, min_cm=2.0, max_cm=6.0)
+offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 0)] == 4.0
+offline/tests/test_grid_to_pin_height.py:        grid_to_pin_height(grid_norm)
+offline/tests/test_grid_to_pin_height.py:        grid_to_pin_height(grid_norm, min_cm=10.0, max_cm=5.0)
+offline/tests/test_grid_to_temporal_sequence.py:    pin_heights = {
+offline/tests/test_grid_to_temporal_sequence.py:        pin_heights,
+offline/tests/test_scientific_runner_integration.py:def test_height_consistency():
+offline/tools/align_raster_to_envelope.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/align_raster_to_envelope.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/align_raster_to_envelope.py:shift_raster(DSM)
+offline/tools/align_raster_to_envelope.py:shift_raster(DTM)
+offline/tools/audit_fix_set_pin.py:    set_height_cm  -> set_height_cm
+offline/tools/audit_fix_set_pin.py:        if "set_height_cm" in text:
+offline/tools/audit_fix_set_pin.py:        "set_height_cm",
+offline/tools/audit_fix_set_pin.py:    print("IPT CitySpace – set_height_cm AUDIT")
+offline/tools/audit_fix_set_pin.py:    print(f"Files containing set_height_cm: {len(found)}")
+offline/tools/buildings_height_model.py:from rasterio.mask import mask
+offline/tools/buildings_height_model.py:HEIGHT_RASTER = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/tools/buildings_height_model.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/buildings_height_model.py:OUTPUT = BASE / "offline/products/scientific/buildings_with_height.gpkg"
+offline/tools/buildings_height_model.py:def compute_building_heights():
+offline/tools/buildings_height_model.py:    heights_mean = []
+offline/tools/buildings_height_model.py:    heights_p90 = []
+offline/tools/buildings_height_model.py:            out_image, _ = mask(src, [geom], crop=True)
+offline/tools/buildings_height_model.py:                heights_mean.append(0)
+offline/tools/buildings_height_model.py:                heights_p90.append(0)
+offline/tools/buildings_height_model.py:            heights_mean.append(h_mean)
+offline/tools/buildings_height_model.py:            heights_p90.append(h_p90)
+offline/tools/buildings_height_model.py:    gdf["height_mean"] = heights_mean
+offline/tools/buildings_height_model.py:    gdf["height_p90"] = heights_p90
+offline/tools/buildings_height_model.py:    print("Mean max:", max(heights_mean))
+offline/tools/buildings_height_model.py:    print("P90 max:", max(heights_p90))
+offline/tools/buildings_height_model.py:    compute_building_heights()
+offline/tools/build_pipeline_execution_order.py:"offline/products/generate_height_products.py",
+offline/tools/fix_raster_vertical_alignment.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/fix_raster_vertical_alignment.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/fix_raster_vertical_alignment.py:    with rasterio.open(DSM) as src:
+offline/tools/fix_raster_vertical_alignment.py:    shift_raster(DSM, dy)
+offline/tools/fix_raster_vertical_alignment.py:    shift_raster(DTM, dy)
+offline/tools/reanchor_raster_to_envelope.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/reanchor_raster_to_envelope.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/reanchor_raster_to_envelope.py:reanchor(DSM)
+offline/tools/reanchor_raster_to_envelope.py:reanchor(DTM)
+offline/tools/rebuild_scientific_raster_runner.py:from rasterio.mask import mask
+offline/tools/rebuild_scientific_raster_runner.py:DSM_INPUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/rebuild_scientific_raster_runner.py:DTM_INPUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/rebuild_scientific_raster_runner.py:DSM_ROT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/tools/rebuild_scientific_raster_runner.py:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/tools/rebuild_scientific_raster_runner.py:DSM_CLIP = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+offline/tools/rebuild_scientific_raster_runner.py:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/tools/rebuild_scientific_raster_runner.py:            out_image, out_transform = mask(src, [geom], crop=True)
+offline/tools/rebuild_scientific_raster_runner.py:            "height": out_image.shape[1],
+offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DSM_INPUT, DSM_ROT, params)
+offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DTM_INPUT, DTM_ROT, params)
+offline/tools/rebuild_scientific_raster_runner.py:    clip_raster(DSM_ROT, DSM_CLIP)
+offline/tools/rebuild_scientific_raster_runner.py:    clip_raster(DTM_ROT, DTM_CLIP)
+offline/tools/recompute_rigid_transform.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+offline/tools/recompute_rigid_transform.py:BUILDINGS_ROT = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/shift_raster_to_envelope.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/shift_raster_to_envelope.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DSM) as src:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DSM, "w", **profile) as dst:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DTM) as src:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DTM, "w", **profile) as dst:
+offline/tools/snap_vector_to_raster_grid.py:RASTER = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/snap_vector_to_raster_grid.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/validation/audit_altitude_statistics.py:Analisa valores DSM e DTM
+offline/validation/audit_altitude_statistics.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/validation/audit_altitude_statistics.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/validation/audit_altitude_statistics.py:stats("DSM", DSM)
+offline/validation/audit_altitude_statistics.py:stats("DTM", DTM)
+offline/validation/audit_raster_alignment.py:Verifica alinhamento entre DTM e DSM
+offline/validation/audit_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/validation/audit_raster_alignment.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/validation/audit_raster_alignment.py:print("DTM:", DTM_PATH)
+offline/validation/audit_raster_alignment.py:print("DSM:", DSM_PATH)
+offline/validation/audit_raster_alignment.py:print("\n--- DTM ---")
+offline/validation/audit_raster_alignment.py:with rasterio.open(DTM_PATH) as dtm:
+offline/validation/audit_raster_alignment.py:    print("height:", dtm.height)
+offline/validation/audit_raster_alignment.py:print("\n--- DSM ---")
+offline/validation/audit_raster_alignment.py:with rasterio.open(DSM_PATH) as dsm:
+offline/validation/audit_raster_alignment.py:    print("height:", dsm.height)
+offline/validation/validate_grid_vs_raster_alignment.py:GRID 8x16 (UTM) vs Raster DTM/DSM
+offline/validation/validate_grid_vs_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_grid_vs_raster_alignment.py:    with rasterio.open(DTM_PATH) as src:
+offline/validation/validate_raster_local_offset.py:RASTER_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_rotated_raster_vs_envelope.py:RASTER_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/vector/core/apply_rigid_transform_clean.py:    Base científica para DTM, DSM, curvas de nível.

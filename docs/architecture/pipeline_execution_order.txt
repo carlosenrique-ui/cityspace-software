@@ -1,0 +1,25 @@
+IPT CitySpace Offline Pipeline Order
+
+01 offline/raster/core/reclip_rasters_to_domain.py
+02 offline/raster/core/normalize_raster_to_scientific_system.py
+03 offline/raster/pipeline/scientific_raster_runner.py
+04 offline/processing/apply_rigid_transform_vector_scientific.py
+05 offline/vector/core/apply_rigid_transform_clean.py
+06 offline/vector/core/build_domain_1x2_utm.py
+07 offline/processing/build_official_urban_envelope_rotated.py
+08 offline/processing/dxf_hatch_to_scientific_gpkg_spline.py
+09 offline/products/generate_contours_from_dtm.py
+10 offline/products/generate_contours_cartographic.py
+11 offline/products/generate_contours_cartographic_v2.py
+12 offline/products/generate_contours_cartographic_v3.py
+13 offline/products/generate_contours_methodB.py
+14 offline/products/generate_height_products.py
+15 offline/scientific_runner.py
+16 offline/scientific_grid_builder.py
+17 offline/scientific_cell_metrics.py
+18 offline/scientific_cell_metrics_utm.py
+19 offline/scanners/zigzag_column_scanner.py
+20 offline/adapters/scientific_to_semantic_adapter.py
+21 offline/render_dxf_ipt_para_mesa_16x8.py
+22 offline/validate_dxf_ipt_original_rotated_clean.py
+23 offline/pipeline_runner.py

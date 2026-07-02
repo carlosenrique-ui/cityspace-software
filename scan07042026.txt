@@ -1,0 +1,1637 @@
+./config/system_parameters.py:# SCALE XY
+./config/system_parameters.py:def get_scale_xy():
+./config/system_parameters.py:print(f"SCALE: 1:{int(get_scale_xy())}")
+./config/system_paths.py:    "offline/products/scientific/grid_metrics_utm.csv"
+./docs/architecture/cityspace_coordinate_systems.md:The system separates scientific processing from the physical table runtime.
+./docs/architecture/cityspace_coordinate_systems.md:# CRS-1 — Scientific UTM
+./docs/architecture/cityspace_coordinate_systems.md:# CRS-2 — Rotated Scientific Domain
+./docs/architecture/cityspace_coordinate_systems.md:Rigid transformation applied
+./docs/architecture/cityspace_coordinate_systems.md:Still in UTM coordinates
+./docs/architecture/cityspace_coordinate_systems.md:urban_envelope_scientific_rotated
+./docs/architecture/cityspace_coordinate_systems.md:z_total_rotated
+./docs/architecture/cityspace_coordinate_systems.md:# CRS-3 — Table Grid
+./docs/architecture/cityspace_coordinate_systems.md:Origin:
+./docs/architecture/cityspace_coordinate_systems.md:UTM (CRS-1)
+./docs/architecture/cityspace_coordinate_systems.md:Rotation
+./docs/architecture/cityspace_coordinate_systems.md:Rotated Domain (CRS-2)
+./docs/architecture/cityspace_coordinate_systems.md:grid_metrics_utm
+./docs/architecture/cityspace_coordinate_systems.md:Table Grid (CRS-3)
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:./visualization/render_temporal_gif_v10.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/01_usage_zigzag_column_scanner.txt:./visualization/render_temporal_gif_v8.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_mask_local_grid.py:def build_mask_local_grid(grid_meta, shapefile_path):
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_mask_local_grid.py:                    mask[r, c] = 1
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_mask_local_grid.py:    pixels = int(mask.sum())
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_mask_local_grid.py:    return mask
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/clip_raster.py:from rasterio.mask import mask
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/clip_raster.py:            out_image, out_transform = mask(
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/compute_heights.py:def compute_heights(dsm, dtm, mask):
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/compute_heights.py:    ndsm[mask == 0] = 0
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/rasterize_mask.py:def rasterize_mask(vector_gdf, raster_meta):
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/rasterize_mask.py:    mask = rasterize(
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/rasterize_mask.py:    pixels = int(mask.sum())
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/rasterize_mask.py:    return mask
+./docs/architecture/code_audit/08_mask_usage.txt:offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+./docs/architecture/code_audit/08_mask_usage.txt:offline/raster/core/reclip_rasters_to_domain.py:        out_image, out_transform = mask(
+./docs/architecture/code_audit/08_mask_usage.txt:offline/raster/pipeline/scientific_raster_runner.py:        out_image, out_transform = mask(src, [geom], crop=True)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_cell_metrics_utm.py:from rasterio.mask import mask
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_cell_metrics_utm.py:            out_image, _ = mask(src, [geom], crop=True)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    buildings = geometries_sorted[1:]
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Total edifícios:", len(buildings))
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg(buildings, OUTPUT_BUILDINGS, "buildings")
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_cell_metrics_utm.py:        buildings = [shape(f["geometry"]) for f in bld]
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_cell_metrics_utm.py:    print(f"Total edifícios: {len(buildings)}")
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_cell_metrics_utm.py:        for b in buildings:
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:ENVELOPE_PATH  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:OUT_ENVELOPE  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:    print("Processando envelope urbano...")
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:OUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:    envelope = Polygon(largest.exterior)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:    print("Área do envelope externo:", envelope.area)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:    envelope_rot = rotate(envelope, angle, origin=(cx, cy), use_radians=False)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:    envelope_rot = translate(envelope_rot, xoff=dx, yoff=dy)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:        geometry=[envelope_rot],
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:        layer="urban_envelope_scientific_rotated",
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_ENVELOPE = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    envelope = geometries_sorted[0]
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Área envelope:", envelope.area)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Salvando envelope científico...")
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg([envelope], OUTPUT_ENVELOPE, "urban_envelope")
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific.gpkg",
+./docs/architecture/code_audit/08_mask_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/products/generate_contours_from_dtm.py:URBAN_MASK = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/products/generate_contours_matplotlib.py:URBAN_ENVELOPE = PROJECT_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/products/generate_contours_matplotlib.py:    crs=envelope.crs
+./docs/architecture/code_audit/08_mask_usage.txt:offline/raster/pipeline/scientific_raster_runner.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/raster/validation/validate_rigid_transform.py:ORIG_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/raster/validation/validate_rigid_transform.py:ROT_PATH  = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/raster/validation/validate_rigid_transform.py:LAYER_ORIG = "urban_envelope_scientific"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/raster/validation/validate_rigid_transform.py:LAYER_ROT = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_runner.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/scientific_runner.py:LAYER_INPUT = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/tools/build_pipeline_execution_order.py:"offline/processing/build_official_urban_envelope_rotated.py",
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validate_dxf_ipt_original_rotated_clean.py:#   - Origem = centro do envelope do DXF
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/fix_validation_scripts.py:TARGET_FILE = BASE / "offline/validation/validate_rotated_raster_vs_envelope.py"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rigid_transform_full.py:- Verificar coerência com envelope rotacionado
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rigid_transform_full.py:ROTATED_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rigid_transform_full.py:    # 2) Ler envelope rotacionado
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rigid_transform_parameters.py:ORIGINAL_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_original.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rigid_transform_parameters.py:ROTATED_PATH  = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rigid_transform_parameters.py:LAYER_ORIGINAL = "urban_envelope_original"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rigid_transform_parameters.py:LAYER_ROTATED  = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rotated_raster_vs_envelope.py:ENVELOPE_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rotated_raster_vs_envelope.py:print("\n[2/2] Lendo envelope rotacionado...")
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rotated_raster_vs_envelope.py:print("\nΔX (envelope - raster):", dx)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/validation/validate_rotated_raster_vs_envelope.py:print("ΔY (envelope - raster):", dy)
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:OUTPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:LAYER_INPUT = "urban_envelope_scientific"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:LAYER_OUTPUT = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:    print("\n[2/5] Abrindo envelope original...")
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/build_domain_1x2_utm.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/build_domain_1x2_utm.py:INPUT_LAYER = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/build_domain_1x2_utm.py:    print("[1/5] Lendo envelope rotacionado (UTM)...")
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/build_domain_1x2_utm.py:    print(f"Largura envelope : {largura:.3f} m")
+./docs/architecture/code_audit/08_mask_usage.txt:offline/vector/core/build_domain_1x2_utm.py:    print(f"Altura envelope  : {altura:.3f} m")
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/processing/apply_rigid_transform_vector_scientific.py:ENVELOPE_PATH  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/processing/apply_rigid_transform_vector_scientific.py:OUT_ENVELOPE  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/processing/build_official_urban_envelope_rotated.py:OUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/processing/build_official_urban_envelope_rotated.py:        layer="urban_envelope_scientific_rotated",
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_ENVELOPE = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg([envelope], OUTPUT_ENVELOPE, "urban_envelope")
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific.gpkg",
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/products/generate_contours_from_dtm.py:URBAN_MASK = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/products/generate_contours_matplotlib.py:URBAN_ENVELOPE = PROJECT_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/raster/pipeline/scientific_raster_runner.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/raster/validation/validate_rigid_transform.py:ORIG_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/raster/validation/validate_rigid_transform.py:ROT_PATH  = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/raster/validation/validate_rigid_transform.py:LAYER_ORIG = "urban_envelope_scientific"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/raster/validation/validate_rigid_transform.py:LAYER_ROT = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/scientific_runner.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/scientific_runner.py:LAYER_INPUT = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/tools/build_pipeline_execution_order.py:"offline/processing/build_official_urban_envelope_rotated.py",
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/validation/validate_rigid_transform_full.py:ROTATED_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/validation/validate_rigid_transform_parameters.py:ORIGINAL_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_original.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/validation/validate_rigid_transform_parameters.py:ROTATED_PATH  = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/validation/validate_rigid_transform_parameters.py:LAYER_ORIGINAL = "urban_envelope_original"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/validation/validate_rigid_transform_parameters.py:LAYER_ROTATED  = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/validation/validate_rotated_raster_vs_envelope.py:ENVELOPE_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/vector/core/apply_rigid_transform_clean.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/vector/core/apply_rigid_transform_clean.py:OUTPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/vector/core/apply_rigid_transform_clean.py:LAYER_INPUT = "urban_envelope_scientific"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/vector/core/apply_rigid_transform_clean.py:LAYER_OUTPUT = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/vector/core/build_domain_1x2_utm.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/09_mask_consumers.txt:offline/vector/core/build_domain_1x2_utm.py:INPUT_LAYER = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/building_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/building_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/building_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/building_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    buildings = geometries_sorted[1:]
+./docs/architecture/code_audit/building_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Total edifícios:", len(buildings))
+./docs/architecture/code_audit/building_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg(buildings, OUTPUT_BUILDINGS, "buildings")
+./docs/architecture/code_audit/building_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+./docs/architecture/code_audit/building_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+./docs/architecture/code_audit/building_usage.txt:offline/products/scientific/grid_metrics_8x16_utm.csv:cell_id,mean_dtm_m,mean_dsm_m,altura_edificio_m,altura_total_m,percent_building,percent_terrain
+./docs/architecture/code_audit/building_usage.txt:offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/building_usage.txt:offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_audit/building_usage.txt:offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/building_usage.txt:offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_audit/building_usage.txt:offline/scientific_cell_metrics_utm.py:        buildings = [shape(f["geometry"]) for f in bld]
+./docs/architecture/code_audit/building_usage.txt:offline/scientific_cell_metrics_utm.py:    print(f"Total edifícios: {len(buildings)}")
+./docs/architecture/code_audit/building_usage.txt:offline/scientific_cell_metrics_utm.py:        for b in buildings:
+./docs/architecture/code_audit/building_usage.txt:offline/scientific_cell_metrics_utm.py:            "percent_building",
+./docs/architecture/code_audit/building_usage.txt:offline/tools/buildings_height_model.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/building_usage.txt:offline/tools/recompute_rigid_transform.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/building_usage.txt:offline/tools/recompute_rigid_transform.py:BUILDINGS_ROT = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/building_usage.txt:offline/tools/snap_vector_to_raster_grid.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/output/maquete/maquete_log.txt:[08:01:38] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/output/maquete/maquete_log.txt:[08:09:31] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/output/maquete/maquete_log.txt:[08:13:04] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/output/maquete/maquete_log.txt:[08:17:58] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/output/maquete/maquete_log.txt:[08:26:09] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/output/maquete/pipeline_maquete.log:Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: DSM encontrado em /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/pipeline_log.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/pipeline_log.txt:[LOG] ===== Etapa 2/10: Alinhar CRS do DXF ao DSM e exportar vetores =====
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/pipeline_log.txt:[LOG] CRS do DXF definido para o mesmo do DSM: EPSG:31983
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/pipeline_log_gpkg.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/pipeline_log_gpkg.txt:[LOG] ATENÇÃO: GPKG sem CRS definido. Atribuindo CRS do DSM.
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/processo_ipcityspace.log:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/dsm_usage.txt:offline/data/processo_ipcityspace.log:[LOG] Rotacionando raster: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif (ângulo 0.000°)
+./docs/architecture/code_audit/dsm_usage.txt:offline/processing/compute_heights.py:    Estado OFF-LINE: ComputeHeights (nDSM)
+./docs/architecture/code_audit/dsm_usage.txt:offline/processing/compute_heights.py:    Calcula nDSM fisico (DSM - DTM) com mascara de edificios.
+./docs/architecture/code_audit/dsm_usage.txt:offline/processing/compute_heights.py:    print("[ComputeHeights] Calculando nDSM")
+./docs/architecture/code_audit/dsm_usage.txt:offline/processing/compute_heights.py:    print("[ComputeHeights] nDSM calculado com sucesso\n")
+./docs/architecture/code_audit/dsm_usage.txt:offline/processing/normalize.py:    Normaliza nDSM (metros) para uint8 (0–255).
+./docs/architecture/code_audit/dsm_usage.txt:offline/processing/normalize.py:    print("[Normalize] Normalizando nDSM (2–98%)")
+./docs/architecture/code_audit/dsm_usage.txt:offline/processing/normalize.py:    - DSM
+./docs/architecture/code_audit/dsm_usage.txt:offline/processing/normalize.py:    - nDSM
+./docs/architecture/code_audit/dsm_usage.txt:offline/raster/core/normalize_raster_to_scientific_system.py:DSM_UTM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_audit/dsm_usage.txt:offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DSM_UTM, DSM_LOCAL)
+./docs/architecture/code_audit/dsm_usage.txt:offline/raster/core/normalize_vertical_reference.py:Sincroniza DSM e DTM no mesmo zero
+./docs/architecture/code_audit/dsm_usage.txt:offline/raster/core/normalize_vertical_reference.py:print("✔ DSM e DTM sincronizados\n")
+./docs/architecture/code_audit/dsm_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:DSM_IN = BASE / "offline/data/raw/IPT-2018-DSM.tif"
+./docs/architecture/code_audit/dsm_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_audit/dsm_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:reproject_raster(DSM_IN, DSM_OUT)
+./docs/architecture/code_audit/dsm_usage.txt:offline/scientific_cell_metrics.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_audit/dsm_usage.txt:offline/scientific_cell_metrics_utm.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_audit/dsm_usage.txt:offline/scientific_cell_metrics_utm.py:        mean_dsm = mean_raster_in_geom(DSM_PATH, geom)
+./docs/architecture/code_audit/dsm_usage.txt:offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DSM_INPUT, DSM_ROT, params)
+./docs/architecture/code_audit/dsm_usage.txt:offline/validation/validate_grid_vs_raster_alignment.py:GRID 8x16 (UTM) vs Raster DTM/DSM
+./docs/architecture/code_audit/dsm_usage.txt:offline/validation/validate_rotated_raster_vs_envelope.py:RASTER_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+./docs/architecture/code_audit/dsm_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:    Base científica para DTM, DSM, curvas de nível.
+./docs/architecture/code_audit/dtm_usage.txt:offline/data/output/maquete/pipeline_maquete.log:Lendo DTM: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/dtm_usage.txt:offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: DTM encontrado em /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/dtm_usage.txt:offline/data/pipeline_log.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/dtm_usage.txt:offline/data/pipeline_log_gpkg.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/dtm_usage.txt:offline/data/processo_ipcityspace.log:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/dtm_usage.txt:offline/data/processo_ipcityspace.log:[LOG] Rotacionando raster: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif (ângulo 0.000°)
+./docs/architecture/code_audit/dtm_usage.txt:offline/processing/compute_heights.py:    Calcula nDSM fisico (DSM - DTM) com mascara de edificios.
+./docs/architecture/code_audit/dtm_usage.txt:offline/processing/normalize.py:    Define a cota zero local baseada na menor cota do DTM.
+./docs/architecture/code_audit/dtm_usage.txt:offline/processing/normalize.py:    - DTM
+./docs/architecture/code_audit/dtm_usage.txt:offline/processing/normalize.py:    ZERO LOCAL = min(DTM)
+./docs/architecture/code_audit/dtm_usage.txt:offline/processing/normalize.py:    print("DTM min (new):", np.nanmin(dtm_local))
+./docs/architecture/code_audit/dtm_usage.txt:offline/processing/normalize.py:    print("DTM max (new):", np.nanmax(dtm_local))
+./docs/architecture/code_audit/dtm_usage.txt:offline/products/generate_contours_cartographic.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/products/generate_contours_cartographic_v2.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/products/generate_contours_cartographic_v3.py:DTM = ENGINE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/products/generate_contours_from_dtm.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/products/generate_contours_matplotlib.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/products/generate_contours_methodB.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/products/generate_contours_simple.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/raster/core/normalize_raster_to_scientific_system.py:DTM_UTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DTM_UTM, DTM_LOCAL)
+./docs/architecture/code_audit/dtm_usage.txt:offline/raster/core/normalize_vertical_reference.py:Sincroniza DSM e DTM no mesmo zero
+./docs/architecture/code_audit/dtm_usage.txt:offline/raster/core/normalize_vertical_reference.py:print("✔ DSM e DTM sincronizados\n")
+./docs/architecture/code_audit/dtm_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:DTM_IN = BASE / "offline/data/raw/IPT-2018-DTM.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:reproject_raster(DTM_IN, DTM_OUT)
+./docs/architecture/code_audit/dtm_usage.txt:offline/scientific_cell_metrics.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/scientific_cell_metrics_utm.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/scientific_cell_metrics_utm.py:        mean_dtm = mean_raster_in_geom(DTM_PATH, geom)
+./docs/architecture/code_audit/dtm_usage.txt:offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DTM_INPUT, DTM_ROT, params)
+./docs/architecture/code_audit/dtm_usage.txt:offline/validation/validate_grid_vs_raster_alignment.py:GRID 8x16 (UTM) vs Raster DTM/DSM
+./docs/architecture/code_audit/dtm_usage.txt:offline/validation/validate_grid_vs_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/validation/validate_raster_local_offset.py:RASTER_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/dtm_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:    Base científica para DTM, DSM, curvas de nível.
+./docs/architecture/code_audit/envelope_audit_fixed.txt:/mnt/c/IPT-CitySpace-2018/ipt-cityspace-engine/offline/validation/validate_rotated_raster_vs_envelope.py
+./docs/architecture/code_audit/envelope_audit_found.txt:/mnt/c/IPT-CitySpace-2018/ipt-cityspace-engine/offline/processing/apply_rigid_transform_vector_scientific.py
+./docs/architecture/code_audit/envelope_audit_found.txt:/mnt/c/IPT-CitySpace-2018/ipt-cityspace-engine/offline/processing/build_official_urban_envelope_rotated.py
+./docs/architecture/code_audit/envelope_audit_found.txt:/mnt/c/IPT-CitySpace-2018/ipt-cityspace-engine/offline/processing/set_crs_scientific.py
+./docs/architecture/code_audit/envelope_audit_found.txt:/mnt/c/IPT-CitySpace-2018/ipt-cityspace-engine/offline/validation/validate_rotated_raster_vs_envelope.py
+./docs/architecture/code_audit/height_usage.txt:offline/pipeline_dag.py:"script": "offline/processing/compute_heights.py",
+./docs/architecture/code_audit/height_usage.txt:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./docs/architecture/code_audit/height_usage.txt:offline/processing/build_mask_local_grid.py:    print(f"[MaskLocal] Mesa física: {mesa_width} x {mesa_height} cm")
+./docs/architecture/code_audit/height_usage.txt:offline/processing/build_mask_local_grid.py:    scale_y = mesa_height / maxy
+./docs/architecture/code_audit/height_usage.txt:offline/processing/clip_raster.py:        "height": out_image.shape[1],
+./docs/architecture/code_audit/height_usage.txt:offline/processing/compute_heights.py:def compute_heights(dsm, dtm, mask):
+./docs/architecture/code_audit/height_usage.txt:offline/processing/fit_raster_to_vector.py:    height, width = raster_array.shape
+./docs/architecture/code_audit/height_usage.txt:offline/processing/fit_raster_to_vector.py:    py = (maxy - miny) / height
+./docs/architecture/code_audit/height_usage.txt:offline/processing/rasterize_mask.py:    height = raster_meta["height"]
+./docs/architecture/code_audit/height_usage.txt:offline/processing/rasterize_mask.py:    print(f"[Rasterize] Raster shape: ({height}, {width})")
+./docs/architecture/code_audit/height_usage.txt:offline/processing/rasterize_mask.py:        out_shape=(height, width),
+./docs/architecture/code_audit/height_usage.txt:offline/processing/reproject_raster.py:    transform, width, height = calculate_default_transform(
+./docs/architecture/code_audit/height_usage.txt:offline/processing/reproject_raster.py:        src_meta["height"],
+./docs/architecture/code_audit/height_usage.txt:offline/processing/reproject_raster.py:    dst_array = np.zeros((height, width), dtype=src_array.dtype)
+./docs/architecture/code_audit/height_usage.txt:offline/processing/reproject_raster.py:        "height": height
+./docs/architecture/code_audit/height_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:        transform, width, height = calculate_default_transform(
+./docs/architecture/code_audit/height_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:            src.height,
+./docs/architecture/code_audit/height_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:            height=height
+./docs/architecture/code_audit/height_usage.txt:offline/raster/core/rotate_raster_scientific.py:    height, width = data.shape
+./docs/architecture/code_audit/height_usage.txt:offline/raster/core/rotate_raster_scientific.py:        height,
+./docs/architecture/code_audit/height_usage.txt:offline/raster/core/rotate_raster_scientific.py:    new_height = int((new_top - new_bottom) / res_y)
+./docs/architecture/code_audit/height_usage.txt:offline/raster/core/rotate_raster_scientific.py:        (new_height, new_width),
+./docs/architecture/code_audit/height_usage.txt:offline/raster/core/rotate_raster_scientific.py:        "height": new_height,
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/build_mask_local_grid.py:def build_mask_local_grid(grid_meta, shapefile_path):
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/build_mask_local_grid.py:                    mask[r, c] = 1
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/build_mask_local_grid.py:    pixels = int(mask.sum())
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/build_mask_local_grid.py:    return mask
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/clip_raster.py:from rasterio.mask import mask
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/clip_raster.py:            out_image, out_transform = mask(
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/compute_heights.py:def compute_heights(dsm, dtm, mask):
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/compute_heights.py:    ndsm[mask == 0] = 0
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/rasterize_mask.py:def rasterize_mask(vector_gdf, raster_meta):
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/rasterize_mask.py:    mask = rasterize(
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/rasterize_mask.py:    pixels = int(mask.sum())
+./docs/architecture/code_audit/mask_usage.txt:offline/processing/rasterize_mask.py:    return mask
+./docs/architecture/code_audit/mask_usage.txt:offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+./docs/architecture/code_audit/mask_usage.txt:offline/raster/core/clip_raster_by_envelope.py:        out_image, out_transform = mask(
+./docs/architecture/code_audit/mask_usage.txt:offline/raster/core/reclip_rasters_to_domain.py:        out_image, out_transform = mask(
+./docs/architecture/code_audit/mask_usage.txt:offline/raster/pipeline/scientific_raster_runner.py:        out_image, out_transform = mask(
+./docs/architecture/code_audit/mask_usage.txt:offline/scientific_cell_metrics_utm.py:from rasterio.mask import mask
+./docs/architecture/code_audit/mask_usage.txt:offline/scientific_cell_metrics_utm.py:            out_image, _ = mask(src, [geom], crop=True)
+./docs/architecture/code_audit/mask_usage.txt:offline/tools/rebuild_scientific_raster_runner.py:            out_image, out_transform = mask(src, [geom], crop=True)
+./docs/architecture/code_audit/percentile_usage.txt:offline/processing/normalize.py:    p2, p98 = np.percentile(valid, [2, 98])
+./docs/architecture/code_audit/raster_usage.txt:offline/processing/clip_raster.py:import rasterio
+./docs/architecture/code_audit/raster_usage.txt:offline/processing/clip_raster.py:from rasterio.mask import mask
+./docs/architecture/code_audit/raster_usage.txt:offline/processing/clip_raster.py:    with rasterio.io.MemoryFile() as memfile:
+./docs/architecture/code_audit/raster_usage.txt:offline/processing/rasterize_mask.py:from rasterio.features import rasterize
+./docs/architecture/code_audit/raster_usage.txt:offline/processing/reproject_raster.py:import rasterio
+./docs/architecture/code_audit/raster_usage.txt:offline/processing/reproject_raster.py:from rasterio.warp import calculate_default_transform, reproject, Resampling
+./docs/architecture/code_audit/raster_usage.txt:offline/products/generate_contours_simple.py:        xs, ys = rasterio.transform.xy(transform, rows, cols)
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/normalize_raster_to_scientific_system.py:from rasterio.transform import Affine
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:import rasterio
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:from rasterio.warp import calculate_default_transform, reproject, Resampling
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:    with rasterio.open(src_path) as src:
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:        with rasterio.open(dst_path, "w", **profile) as dst:
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:                    source=rasterio.band(src, i),
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/reproject_rasters_to_utm.py:                    destination=rasterio.band(dst, i),
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/rotate_raster_scientific.py:import rasterio
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/rotate_raster_scientific.py:from rasterio.warp import reproject, Resampling
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/rotate_raster_scientific.py:from rasterio.transform import Affine
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/rotate_raster_scientific.py:with rasterio.open(input_path) as src:
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/rotate_raster_scientific.py:    left, bottom, right, top = rasterio.transform.array_bounds(
+./docs/architecture/code_audit/raster_usage.txt:offline/raster/core/rotate_raster_scientific.py:    with rasterio.open(output_path, "w", **meta) as dst:
+./docs/architecture/code_audit/raster_usage.txt:offline/scientific_cell_metrics_utm.py:import rasterio
+./docs/architecture/code_audit/raster_usage.txt:offline/scientific_cell_metrics_utm.py:from rasterio.mask import mask
+./docs/architecture/code_audit/raster_usage.txt:offline/scientific_cell_metrics_utm.py:    with rasterio.open(raster_path) as src:
+./docs/architecture/code_audit/raster_usage.txt:offline/tools/align_raster_to_envelope.py:from rasterio.transform import Affine
+./docs/architecture/code_audit/raster_usage.txt:offline/tools/fix_raster_vertical_alignment.py:from rasterio.transform import Affine
+./docs/architecture/code_audit/raster_usage.txt:offline/tools/reanchor_raster_to_envelope.py:from rasterio.transform import Affine
+./docs/architecture/code_audit/raster_usage.txt:offline/tools/rebuild_scientific_raster_runner.py:from rasterio.transform import Affine
+./docs/architecture/code_audit/raster_usage.txt:offline/tools/shift_raster_to_envelope.py:from rasterio.transform import Affine
+./docs/architecture/code_audit/raster_usage.txt:offline/validation/validate_rotated_raster_vs_envelope.py:import rasterio
+./docs/architecture/code_audit/raster_usage.txt:offline/validation/validate_rotated_raster_vs_envelope.py:with rasterio.open(RASTER_PATH) as src:
+./docs/architecture/code_audit/scientific_usage.txt:offline/adapters/scientific_to_semantic_adapter.py:        "source": "scientific_pipeline_utm",
+./docs/architecture/code_audit/scientific_usage.txt:offline/pipeline_dag.py:"script": "offline/raster/core/rotate_raster_scientific.py",
+./docs/architecture/code_audit/scientific_usage.txt:offline/pipeline_dag.py:"script": "offline/scientific_cell_metrics_utm.py",
+./docs/architecture/code_audit/scientific_usage.txt:offline/pipeline_dag.py:"offline/products/scientific/grid_metrics_8x16_utm.csv"
+./docs/architecture/code_audit/scientific_usage.txt:offline/pipeline_dag.py:"offline/products/scientific/grid_metrics_8x16_utm.csv"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:PARAMS_PATH = BASE_DIR / "offline/products/scientific/rigid_transform_params.json"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:ENVELOPE_PATH  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/apply_rigid_transform_vector_scientific.py:OUT_ENVELOPE  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:OUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/build_official_urban_envelope_rotated.py:        layer="urban_envelope_scientific_rotated",
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_ENVELOPE = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific.gpkg",
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+./docs/architecture/code_audit/scientific_usage.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/products/generate_contours_from_dtm.py:URBAN_MASK = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/products/generate_contours_matplotlib.py:URBAN_ENVELOPE = PROJECT_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/products/generate_contours_matplotlib.py:TRANSFORM_FILE = PROJECT_ROOT / "offline/products/scientific/rigid_transform_params.json"
+./docs/architecture/code_audit/scientific_usage.txt:offline/products/snapshots/ipt_fase2_semantic/metadata.json:  "source": "scientific_pipeline_utm",
+./docs/architecture/code_audit/scientific_usage.txt:offline/raster/core/rotate_raster_scientific.py:def rotate_raster_scientific(input_path, output_path, rigid_affine):
+./docs/architecture/code_audit/scientific_usage.txt:offline/raster/pipeline/scientific_raster_runner.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/raster/validation/validate_rigid_transform.py:ORIG_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/raster/validation/validate_rigid_transform.py:ROT_PATH  = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/raster/validation/validate_rigid_transform.py:LAYER_ORIG = "urban_envelope_scientific"
+./docs/architecture/code_audit/scientific_usage.txt:offline/raster/validation/validate_rigid_transform.py:LAYER_ROT = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/scientific_usage.txt:offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_audit/scientific_usage.txt:offline/scientific_cell_metrics.py:OUTPUT_CSV = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+./docs/architecture/code_audit/scientific_usage.txt:offline/scientific_cell_metrics_utm.py:GRID_PATH = BASE / "offline/products/scientific/grid_8x16_metric.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_audit/scientific_usage.txt:offline/scientific_cell_metrics_utm.py:OUTPUT_CSV = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+./docs/architecture/code_audit/scientific_usage.txt:offline/scientific_runner.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/scientific_runner.py:LAYER_INPUT = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tests/test_scientific_runner_integration.py:CSV_PATH = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/align_raster_to_envelope.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/audit_fix_envelope_pipeline.py:urban_envelope_scientific_rotated_clean.gpkg
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/audit_fix_envelope_pipeline.py:urban_envelope_scientific_rotated_clean.gpkg
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/audit_fix_envelope_pipeline.py:OLD = "urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/audit_fix_envelope_pipeline.py:NEW = "urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/audit_fix_envelope_pipeline.py:    "apply_rigid_transform_vector_scientific.py",
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/audit_fix_envelope_pipeline.py:    "set_crs_scientific.py"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/buildings_height_model.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/build_pipeline_execution_order.py:"offline/processing/apply_rigid_transform_vector_scientific.py",
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/build_pipeline_execution_order.py:"offline/processing/dxf_hatch_to_scientific_gpkg_spline.py",
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/build_pipeline_execution_order.py:"offline/scientific_cell_metrics_utm.py",
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/fix_raster_rotation_center.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/fix_raster_rotation_center_safe.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/fix_raster_transform_remove_translation.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/fix_raster_vertical_alignment.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/fix_runner_envelope_loader.py:    layer="urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/fix_scientific_raster_runner_envelope.py:        layer="urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/fix_scientific_raster_transform.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/fix_scientific_raster_transform.py:    print("\nFixing scientific raster transform\n")
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/reanchor_raster_to_envelope.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/rebuild_scientific_raster_runner.py:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/rebuild_scientific_raster_runner.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/rebuild_scientific_raster_runner.py:        layer="urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/recompute_rigid_transform.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/recompute_rigid_transform.py:BUILDINGS_ROT = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/recompute_rigid_transform.py:OUT = BASE / "offline/products/scientific/rigid_transform_params.json"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/shift_raster_to_envelope.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/snap_vector_to_raster_grid.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/tools/snap_vector_to_raster_grid.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/validation/validate_rigid_transform_full.py:PARAMS_PATH = ENGINE_ROOT / "offline/products/scientific/rigid_transform_params.json"
+./docs/architecture/code_audit/scientific_usage.txt:offline/validation/validate_rigid_transform_full.py:ROTATED_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/validation/validate_rigid_transform_json.py:PARAMS_PATH = ENGINE_ROOT / "offline/products/scientific/rigid_transform_params.json"
+./docs/architecture/code_audit/scientific_usage.txt:offline/validation/validate_rigid_transform_parameters.py:ORIGINAL_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_original.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/validation/validate_rigid_transform_parameters.py:ROTATED_PATH  = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/validation/validate_rigid_transform_parameters.py:LAYER_ROTATED  = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/scientific_usage.txt:offline/validation/validate_rotated_raster_vs_envelope.py:ENVELOPE_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/validation/validate_scientific_grid_metrics.py:CSV_PATH = ENGINE_ROOT / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+./docs/architecture/code_audit/scientific_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:OUTPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+./docs/architecture/code_audit/scientific_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:LAYER_INPUT = "urban_envelope_scientific"
+./docs/architecture/code_audit/scientific_usage.txt:offline/vector/core/apply_rigid_transform_clean.py:LAYER_OUTPUT = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/scientific_usage.txt:offline/vector/core/build_domain_1x2_utm.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./docs/architecture/code_audit/scientific_usage.txt:offline/vector/core/build_domain_1x2_utm.py:INPUT_LAYER = "urban_envelope_scientific_rotated_clean"
+./docs/architecture/code_audit/scientific_usage.txt:offline/vector/core/build_domain_1x2_utm.py:OUTPUT_PATH = BASE / "offline/products/scientific/domain_rect_1x2_utm.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/output/maquete/maquete_log.txt:[08:01:38] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/output/maquete/maquete_log.txt:[08:09:31] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/output/maquete/maquete_log.txt:[08:13:04] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/output/maquete/maquete_log.txt:[08:17:58] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/output/maquete/maquete_log.txt:[08:26:09] Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/raster/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/output/maquete/pipeline_maquete.log:Lendo DSM: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/output/maquete/pipeline_maquete.log:Lendo DTM: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: DSM encontrado em /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: DTM encontrado em /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/pipeline_log.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/pipeline_log.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/pipeline_log.txt:[LOG] ===== Etapa 2/10: Alinhar CRS do DXF ao DSM e exportar vetores =====
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/pipeline_log.txt:[LOG] CRS do DXF definido para o mesmo do DSM: EPSG:31983
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/pipeline_log_gpkg.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/pipeline_log_gpkg.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/pipeline_log_gpkg.txt:[LOG] ATENÇÃO: GPKG sem CRS definido. Atribuindo CRS do DSM.
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/processo_ipcityspace.log:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/processo_ipcityspace.log:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/processo_ipcityspace.log:[LOG] Rotacionando raster: /mnt/c/IPT-CitySpace-2018/data/dsm/IPT-2018-DSM_UTM23S.tif (ângulo 0.000°)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/data/processo_ipcityspace.log:[LOG] Rotacionando raster: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif (ângulo 0.000°)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/pipeline_dag.py:"script": "offline/processing/compute_heights.py",
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:def build_mask_local_grid(grid_meta, shapefile_path):
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:    print(f"[MaskLocal] Mesa física: {mesa_width} x {mesa_height} cm")
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:    scale_y = mesa_height / maxy
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:                    mask[r, c] = 1
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:    pixels = int(mask.sum())
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/build_mask_local_grid.py:    return mask
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/clip_raster.py:from rasterio.mask import mask
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/clip_raster.py:            out_image, out_transform = mask(
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/clip_raster.py:        "height": out_image.shape[1],
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/compute_heights.py:def compute_heights(dsm, dtm, mask):
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/compute_heights.py:    Estado OFF-LINE: ComputeHeights (nDSM)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/compute_heights.py:    Calcula nDSM fisico (DSM - DTM) com mascara de edificios.
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/compute_heights.py:    print("[ComputeHeights] Calculando nDSM")
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/compute_heights.py:    ndsm[mask == 0] = 0
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/compute_heights.py:    print("[ComputeHeights] nDSM calculado com sucesso\n")
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    buildings = geometries_sorted[1:]
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Total edifícios:", len(buildings))
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg(buildings, OUTPUT_BUILDINGS, "buildings")
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/fit_raster_to_vector.py:    height, width = raster_array.shape
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/fit_raster_to_vector.py:    py = (maxy - miny) / height
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/normalize.py:    Normaliza nDSM (metros) para uint8 (0–255).
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/normalize.py:    print("[Normalize] Normalizando nDSM (2–98%)")
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/normalize.py:    Define a cota zero local baseada na menor cota do DTM.
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/normalize.py:    - DTM
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/normalize.py:    - DSM
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/normalize.py:    - nDSM
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/normalize.py:    ZERO LOCAL = min(DTM)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/normalize.py:    print("DTM min (new):", np.nanmin(dtm_local))
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/normalize.py:    print("DTM max (new):", np.nanmax(dtm_local))
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/rasterize_mask.py:def rasterize_mask(vector_gdf, raster_meta):
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/rasterize_mask.py:    height = raster_meta["height"]
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/rasterize_mask.py:    print(f"[Rasterize] Raster shape: ({height}, {width})")
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/rasterize_mask.py:    mask = rasterize(
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/rasterize_mask.py:        out_shape=(height, width),
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/rasterize_mask.py:    pixels = int(mask.sum())
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/rasterize_mask.py:    return mask
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/reproject_raster.py:    transform, width, height = calculate_default_transform(
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/reproject_raster.py:        src_meta["height"],
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/reproject_raster.py:    dst_array = np.zeros((height, width), dtype=src_array.dtype)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/reproject_raster.py:        "height": height
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+./docs/architecture/code_audit/urban_height_audit.txt:offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+./docs/architecture/code_audit/urban_height_audit.txt:offline/products/generate_contours_cartographic.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/products/generate_contours_cartographic_v2.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/products/generate_contours_cartographic_v3.py:DTM = ENGINE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/products/generate_contours_from_dtm.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/products/generate_contours_matplotlib.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/products/generate_contours_methodB.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/products/generate_contours_simple.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/products/scientific/grid_metrics_8x16_utm.csv:cell_id,mean_dtm_m,mean_dsm_m,altura_edificio_m,altura_total_m,percent_building,percent_terrain
+./docs/architecture/code_audit/urban_height_audit.txt:offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/clip_raster_by_envelope.py:        out_image, out_transform = mask(
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/normalize_raster_to_scientific_system.py:DTM_UTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/normalize_raster_to_scientific_system.py:DSM_UTM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DTM_UTM, DTM_LOCAL)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DSM_UTM, DSM_LOCAL)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/normalize_vertical_reference.py:Sincroniza DSM e DTM no mesmo zero
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/normalize_vertical_reference.py:print("✔ DSM e DTM sincronizados\n")
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reclip_rasters_to_domain.py:        out_image, out_transform = mask(
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reproject_rasters_to_utm.py:DSM_IN = BASE / "offline/data/raw/IPT-2018-DSM.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reproject_rasters_to_utm.py:DTM_IN = BASE / "offline/data/raw/IPT-2018-DTM.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reproject_rasters_to_utm.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reproject_rasters_to_utm.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reproject_rasters_to_utm.py:        transform, width, height = calculate_default_transform(
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reproject_rasters_to_utm.py:            src.height,
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reproject_rasters_to_utm.py:            height=height
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reproject_rasters_to_utm.py:reproject_raster(DSM_IN, DSM_OUT)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/reproject_rasters_to_utm.py:reproject_raster(DTM_IN, DTM_OUT)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/rotate_raster_scientific.py:    height, width = data.shape
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/rotate_raster_scientific.py:        height,
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/rotate_raster_scientific.py:    new_height = int((new_top - new_bottom) / res_y)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/rotate_raster_scientific.py:        (new_height, new_width),
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/core/rotate_raster_scientific.py:        "height": new_height,
+./docs/architecture/code_audit/urban_height_audit.txt:offline/raster/pipeline/scientific_raster_runner.py:        out_image, out_transform = mask(
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:from rasterio.mask import mask
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:            out_image, _ = mask(src, [geom], crop=True)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:        buildings = [shape(f["geometry"]) for f in bld]
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:    print(f"Total edifícios: {len(buildings)}")
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:        mean_dtm = mean_raster_in_geom(DTM_PATH, geom)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:        mean_dsm = mean_raster_in_geom(DSM_PATH, geom)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:        for b in buildings:
+./docs/architecture/code_audit/urban_height_audit.txt:offline/scientific_cell_metrics_utm.py:            "percent_building",
+./docs/architecture/code_audit/urban_height_audit.txt:offline/tools/buildings_height_model.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/tools/rebuild_scientific_raster_runner.py:            out_image, out_transform = mask(src, [geom], crop=True)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DSM_INPUT, DSM_ROT, params)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DTM_INPUT, DTM_ROT, params)
+./docs/architecture/code_audit/urban_height_audit.txt:offline/tools/recompute_rigid_transform.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/tools/recompute_rigid_transform.py:BUILDINGS_ROT = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/tools/snap_vector_to_raster_grid.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/validation/validate_grid_vs_raster_alignment.py:GRID 8x16 (UTM) vs Raster DTM/DSM
+./docs/architecture/code_audit/urban_height_audit.txt:offline/validation/validate_grid_vs_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/validation/validate_raster_local_offset.py:RASTER_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/validation/validate_rotated_raster_vs_envelope.py:RASTER_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+./docs/architecture/code_audit/urban_height_audit.txt:offline/vector/core/apply_rigid_transform_clean.py:    Base científica para DTM, DSM, curvas de nível.
+./docs/architecture/code_search/01_pipeline.txt:offline/adapters/scientific_to_semantic_adapter.py:        "source": "scientific_pipeline_utm",
+./docs/architecture/code_search/01_pipeline.txt:offline/products/snapshots/1cm_rotated/metadata.json:  "source": "IPT-CitySpace OFFLINE pipeline",
+./docs/architecture/code_search/01_pipeline.txt:offline/products/snapshots/ipt_fase2_semantic/metadata.json:  "source": "scientific_pipeline_utm",
+./docs/architecture/code_search/01_pipeline.txt:offline/raster/validation/validate_rigid_transform.py:        print("✖ Revisar pipeline de transformação\n")
+./docs/architecture/code_search/06_stage.txt:offline/pipeline_dag.py:"offline/data/stage2_rotate/dtm/*.tif",
+./docs/architecture/code_search/06_stage.txt:offline/pipeline_dag.py:"offline/data/stage2_rotate/dsm/*.tif"
+./docs/architecture/code_search/06_stage.txt:offline/pipeline_dag.py:"offline/data/stage2_rotate/dtm/*.tif"
+./docs/architecture/code_search/08_process.txt:offline/pipeline_dag.py:"script": "offline/processing/reproject_raster.py",
+./docs/architecture/code_search/08_process.txt:offline/pipeline_dag.py:"script": "offline/processing/clip_raster.py",
+./docs/architecture/code_search/08_process.txt:offline/pipeline_dag.py:"script": "offline/processing/normalize.py",
+./docs/architecture/code_search/08_process.txt:offline/pipeline_dag.py:"script": "offline/processing/compute_heights.py",
+./docs/architecture/code_search/08_process.txt:offline/processing/apply_rigid_transform_vector_scientific.py:def process_layer(input_path, output_path, angle, cx, cy, dx, dy):
+./docs/architecture/code_search/08_process.txt:offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(BUILDINGS_PATH, OUT_BUILDINGS, angle, cx, cy, dx, dy)
+./docs/architecture/code_search/08_process.txt:offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(ENVELOPE_PATH, OUT_ENVELOPE, angle, cx, cy, dx, dy)
+./docs/architecture/code_search/08_process.txt:offline/products/generate_contours_cartographic.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/products/generate_contours_cartographic_v2.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/products/generate_contours_cartographic_v3.py:DTM = ENGINE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/products/generate_contours_from_dtm.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/products/generate_contours_matplotlib.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/products/generate_contours_methodB.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/products/generate_contours_simple.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+./docs/architecture/code_search/08_process.txt:offline/raster/core/normalize_raster_to_scientific_system.py:DTM_UTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/raster/core/normalize_raster_to_scientific_system.py:DSM_UTM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/raster/core/reproject_rasters_to_utm.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/raster/core/reproject_rasters_to_utm.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/scientific_cell_metrics.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/scientific_cell_metrics.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/scientific_cell_metrics_utm.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/scientific_cell_metrics_utm.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/tools/build_pipeline_execution_order.py:"offline/processing/apply_rigid_transform_vector_scientific.py",
+./docs/architecture/code_search/08_process.txt:offline/tools/build_pipeline_execution_order.py:"offline/processing/build_official_urban_envelope_rotated.py",
+./docs/architecture/code_search/08_process.txt:offline/tools/build_pipeline_execution_order.py:"offline/processing/dxf_hatch_to_scientific_gpkg_spline.py",
+./docs/architecture/code_search/08_process.txt:offline/validation/validate_grid_vs_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/validation/validate_raster_local_offset.py:RASTER_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./docs/architecture/code_search/08_process.txt:offline/validation/validate_rotated_raster_vs_envelope.py:RASTER_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+./docs/architecture/code_search/21_render.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:from online.renderers.renderer2d import Renderer2D
+./docs/architecture/code_search/21_render.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:from online.renderers.colormaps import height_colormap
+./docs/architecture/code_search/21_render.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    renderer = Renderer2D(
+./docs/architecture/code_search/21_render.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    renderer.render_png(
+./docs/architecture/code_search/22_renderer.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:from online.renderers.renderer2d import Renderer2D
+./docs/architecture/code_search/22_renderer.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:from online.renderers.colormaps import height_colormap
+./docs/architecture/code_search/22_renderer.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    renderer = Renderer2D(
+./docs/architecture/code_search/22_renderer.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    renderer.render_png(
+./docs/architecture/code_search/23_visualization.txt:./offline/validate_dxf_ipt_original_rotated_clean.py:# Esta versão é a base visual oficial do IPT rotacionado
+./docs/architecture/code_search/23_visualization.txt:./offline/validate_dxf_ipt_original_rotated_clean.py:OUT_DIR = "visualization/debug"
+./docs/architecture/code_search/23_visualization.txt:./online/core/modes.py:    visual_scale: float
+./docs/architecture/code_search/23_visualization.txt:./online/core/modes.py:        visual_scale=1.0,
+./docs/architecture/code_search/23_visualization.txt:./online/core/modes.py:        visual_scale=0.6,
+./docs/architecture/code_search/23_visualization.txt:./online/core/modes.py:        visual_scale=0.8,
+./docs/architecture/code_search/23_visualization.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:# - DXF como overlay visual
+./docs/architecture/code_search/23_visualization.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    save_path = "visualization/debug/planta_baixa_ipt.png"
+./docs/architecture/code_search/23_visualization.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    # Aplicar DXF como overlay visual
+./docs/architecture/code_search/23_visualization.txt:./scripts/05_rotate_z_total.py:Z_TOTAL_PATH = "../data/output/Z_total_masked_visual.tif"
+./docs/architecture/code_search/23_visualization.txt:./tools/calibration/fine_rotate_v50_v51.py:- ajuste fino visual
+./docs/architecture/code_search/23_visualization.txt:./tools/calibration/make_raster_angle_compare_v55.py:Gera duas versões para avaliação visual:
+./docs/architecture/code_search/23_visualization.txt:./tools/calibration/make_raster_angle_compare_v55.py:    print("\nArquivos gerados para comparação visual.")
+./docs/architecture/code_search/23_visualization.txt:./tools/calibration/rotate_manual_two_angles.py:- Gerar 2 versões para avaliação visual
+./docs/architecture/code_search/23_visualization.txt:./tools/calibration/rotate_visual_B_vertical.py:- ajuste visual manual
+./docs/architecture/code_search/23_visualization.txt:./tools/calibration/rotate_visual_B_vertical.py:PREVIEW_OUT = ENGINE_ROOT / "visualization/calibration_preview_vertical.png"
+./docs/architecture/code_search/24_ui.txt:./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:    scaled = ((clipped - vmin) / (vmax - vmin) * 255.0).astype(np.uint8)
+./docs/architecture/code_search/24_ui.txt:./offline/loading/load_vector.py:    - NÃO atribui CRS
+./docs/architecture/code_search/24_ui.txt:./offline/loading/validate_crs.py:    - Nenhuma reprojeção ocorre aqui
+./docs/architecture/code_search/24_ui.txt:./offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_search/24_ui.txt:./offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_search/24_ui.txt:./offline/processing/apply_rigid_transform_vector_scientific.py:    print("\nArquivos gerados:")
+./docs/architecture/code_search/24_ui.txt:./offline/processing/build_mask_local_grid.py:def build_mask_local_grid(grid_meta, shapefile_path):
+./docs/architecture/code_search/24_ui.txt:./offline/processing/build_mask_local_grid.py:    print("[MaskLocal] Construindo máscara local de edifícios")
+./docs/architecture/code_search/24_ui.txt:./offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./docs/architecture/code_search/24_ui.txt:./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+./docs/architecture/code_search/24_ui.txt:./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    buildings = geometries_sorted[1:]
+./docs/architecture/code_search/24_ui.txt:./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Total edifícios:", len(buildings))
+./docs/architecture/code_search/24_ui.txt:./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg(buildings, OUTPUT_BUILDINGS, "buildings")
+./docs/architecture/code_search/24_ui.txt:./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("\nArquivos gerados:")
+./docs/architecture/code_search/24_ui.txt:./offline/processing/normalize.py:    Normaliza nDSM (metros) para uint8 (0–255).
+./docs/architecture/code_search/24_ui.txt:./offline/processing/normalize.py:        return np.zeros_like(ndsm, dtype=np.uint8)
+./docs/architecture/code_search/24_ui.txt:./offline/processing/normalize.py:    gray = (norm * 255).astype(np.uint8)
+./docs/architecture/code_search/24_ui.txt:./offline/processing/rasterize_mask.py:        dtype="uint8",
+./docs/architecture/code_search/24_ui.txt:./offline/processing/rasterize_mask.py:    print("[Rasterize] Rasterizacao concluida\n")
+./docs/architecture/code_search/24_ui.txt:./offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+./docs/architecture/code_search/24_ui.txt:./offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+./docs/architecture/code_search/24_ui.txt:./offline/processing/set_crs_scientific.py:        print(f"Arquivo não encontrado: {f}")
+./docs/architecture/code_search/24_ui.txt:./offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:        buildings = [shape(f["geometry"]) for f in bld]
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:    print(f"Total edifícios: {len(buildings)}")
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:        area_build = 0.0
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:        for b in buildings:
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:                area_build += b.intersection(geom).area
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:        percent_build = (area_build / area_cell) * 100.0
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:        percent_terrain = 100.0 - percent_build
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:            percent_build,
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:            "percent_building",
+./docs/architecture/code_search/24_ui.txt:./offline/scientific_cell_metrics_utm.py:    print(f"Arquivo: {OUTPUT_CSV.name}")
+./docs/architecture/code_search/24_ui.txt:./offline/tools/build_pipeline_execution_order.py:"offline/vector/core/build_domain_1x2_utm.py",
+./docs/architecture/code_search/24_ui.txt:./offline/tools/build_pipeline_execution_order.py:"offline/processing/build_official_urban_envelope_rotated.py",
+./docs/architecture/code_search/24_ui.txt:./offline/validate_dxf_ipt_original_rotated_clean.py:    log(f"Arquivo origem: {DXF_PATH}")
+./docs/architecture/code_search/24_ui.txt:./offline/validate_dxf_ipt_original_rotated_clean.py:    log(f"Arquivo gerado: {OUT_PNG}")
+./docs/architecture/code_search/24_ui.txt:./offline/validation/validate_rigid_transform_json.py:def build_rotation_matrix(theta_deg):
+./docs/architecture/code_search/24_ui.txt:./offline/validation/validate_rigid_transform_json.py:        print("❌ Arquivo não encontrado:", PARAMS_PATH)
+./docs/architecture/code_search/24_ui.txt:./offline/validation/validate_rigid_transform_json.py:    required_keys = [
+./docs/architecture/code_search/24_ui.txt:./offline/validation/validate_rigid_transform_json.py:    missing = [k for k in required_keys if k not in params]
+./docs/architecture/code_search/24_ui.txt:./offline/validation/validate_rigid_transform_json.py:    print("\n[2] Construindo matriz de rotação...")
+./docs/architecture/code_search/24_ui.txt:./offline/validation/validate_rigid_transform_json.py:    R = build_rotation_matrix(theta)
+./docs/architecture/code_search/24_ui.txt:./offline/validation/validate_rigid_transform_parameters.py:        print("❌ Arquivo original não encontrado:", ORIGINAL_PATH)
+./docs/architecture/code_search/24_ui.txt:./offline/validation/validate_rigid_transform_parameters.py:        print("❌ Arquivo rotacionado não encontrado:", ROTATED_PATH)
+./docs/architecture/code_search/24_ui.txt:./offline/validation/validate_rigid_transform_parameters.py:    print("\n[1] Lendo arquivos...")
+./docs/architecture/code_search/24_ui.txt:./offline/vector/core/apply_rigid_transform_clean.py:    print("\n[4/5] Arquivo salvo com sucesso.")
+./docs/architecture/code_search/24_ui.txt:./offline/vector/core/apply_rigid_transform_clean.py:    print(f"Arquivo: {OUTPUT_PATH.name}")
+./docs/architecture/code_search/24_ui.txt:./offline/vector/core/build_domain_1x2_utm.py:        print("Envelope muito largo → aumentando altura")
+./docs/architecture/code_search/24_ui.txt:./offline/vector/core/build_domain_1x2_utm.py:        print("Envelope muito alto → aumentando largura")
+./docs/architecture/code_search/24_ui.txt:./offline/vector/core/build_domain_1x2_utm.py:    print("\n[4/5] Construindo domínio 1:2...")
+./docs/architecture/code_search/24_ui.txt:./offline/vector/core/build_domain_1x2_utm.py:    print(f"Arquivo: {OUTPUT_PATH.name}\n")
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/adjust_micro_angle_final.py:    Image.fromarray(rotated.astype(np.uint8)).save(RASTER_OUT)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/fine_rotate_v50_v51.py:    arr = (arr * 255).clip(0,255).astype(np.uint8)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/make_raster_angle_compare_v55.py:    Image.fromarray((rot * 255).astype(np.uint8)).save(out_path)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/make_raster_angle_compare_v55.py:    print("\nArquivos gerados para comparação visual.")
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_from_neg60_minutes.py:    Image.fromarray((rot * 255).astype(np.uint8)).save(out_path)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_manual_angle.py:    img_out = (final * 255).astype(np.uint8)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_manual_two_angles.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_manual_two_angles_fine.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_manual_two_angles_fine_v2.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_manual_two_angles_fine_v3.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_manual_two_angles_fine_v4.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_manual_two_angles_fine_v5.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_visual_B_vertical.py:ANGLE = 88.0   # ajuste fino aqui (ex: 87.5 / 88 / 89)
+./docs/architecture/code_search/24_ui.txt:./tools/calibration/rotate_visual_B_vertical.py:    out_img = (crop * 255).astype(np.uint8)
+./docs/architecture/code_search/24_ui.txt:./visualization/tools/filter_candidate_tifs.py:- Exclui automaticamente Lisboa e mosaicos grandes
+./docs/architecture/code_search/24_ui.txt:./visualization/tools/scan_rotation_code.py:    "build"
+./docs/architecture/code_search/24_ui.txt:./visualization/tools/scan_rotation_code.py:# Varredura de arquivos
+./docs/architecture/code_search/25_layers.txt:./offline/processing/apply_rigid_transform_vector_scientific.py:def process_layer(input_path, output_path, angle, cx, cy, dx, dy):
+./docs/architecture/code_search/25_layers.txt:./offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(BUILDINGS_PATH, OUT_BUILDINGS, angle, cx, cy, dx, dy)
+./docs/architecture/code_search/25_layers.txt:./offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(ENVELOPE_PATH, OUT_ENVELOPE, angle, cx, cy, dx, dy)
+./docs/architecture/code_search/25_layers.txt:./offline/processing/build_official_urban_envelope_rotated.py:        layer="urban_envelope_scientific_rotated",
+./docs/architecture/code_search/25_layers.txt:./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:def save_gpkg(geoms, output_path, layer_name):
+./docs/architecture/code_search/25_layers.txt:./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    layer = ds.CreateLayer(layer_name, None, ogr.wkbPolygon)
+./docs/architecture/code_search/25_layers.txt:./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    feature_def = layer.GetLayerDefn()
+./docs/architecture/code_search/25_layers.txt:./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:        layer.CreateFeature(feature)
+./docs/architecture/code_search/25_layers.txt:./offline/processing/set_crs_scientific.py:    layers = pyogrio.list_layers(f)
+./docs/architecture/code_search/25_layers.txt:./offline/processing/set_crs_scientific.py:    for layer_name, geom_type in layers:
+./docs/architecture/code_search/25_layers.txt:./offline/processing/set_crs_scientific.py:        print(f"  Fixando CRS na layer: {layer_name}")
+./docs/architecture/code_search/25_layers.txt:./offline/processing/set_crs_scientific.py:        df = pyogrio.read_dataframe(f, layer=layer_name)
+./docs/architecture/code_search/25_layers.txt:./offline/processing/set_crs_scientific.py:            layer=layer_name,
+./docs/architecture/code_search/25_layers.txt:./offline/processing/set_crs_scientific.py:print("\n✔ CRS aplicado em TODAS as layers.")
+./docs/architecture/code_search/25_layers.txt:./offline/raster/validation/validate_rigid_transform.py:def read_area(path, layer):
+./docs/architecture/code_search/25_layers.txt:./offline/raster/validation/validate_rigid_transform.py:    with fiona.open(path, layer=layer) as src:
+./docs/architecture/code_search/25_layers.txt:./offline/scientific_cell_metrics_utm.py:    with fiona.open(GRID_PATH, layer=GRID_LAYER) as grid:
+./docs/architecture/code_search/25_layers.txt:./offline/scientific_cell_metrics_utm.py:    with fiona.open(BUILDINGS_PATH, layer=BUILDINGS_LAYER) as bld:
+./docs/architecture/code_search/25_layers.txt:./offline/validate_dxf_ipt_original_rotated_clean.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./docs/architecture/code_search/25_layers.txt:./offline/validation/validate_rigid_transform_parameters.py:    gdf_orig = gpd.read_file(ORIGINAL_PATH, layer=LAYER_ORIGINAL)
+./docs/architecture/code_search/25_layers.txt:./offline/validation/validate_rigid_transform_parameters.py:    gdf_rot  = gpd.read_file(ROTATED_PATH, layer=LAYER_ROTATED)
+./docs/architecture/code_search/25_layers.txt:./offline/vector/core/apply_rigid_transform_clean.py:    with fiona.open(INPUT_PATH, layer=LAYER_INPUT) as src:
+./docs/architecture/code_search/25_layers.txt:./offline/vector/core/apply_rigid_transform_clean.py:            layer=LAYER_OUTPUT
+./docs/architecture/code_search/25_layers.txt:./offline/vector/core/build_domain_1x2_utm.py:    with fiona.open(INPUT_PATH, layer=INPUT_LAYER) as src:
+./docs/architecture/code_search/25_layers.txt:./offline/vector/core/build_domain_1x2_utm.py:        layer=OUTPUT_LAYER,
+./docs/architecture/code_search/25_layers.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:# - Uma única layer (grid)
+./docs/architecture/code_search/25_layers.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    gdf = gpd.read_file(dxf_path, layer="entities")
+./docs/architecture/code_search/25_layers.txt:./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    print("Planta Baixa IPT validada (single layer)")
+./docs/architecture/code_search/25_layers.txt:./online/tests/dash_virtual_table_player_ui_clean.py:# GIF (mesmo mecanismo do player original)
+./docs/architecture/code_search/28_zoom.txt:./tools/calibration/align_ipt_raster_test.py:from scipy.ndimage import rotate, zoom
+./docs/architecture/code_search/28_zoom.txt:./tools/calibration/align_ipt_raster_test.py:    r = zoom(r, SCALE)
+./docs/architecture/code_search/28_zoom.txt:./tools/calibration/align_ipt_raster_v42.py:from scipy.ndimage import rotate, zoom, shift
+./docs/architecture/code_search/28_zoom.txt:./tools/calibration/align_ipt_raster_v47.py:from scipy.ndimage import rotate, zoom
+./docs/architecture/code_search/28_zoom.txt:./tools/calibration/align_ipt_raster_v47.py:    crop_scaled = zoom(crop, scale, order=1)
+./docs/architecture/code_search/28_zoom.txt:./tools/calibration/make_raster_v4_authorized.py:from scipy.ndimage import rotate, zoom
+./docs/architecture/code_search/28_zoom.txt:./tools/calibration/make_raster_v4_authorized.py:img = zoom(img, SCALE, order=1)
+./docs/architecture/pipeline_auto_dag.dot:"offline.products.snapshots.ipt_fase2_semantic.tests.test_mask_local_grid" -> "offline.processing.build_mask_local_grid";
+./docs/architecture/pipeline_auto_dag_report.txt:offline.products.snapshots.ipt_fase2_semantic.tests.test_mask_local_grid -> offline.processing.build_mask_local_grid
+./docs/architecture/pipeline_execution_flow.md:Method B rotation
+./docs/architecture/pipeline_execution_order.txt:04 offline/processing/apply_rigid_transform_vector_scientific.py
+./docs/architecture/pipeline_execution_order.txt:05 offline/vector/core/apply_rigid_transform_clean.py
+./docs/architecture/pipeline_execution_order.txt:06 offline/vector/core/build_domain_1x2_utm.py
+./docs/architecture/pipeline_execution_order.txt:07 offline/processing/build_official_urban_envelope_rotated.py
+./docs/architecture/pipeline_execution_order.txt:08 offline/processing/dxf_hatch_to_scientific_gpkg_spline.py
+./docs/architecture/pipeline_execution_order.txt:18 offline/scientific_cell_metrics_utm.py
+./docs/architecture/pipeline_execution_order.txt:22 offline/validate_dxf_ipt_original_rotated_clean.py
+./docs/architecture/pipeline_map.txt:offline/loading/validate_crs.py
+./docs/architecture/pipeline_map.txt:offline/processing/align_data.py
+./docs/architecture/pipeline_map.txt:offline/processing/align_vector_to_raster.py
+./docs/architecture/pipeline_map.txt:offline/processing/apply_rigid_transform_vector_scientific.py
+./docs/architecture/pipeline_map.txt:offline/processing/build_mask_local_grid.py
+./docs/architecture/pipeline_map.txt:offline/processing/build_official_urban_envelope_rotated.py
+./docs/architecture/pipeline_map.txt:offline/processing/clip_raster.py
+./docs/architecture/pipeline_map.txt:offline/processing/compute_heights.py
+./docs/architecture/pipeline_map.txt:offline/processing/dxf_hatch_to_scientific_gpkg_spline.py
+./docs/architecture/pipeline_map.txt:offline/processing/fit_raster_to_vector.py
+./docs/architecture/pipeline_map.txt:offline/processing/normalize.py
+./docs/architecture/pipeline_map.txt:offline/processing/rasterize_mask.py
+./docs/architecture/pipeline_map.txt:offline/processing/reproject_raster.py
+./docs/architecture/pipeline_map.txt:offline/processing/set_crs_scientific.py
+./docs/development/workflow_method.md:python -m offline.scientific_cell_metrics_utm
+./docs/development/workflow_method.md:- UTM existe apenas no **offline**
+./docs/development/workflow_method.md:modelo digital sincronizado
+./docs/Offline_pipeline_stabilization:### 2. Raster Processing
+./docs/Offline_pipeline_stabilization:- rotate_raster_scientific.py
+./docs/Offline_pipeline_stabilization:Rotation angle:
+./docs/Offline_pipeline_stabilization:CRS:
+./docs/pipeline_overview:RASTER PROCESSING
+./docs/TESTE_CALIBRACAO_E_RENDER_V43_2025-02-08.md:  - preservação do raster original (sem destruição de resolução)
+./docs/TESTE_CALIBRACAO_E_RENDER_V43_2025-02-08.md:- sensação de blocos empilhados
+./docs/TESTE_CALIBRACAO_E_RENDER_V43_2025-02-08.md:Sinais identificados:
+./docs/TESTE_TEMPORAL_FINAL_2025-02-07.md:Estabilizar o player interativo da Mesa Virtual v41 preservando o GIF histórico original e preparar a arquitetura para futura integração com timeline física real e mesa física.
+./docs/TESTE_TEMPORAL_FINAL_2025-02-07.md:   - DXF original
+./offline/adapters/scientific_to_semantic_adapter.py:Converte grid_metrics_utm.csv
+./offline/adapters/scientific_to_semantic_adapter.py:INPUT_CSV = SCIENTIFIC_DIR / "grid_metrics_utm.csv"
+./offline/adapters/scientific_to_semantic_adapter.py:        "source": "scientific_pipeline_utm",
+./offline/adapters/scientific_to_semantic_adapter.py.bak:Converte grid_metrics_utm.csv
+./offline/adapters/scientific_to_semantic_adapter.py.bak:INPUT_CSV = SCIENTIFIC_DIR / "grid_metrics_8x16_utm.csv"
+./offline/adapters/scientific_to_semantic_adapter.py.bak:        "source": "scientific_pipeline_utm",
+./offline/config/experiment_config.py:TIME_SCALE = 1.0  # 1.0 = tempo real
+./offline/config/system_parameters.py:PIN_HEIGHT_SCALE = 1.0
+./offline/config/system_paths.py:GRID_METRICS_UTM_CSV = SCIENTIFIC_PRODUCTS / "grid_metrics_utm.csv"
+./offline/config/system_paths.py:BUILDINGS_VECTOR = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/config/system_paths.py:URBAN_ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/ingestion/auto_dataset_ingestion.py:print("\n[5] Padronizando nomes científicos...\n")
+./offline/loading/load_raster.py:    print(f"[LoadRaster] CRS: {meta.get('crs')}")
+./offline/loading/load_vector.py:    - NÃO valida CRS
+./offline/loading/load_vector.py:    - NÃO atribui CRS
+./offline/loading/load_vector.py:    print(f"[LoadVector] CRS: {gdf.crs}")
+./offline/loading/offline_product.py:        if isinstance(grid_or_path, (str, Path)):
+./offline/loading/offline_product.py:        if not isinstance(grid, np.ndarray):
+./offline/loading/validate_crs.py:# offline/loading/validate_crs.py
+./offline/loading/validate_crs.py:def validate_crs(raster_meta, vector_gdf):
+./offline/loading/validate_crs.py:    Valida se raster e vetor possuem CRS compatível.
+./offline/loading/validate_crs.py:    - Raster SEMPRE deve ter CRS
+./offline/loading/validate_crs.py:    - Vetor SEM CRS é ERRO (não será assumido automaticamente)
+./offline/loading/validate_crs.py:    raster_crs = raster_meta.get("crs")
+./offline/loading/validate_crs.py:    vector_crs = vector_gdf.crs
+./offline/loading/validate_crs.py:    if raster_crs is None:
+./offline/loading/validate_crs.py:        raise RuntimeError("[ValidateCRS] Raster sem CRS. Pipeline interrompido.")
+./offline/loading/validate_crs.py:    if vector_crs is None:
+./offline/loading/validate_crs.py:            "[ValidateCRS] Vetor (DXF) sem CRS.\n"
+./offline/loading/validate_crs.py:    if raster_crs != vector_crs:
+./offline/loading/validate_crs.py:            "[ValidateCRS] CRS incompatíveis.\n"
+./offline/loading/validate_crs.py:            f"Raster: {raster_crs}\n"
+./offline/loading/validate_crs.py:            f"Vetor:  {vector_crs}\n"
+./offline/loading/validate_crs.py:    print("[ValidateCRS] OK — CRS compatíveis.")
+./offline/pipeline/01_build_scientific_grid.py:out_path = OUT / "grid_metrics_utm.csv"
+./offline/pipeline/01_build_scientific_grid.py:print("✅ grid_metrics_utm.csv gerado:", out_path)
+./offline/pipeline/01_build_scientific_grid_BACKUP.py:out_path = OUT / "grid_metrics_utm.csv"
+./offline/pipeline/01_build_scientific_grid_BACKUP.py:print("✅ grid_metrics_utm.csv gerado:", out_path)
+./offline/pipeline/02_compute_cell_metrics.py:from offline.scientific_cell_metrics_utm import main
+./offline/pipeline/02_join_grid_metrics_with_geom.py:CSV_PATH = BASE / "grid_metrics_utm.csv"
+./offline/pipeline/02_join_grid_metrics_with_geom.py:        raise Exception(f"❌ CSV missing column: {col}")
+./offline/pipeline/02_join_grid_metrics_with_geom.py:        raise Exception(f"❌ GPKG missing column: {col}")
+./offline/pipeline/03_generate_contours_clean.py:from shapely.affinity import rotate
+./offline/pipeline/03_generate_contours_clean.py:print('STEP 03 – CLEAN CONTOURS (UTM FIX)')
+./offline/pipeline/03_generate_contours_clean.py:# 🔥 coordenadas UTM reais (CENTRO DAS CÉLULAS)
+./offline/pipeline/03_generate_contours_clean.py:# 🔥 CRS correto
+./offline/pipeline/03_generate_contours_clean.py:}, crs=gdf.crs)
+./offline/pipeline/03_generate_contours_clean.py:angle = 0
+./offline/pipeline/03_generate_contours_clean.py:contours['geometry'] = contours['geometry'].apply(lambda g: rotate(g, angle, origin='center'))
+./offline/pipeline/04_generate_actuator_plan.py:    csv_path = Path("offline/products/scientific/grid_metrics_utm.csv")
+./offline/pipeline_dag.py:# IPT-CitySpace – Offline Processing DAG
+./offline/pipeline_dag.py:"script": "offline/processing/reproject_raster.py",
+./offline/pipeline_dag.py:"name": "rotate_rasters",
+./offline/pipeline_dag.py:"script": "offline/raster/core/rotate_raster_scientific.py",
+./offline/pipeline_dag.py:"offline/data/stage2_rotate/dtm/*.tif",
+./offline/pipeline_dag.py:"offline/data/stage2_rotate/dsm/*.tif"
+./offline/pipeline_dag.py:"script": "offline/processing/clip_raster.py",
+./offline/pipeline_dag.py:"offline/data/stage2_rotate/dtm/*.tif"
+./offline/pipeline_dag.py:"script": "offline/processing/normalize.py",
+./offline/pipeline_dag.py:"script": "offline/scientific_cell_metrics_utm.py",
+./offline/pipeline_dag.py:"script": "offline/processing/compute_heights.py",
+./offline/pipeline_dag.py.bak:"script": "offline/processing/reproject_raster.py",
+./offline/pipeline_dag.py.bak:"name": "rotate_rasters",
+./offline/pipeline_dag.py.bak:"script": "offline/raster/core/rotate_raster_scientific.py",
+./offline/pipeline_dag.py.bak:"offline/data/stage2_rotate/dtm/*.tif",
+./offline/pipeline_dag.py.bak:"offline/data/stage2_rotate/dsm/*.tif"
+./offline/pipeline_dag.py.bak:"script": "offline/processing/clip_raster.py",
+./offline/pipeline_dag.py.bak:"offline/data/stage2_rotate/dtm/*.tif"
+./offline/pipeline_dag.py.bak:"script": "offline/processing/normalize.py",
+./offline/pipeline_dag.py.bak:"script": "offline/scientific_cell_metrics_utm.py",
+./offline/pipeline_dag.py.bak:"offline/products/scientific/grid_metrics_8x16_utm.csv"
+./offline/pipeline_dag.py.bak:"script": "offline/processing/compute_heights.py",
+./offline/pipeline_dag.py.bak:"offline/products/scientific/grid_metrics_8x16_utm.csv"
+./offline/pipeline_runner.py:Ele apenas transforma:
+./offline/processing/align_data.py:    raster_crs = raster_meta.get("crs")
+./offline/processing/align_data.py:    vector_crs = vector_gdf.crs
+./offline/processing/align_data.py:    print(f"[AlignData] CRS raster: {raster_crs}")
+./offline/processing/align_data.py:    print(f"[AlignData] CRS vetor : {vector_crs}")
+./offline/processing/align_data.py:    print("[AlignData] Nenhuma transformação aplicada.\n")
+./offline/processing/align_vector_to_raster.py:para o espaço do raster (UTM).
+./offline/processing/align_vector_to_raster.py:Este módulo NÃO reprojeta CRS.
+./offline/processing/align_vector_to_raster.py:from shapely.affinity import scale, translate
+./offline/processing/align_vector_to_raster.py:    scale_x = (r_maxx - r_minx) / (v_maxx - v_minx)
+./offline/processing/align_vector_to_raster.py:    scale_y = (r_maxy - r_miny) / (v_maxy - v_miny)
+./offline/processing/align_vector_to_raster.py:    gdf_scaled = gdf.copy()
+./offline/processing/align_vector_to_raster.py:    gdf_scaled["geometry"] = gdf_scaled.geometry.apply(
+./offline/processing/align_vector_to_raster.py:        lambda geom: scale(
+./offline/processing/align_vector_to_raster.py:            xfact=scale_x,
+./offline/processing/align_vector_to_raster.py:            yfact=scale_y,
+./offline/processing/align_vector_to_raster.py:            origin=(v_minx, v_miny)
+./offline/processing/align_vector_to_raster.py:    gdf_aligned = gdf_scaled.copy()
+./offline/processing/align_vector_to_raster.py:    gdf_aligned["geometry"] = gdf_scaled.geometry.apply(
+./offline/processing/align_vector_to_raster.py:            xoff=r_minx - v_minx * scale_x,
+./offline/processing/align_vector_to_raster.py:            yoff=r_miny - v_miny * scale_y
+./offline/processing/apply_rigid_transform_vector_scientific.py:from shapely.affinity import rotate, translate
+./offline/processing/apply_rigid_transform_vector_scientific.py:# === APLICANDO TRANSFORMAÇÃO RÍGIDA (VETORES) ===
+./offline/processing/apply_rigid_transform_vector_scientific.py:PARAMS_PATH = BASE_DIR / "offline/products/scientific/rigid_transform_params.json"
+./offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/processing/apply_rigid_transform_vector_scientific.py:OUT_ENVELOPE  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/processing/apply_rigid_transform_vector_scientific.py:def apply_transform(geoms, angle, cx, cy, dx, dy):
+./offline/processing/apply_rigid_transform_vector_scientific.py:    transformed = []
+./offline/processing/apply_rigid_transform_vector_scientific.py:        g = rotate(geom, angle, origin=(cx, cy), use_radians=False)
+./offline/processing/apply_rigid_transform_vector_scientific.py:        transformed.append(g)
+./offline/processing/apply_rigid_transform_vector_scientific.py:    return transformed
+./offline/processing/apply_rigid_transform_vector_scientific.py:def process_layer(input_path, output_path, angle, cx, cy, dx, dy):
+./offline/processing/apply_rigid_transform_vector_scientific.py:    new_geoms = apply_transform(geoms, angle, cx, cy, dx, dy)
+./offline/processing/apply_rigid_transform_vector_scientific.py:    # NÃO passar crs explicitamente
+./offline/processing/apply_rigid_transform_vector_scientific.py:    print("=== APLICANDO TRANSFORMAÇÃO RÍGIDA (VETORES) ===")
+./offline/processing/apply_rigid_transform_vector_scientific.py:    angle = params["theta_rotation_deg"]
+./offline/processing/apply_rigid_transform_vector_scientific.py:    cx, cy = params["midpoint_original"]
+./offline/processing/apply_rigid_transform_vector_scientific.py:    print(f"Rotação (deg): {angle}")
+./offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(BUILDINGS_PATH, OUT_BUILDINGS, angle, cx, cy, dx, dy)
+./offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(ENVELOPE_PATH, OUT_ENVELOPE, angle, cx, cy, dx, dy)
+./offline/processing/apply_rigid_transform_vector_scientific.py:    print("\n✔ Transformação vetorial concluída com sucesso.")
+./offline/processing/build_mask_local_grid.py:from shapely.affinity import scale, translate
+./offline/processing/build_mask_local_grid.py:    1. Carrega shapefile (sem CRS)
+./offline/processing/build_mask_local_grid.py:    print("[MaskLocal] CRS ignorado (sistema local da mesa)")
+./offline/processing/build_mask_local_grid.py:    print(f"[MaskLocal] Bounds originais: {minx, miny, maxx, maxy}")
+./offline/processing/build_mask_local_grid.py:    scale_x = mesa_width  / maxx
+./offline/processing/build_mask_local_grid.py:    scale_y = mesa_height / maxy
+./offline/processing/build_mask_local_grid.py:    print(f"            scale_x = {scale_x}")
+./offline/processing/build_mask_local_grid.py:    print(f"            scale_y = {scale_y}")
+./offline/processing/build_mask_local_grid.py:        lambda g: scale(g, xfact=scale_x, yfact=scale_y, origin=(0, 0))
+./offline/processing/build_official_urban_envelope_rotated.py:from shapely.affinity import rotate, translate
+./offline/processing/build_official_urban_envelope_rotated.py:# === BUILD OFFICIAL URBAN ENVELOPE (ROTATED) ===
+./offline/processing/build_official_urban_envelope_rotated.py:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/processing/build_official_urban_envelope_rotated.py:OUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/processing/build_official_urban_envelope_rotated.py:CRS = "EPSG:31983"
+./offline/processing/build_official_urban_envelope_rotated.py:    # Manter apenas anel externo (remove buracos)
+./offline/processing/build_official_urban_envelope_rotated.py:    # Aplicar transformação rígida
+./offline/processing/build_official_urban_envelope_rotated.py:    angle = params["theta_rotation_deg"]
+./offline/processing/build_official_urban_envelope_rotated.py:    cx, cy = params["midpoint_original"]
+./offline/processing/build_official_urban_envelope_rotated.py:    envelope_rot = rotate(envelope, angle, origin=(cx, cy), use_radians=False)
+./offline/processing/build_official_urban_envelope_rotated.py:    # Criar GeoDataFrame com CRS correto
+./offline/processing/build_official_urban_envelope_rotated.py:        crs=CRS
+./offline/processing/build_official_urban_envelope_rotated.py:        layer="urban_envelope_scientific_rotated",
+./offline/processing/clip_raster.py:            out_image, out_transform = mask(
+./offline/processing/clip_raster.py:        "transform": out_transform
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:                if isinstance(edge, LineEdge):
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:                elif isinstance(edge, SplineEdge):
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Salvando edifícios científicos...")
+./offline/processing/fit_raster_to_vector.py:    Recalcula o transform usando o bounding box do vetor.
+./offline/processing/fit_raster_to_vector.py:    transform = Affine.translation(minx, maxy) * Affine.scale(px, -py)
+./offline/processing/fit_raster_to_vector.py:        "transform": transform,
+./offline/processing/fit_raster_to_vector.py:        "crs": None  # sistema local da mesa
+./offline/processing/fit_raster_to_vector.py:    print("[FitRaster] Novo transform definido")
+./offline/processing/rasterize_mask.py:    transform = raster_meta["transform"]
+./offline/processing/rasterize_mask.py:        transform=transform,
+./offline/processing/reproject_raster.py:from rasterio.warp import calculate_default_transform, reproject, Resampling
+./offline/processing/reproject_raster.py:def reproject_raster(src_array, src_meta, target_crs):
+./offline/processing/reproject_raster.py:    src_crs = src_meta["crs"]
+./offline/processing/reproject_raster.py:    if src_crs == target_crs:
+./offline/processing/reproject_raster.py:        print("[ReprojectRaster] Raster já está no CRS destino")
+./offline/processing/reproject_raster.py:    transform, width, height = calculate_default_transform(
+./offline/processing/reproject_raster.py:        src_crs,
+./offline/processing/reproject_raster.py:        target_crs,
+./offline/processing/reproject_raster.py:        src_transform=src_meta["transform"],
+./offline/processing/reproject_raster.py:        src_crs=src_crs,
+./offline/processing/reproject_raster.py:        dst_transform=transform,
+./offline/processing/reproject_raster.py:        dst_crs=target_crs,
+./offline/processing/reproject_raster.py:        "crs": target_crs,
+./offline/processing/reproject_raster.py:        "transform": transform,
+./offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+./offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/processing/set_crs_scientific.py:CRS_EPSG = "EPSG:31983"
+./offline/processing/set_crs_scientific.py:        print(f"  Fixando CRS na layer: {layer_name}")
+./offline/processing/set_crs_scientific.py:        df.set_crs(CRS_EPSG, inplace=True, allow_override=True)
+./offline/processing/set_crs_scientific.py:print("\n✔ CRS aplicado em TODAS as layers.")
+./offline/products/snapshots/ipt_fase2_semantic/metadata.json:  "source": "scientific_pipeline_utm",
+./offline/raster/core/clip_raster_by_envelope.py:        print("Raster CRS:", src.crs)
+./offline/raster/core/clip_raster_by_envelope.py:        out_image, out_transform = mask(
+./offline/raster/core/clip_raster_by_envelope.py:            "transform": out_transform,
+./offline/raster/core/filter_dsm_spikes.py:Remove picos (galhos, antenas)
+./offline/raster/core/normalize_raster_to_scientific_system.py:Converte raster UTM real para o sistema local científico
+./offline/raster/core/normalize_raster_to_scientific_system.py:Transformação aplicada:
+./offline/raster/core/normalize_raster_to_scientific_system.py:x_local = x_utm - OFFSET_X
+./offline/raster/core/normalize_raster_to_scientific_system.py:y_local = y_utm - OFFSET_Y
+./offline/raster/core/normalize_raster_to_scientific_system.py:from rasterio.transform import Affine
+./offline/raster/core/normalize_raster_to_scientific_system.py:DTM_UTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/raster/core/normalize_raster_to_scientific_system.py:DSM_UTM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./offline/raster/core/normalize_raster_to_scientific_system.py:        transform = src.transform
+./offline/raster/core/normalize_raster_to_scientific_system.py:        new_transform = (
+./offline/raster/core/normalize_raster_to_scientific_system.py:            * transform
+./offline/raster/core/normalize_raster_to_scientific_system.py:            "transform": new_transform
+./offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DTM_UTM, DTM_LOCAL)
+./offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DSM_UTM, DSM_LOCAL)
+./offline/raster/core/normalize_vertical_reference.py:Sincroniza DSM e DTM no mesmo zero
+./offline/raster/core/normalize_vertical_reference.py:print("✔ DSM e DTM sincronizados\n")
+./offline/raster/core/reclip_rasters_to_domain.py:        out_image, out_transform = mask(
+./offline/raster/core/reclip_rasters_to_domain.py:            "transform": out_transform
+./offline/raster/core/reclip_rasters_to_domain.py:    print("✔ Rasters científicos recortados com sucesso.\n")
+./offline/raster/core/reproject_rasters_to_utm.py:Reprojeção dos rasters originais
+./offline/raster/core/reproject_rasters_to_utm.py:4326 -> UTM 23S (EPSG:31983)
+./offline/raster/core/reproject_rasters_to_utm.py:from rasterio.warp import calculate_default_transform, reproject, Resampling
+./offline/raster/core/reproject_rasters_to_utm.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./offline/raster/core/reproject_rasters_to_utm.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/raster/core/reproject_rasters_to_utm.py:TARGET_CRS = "EPSG:31983"
+./offline/raster/core/reproject_rasters_to_utm.py:        transform, width, height = calculate_default_transform(
+./offline/raster/core/reproject_rasters_to_utm.py:            src.crs,
+./offline/raster/core/reproject_rasters_to_utm.py:            TARGET_CRS,
+./offline/raster/core/reproject_rasters_to_utm.py:            crs=TARGET_CRS,
+./offline/raster/core/reproject_rasters_to_utm.py:            transform=transform,
+./offline/raster/core/reproject_rasters_to_utm.py:                    src_transform=src.transform,
+./offline/raster/core/reproject_rasters_to_utm.py:                    src_crs=src.crs,
+./offline/raster/core/reproject_rasters_to_utm.py:                    dst_transform=transform,
+./offline/raster/core/reproject_rasters_to_utm.py:                    dst_crs=TARGET_CRS,
+./offline/raster/core/rotate_raster_scientific.py:from rasterio.transform import Affine
+./offline/raster/core/rotate_raster_scientific.py:def rotate_raster_scientific(input_path, output_path, rigid_affine):
+./offline/raster/core/rotate_raster_scientific.py:print(f"[ROTATE] {input_path.name}")
+./offline/raster/core/rotate_raster_scientific.py:    transform = src.transform
+./offline/raster/core/rotate_raster_scientific.py:    print(f"Shape original: {data.shape}")
+./offline/raster/core/rotate_raster_scientific.py:    print(f"CRS: {src.crs}")
+./offline/raster/core/rotate_raster_scientific.py:    # Bounding box original
+./offline/raster/core/rotate_raster_scientific.py:    left, bottom, right, top = rasterio.transform.array_bounds(
+./offline/raster/core/rotate_raster_scientific.py:        transform
+./offline/raster/core/rotate_raster_scientific.py:    # resolução original
+./offline/raster/core/rotate_raster_scientific.py:    res_x = transform.a
+./offline/raster/core/rotate_raster_scientific.py:    res_y = -transform.e
+./offline/raster/core/rotate_raster_scientific.py:    # novo transform
+./offline/raster/core/rotate_raster_scientific.py:    new_transform = Affine(
+./offline/raster/core/rotate_raster_scientific.py:        src_transform=transform,
+./offline/raster/core/rotate_raster_scientific.py:        src_crs=src.crs,
+./offline/raster/core/rotate_raster_scientific.py:        dst_transform=new_transform,
+./offline/raster/core/rotate_raster_scientific.py:        dst_crs=src.crs,
+./offline/raster/core/rotate_raster_scientific.py:        "transform": new_transform
+./offline/raster/pipeline/scientific_raster_runner.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/raster/pipeline/scientific_raster_runner.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/raster/pipeline/scientific_raster_runner.py:        out_image, out_transform = mask(src, geom, crop=True)
+./offline/raster/pipeline/scientific_raster_runner.py:            transform=out_transform
+./offline/raster/pipeline/scientific_raster_runner.py:            transform=src.transform,
+./offline/raster/pipeline/scientific_raster_runner.py:        ["python", "-m", "offline.scientific_cell_metrics_utm"],
+./offline/raster/validation/validate_rigid_transform.py:VALIDAÇÃO CIENTÍFICA – TRANSFORMAÇÃO RÍGIDA VETORIAL
+./offline/raster/validation/validate_rigid_transform.py:(transformação rígida sem escala).
+./offline/raster/validation/validate_rigid_transform.py:Área original ≈ Área rotacionada
+./offline/raster/validation/validate_rigid_transform.py:ROT_PATH  = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/raster/validation/validate_rigid_transform.py:LAYER_ROT = "urban_envelope_scientific_rotated_clean"
+./offline/raster/validation/validate_rigid_transform.py:    print("IPT-CitySpace – VALIDAÇÃO TRANSFORMAÇÃO RÍGIDA")
+./offline/raster/validation/validate_rigid_transform.py:    print("[1/3] Lendo área original...")
+./offline/raster/validation/validate_rigid_transform.py:    print(f"Área original      : {area_orig:.6f} m²")
+./offline/raster/validation/validate_rigid_transform.py:        print("✔ TRANSFORMAÇÃO RÍGIDA CONFIRMADA")
+./offline/raster/validation/validate_rigid_transform.py:        print("✖ Revisar pipeline de transformação\n")
+./offline/render_dxf_ipt_para_mesa_16x8.py:# - Ler o DXF ORIGINAL do IPT
+./offline/render_dxf_ipt_para_mesa_16x8.py:from shapely.affinity import rotate
+./offline/render_dxf_ipt_para_mesa_16x8.py:ANGLE_DEG = 154.63  # rotação trigonométrica validada
+./offline/render_dxf_ipt_para_mesa_16x8.py:    print(f"Rotação: {ANGLE_DEG}°")
+./offline/render_dxf_ipt_para_mesa_16x8.py:        lambda geom: rotate(
+./offline/render_dxf_ipt_para_mesa_16x8.py:            ANGLE_DEG,
+./offline/render_dxf_ipt_para_mesa_16x8.py:            origin=(cx, cy),
+./offline/scientific_cell_metrics.py:# IPT-CitySpace – FASE 3 DEFINITIVA (100% UTM)
+./offline/scientific_cell_metrics.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/scientific_cell_metrics.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./offline/scientific_cell_metrics.py:    print("IPT-CitySpace – FASE 3 DEFINITIVA (UTM)")
+./offline/scientific_cell_metrics.py.bak:# IPT-CitySpace – FASE 3 DEFINITIVA (100% UTM)
+./offline/scientific_cell_metrics.py.bak:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/scientific_cell_metrics.py.bak:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./offline/scientific_cell_metrics.py.bak:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/scientific_cell_metrics.py.bak:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./offline/scientific_cell_metrics.py.bak:OUTPUT_CSV = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+./offline/scientific_cell_metrics.py.bak:    print("IPT-CitySpace – FASE 3 DEFINITIVA (UTM)")
+./offline/scientific_cell_metrics_utm.py:    GRID_METRICS_UTM_CSV
+./offline/scientific_cell_metrics_utm.py:    GRID_METRICS_UTM_CSV.parent.mkdir(parents=True, exist_ok=True)
+./offline/scientific_cell_metrics_utm.py:    df.to_csv(GRID_METRICS_UTM_CSV, index=False)
+./offline/scientific_cell_metrics_utm.py:    print("Saved:", GRID_METRICS_UTM_CSV)
+./offline/scientific_cell_metrics_utm.py.bak:# IPT-CitySpace – FASE 3 DEFINITIVA (100% UTM)
+./offline/scientific_cell_metrics_utm.py.bak:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/scientific_cell_metrics_utm.py.bak:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./offline/scientific_cell_metrics_utm.py.bak:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/scientific_cell_metrics_utm.py.bak:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./offline/scientific_cell_metrics_utm.py.bak:OUTPUT_CSV = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+./offline/scientific_cell_metrics_utm.py.bak:    print("IPT-CitySpace – FASE 3 DEFINITIVA (UTM)")
+./offline/scientific_grid_builder.py:    gdf = gpd.GeoDataFrame(cells, crs="EPSG:31983")
+./offline/scientific_grid_builder.py.bak:ENVELOPE = BASE / "products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/scientific_grid_builder.py.bak:        crs="EPSG:31983"
+./offline/scientific_runner.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/scientific_runner.py:LAYER_INPUT = "urban_envelope_scientific_rotated_clean"
+./offline/scientific_runner.py:        crs = src.crs
+./offline/scientific_runner.py:        crs=crs,
+./offline/tests/test_generate_contours_layer.py:    / "1cm_rotated"
+./offline/tests/test_generate_contours_topografico.py:    / "1cm_rotated"
+./offline/tests/test_scientific_runner_integration.py.bak:CSV_PATH = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+./offline/tools/align_envelope_to_buildings.py:from shapely.affinity import translate
+./offline/tools/align_raster_to_envelope.py:from rasterio.transform import Affine
+./offline/tools/align_raster_to_envelope.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/align_raster_to_envelope.py:        transform = src.transform
+./offline/tools/align_raster_to_envelope.py:    new_transform = transform * Affine.translation(0, shift_y)
+./offline/tools/align_raster_to_envelope.py:    profile["transform"] = new_transform
+./offline/tools/apply_rigid_transform_raster_scientific.py:Apply Rigid Transform to Raster (CORRECT)
+./offline/tools/apply_rigid_transform_raster_scientific.py:from rasterio.transform import Affine
+./offline/tools/apply_rigid_transform_raster_scientific.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/tools/apply_rigid_transform_raster_scientific.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./offline/tools/apply_rigid_transform_raster_scientific.py:PARAMS = BASE / "offline/products/scientific/rigid_transform_utm_to_local.json"
+./offline/tools/apply_rigid_transform_raster_scientific.py:    angle = p["rotation_deg"]
+./offline/tools/apply_rigid_transform_raster_scientific.py:    R = Affine.rotation(angle)
+./offline/tools/apply_rigid_transform_raster_scientific.py:def transform_raster(src_path, dst_path, affine):
+./offline/tools/apply_rigid_transform_raster_scientific.py:        dst_transform = affine * src.transform
+./offline/tools/apply_rigid_transform_raster_scientific.py:            src_transform=src.transform,
+./offline/tools/apply_rigid_transform_raster_scientific.py:            src_crs=src.crs,
+./offline/tools/apply_rigid_transform_raster_scientific.py:            dst_transform=dst_transform,
+./offline/tools/apply_rigid_transform_raster_scientific.py:            dst_crs=src.crs,
+./offline/tools/apply_rigid_transform_raster_scientific.py:            crs=src.crs,
+./offline/tools/apply_rigid_transform_raster_scientific.py:            transform=dst_transform,
+./offline/tools/apply_rigid_transform_raster_scientific.py:    print("Apply Rigid Transform to Raster (FIXED)")
+./offline/tools/apply_rigid_transform_raster_scientific.py:    print("Transforming DTM...")
+./offline/tools/apply_rigid_transform_raster_scientific.py:    transform_raster(DTM, OUT_DTM, affine)
+./offline/tools/apply_rigid_transform_raster_scientific.py:    print("Transforming DSM...")
+./offline/tools/apply_rigid_transform_raster_scientific.py:    transform_raster(DSM, OUT_DSM, affine)
+./offline/tools/audit_alignment_grid_raster.py:GRID_CSV = ENGINE_ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+./offline/tools/audit_alignment_grid_raster.py:RASTER = ENGINE_ROOT / "offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif"
+./offline/tools/audit_altimetry_outputs.py:        print("MISSING")
+./offline/tools/audit_altimetry_rasters.py:"offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif",
+./offline/tools/audit_altimetry_rasters.py:        print("MISSING:", p)
+./offline/tools/audit_coordinate_systems.py:VECTOR = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/tools/audit_coordinate_systems.py:RASTER = BASE / "offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif"
+./offline/tools/audit_coordinate_systems.py:    print("CRS:", gdf.crs)
+./offline/tools/audit_coordinate_systems.py:        print("CRS:", src.crs)
+./offline/tools/audit_coordinate_systems.py:        print("Vector likely not in UTM")
+./offline/tools/audit_fix_envelope_pipeline.py:urban_envelope_scientific_rotated_clean.gpkg
+./offline/tools/audit_fix_envelope_pipeline.py:urban_envelope_scientific_rotated_clean.gpkg
+./offline/tools/audit_fix_envelope_pipeline.py:OLD = "urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/audit_fix_envelope_pipeline.py:NEW = "urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/audit_fix_envelope_pipeline.py:    "build_official_urban_envelope_rotated.py",
+./offline/tools/audit_fix_envelope_pipeline.py:    "apply_rigid_transform_vector_scientific.py",
+./offline/tools/audit_fix_envelope_pipeline.py:    "set_crs_scientific.py"
+./offline/tools/audit_fix_envelope_pipeline.py:    print("Files referencing rotated envelope:", len(files))
+./offline/tools/audit_fix_set_pin.py:    original = text
+./offline/tools/audit_fix_set_pin.py:    if text != original:
+./offline/tools/audit_grid_dimensions.py:from config.system_paths import GRID_METRICS_UTM_CSV
+./offline/tools/audit_grid_dimensions.py:    df = pd.read_csv(GRID_METRICS_UTM_CSV)
+./offline/tools/audit_grid_raster_crs_alignment.py:# IPT-CitySpace – CRS Alignment Auditor
+./offline/tools/audit_grid_raster_crs_alignment.py:RASTER = ENGINE_ROOT / "offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif"
+./offline/tools/audit_grid_raster_crs_alignment.py:    print("IPT-CitySpace – CRS / Alignment Audit")
+./offline/tools/audit_grid_raster_crs_alignment.py:        print("Grid provavelmente não está em UTM")
+./offline/tools/audit_raster_minmax.py:    "offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif"
+./offline/tools/audit_rigid_jsons.py:    "transform",
+./offline/tools/audit_scientific_grid.py:path = ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+./offline/tools/buildings_height_model.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/tools/build_pipeline_execution_order.py:"offline/processing/apply_rigid_transform_vector_scientific.py",
+./offline/tools/build_pipeline_execution_order.py:"offline/vector/core/apply_rigid_transform_clean.py",
+./offline/tools/build_pipeline_execution_order.py:"offline/vector/core/build_domain_1x2_utm.py",
+./offline/tools/build_pipeline_execution_order.py:"offline/processing/build_official_urban_envelope_rotated.py",
+./offline/tools/build_pipeline_execution_order.py:"offline/processing/dxf_hatch_to_scientific_gpkg_spline.py",
+./offline/tools/build_pipeline_execution_order.py:"offline/scientific_cell_metrics_utm.py",
+./offline/tools/build_pipeline_execution_order.py:"offline/validate_dxf_ipt_original_rotated_clean.py",
+./offline/tools/desrotate_urban_envelope.py:Desrotate envelope WITHOUT altering geometry
+./offline/tools/desrotate_urban_envelope.py:from shapely.affinity import rotate, translate
+./offline/tools/desrotate_urban_envelope.py:INPUT = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/tools/desrotate_urban_envelope.py:PARAMS = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/tools/desrotate_urban_envelope.py:    print("Desrotate Envelope (Preserve Geometry)")
+./offline/tools/desrotate_urban_envelope.py:    angle = params["theta_rotation_deg"]
+./offline/tools/desrotate_urban_envelope.py:    origin_rot = params["midpoint_after_rotation"]
+./offline/tools/desrotate_urban_envelope.py:    origin_target = params["midpoint_original"]
+./offline/tools/desrotate_urban_envelope.py:        g = rotate(
+./offline/tools/desrotate_urban_envelope.py:            -angle,
+./offline/tools/desrotate_urban_envelope.py:            origin=tuple(origin_rot)
+./offline/tools/desrotate_urban_envelope.py:        dx = origin_target[0] - c.x
+./offline/tools/desrotate_urban_envelope.py:        dy = origin_target[1] - c.y
+./offline/tools/fix_context_snapshot.py:    print("\nENGINE_MAP.dot missing → creating\n")
+./offline/tools/fix_context_snapshot_v2.py:    print("\nENGINE_MAP.dot missing → creating\n")
+./offline/tools/fix_context_snapshot_v3.py:    print("\nENGINE_MAP.dot missing → creating\n")
+./offline/tools/fix_raster_affine_order.py:Corrige automaticamente a ordem da transformação
+./offline/tools/fix_raster_affine_order.py:OLD = "new_transform = transform * T1 * R * T2 * T3"
+./offline/tools/fix_raster_affine_order.py:NEW = "new_transform = T3 * T2 * R * T1 * transform"
+./offline/tools/fix_raster_affine_order_final.py:    "new_transform = T2 * R * T1 * transform",
+./offline/tools/fix_raster_affine_order_final.py:    "new_transform = T3 * T2 * R * T1 * transform"
+./offline/tools/fix_raster_affine_order_final.py:print("T3 * T2 * R * T1 * transform\n")
+./offline/tools/fix_raster_rotation_center.py:print("FIX RASTER ROTATION CENTER")
+./offline/tools/fix_raster_rotation_center.py:    "cx, cy = params[\"midpoint_original\"]",
+./offline/tools/fix_raster_rotation_center_safe.py:print("FIX RASTER ROTATION CENTER (SAFE)")
+./offline/tools/fix_raster_rotation_center_safe.py:old = 'cx, cy = params["midpoint_original"]'
+./offline/tools/fix_raster_transform_remove_translation.py:print("FIX RASTER TRANSFORM (REMOVE DX/DY)")
+./offline/tools/fix_raster_transform_remove_translation.py:    "T3 = Affine.translation(dx, dy)\n\n        new_transform = T3 * T2 * R * T1 * transform",
+./offline/tools/fix_raster_transform_remove_translation.py:    "new_transform = T2 * R * T1 * transform"
+./offline/tools/fix_raster_transform_remove_translation.py:    "T3 * T2 * R * T1 * transform",
+./offline/tools/fix_raster_transform_remove_translation.py:    "T2 * R * T1 * transform"
+./offline/tools/fix_raster_transform_remove_translation.py:print("\nDX/DY removidos da transformação raster\n")
+./offline/tools/fix_raster_vertical_alignment.py:from rasterio.transform import Affine
+./offline/tools/fix_raster_vertical_alignment.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/fix_raster_vertical_alignment.py:        transform = src.transform
+./offline/tools/fix_raster_vertical_alignment.py:        new_transform = transform * Affine.translation(0, -dy)
+./offline/tools/fix_raster_vertical_alignment.py:        profile["transform"] = new_transform
+./offline/tools/fix_runner_envelope_loader.py:    layer="urban_envelope_scientific_rotated_clean"
+./offline/tools/fix_scientific_raster_runner_envelope.py:        layer="urban_envelope_scientific_rotated_clean"
+./offline/tools/fix_scientific_raster_transform.py:OLD = "new_transform = T3 * T2 * R * T1 * transform"
+./offline/tools/fix_scientific_raster_transform.py:# transformação correta: rotate → translate → rotate
+./offline/tools/fix_scientific_raster_transform.py:R1 = Affine.rotation(angle)
+./offline/tools/fix_scientific_raster_transform.py:R2 = Affine.rotation(-angle)
+./offline/tools/fix_scientific_raster_transform.py:new_transform = transform * R1 * T * R2
+./offline/tools/fix_scientific_raster_transform.py:    print("\nFixing scientific raster transform\n")
+./offline/tools/fix_scientific_raster_transform.py:        print("Transform line not found")
+./offline/tools/fix_urban_envelope_geometry.py:Desrotate envelope WITHOUT altering geometry
+./offline/tools/fix_urban_envelope_geometry.py:from shapely.affinity import rotate, translate
+./offline/tools/fix_urban_envelope_geometry.py:INPUT = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/tools/fix_urban_envelope_geometry.py:PARAMS = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/tools/fix_urban_envelope_geometry.py:    print("Desrotate Envelope (Preserve Geometry)")
+./offline/tools/fix_urban_envelope_geometry.py:    angle = params["theta_rotation_deg"]
+./offline/tools/fix_urban_envelope_geometry.py:    origin_rot = params["midpoint_after_rotation"]
+./offline/tools/fix_urban_envelope_geometry.py:    origin_target = params["midpoint_original"]
+./offline/tools/fix_urban_envelope_geometry.py:        g = rotate(
+./offline/tools/fix_urban_envelope_geometry.py:            -angle,
+./offline/tools/fix_urban_envelope_geometry.py:            origin=tuple(origin_rot)
+./offline/tools/fix_urban_envelope_geometry.py:        dx = origin_target[0] - c.x
+./offline/tools/fix_urban_envelope_geometry.py:        dy = origin_target[1] - c.y
+./offline/tools/generate_pipeline_dag.py:            if isinstance(node, ast.Import):
+./offline/tools/generate_pipeline_dag.py:            if isinstance(node, ast.ImportFrom):
+./offline/tools/reanchor_raster_to_envelope.py:from rasterio.transform import Affine
+./offline/tools/reanchor_raster_to_envelope.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/reanchor_raster_to_envelope.py:        px = src.transform.a
+./offline/tools/reanchor_raster_to_envelope.py:        py = src.transform.e
+./offline/tools/reanchor_raster_to_envelope.py:    new_transform = Affine(px, 0, env_left, 0, py, env_top)
+./offline/tools/reanchor_raster_to_envelope.py:    profile["transform"] = new_transform
+./offline/tools/rebuild_scientific_raster_runner.py:from rasterio.transform import Affine
+./offline/tools/rebuild_scientific_raster_runner.py:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/tools/rebuild_scientific_raster_runner.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/rebuild_scientific_raster_runner.py:        layer="urban_envelope_scientific_rotated_clean"
+./offline/tools/rebuild_scientific_raster_runner.py:def rotate_raster(src_path, dst_path, params):
+./offline/tools/rebuild_scientific_raster_runner.py:    print("[ROTATE]", src_path.name)
+./offline/tools/rebuild_scientific_raster_runner.py:    angle = params["theta_rotation_deg"]
+./offline/tools/rebuild_scientific_raster_runner.py:    cx, cy = params["midpoint_original"]
+./offline/tools/rebuild_scientific_raster_runner.py:        print("Shape original:", src.shape)
+./offline/tools/rebuild_scientific_raster_runner.py:        print("CRS:", src.crs)
+./offline/tools/rebuild_scientific_raster_runner.py:        transform = src.transform
+./offline/tools/rebuild_scientific_raster_runner.py:        R  = Affine.rotation(angle)
+./offline/tools/rebuild_scientific_raster_runner.py:        new_transform = transform * T1 * R * T2 * T3
+./offline/tools/rebuild_scientific_raster_runner.py:            src_transform=transform,
+./offline/tools/rebuild_scientific_raster_runner.py:            src_crs=src.crs,
+./offline/tools/rebuild_scientific_raster_runner.py:            dst_transform=new_transform,
+./offline/tools/rebuild_scientific_raster_runner.py:            dst_crs=src.crs,
+./offline/tools/rebuild_scientific_raster_runner.py:        meta.update({"transform": new_transform})
+./offline/tools/rebuild_scientific_raster_runner.py:            out_image, out_transform = mask(src, [geom], crop=True)
+./offline/tools/rebuild_scientific_raster_runner.py:            "transform": out_transform,
+./offline/tools/rebuild_scientific_raster_runner.py:    print("\\n[TRANSFORMAÇÃO RÍGIDA]")
+./offline/tools/rebuild_scientific_raster_runner.py:    print("Ângulo (deg):", params["theta_rotation_deg"])
+./offline/tools/rebuild_scientific_raster_runner.py:    print("Centro:", params["midpoint_original"])
+./offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DSM_INPUT, DSM_ROT, params)
+./offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DTM_INPUT, DTM_ROT, params)
+./offline/tools/recompute_altimetry_ndsm.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/tools/recompute_altimetry_ndsm.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+./offline/tools/recompute_altimetry_ndsm.py:    print("\n[2] Processing cells...\n")
+./offline/tools/recompute_rigid_transform.py:IPT CitySpace – RECOMPUTE RIGID TRANSFORM
+./offline/tools/recompute_rigid_transform.py:BUILDINGS_ROT = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/tools/recompute_rigid_transform.py:OUT = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/tools/recompute_rigid_transform.py:def compute_rotation(A, B):
+./offline/tools/recompute_rigid_transform.py:    angle = np.degrees(np.arctan2(R[1, 0], R[0, 0]))
+./offline/tools/recompute_rigid_transform.py:    return angle
+./offline/tools/recompute_rigid_transform.py:    print("Recomputing rigid transform")
+./offline/tools/recompute_rigid_transform.py:    angle = compute_rotation(A, B)
+./offline/tools/recompute_rigid_transform.py:        "theta_rotation_deg": float(angle),
+./offline/tools/recompute_rigid_transform.py:        "midpoint_original": center_A.tolist(),
+./offline/tools/recompute_rigid_transform.py:        "midpoint_after_rotation": center_B.tolist(),
+./offline/tools/recompute_rigid_transform.py:        "transform_type": "rigid"
+./offline/tools/recompute_rigid_transform.py:    print("\nRigid transform saved:")
+./offline/tools/recompute_rigid_transform_utm_to_local.py:BUILDINGS_UTM = BASE / "offline/data/raw/buildings_original.gpkg"
+./offline/tools/recompute_rigid_transform_utm_to_local.py:OUT = BASE / "offline/products/scientific/rigid_transform_utm_to_local.json"
+./offline/tools/recompute_rigid_transform_utm_to_local.py:    angle = np.degrees(np.arctan2(R[1, 0], R[0, 0]))
+./offline/tools/recompute_rigid_transform_utm_to_local.py:    return angle, A_mean, B_mean
+./offline/tools/recompute_rigid_transform_utm_to_local.py:    print("\n=== UTM → LOCAL TRANSFORM ===")
+./offline/tools/recompute_rigid_transform_utm_to_local.py:    A = load_centroids(BUILDINGS_UTM)
+./offline/tools/recompute_rigid_transform_utm_to_local.py:    angle, center_A, center_B = compute_rigid(A, B)
+./offline/tools/recompute_rigid_transform_utm_to_local.py:        "rotation_deg": float(angle),
+./offline/tools/recompute_rigid_transform_utm_to_local.py:        "transform_type": "utm_to_local"
+./offline/tools/recompute_transform_from_envelope.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/tools/recompute_transform_from_envelope.py:OUT = BASE / "offline/products/scientific/rigid_transform_utm_to_local.json"
+./offline/tools/recompute_transform_from_envelope.py:    print("\n=== Compute UTM → LOCAL from envelope ===")
+./offline/tools/recompute_transform_from_envelope.py:    # --- DTM bounds (UTM)
+./offline/tools/recompute_transform_from_envelope.py:        "rotation_deg": 146.815825,  # seu valor já conhecido
+./offline/tools/recompute_transform_from_envelope.py:        "transform_type": "utm_to_local_from_envelope"
+./offline/tools/recompute_transform_from_envelope.py:    print("\nTransform computed:")
+./offline/tools/run_full_alignment_pipeline.py:        # 🔥 NÃO APAGAR TRANSFORM
+./offline/tools/run_full_alignment_pipeline.py:    run("python -m offline.tools.desrotate_urban_envelope")
+./offline/tools/run_full_alignment_pipeline.py:    run("python -m offline.tools.apply_rigid_transform_vector_scientific")
+./offline/tools/shift_raster_to_envelope.py:from rasterio.transform import Affine
+./offline/tools/shift_raster_to_envelope.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/shift_raster_to_envelope.py:    transform = src.transform
+./offline/tools/shift_raster_to_envelope.py:new_transform = transform * Affine.translation(0, shift_y)
+./offline/tools/shift_raster_to_envelope.py:profile["transform"] = new_transform
+./offline/tools/shift_raster_to_envelope.py:    transform = src.transform
+./offline/tools/shift_raster_to_envelope.py:new_transform = transform * Affine.translation(0, shift_y)
+./offline/tools/shift_raster_to_envelope.py:profile["transform"] = new_transform
+./offline/tools/snap_vector_to_raster_grid.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/tools/snap_vector_to_raster_grid.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/tools/snap_vector_to_raster_grid.py:    return shapely.ops.transform(snap_coords, geom)
+./offline/tools/snap_vector_to_raster_grid.py:    print("Processing:", path)
+./offline/validate_dxf_ipt_original_rotated_clean.py:from shapely.affinity import rotate
+./offline/validate_dxf_ipt_original_rotated_clean.py:OUT_PNG = f"{OUT_DIR}/ipt_dxf_original_rotacionado_CLEAN.png"
+./offline/validate_dxf_ipt_original_rotated_clean.py:ANGLE_DEG = 154.63
+./offline/validate_dxf_ipt_original_rotated_clean.py:    log(f"Rotação aplicada: {ANGLE_DEG:.2f}°")
+./offline/validate_dxf_ipt_original_rotated_clean.py:        lambda g: rotate(g, ANGLE_DEG, origin=(cx, cy), use_radians=False)
+./offline/validate_dxf_ipt_original_rotated_clean.py:    ruas = gdf[gdf.geom_type.isin(["LineString", "MultiLineString"])]
+./offline/validate_dxf_ipt_original_rotated_clean.py:    edificios = gdf[gdf.geom_type.isin(["Polygon", "MultiPolygon"])]
+./offline/validation/audit_raster_alignment.py:    print("crs:", dtm.crs)
+./offline/validation/audit_raster_alignment.py:    print("crs:", dsm.crs)
+./offline/validation/fix_validation_scripts.py:TARGET_FILE = BASE / "offline/validation/validate_rotated_raster_vs_envelope.py"
+./offline/validation/validate_grid_vs_raster_alignment.py:GRID 8x16 (UTM) vs Raster DTM/DSM
+./offline/validation/validate_grid_vs_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/validation/validate_grid_vs_raster_alignment.py:        print("RASTER CRS :", src.crs)
+./offline/validation/validate_grid_vs_raster_alignment.py:        print("GRID CRS :", grid.crs)
+./offline/validation/validate_grid_vs_raster_alignment.py.bak:GRID 8x16 (UTM) vs Raster DTM/DSM
+./offline/validation/validate_grid_vs_raster_alignment.py.bak:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/validation/validate_grid_vs_raster_alignment.py.bak:        print("RASTER CRS :", src.crs)
+./offline/validation/validate_grid_vs_raster_alignment.py.bak:        print("GRID CRS :", grid.crs)
+./offline/validation/validate_grid_z_total_vs_dxf.py:  • com valores físicos plausíveis (terreno + edifício)
+./offline/validation/validate_grid_z_total_vs_dxf.py:# PATHS CANÔNICOS
+./offline/validation/validate_grid_z_total_vs_dxf.py:        origin="lower"
+./offline/validation/validate_raster_local_offset.py:VALIDAÇÃO – OFFSET UTM → SISTEMA LOCAL CIENTÍFICO
+./offline/validation/validate_raster_local_offset.py:rasters UTM reais para o sistema local científico
+./offline/validation/validate_raster_local_offset.py:RASTER_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+./offline/validation/validate_raster_local_offset.py:    print("IPT-CitySpace – OFFSET UTM → LOCAL")
+./offline/validation/validate_raster_local_offset.py:    print("[1/3] Lendo raster UTM...")
+./offline/validation/validate_raster_local_offset.py:        transform = src.transform
+./offline/validation/validate_raster_local_offset.py:        utm_x = transform.c
+./offline/validation/validate_raster_local_offset.py:        utm_y = transform.f
+./offline/validation/validate_raster_local_offset.py:        print(f"Upper Left Raster (UTM): {utm_x:.6f}, {utm_y:.6f}")
+./offline/validation/validate_raster_local_offset.py:    offset_x = utm_x - minx
+./offline/validation/validate_raster_local_offset.py:    offset_y = utm_y - miny
+./offline/validation/validate_raster_local_offset.py:    print("converter raster UTM → sistema científico.\n")
+./offline/validation/validate_rigid_transform_full.py:IPT-CitySpace – VALIDAÇÃO COMPLETA TRANSFORMAÇÃO RÍGIDA
+./offline/validation/validate_rigid_transform_full.py:- Ler rigid_transform_params.json
+./offline/validation/validate_rigid_transform_full.py:- Verificar theta
+./offline/validation/validate_rigid_transform_full.py:- Detectar se foi usado método A (rotate+translate)
+./offline/validation/validate_rigid_transform_full.py:  ou método B (rotate com origin explícito)
+./offline/validation/validate_rigid_transform_full.py:from shapely.affinity import rotate
+./offline/validation/validate_rigid_transform_full.py:PARAMS_PATH = ENGINE_ROOT / "offline/products/scientific/rigid_transform_params.json"
+./offline/validation/validate_rigid_transform_full.py:ROTATED_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/validation/validate_rigid_transform_full.py:    print("IPT-CitySpace – VALIDAÇÃO COMPLETA TRANSFORMAÇÃO RÍGIDA")
+./offline/validation/validate_rigid_transform_full.py:    theta = params.get("theta_rotation_deg", None)
+./offline/validation/validate_rigid_transform_full.py:    print("theta_rotation_deg:", theta)
+./offline/validation/validate_rigid_transform_full.py:    if theta is None:
+./offline/validation/validate_rigid_transform_full.py:        print("❌ theta_rotation_deg ausente.")
+./offline/validation/validate_rigid_transform_full.py:    if not ROTATED_PATH.exists():
+./offline/validation/validate_rigid_transform_full.py:    gdf = gpd.read_file(ROTATED_PATH)
+./offline/validation/validate_rigid_transform_full.py:        print("Provavelmente método A (rotate + translate).")
+./offline/validation/validate_rigid_transform_full.py:    print("theta =", theta, "graus")
+./offline/validation/validate_rigid_transform_full.py:    print("theta_rad =", math.radians(theta))
+./offline/validation/validate_rigid_transform_json.py:Validação Formal dos Parâmetros de Transformação Rígida
+./offline/validation/validate_rigid_transform_json.py:- Lê rigid_transform_params.json
+./offline/validation/validate_rigid_transform_json.py:PARAMS_PATH = ENGINE_ROOT / "offline/products/scientific/rigid_transform_params.json"
+./offline/validation/validate_rigid_transform_json.py:def build_rotation_matrix(theta_deg):
+./offline/validation/validate_rigid_transform_json.py:    theta_rad = np.radians(theta_deg)
+./offline/validation/validate_rigid_transform_json.py:    cos_t = np.cos(theta_rad)
+./offline/validation/validate_rigid_transform_json.py:    sin_t = np.sin(theta_rad)
+./offline/validation/validate_rigid_transform_json.py:        [cos_t, -sin_t],
+./offline/validation/validate_rigid_transform_json.py:        [sin_t,  cos_t]
+./offline/validation/validate_rigid_transform_json.py:    print("IPT-CitySpace – VALIDAÇÃO RIGID_TRANSFORM_PARAMS.JSON")
+./offline/validation/validate_rigid_transform_json.py:        "theta_rotation_deg",
+./offline/validation/validate_rigid_transform_json.py:    missing = [k for k in required_keys if k not in params]
+./offline/validation/validate_rigid_transform_json.py:    if missing:
+./offline/validation/validate_rigid_transform_json.py:        print("❌ Parâmetros ausentes:", missing)
+./offline/validation/validate_rigid_transform_json.py:    theta = float(params["theta_rotation_deg"])
+./offline/validation/validate_rigid_transform_json.py:    print(f"Ângulo (deg): {theta}")
+./offline/validation/validate_rigid_transform_json.py:    R = build_rotation_matrix(theta)
+./offline/validation/validate_rigid_transform_json.py:        print("✔ Determinante = 1 (transformação rígida pura)")
+./offline/validation/validate_rigid_transform_json.py:    print("Sistema = UTM23S + Transformação rígida consolidada")
+./offline/validation/validate_rigid_transform_parameters.py:Validação da Transformação Rígida Aplicada ao Urbanismo
+./offline/validation/validate_rigid_transform_parameters.py:- Compara versão original e rotacionada
+./offline/validation/validate_rigid_transform_parameters.py:ORIGINAL_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_original.gpkg"
+./offline/validation/validate_rigid_transform_parameters.py:ROTATED_PATH  = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/validation/validate_rigid_transform_parameters.py:LAYER_ORIGINAL = "urban_envelope_original"
+./offline/validation/validate_rigid_transform_parameters.py:LAYER_ROTATED  = "urban_envelope_scientific_rotated_clean"
+./offline/validation/validate_rigid_transform_parameters.py:def compute_angle(p1, p2):
+./offline/validation/validate_rigid_transform_parameters.py:    print("IPT-CitySpace – VALIDAÇÃO TRANSFORMAÇÃO RÍGIDA")
+./offline/validation/validate_rigid_transform_parameters.py:    if not ORIGINAL_PATH.exists():
+./offline/validation/validate_rigid_transform_parameters.py:        print("❌ Arquivo original não encontrado:", ORIGINAL_PATH)
+./offline/validation/validate_rigid_transform_parameters.py:    if not ROTATED_PATH.exists():
+./offline/validation/validate_rigid_transform_parameters.py:        print("❌ Arquivo rotacionado não encontrado:", ROTATED_PATH)
+./offline/validation/validate_rigid_transform_parameters.py:    gdf_orig = gpd.read_file(ORIGINAL_PATH, layer=LAYER_ORIGINAL)
+./offline/validation/validate_rigid_transform_parameters.py:    gdf_rot  = gpd.read_file(ROTATED_PATH, layer=LAYER_ROTATED)
+./offline/validation/validate_rigid_transform_parameters.py:    print("Original CRS :", gdf_orig.crs)
+./offline/validation/validate_rigid_transform_parameters.py:    print("Rotated CRS  :", gdf_rot.crs)
+./offline/validation/validate_rigid_transform_parameters.py:    print(f"Área original  : {area_orig:.6f}")
+./offline/validation/validate_rigid_transform_parameters.py:    angle_orig = compute_angle(p1_orig, p2_orig)
+./offline/validation/validate_rigid_transform_parameters.py:    angle_rot  = compute_angle(p1_rot, p2_rot)
+./offline/validation/validate_rigid_transform_parameters.py:    angle_aplicado = angle_rot - angle_orig
+./offline/validation/validate_rigid_transform_parameters.py:    print(f"Ângulo original bbox : {angle_orig:.6f}°")
+./offline/validation/validate_rigid_transform_parameters.py:    print(f"Ângulo rotacionado   : {angle_rot:.6f}°")
+./offline/validation/validate_rigid_transform_parameters.py:    print(f"Ângulo estimado      : {angle_aplicado:.6f}°")
+./offline/validation/validate_rigid_transform_parameters.py:    print(f"Centro original : {centroid_orig}")
+./offline/validation/validate_rigid_transform_parameters.py:        print("✔ Transformação rígida (área preservada)")
+./offline/validation/validate_rigid_transform_parameters.py:        print("⚠ Área não preservada — não é transformação rígida pura")
+./offline/validation/validate_rotated_raster_vs_envelope.py:ENVELOPE_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/validation/validate_scientific_grid_metrics.py:Validação do Grid Científico 8x16 (UTM)
+./offline/validation/validate_scientific_grid_metrics.py:    log("Validação Grid Científico 8x16 (UTM)")
+./offline/validation/validate_scientific_grid_metrics.py.bak:Validação do Grid Científico 8x16 (UTM)
+./offline/validation/validate_scientific_grid_metrics.py.bak:CSV_PATH = ENGINE_ROOT / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+./offline/validation/validate_scientific_grid_metrics.py.bak:    log("Validação Grid Científico 8x16 (UTM)")
+./offline/vector/core/apply_rigid_transform_clean.py:TRANSFORMAÇÃO RÍGIDA VETORIAL – SISTEMA CIENTÍFICO LOCAL
+./offline/vector/core/apply_rigid_transform_clean.py:Este script implementa a transformação rígida que converte o sistema UTM
+./offline/vector/core/apply_rigid_transform_clean.py:É uma transformação geométrica rígida com objetivo operacional.
+./offline/vector/core/apply_rigid_transform_clean.py:OBJETIVO DA TRANSFORMAÇÃO
+./offline/vector/core/apply_rigid_transform_clean.py:A transformação aplicada é uma transformação rígida 2D:
+./offline/vector/core/apply_rigid_transform_clean.py:    x' = cx + cos(θ)(x - cx) - sin(θ)(y - cy)
+./offline/vector/core/apply_rigid_transform_clean.py:    y' = cy + sin(θ)(x - cx) + cos(θ)(y - cy)
+./offline/vector/core/apply_rigid_transform_clean.py:Este sistema deixa de ser UTM absoluto após aplicação da translação.
+./offline/vector/core/apply_rigid_transform_clean.py:- CRS declarado como UTM torna-se apenas referencial métrico.
+./offline/vector/core/apply_rigid_transform_clean.py:    offline/raster/validation/validate_rigid_transform.py
+./offline/vector/core/apply_rigid_transform_clean.py:    Área_original ≈ Área_rotacionada
+./offline/vector/core/apply_rigid_transform_clean.py:TRANSFORMAÇÃO RÍGIDA VETORIAL – VERSÃO DEFINITIVA (SEM GEOPANDAS)
+./offline/vector/core/apply_rigid_transform_clean.py:from shapely.affinity import rotate, translate
+./offline/vector/core/apply_rigid_transform_clean.py:OUTPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/vector/core/apply_rigid_transform_clean.py:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/vector/core/apply_rigid_transform_clean.py:LAYER_OUTPUT = "urban_envelope_scientific_rotated_clean"
+./offline/vector/core/apply_rigid_transform_clean.py:    print("IPT-CitySpace – TRANSFORMAÇÃO RÍGIDA DEFINITIVA")
+./offline/vector/core/apply_rigid_transform_clean.py:    angle = params["theta_rotation_deg"]
+./offline/vector/core/apply_rigid_transform_clean.py:    cx, cy = params["midpoint_original"]
+./offline/vector/core/apply_rigid_transform_clean.py:    print(f"Ângulo: {angle}")
+./offline/vector/core/apply_rigid_transform_clean.py:    print("\n[2/5] Abrindo envelope original...")
+./offline/vector/core/apply_rigid_transform_clean.py:        crs = src.crs
+./offline/vector/core/apply_rigid_transform_clean.py:        print("[3/5] Aplicando transformação rígida...")
+./offline/vector/core/apply_rigid_transform_clean.py:            crs=crs,
+./offline/vector/core/apply_rigid_transform_clean.py:                geom_rot = rotate(
+./offline/vector/core/apply_rigid_transform_clean.py:                    angle,
+./offline/vector/core/apply_rigid_transform_clean.py:                    origin=(cx, cy),
+./offline/vector/core/apply_rigid_transform_clean.py:    print("\n[5/5] Transformação concluída.\n")
+./offline/vector/core/build_domain_1x2_utm.py:# IPT-CitySpace – DOMÍNIO 1:2 UTM OFICIAL
+./offline/vector/core/build_domain_1x2_utm.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/vector/core/build_domain_1x2_utm.py:INPUT_LAYER = "urban_envelope_scientific_rotated_clean"
+./offline/vector/core/build_domain_1x2_utm.py:OUTPUT_PATH = BASE / "offline/products/scientific/domain_rect_1x2_utm.gpkg"
+./offline/vector/core/build_domain_1x2_utm.py:OUTPUT_LAYER = "domain_rect_1x2_utm"
+./offline/vector/core/build_domain_1x2_utm.py:    print("IPT-CitySpace – DOMÍNIO 1:2 UTM OFICIAL")
+./offline/vector/core/build_domain_1x2_utm.py:    print("[1/5] Lendo envelope rotacionado (UTM)...")
+./offline/vector/core/build_domain_1x2_utm.py:        crs = src.crs
+./offline/vector/core/build_domain_1x2_utm.py:        crs=crs,
+./offline/vector/core/build_domain_1x2_utm.py:    print("✔ Domínio 1:2 UTM criado com sucesso.")
+./online/contracts/README.md:- **artigos científicos**
+./online/contracts/README.md:que vai descrever **todo o sistema (offline + online + mesa física)** em nível institucional. Isso costuma ser exigido em projetos do IPT.
+./online/core/actuator_events.py:# EVENTOS ESPECÍFICOS
+./online/core/calibration.py:    scale: float = 1.0
+./online/core/calibration.py:    scale: float = 1.0
+./online/core/calibration.py:        z = z_input_cm * self.grid.scale + self.grid.offset_cm
+./online/core/calibration.py:            z = z * pin.scale + pin.offset_cm
+./online/core/grid_pin_adapter.py:    Adaptador entre eventos lógicos (row, col)
+./online/core/grid_pin_adapter.py:    e drivers físicos (pin_id).
+./online/core/modes.py:    visual_scale: float
+./online/core/modes.py:        visual_scale=1.0,
+./online/core/modes.py:        visual_scale=0.6,
+./online/core/modes.py:        visual_scale=0.8,
+./online/core/physical_motion_profile.py:    return 0.5 - 0.5 * math.cos(math.pi * t)
+./online/core/physical_motion_profile.py:    time_scale: float = 1.0,
+./online/core/physical_motion_profile.py:    time_scale : float
+./online/core/physical_motion_profile.py:        Futuro uso para sincronização dos 3 relógios.
+./online/core/physical_motion_profile.py:    # Guardrails físicos
+./online/core/physical_motion_profile.py:    duration_s *= time_scale
+./online/core/test_calibration.py:        scale=1.0,
+./online/core/test_temporal_conductor.py:    # Testes básicos
+./online/legacy/time_event_driven/temporal_conductor_event_driven.py:        if not isinstance(event, TemporalEvent):
+./online/physical/motion_profile.py:    é estimado a partir de parâmetros geométricos e cinemáticos.
+./online/physical/motion_profile.py:        Parâmetros cinemáticos do atuador.
+./online/renderers/fase3/FASE_3_1_mesa_virtual.py:    origin="upper"
+./online/renderers/fase3/FASE_3_1_mesa_virtual.py:    f"CRS: {metadata.get('crs')}",
+./online/renderers/fase3/FASE_3_1_mesa_virtual.py:    transform=ax.transAxes,
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:#   ROTATION_DEG = 154.63
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:# Parâmetros físicos da mesa (AJUSTÁVEIS)
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:img = ax.imshow(grid, cmap="viridis", origin="upper")
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:# Ticks físicos
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:    f"• CRS: {meta.get('crs')}",
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:    transform=ax.transAxes,
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:    origin="lower"
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:    transform=ax.transAxes
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:    transform=ax.transAxes
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:    origin="lower",
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:    origin="lower",
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:from matplotlib.patches import FancyArrowPatch, Rectangle
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:ROTATION_DEG = 154.63  # rotação real do IPT (referência)
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:    origin="upper",
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:cursor = Rectangle(
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:scale_x = 0.5
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:scale_y = ROWS + 0.3
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:ax.text(scale_x, scale_y, "Escala da mesa:", fontsize=9, ha="left", va="center")
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:ax.add_patch(Rectangle((scale_x, scale_y + 0.1), 1, 0.2, color="white"))
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:ax.text(scale_x + 0.5, scale_y + 0.45, "1 cm", ha="center", fontsize=8)
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:ax.add_patch(Rectangle((scale_x + 1.2, scale_y + 0.1), 2, 0.2, color="white"))
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:ax.text(scale_x + 2.2, scale_y + 0.45, "2 cm", ha="center", fontsize=8)
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:    scale_x,
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:    scale_y + 0.8,
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:    f"Norte geográfico (ref.)\nMesa rotacionada +{ROTATION_DEG:.2f}°",
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v1.py:    origin="upper"
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v2_gif.py:        origin="upper"
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:from matplotlib.patches import Rectangle
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:            origin="upper"
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:            Rectangle(
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:# - Mantém cores e tempos físicos corretos
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:from matplotlib.patches import Rectangle
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:            origin="upper"
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:            Rectangle(
+./online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:        origin="upper"
+./online/renderers/layer2d.py:        if not isinstance(self.grid, np.ndarray):
+./online/renderers/layer2d.py:        if not isinstance(self.zorder, int):
+./online/renderers/renderer2d.py:    - Mesa física (pinos eletromecânicos)
+./online/renderers/renderer2d.py:            origin="upper",  # (0,0) no canto superior esquerdo
+./online/renderers/render_mesa_ipt_2d25_canonico.py:        origin="upper",
+./online/renderers/render_mesa_ipt_2d25_canonico.py:    # EIXOS SEMÂNTICOS (ORDENS SUAS)
+./online/renderers/render_mesa_ipt_2d25_integrada.py:from shapely.affinity import rotate
+./online/renderers/render_mesa_ipt_2d25_integrada.py:from matplotlib.patches import Rectangle, FancyArrow
+./online/renderers/render_mesa_ipt_2d25_integrada.py:from math import sin, cos, radians
+./online/renderers/render_mesa_ipt_2d25_integrada.py:ANGLE_DEG = 154.63
+./online/renderers/render_mesa_ipt_2d25_integrada.py:theta = radians(ANGLE_DEG)
+./online/renderers/render_mesa_ipt_2d25_integrada.py:# Norte original (EPSG:4326)
+./online/renderers/render_mesa_ipt_2d25_integrada.py:N_original = np.array([0, 1])
+./online/renderers/render_mesa_ipt_2d25_integrada.py:N_rot = np.array([-sin(theta), cos(theta)])
+./online/renderers/render_mesa_ipt_2d25_integrada.py:    gdf = gdf[gdf.geom_type.isin(["LineString", "MultiLineString"])]
+./online/renderers/render_mesa_ipt_2d25_integrada.py:    log(f"[DXF] Aplicando rotação {ANGLE_DEG:.2f}°")
+./online/renderers/render_mesa_ipt_2d25_integrada.py:        lambda g: rotate(g, ANGLE_DEG, origin="center", use_radians=False)
+./online/renderers/render_mesa_ipt_2d25_integrada.py:    scale = 1.2
+./online/renderers/render_mesa_ipt_2d25_integrada.py:            N_rot[0] * scale,
+./online/renderers/render_mesa_ipt_2d25_integrada.py:            -N_rot[1] * scale,
+./online/renderers/render_mesa_ipt_2d25_integrada.py:        origin="upper",
+./online/renderers/render_mesa_ipt_2d25_integrada.py:    ax.add_patch(Rectangle((c, r), 1, 1, fill=False, edgecolor="white", linewidth=3, zorder=10))
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:from shapely.affinity import rotate
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:from matplotlib.patches import Rectangle
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:IPT_ROTATION_DEG = -28.0  # exemplo: alinhamento com Av. Escola Politécnica
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:    gdf = gdf[gdf.geom_type.isin(["LineString", "MultiLineString"])].copy()
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:        lambda g: rotate(g, IPT_ROTATION_DEG, origin="center", use_radians=False)
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:        origin="upper", vmin=0, vmax=MAX_HEIGHT_M,
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:    ax.add_patch(Rectangle((c, r), 1, 1,
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:from shapely.affinity import rotate
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:from matplotlib.patches import Rectangle
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:ANGLE_DEG = 154.63
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:    Carrega o DXF original do IPT e aplica SOMENTE
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:    log(f"Aplicando rotação trigonométrica: {ANGLE_DEG:.2f}°")
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:        lambda g: rotate(g, ANGLE_DEG, origin=(cx, cy), use_radians=False)
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:            Rectangle((c, r), 1, 1,
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:            Rectangle((c, r), 1, 1,
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:from shapely.affinity import scale, translate
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:# ALTURAS (SINTÉTICAS — VISUAL)
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:        scale(g, xfact=sx, yfact=sy, origin=(minx, maxy)),
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:active_rect = patches.Rectangle(
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:fill_rect = patches.Rectangle(
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:    fill_rect.set_alpha(0.15 + 0.25 * np.sin(np.pi * phase))
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:from shapely.affinity import rotate
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:from matplotlib.patches import Rectangle
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:ANGLE_DEG = 154.63  # alinhamento IPT ↔ eixo físico da mesa
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:    gdf = gdf[gdf.geom_type.isin(["LineString", "MultiLineString"])].copy()
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:    log(f"[DXF] Aplicando rotação trigonométrica: {ANGLE_DEG:.2f}°")
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:        lambda g: rotate(g, ANGLE_DEG, origin="center", use_radians=False)
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:        origin="upper",
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:        Rectangle(
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:            rect = patches.Rectangle(
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:                rect = patches.Rectangle(
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:#   - Títulos históricos variando no tempo
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:from matplotlib.patches import Rectangle
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:            origin="upper",
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:            Rectangle(
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:from matplotlib.patches import Rectangle
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:                origin="upper",
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:                Rectangle((x, y), 1, 1, fill=False, edgecolor="white", linewidth=2)
+./online/renderers/render_temporal_gif_v41_2.py:                origin="upper",
+./online/renderers/render_temporal_gif_v41_2.py:                plt.Rectangle(
+./online/renderers/render_temporal_gif_v42_2.py:                origin="upper",
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    print("TESTE: Planta Baixa IPT — Single Layer")
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    print("Planta Baixa IPT validada (single layer)")
+./online/renderers/visualizar_mesa_ipt_alturas.py:        origin="upper",
+./online/renderers/visualizar_mesa_ipt_bmp_dxf_alturas.py:        origin="upper",
+./online/states/temporal_sequence.py:    def run_single_cell(self):
+./online/tests/dash_virtual_table_player_ui_clean.py:# GIF (mesmo mecanismo do player original)
+./online/tests/test_eventbus_state_manager.py:    assert isinstance(payload, MovePinEvent)
+./online/tests/test_offline_product_loader.py:        "offline/products/snapshots/1cm_rotated"
+./online/tests/test_offline_product_loader.py:    assert isinstance(grid, np.ndarray), "Grid não é numpy array"
+./online/tests/test_offline_product_loader.py:    assert "rotation_angle_deg" in metadata, "rotation_angle_deg ausente no metadata"
+./online/tests/test_temporal_conductor.py:        "offline/products/snapshots/1cm_rotated"
+./online/tests/test_temporal_conductor_eventbus.py:        "offline/products/snapshots/1cm_rotated"
+./online/tests/test_temporal_statechart.py:        "offline/products/snapshots/1cm_rotated"
+./online/ui/console_player.py:        "offline/products/snapshots/1cm_rotated"
+./online/ui/dash_62_final_integrated.py:        colorscale="Viridis",
+./online/ui/dash_eventbus_grid_app.py:            Path("offline/products/snapshots/1cm_rotated")
+./online/ui/dash_eventbus_grid_app.py:            color_continuous_scale="Viridis",
+./online/ui/dash_eventbus_grid_app.py:            xaxis=dict(scaleanchor="y", scaleratio=1),
+./online/ui/dash_eventbus_grid_app.py:        Path("offline/products/snapshots/1cm_rotated")
+./online/ui/dash_runner_view.py:    fig = px.imshow(grid, color_continuous_scale="Viridis")
+./online/ui/dash_temporal_player.py:snapshot_path = Path("offline/products/snapshots/1cm_rotated")
+./online/ui/dash_temporal_player.py:        color_continuous_scale="Viridis",
+./online/ui/dash_temporal_player.py:        xaxis=dict(scaleanchor="y", scaleratio=1),
+./online/ui/dash_v44_full_digital_twin.py:        origin="upper",
+./online/ui/dash_v45_full_real.py:        origin="upper",
+./online/ui/dash_v47_frame_player_overlay.py:    draw.rectangle([x0, y0, x1, y1], outline="white", width=3)
+./online/ui/dash_v47_frame_player_pro.py:scale = 1.0  # 🔥 NOVO (escala física)
+./online/ui/dash_v47_frame_player_pro.py:                        "width": f"{int(100 * scale)}%",
+./online/ui/dash_v47_frame_player_pro.py:                    "transform": "translateX(-50%)",
+./online/ui/dash_v47_frame_player_pro.py:                    "transform": "translateY(-50%) rotate(90deg)",
+./online/ui/dash_v47_frame_player_pro.py:            html.Button("🔍 Escala 1x", id="scale"),
+./online/ui/dash_v47_frame_player_pro.py:    Output("scale", "children"),
+./online/ui/dash_v47_frame_player_pro.py:    Input("scale", "n_clicks"),
+./online/ui/dash_v47_frame_player_pro.py:def update(_, play, back, forward, mesa, scale_btn):
+./online/ui/dash_v47_frame_player_pro.py:    global current, running, direction, mesa_on, scale
+./online/ui/dash_v47_frame_player_pro.py:        elif btn == "scale":
+./online/ui/dash_v47_frame_player_pro.py:            if scale == 1.0:
+./online/ui/dash_v47_frame_player_pro.py:                scale = 2.0
+./online/ui/dash_v47_frame_player_pro.py:            elif scale == 2.0:
+./online/ui/dash_v47_frame_player_pro.py:                scale = 0.5
+./online/ui/dash_v47_frame_player_pro.py:                scale = 1.0
+./online/ui/dash_v47_frame_player_pro.py:    scale_label = f"🔍 Escala {scale}x"
+./online/ui/dash_v47_frame_player_pro.py:        scale_label
+./online/ui/dash_v47_frame_player_scaled.py:SCALE = 1.0   # 1.0 | 2.0 | 0.5
+./online/ui/dash_v47_frame_player_scaled.py:    img = img.resize((int(w*SCALE), int(h*SCALE)))
+./online/ui/dash_v49_core_synced.py:# IPT-CitySpace – V49 (FRAME + CORE SINCRONIZADO)
+./online/ui/dash_v72_cityspace_official.py: fig=go.Figure(data=go.Heatmap(z=z,colorscale="Viridis",zmin=0,zmax=10))
+./online/ui/dash_v72_cityspace_official.py: fig.update_layout(xaxis=dict(scaleanchor="y"),yaxis=dict(autorange="reversed"),margin=dict(l=10,r=10,t=30,b=10))
+./online/ui/dash_v73_cityspace_gridfix.py:  colorscale="Viridis",
+./online/ui/dash_v73_cityspace_gridfix.py:  showscale=True
+./online/ui/dash_v73_cityspace_gridfix.py:  scaleanchor="y",
+./online/ui/dash_v73_cityspace_gridfix.py:  scaleratio=1,
+./online/ui/dash_v74_cityspace_centered.py:  colorscale="Viridis",
+./online/ui/dash_v74_cityspace_centered.py:  showscale=True
+./online/ui/dash_v74_cityspace_centered.py:  scaleanchor="y",
+./online/ui/dash_v74_cityspace_centered.py:  scaleratio=1,
+./online/ui/dash_v75_2_restored.py:  colorscale="Viridis",
+./online/ui/dash_v75_2_restored.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1)
+./online/ui/dash_v75_3_fixed.py:  colorscale="Viridis",
+./online/ui/dash_v75_3_fixed.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1)
+./online/ui/dash_v75_cityspace_controls.py:  colorscale="Viridis",
+./online/ui/dash_v75_cityspace_controls.py:  scaleanchor="y",
+./online/ui/dash_v75_cityspace_controls.py:  scaleratio=1,
+./online/ui/dash_v76_time_continuous.py:  colorscale="Viridis",
+./online/ui/dash_v76_time_continuous.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./online/ui/dash_v77_cityspace_physics.py:  colorscale="Viridis",
+./online/ui/dash_v77_cityspace_physics.py: fig.update_xaxes(range=[-0.5,cols-0.5],scaleanchor="y",scaleratio=1)
+./online/ui/dash_v77_visual_layer.py:  colorscale="Viridis",
+./online/ui/dash_v77_visual_layer.py: fig.update_xaxes(scaleanchor="y",scaleratio=1)
+./online/ui/dash_v78_1_zoom_fixed.py:  colorscale="Viridis",
+./online/ui/dash_v78_1_zoom_fixed.py: fig.update_xaxes(range=[x0,x1],scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./online/ui/dash_v78_zoom_centered.py:  colorscale="Viridis",
+./online/ui/dash_v78_zoom_centered.py: fig.update_xaxes(range=[x0,x1],scaleanchor="y",scaleratio=1)
+./online/ui/dash_v79_physical_grid_zoom.py:def downscale_2x(z):
+./online/ui/dash_v79_physical_grid_zoom.py:def upscale_2x(z):
+./online/ui/dash_v79_physical_grid_zoom.py:  z=downscale_2x(z)
+./online/ui/dash_v79_physical_grid_zoom.py:  z=upscale_2x(z)
+./online/ui/dash_v79_physical_grid_zoom.py:  colorscale="Viridis",
+./online/ui/dash_v79_physical_grid_zoom.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./online/ui/dash_v80_1_scale_fixed.py: scale = 2 if zoom==2 else 1
+./online/ui/dash_v80_1_scale_fixed.py:  colorscale="Viridis",
+./online/ui/dash_v80_1_scale_fixed.py:  width=base_w*scale,
+./online/ui/dash_v80_1_scale_fixed.py:  height=base_h*scale,
+./online/ui/dash_v80_1_scale_fixed.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./online/ui/dash_v80_1_scale_fixed.py: status=f"STEP {step}/{TOTAL} | {val:.1f} cm | {m:.2f} m | GRID {scale}x"
+./online/ui/dash_v80_true_physical_scale.py: scale=1 if zoom==1 else 2
+./online/ui/dash_v80_true_physical_scale.py:  colorscale="Viridis",
+./online/ui/dash_v80_true_physical_scale.py:  width=450*scale,
+./online/ui/dash_v80_true_physical_scale.py:  height=225*scale,
+./online/ui/dash_v80_true_physical_scale.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./online/ui/dash_v80_true_physical_scale.py: status=f"STEP {step}/{TOTAL} | {val:.1f} cm | {m:.2f} m | GRID {scale}x"
+./online/ui/dash_v81_physical_elevation.py: scale=2 if zoom==2 else 1
+./online/ui/dash_v81_physical_elevation.py: fig.add_trace(go.Heatmap(z=z,colorscale="Viridis",zmin=0,zmax=10,colorbar=dict(title="Altura (cm / m)")))
+./online/ui/dash_v81_physical_elevation.py: fig.update_layout(width=base_w*scale,height=base_h*scale,margin=dict(l=0,r=0,t=0,b=0))
+./online/ui/dash_v81_physical_elevation.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./online/ui/dash_v81_physical_elevation.py: status=f"STEP {step}/{TOTAL} | {val:.1f} cm | {m:.2f} m | GRID {scale}x"
+./online/ui/dash_v83_grid_border.py: scale=2 if zoom==2 else 1
+./online/ui/dash_v83_grid_border.py: fig.add_trace(go.Heatmap(z=z,colorscale="Viridis",zmin=0,zmax=10,xgap=2,ygap=2,colorbar=dict(title="Altura (cm / m)")))
+./online/ui/dash_v83_grid_border.py: fig.update_layout(width=base_w*scale,height=base_h*scale,margin=dict(l=0,r=0,t=0,b=0),plot_bgcolor="white")
+./online/ui/dash_v83_grid_border.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./online/ui/dash_v83_grid_border.py: status=f"STEP {step}/{TOTAL} | {val:.1f} cm | {m:.2f} m | GRID {scale}x"
+./online/ui/dash_v84_active_pin.py: scale=2 if zoom==2 else 1
+./online/ui/dash_v84_active_pin.py: fig.add_trace(go.Heatmap(z=z,colorscale="Jet",zmin=0,zmax=10,xgap=2,ygap=2,opacity=0.65,colorbar=dict(title="Altura (cm / m)")))
+./online/ui/dash_v84_active_pin.py: width=base_w*scale,
+./online/ui/dash_v84_active_pin.py: height=base_h*scale,
+./online/ui/dash_v84_active_pin.py:  source="/assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v84_active_pin.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./online/ui/dash_v84_active_pin.py: status=f"STEP {step}/{TOTAL} | {val:.1f} cm | {m:.2f} m | GRID {scale}x"
+./online/ui/dash_v84_LOCKED.py: scale=2 if zoom==2 else 1
+./online/ui/dash_v84_LOCKED.py: fig.add_trace(go.Heatmap(z=z,colorscale="Jet",zmin=0,zmax=10,xgap=2,ygap=2,opacity=0.65,colorbar=dict(title="Altura (cm / m)")))
+./online/ui/dash_v84_LOCKED.py: width=base_w*scale,
+./online/ui/dash_v84_LOCKED.py: height=base_h*scale,
+./online/ui/dash_v84_LOCKED.py:  source="/assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v84_LOCKED.py: fig.update_xaxes(scaleanchor="y",scaleratio=1,dtick=1,title="Colunas")
+./online/ui/dash_v84_LOCKED.py: status=f"STEP {step}/{TOTAL} | {val:.1f} cm | {m:.2f} m | GRID {scale}x"
+./online/ui/dash_v85_LOCKED.py:    fig.add_trace(go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=3, ygap=3))
+./online/ui/dash_v85_visual_fit.py:    fig.add_trace(go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=3, ygap=3))
+./online/ui/dash_v85_visual_refined.py:    # 🔹 HEATMAP ORIGINAL (NÃO ALTERAR)
+./online/ui/dash_v85_visual_refined.py:        colorscale="Viridis",
+./online/ui/dash_v85_visual_refined.py:            source="/assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v86_visual_clean.py:img = Image.open("assets/ipt_mask_rotated_simple.png")
+./online/ui/dash_v86_visual_clean.py:                source="assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v86_visual_clean.py:        go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=1, ygap=1, opacity=0.65)
+./online/ui/dash_v86_visual_clean.py:        yaxis=dict(range=[ny, 0], visible=False, scaleanchor="x"),
+./online/ui/dash_v87_image_lock.py:img = Image.open("assets/ipt_mask_rotated_simple.png")
+./online/ui/dash_v87_image_lock.py:                source="assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v87_image_lock.py:        go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=1, ygap=1, opacity=0.65)
+./online/ui/dash_v87_image_lock.py:        yaxis=dict(range=[ny, 0], visible=False, scaleanchor="x"),
+./online/ui/dash_v88_grid_fix.py:img = Image.open("assets/ipt_mask_rotated_simple.png")
+./online/ui/dash_v88_grid_fix.py:                source="assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v88_grid_fix.py:        go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=1, ygap=1, opacity=0.65)
+./online/ui/dash_v88_grid_fix.py:        yaxis=dict(range=[ny - 0.5, -0.5], visible=False, scaleanchor="x"),
+./online/ui/dash_v89_final_fit.py:img = Image.open("assets/ipt_mask_rotated_simple.png")
+./online/ui/dash_v89_final_fit.py:                source="assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v89_final_fit.py:        go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=1, ygap=1, opacity=0.65)
+./online/ui/dash_v89_final_fit.py:        yaxis=dict(range=[ny - 0.5, -0.5], visible=False, scaleanchor="x"),
+./online/ui/dash_v90_urban_fit.py:img = Image.open("assets/ipt_mask_rotated_simple.png")
+./online/ui/dash_v90_urban_fit.py:                source="assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v90_urban_fit.py:        go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=1, ygap=1, opacity=0.65)
+./online/ui/dash_v90_urban_fit.py:        yaxis=dict(range=[ny - 0.5, -0.5], visible=False, scaleanchor="x"),
+./online/ui/dash_v91_altimetric_motion.py:                source="assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v91_altimetric_motion.py:        go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=1, ygap=1, opacity=0.65)
+./online/ui/dash_v91_altimetric_motion.py:        blink = 0.5 + 0.5 * np.sin(t * 6)  # efeito pulsante
+./online/ui/dash_v91_altimetric_motion.py:        yaxis=dict(range=[ny - 0.5, -0.5], visible=False, scaleanchor="x"),
+./online/ui/dash_v93_centroid_final.py:                source="assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v93_centroid_final.py:        go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=1, ygap=1, opacity=0.65)
+./online/ui/dash_v93_centroid_final.py:        blink = 0.5 + 0.5 * np.sin(t * 6)
+./online/ui/dash_v93_centroid_final.py:        yaxis=dict(range=[ny - 0.5, -0.5], visible=False, scaleanchor="x"),
+./online/ui/dash_v94_clean_marker.py:                source="assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v94_clean_marker.py:        go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=1, ygap=1, opacity=0.65)
+./online/ui/dash_v94_clean_marker.py:        yaxis=dict(range=[ny - 0.5, -0.5], visible=False, scaleanchor="x"),
+./online/ui/dash_v94_clean_no_marker.py:                source="assets/ipt_mask_rotated_simple.png",
+./online/ui/dash_v94_clean_no_marker.py:        go.Heatmap(z=Z, colorscale="Jet", zmin=0, zmax=10, xgap=1, ygap=1, opacity=0.65)
+./online/ui/dash_v94_clean_no_marker.py:        yaxis=dict(range=[ny - 0.5, -0.5], visible=False, scaleanchor="x"),
+./online/ui/dash_v95_3d_urban.py:                        colorscale="Jet",
+./online/ui/dash_v95_3d_urban.py:                        showscale=False,
+./online/ui/dash_v99_3d_buildings_zigzag.py:                        colorscale="Jet",
+./online/ui/dash_v99_3d_buildings_zigzag.py:                        showscale=False,
+./online/ui/legacy/temporal_player_video_app.py:        "offline/products/snapshots/1cm_rotated"
+./online/ui/temporal_player_grid_app.py:        "offline/products/snapshots/1cm_rotated"
+./online/ui/temporal_player_grid_controls_app.py:snapshot_path = Path("offline/products/snapshots/1cm_rotated")
+./online/ui/temporal_player_grid_controls_app.py:                color_continuous_scale="Viridis",
+./online/ui/temporal_player_grid_controls_app.py:                xaxis=dict(scaleanchor="y", scaleratio=1),
+./online/ui/temporal_player_grid_controls_app.py:        color_continuous_scale="Viridis",
+./online/ui/temporal_player_grid_controls_app.py:        xaxis=dict(scaleanchor="y", scaleratio=1),
+./tests/test_geo_cells.py:def test_single_polygon_single_cell():

@@ -1,0 +1,491 @@
+./engine.py:Este arquivo NÃO implementa lógica pesada.
+./engine.py:        from online.ui.dash_temporal_player import app
+./legacy/cleanup_20260305_164029/debug_extents.py:NÃO grava arquivos.
+./legacy/cleanup_20260305_164029/debug_extents.py:    raise RuntimeError("❌ Pasta 'data' não encontrada na hierarquia.")
+./legacy/cleanup_20260305_164029/exporting/export_fase2.py:        np.save(self.output_dir / "grid_uint8.npy", self.context.grid_uint8)
+./legacy/cleanup_20260305_164029/geo/build_grid_fase1_1cm.py:# Build GRID da mesa (1cm) a partir de Z_TOTAL REAL
+./legacy/cleanup_20260305_164029/geo/build_grid_fase1_1cm.py:    z_norm = np.zeros_like(z_clip, dtype=np.uint8)
+./legacy/cleanup_20260305_164029/geo/build_grid_fase1_1cm.py:    ).astype(np.uint8)
+./legacy/cleanup_20260305_164029/geo/build_grid_fase1_1cm.py:        "dtype": "uint8",
+./legacy/cleanup_20260305_164029/geo/build_grid_fase1_1cm.py:    grid_uint8 = np.zeros((GRID_ROWS, GRID_COLS), dtype=np.uint8)
+./legacy/cleanup_20260305_164029/geo/build_grid_fase1_1cm.py:            grid_uint8[r, c] = int(block_norm.max())
+./legacy/cleanup_20260305_164029/geo/build_grid_fase1_1cm.py:    grid_cm = (grid_uint8.astype(np.float32) / 255.0) * PIN_MAX_CM
+./legacy/cleanup_20260305_164029/geo/build_grid_fase1_1cm.py:    np.savetxt(FASE1_DIR / "grid_uint8.csv", grid_uint8, delimiter=";", fmt="%d")
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:  • valor uint8 (0–255)
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:Z_BUILD   = FASE0_DIR / "z_building_real.tif"
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:GRID_UINT8 = FASE1_DIR / "grid_uint8.csv"
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:    z_build,   _         = load_raster(Z_BUILD)
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:    grid_uint8 = np.loadtxt(GRID_UINT8, delimiter=";", dtype=np.uint8)
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:    assert grid_uint8.shape == (GRID_ROWS, GRID_COLS)
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:    building_m = np.zeros((GRID_ROWS, GRID_COLS), dtype=np.float32)
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:            b_block = z_build[y0:y1, x0:x1]
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:            building_m[r, c] = float(np.nanmax(b_block))
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:            pino_cm[r, c] = (grid_uint8[r, c] / UINT8_MAX) * PIN_MAX_CM
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:    np.savetxt(OUT_DIR / "grid_uint8.csv", grid_uint8, delimiter=";", fmt="%d")
+./legacy/cleanup_20260305_164029/geo/build_semantic_grid_fase2.py:    np.savetxt(OUT_DIR / "grid_building_m.csv", building_m, delimiter=";", fmt="%.2f")
+./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:offline/geo/build_z_total_real.py
+./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:# Config (mude aqui se precisar)
+./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:ALTURA_MAX_ASSUMED = 300.0  # apenas para scaling do BMP (m) — ajuste se quiser
+./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:    Escala arr_meters (m) para 0-255 uint8 e grava BMP para conferência visual.
+./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:    scaled = ((clipped - vmin) / (vmax - vmin) * 255.0).astype(np.uint8)
+./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:    log("=== OFFLINE: build_z_total_real.py ===")
+./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:        mask_bin = np.where(np.isfinite(mask) & (mask != 0), 1, 0).astype(np.uint8)
+./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:        mask_bin = np.zeros_like(dsm, dtype=np.uint8)
+./legacy/cleanup_20260305_164029/geo/contours/csv_to_contours.py:    equidistancia_m: float = 0.01,
+./legacy/cleanup_20260305_164029/geo/contours/csv_to_contours.py:        grid_m.max() + equidistancia_m,
+./legacy/cleanup_20260305_164029/geo/contours/csv_to_contours.py:        equidistancia_m
+./legacy_auto/tools/organize_legacy.py:- Move arquivos antigos/duplicados para legacy/
+./legacy_auto/tools/organize_legacy.py:        # 1️⃣ mover arquivos claramente antigos
+./legacy_auto/visualization/render_temporal_gif_v18.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./legacy_auto/visualization/render_temporal_gif_v18.py:    print("Arquivo:", GIF_PATH)
+./legacy_auto/visualization/render_temporal_gif_v19.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./legacy_auto/visualization/render_temporal_gif_v19.py:    print("Arquivo:", GIF_PATH)
+./legacy_auto/visualization/render_temporal_gif_v20.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./legacy_auto/visualization/render_temporal_gif_v20.py:    print("Arquivo GIF :", GIF_PATH)
+./offline/adapters/scientific_to_semantic_adapter.py:    building = df["altura_edificio_m"].values.reshape(GRID_ROWS, GRID_COLS)
+./offline/adapters/scientific_to_semantic_adapter.py:    grid_uint8 = (pino_cm / PIN_MAX_CM) * UINT8_MAX
+./offline/adapters/scientific_to_semantic_adapter.py:    grid_uint8 = np.clip(grid_uint8, 0, UINT8_MAX)
+./offline/adapters/scientific_to_semantic_adapter.py:    grid_uint8 = grid_uint8.astype(np.uint8)
+./offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_uint8.csv", grid_uint8, delimiter=";", fmt="%d")
+./offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_building_m.csv", building, delimiter=";", fmt="%.3f")
+./offline/ingestion/auto_dataset_ingestion.py:        print("\nArquivos TIFF encontrados:\n")
+./offline/ingestion/auto_dataset_ingestion.py:print("\n[6] Copiando arquivos para RAW...\n")
+./offline/loading/load_raster.py:        raise FileNotFoundError(f"[LoadRaster] Arquivo não encontrado: {path}")
+./offline/loading/load_vector.py:    - NÃO atribui CRS
+./offline/loading/load_vector.py:        raise FileNotFoundError(f"[LoadVector] Arquivo não encontrado: {path}")
+./offline/loading/offline_product.py:            self.grid = np.loadtxt(grid_path, delimiter=";", dtype=np.uint8)
+./offline/loading/offline_product.py:        if grid.dtype != np.uint8:
+./offline/loading/offline_product.py:            raise ValueError("grid deve estar normalizado em uint8 (0–255)")
+./offline/loading/validate_crs.py:    - Nenhuma reprojeção ocorre aqui
+./offline/pipeline_dag.py:"name": "build_scientific_grid",
+./offline/pipeline_dag.py:"script": "offline/scientific_grid_builder.py",
+./offline/pipeline_runner.py:    print(f"Arquivo salvo em: {output.resolve()}")
+./offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+./offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/processing/apply_rigid_transform_vector_scientific.py:    print("\nArquivos gerados:")
+./offline/processing/build_mask_local_grid.py:def build_mask_local_grid(grid_meta, shapefile_path):
+./offline/processing/build_mask_local_grid.py:    print("[MaskLocal] Construindo máscara local de edifícios")
+./offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    buildings = geometries_sorted[1:]
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Total edifícios:", len(buildings))
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg(buildings, OUTPUT_BUILDINGS, "buildings")
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("\nArquivos gerados:")
+./offline/processing/normalize.py:    Normaliza nDSM (metros) para uint8 (0–255).
+./offline/processing/normalize.py:        return np.zeros_like(ndsm, dtype=np.uint8)
+./offline/processing/normalize.py:    gray = (norm * 255).astype(np.uint8)
+./offline/processing/rasterize_mask.py:        dtype="uint8",
+./offline/processing/rasterize_mask.py:    print("[Rasterize] Rasterizacao concluida\n")
+./offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+./offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+./offline/processing/set_crs_scientific.py:        print(f"Arquivo não encontrado: {f}")
+./offline/products/generate_contours_cartographic.py:    print("\nArquivo salvo:")
+./offline/products/generate_contours_cartographic_v2.py:# 2) remover curvas muito pequenas (ruído)
+./offline/products/generate_height_products.py:  → valores uint8 (0–255) usados pelos atuadores da mesa física
+./offline/products/generate_height_products.py:def carregar_grid_uint8(path: Path) -> np.ndarray:
+./offline/products/generate_height_products.py:    log(f"Carregando grid uint8: {path}")
+./offline/products/generate_height_products.py:    grid = np.loadtxt(path, delimiter=";", dtype=np.uint8)
+./offline/products/generate_height_products.py:def converter_para_cm(grid_uint8: np.ndarray) -> np.ndarray:
+./offline/products/generate_height_products.py:    grid_cm = (grid_uint8.astype(np.float32) / UINT8_MAX) * PIN_MAX_HEIGHT_CM
+./offline/products/generate_height_products.py:    log("✔ Arquivo salvo")
+./offline/products/generate_height_products.py:    grid_uint8 = carregar_grid_uint8(GRID_UINT8_CSV)
+./offline/products/generate_height_products.py:    validar_grid(grid_uint8)
+./offline/products/generate_height_products.py:    grid_cm = converter_para_cm(grid_uint8)
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_dxf_inspect.py:# - Garantir que o arquivo é utilizável como base OFFLINE
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:mask = build_mask_local_grid(
+./offline/raster/core/reclip_rasters_to_domain.py:    print("[1/4] Verificando arquivos...")
+./offline/raster/core/reclip_rasters_to_domain.py:            raise FileNotFoundError(f"Arquivo não encontrado: {p}")
+./offline/raster/pipeline/scientific_raster_runner.py:def build_rigid_affine(params):
+./offline/raster/pipeline/scientific_raster_runner.py:    rigid = build_rigid_affine(params)
+./offline/scanners/zigzag_column_scanner.py:        self._trajectory: List[Tuple[int, int]] = self._build_trajectory()
+./offline/scanners/zigzag_column_scanner.py:    def _build_trajectory(self) -> List[Tuple[int, int]]:
+./offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./offline/scientific_cell_metrics.py:        buildings = [shape(f["geometry"]) for f in bld]
+./offline/scientific_cell_metrics.py:    print(f"Total edifícios: {len(buildings)}")
+./offline/scientific_cell_metrics.py:        area_build = 0.0
+./offline/scientific_cell_metrics.py:        for b in buildings:
+./offline/scientific_cell_metrics.py:                area_build += b.intersection(geom).area
+./offline/scientific_cell_metrics.py:        percent_build = (area_build / area_cell) * 100.0
+./offline/scientific_cell_metrics.py:        percent_terrain = 100.0 - percent_build
+./offline/scientific_cell_metrics.py:            percent_build,
+./offline/scientific_cell_metrics.py:            "percent_building",
+./offline/scientific_cell_metrics.py:    print(f"Arquivo: {OUTPUT_CSV.name}")
+./offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+./offline/scientific_cell_metrics_utm.py:        buildings = [shape(f["geometry"]) for f in bld]
+./offline/scientific_cell_metrics_utm.py:    print(f"Total edifícios: {len(buildings)}")
+./offline/scientific_cell_metrics_utm.py:        area_build = 0.0
+./offline/scientific_cell_metrics_utm.py:        for b in buildings:
+./offline/scientific_cell_metrics_utm.py:                area_build += b.intersection(geom).area
+./offline/scientific_cell_metrics_utm.py:        percent_build = (area_build / area_cell) * 100.0
+./offline/scientific_cell_metrics_utm.py:        percent_terrain = 100.0 - percent_build
+./offline/scientific_cell_metrics_utm.py:            percent_build,
+./offline/scientific_cell_metrics_utm.py:            "percent_building",
+./offline/scientific_cell_metrics_utm.py:    print(f"Arquivo: {OUTPUT_CSV.name}")
+./offline/scientific_grid_builder.py:    # 0. Verificação de arquivos
+./offline/scientific_grid_builder.py:        raise FileNotFoundError(f"Arquivo não encontrado: {INPUT_PATH}")
+./offline/scientific_grid_builder.py:    print(f"Arquivo salvo: {OUTPUT_PATH.name}")
+./offline/scientific_runner.py:    print("[1/6] Verificando arquivos...")
+./offline/scientific_runner.py:        # Muito largo → aumentar altura
+./offline/scientific_runner.py:        print("Envelope muito largo → aumentando altura")
+./offline/scientific_runner.py:        # Muito alto → aumentar largura
+./offline/scientific_runner.py:        print("Envelope muito alto → aumentando largura")
+./offline/scientific_runner.py:    print(f"Arquivo gerado: {OUTPUT_PATH.name}\n")
+./offline/tests/test_generate_contours_layer.py:            f"Arquivo não encontrado: {GRID_METROS_CSV}"
+./offline/tests/test_generate_contours_topografico.py:            f"Arquivo não encontrado: {GRID_METROS_CSV}"
+./offline/tests/test_scientific_runner_integration.py:from runner.scientific_runner_engine import build_sequence_from_csv
+./offline/tests/test_scientific_runner_integration.py:    sequence = build_sequence_from_csv(CSV_PATH)
+./offline/tests/test_scientific_runner_integration.py:    sequence = build_sequence_from_csv(CSV_PATH)
+./offline/tools/analyze_pipeline_products.py:Analisa os arquivos gerados no projeto para reconstruir
+./offline/tools/analyze_pipeline_products.py:• arquivos mais antigos → etapas iniciais
+./offline/tools/analyze_pipeline_products.py:• arquivos mais recentes → etapas finais
+./offline/tools/build_pipeline_execution_order.py:"offline/vector/core/build_domain_1x2_utm.py",
+./offline/tools/build_pipeline_execution_order.py:"offline/processing/build_official_urban_envelope_rotated.py",
+./offline/tools/build_pipeline_execution_order.py:"offline/scientific_grid_builder.py",
+./offline/tools/cleanup_project_structure.py:    "arquivo.py"
+./offline/tools/generate_pipeline_dag.py:print("\nBuilding dependency graph...\n")
+./offline/validate_dxf_ipt_original_rotated_clean.py:    log(f"Arquivo origem: {DXF_PATH}")
+./offline/validate_dxf_ipt_original_rotated_clean.py:    log(f"Arquivo gerado: {OUT_PNG}")
+./offline/validation/fix_validation_scripts.py:print("Arquivo alvo:")
+./offline/validation/fix_validation_scripts.py:raise FileNotFoundError("Arquivo não encontrado.")
+./offline/validation/validate_rigid_transform_json.py:def build_rotation_matrix(theta_deg):
+./offline/validation/validate_rigid_transform_json.py:        print("❌ Arquivo não encontrado:", PARAMS_PATH)
+./offline/validation/validate_rigid_transform_json.py:    required_keys = [
+./offline/validation/validate_rigid_transform_json.py:    missing = [k for k in required_keys if k not in params]
+./offline/validation/validate_rigid_transform_json.py:    print("\n[2] Construindo matriz de rotação...")
+./offline/validation/validate_rigid_transform_json.py:    R = build_rotation_matrix(theta)
+./offline/validation/validate_rigid_transform_parameters.py:        print("❌ Arquivo original não encontrado:", ORIGINAL_PATH)
+./offline/validation/validate_rigid_transform_parameters.py:        print("❌ Arquivo rotacionado não encontrado:", ROTATED_PATH)
+./offline/validation/validate_rigid_transform_parameters.py:    print("\n[1] Lendo arquivos...")
+./offline/validation/validate_scientific_grid_metrics.py:        raise FileNotFoundError(f"Arquivo não encontrado: {CSV_PATH}")
+./offline/vector/core/apply_rigid_transform_clean.py:    print("\n[4/5] Arquivo salvo com sucesso.")
+./offline/vector/core/apply_rigid_transform_clean.py:    print(f"Arquivo: {OUTPUT_PATH.name}")
+./offline/vector/core/build_domain_1x2_utm.py:        print("Envelope muito largo → aumentando altura")
+./offline/vector/core/build_domain_1x2_utm.py:        print("Envelope muito alto → aumentando largura")
+./offline/vector/core/build_domain_1x2_utm.py:    print("\n[4/5] Construindo domínio 1:2...")
+./offline/vector/core/build_domain_1x2_utm.py:    print(f"Arquivo: {OUTPUT_PATH.name}\n")
+./online/actuators/test_virtual_actuator_legacy.py:timeline.add_event(1, "create", "Building_A")
+./online/actuators/test_virtual_actuator_legacy.py:timeline.add_event(2, "create", "Building_B")
+./online/actuators/test_virtual_actuator_legacy.py:timeline.add_event(3, "update", "Building_B")
+./online/actuators/test_virtual_actuator_legacy.py:timeline.add_event(4, "remove", "Building_A")
+./online/controllers/test_temporal_controller.py:def build_sequence():
+./online/controllers/test_temporal_controller.py:    conductor.load_sequence(build_sequence())
+./online/core/actuator_events.py:    building_name: Optional[str] = None
+./online/core/modes.py:    def build_grid_profile(self, bbox_geo):
+./online/core/physical_motion_profile.py:manter equivalência temporal entre simulação e hardware.
+./online/core/temporal_sequence.py:class TemporalSequenceBuilder:
+./online/core/temporal_sequence.py:    def build(self, grid_m: np.ndarray, phases: List[dict]) -> List[TemporalState]:
+./online/core/temporal_state.py:    Equivalente a um 'frame' no tempo.
+./online/core/test_modes.py:        grid_profile = mode.build_grid_profile(bbox_geo)
+./online/core/test_temporal_conductor.py:from online.core.temporal_sequence import TemporalSequenceBuilder
+./online/core/test_temporal_conductor.py:    builder = TemporalSequenceBuilder(
+./online/core/test_temporal_conductor.py:    sequence = builder.build(grid_m, phases)
+./online/core/test_temporal_player.py:def build_sequence():
+./online/core/test_temporal_player.py:    sequence = build_sequence()
+./online/core/test_temporal_player.py:    # Aqui NÃO garantimos índice > 0
+./online/renderers/fase3/FASE_3_1_mesa_virtual.py:GRID_FILE = DATA_DIR / "grid_uint8.npy"
+./online/renderers/fase3/FASE_3_1_mesa_virtual.py:required_files = [
+./online/renderers/fase3/FASE_3_1_mesa_virtual.py:for f in required_files:
+./online/renderers/fase3/FASE_3_1_mesa_virtual.py:        raise FileNotFoundError(f"[ERRO] Arquivo não encontrado: {f}")
+./online/renderers/fase3/FASE_3_1_mesa_virtual.py:cbar.set_label("Altura normalizada (uint8)")
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:#   offline/geo/build_grid_fase1_1cm.py
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:# - NÃO aplicar rotação aqui
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:GRID_FILE = DATA_DIR / "grid_uint8.npy"
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:        raise FileNotFoundError(f"[ERRO] Arquivo não encontrado: {f}")
+./online/renderers/fase3/FASE_3_3_layout_mesa.py:cbar.set_label("Altura normalizada (uint8)")
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:GRID_PATH = FASE2_DIR / "grid_uint8.npy"
+./online/renderers/fase3/FASE_3_5_verificacao_contrato.py:grid_uint8 = np.load(FASE2_DIR / "grid_uint8.npy")
+./online/renderers/fase3/FASE_3_5_verificacao_contrato.py:    grid_uint8.shape == (8, 16),
+./online/renderers/fase3/FASE_3_5_verificacao_contrato.py:    f"Grid inesperado: {grid_uint8.shape}"
+./online/renderers/fase3/FASE_3_5_verificacao_contrato.py:    grid_uint8.max() > 0,
+./online/renderers/fase3/FASE_3_5_verificacao_contrato.py:    f"Grid possui valores (>0): max={grid_uint8.max()}",
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:GRID_PATH = FASE2_DIR / "grid_uint8.npy"
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:GRID_PATH = FASE2_DIR / "grid_uint8.npy"
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:# Escala equivalente (exemplo conservador)
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:# (ajuste depois se quiser refinar)
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:    f"Equivalência aprox.: 1 cm ≈ {CM_TO_METERS_EQUIV:.0f} m",
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v2_gif.py:        dtype=np.uint8
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v2_gif.py:    rgb = np.zeros((h, w, 3), dtype=np.uint8)
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:            dtype=np.uint8
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:        rgb = np.zeros((h, w, 3), dtype=np.uint8)
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:        cbar.set_label("Altura do pino (m) — equivalente real IPT")
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:            dtype=np.uint8
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:        rgb = np.zeros((h, w, 3), dtype=np.uint8)
+./online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:        dtype=np.uint8
+./online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:    rgb = np.zeros((h, w, 3), dtype=np.uint8)
+./online/renderers/render_mesa_ipt_2d25_canonico.py:    print("Arquivo:", GIF_PATH)
+./online/renderers/render_mesa_ipt_2d25_integrada.py:    log(f"Arquivo: {GIF_PATH}")
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:# - Pensado para equivalência futura com mesa física
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:            fig.canvas.tostring_rgb(), dtype=np.uint8
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:    print(f"Arquivo gerado: {OUT_GIF}")
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:print(f"Arquivo: {OUT_GIF}")
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:    log(f"[DXF] Carregando arquivo: {dxf_path}")
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:    log(f"Arquivo: {GIF_PATH}")
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:    arquivos = sorted(glob.glob(os.path.join(BMP_DIR, "BMP_1cm_rot_*.bmp")))
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:    if not arquivos:
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:    return arquivos[-1]
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:    buf = np.frombuffer(canvas.tostring_argb(), dtype=np.uint8)
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:    arquivos = sorted(glob.glob(os.path.join(BMP_DIR, "BMP_1cm_rot_*.bmp")))
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:    if not arquivos:
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:    return arquivos[-1]
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:    buf = np.frombuffer(canvas.tostring_argb(), dtype=np.uint8)
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:    arquivos = sorted(
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:    if not arquivos:
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:    bmp_path = os.path.join(BMP_DIR, arquivos[-1])
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:        frame = np.frombuffer(fig.canvas.buffer_rgba(), dtype=np.uint8)
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:    print(f"Arquivo: {OUT_GIF}")
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:            frame = np.frombuffer(fig.canvas.buffer_rgba(), dtype=np.uint8)
+./online/renderers/tests/test_generate_gif_planta_baixa_ipt.py:    print("Arquivo:", gif_path)
+./online/renderers/tests/test_renderer2d_frame.py:        created=["Building_A"],
+./online/renderers/tests/test_renderer2d_frame.py:        removed=["Building_B"],
+./online/renderers/tests/test_renderer2d_frame.py:        updated=["Building_C"]
+./online/renderers/tests/test_renderer2d_multilayer.py:    buildings = np.zeros(shape)
+./online/renderers/tests/test_renderer2d_multilayer.py:    buildings[2:5, 4:7] = 15
+./online/renderers/tests/test_renderer2d_multilayer.py:    buildings[5:7, 10:13] = 25
+./online/renderers/tests/test_renderer2d_multilayer.py:    layer_buildings = Layer2D(
+./online/renderers/tests/test_renderer2d_multilayer.py:        grid=buildings,
+./online/renderers/tests/test_renderer2d_multilayer.py:    renderer.add_layer(layer_buildings)
+./online/renderers/visualizar_mesa_ipt_alturas.py:    print(f"Arquivo: {OUT_PNG}")
+./online/renderers/visualizar_mesa_ipt_bmp_dxf_alturas.py:    print(f"Arquivo: {OUT_PNG}")
+./online/runtime/bootstrap_mock.py:def build_runtime():
+./online/runtime/bootstrap_mock.py:    build_runtime()
+./online/tests/test_offline_product_loader.py:    assert grid.dtype == np.uint8, "Tipo do grid não é uint8"
+./online/tests/test_temporal_conductor.py:def build_sequence_from_grid(grid) -> List[TemporalState]:
+./online/tests/test_temporal_conductor.py:    sequence = build_sequence_from_grid(grid)
+./online/tests/test_temporal_conductor_eventbus.py:def build_sequence_from_grid(grid) -> List[TemporalState]:
+./online/tests/test_temporal_conductor_eventbus.py:    sequence = build_sequence_from_grid(grid)
+./online/tests/test_temporal_statechart.py:def build_sequence_from_grid(grid):
+./online/tests/test_temporal_statechart.py:    sequence = build_sequence_from_grid(grid)
+./online/ui/console_player.py:def build_sequence_from_grid(grid):
+./online/ui/console_player.py:    sequence = build_sequence_from_grid(grid)
+./online/ui/dash_eventbus_grid_app.py:def build_sequence_from_grid(grid):
+./online/ui/dash_eventbus_grid_app.py:        self.sequence = build_sequence_from_grid(product.grid)
+./online/ui/dash_temporal_player.py:def build_sequence_from_grid(grid):
+./online/ui/dash_temporal_player.py:sequence = build_sequence_from_grid(grid)
+./online/ui/layers.py:# online/ui/layers.py
+./online/ui/legacy/app.py:# online/ui/app.py
+./online/ui/legacy/app.py:from online.ui.visual_adapter import VisualAdapter
+./online/ui/legacy/temporal_player_app.py:# online/ui/temporal_player_app.py
+./online/ui/legacy/temporal_player_app.py:timeline.add_event(1, "create", "Building_A")
+./online/ui/legacy/temporal_player_app.py:timeline.add_event(2, "create", "Building_B")
+./online/ui/legacy/temporal_player_app.py:timeline.add_event(3, "update", "Building_B")
+./online/ui/legacy/temporal_player_app.py:timeline.add_event(4, "remove", "Building_A")
+./online/ui/temporal_player_grid_app.py:def build_sequence_from_grid(grid):
+./online/ui/temporal_player_grid_app.py:    sequence = build_sequence_from_grid(grid)
+./online/ui/temporal_player_grid_app.py:    ui = AsciiGridObserver(rows, cols, state_manager)
+./online/ui/temporal_player_grid_app.py:    bus.subscribe("MOVE_PIN", ui.on_move_pin)
+./online/ui/temporal_player_grid_controls_app.py:def build_sequence_from_grid(grid):
+./online/ui/temporal_player_grid_controls_app.py:SEQUENCE = build_sequence_from_grid(product.grid)
+./online/ui/test_visual_adapter.py:# online/ui/test_visual_adapter.py
+./online/ui/test_visual_adapter.py:from online.ui.visual_adapter import VisualAdapter
+./online/ui/visual_adapter.py:# online/ui/visual_adapter.py
+./scan_engine_files.py:print(f"Total arquivos encontrados: {len(records)}\n")
+./scan_engine_files.py:print("---- Arquivos candidatos a 1cm ----")
+./scan_engine_files.py:print("\n---- Arquivos candidatos a 2cm ----")
+./scan_engine_files.py:print("\n---- TODOS os arquivos relevantes ----")
+./scripts/01_inspect_inputs.py:print("🏗 Vector (Buildings)")
+./scripts/03b_clean_rasters.py:- Substituir NoData por 0
+./scripts/04b_build_z_total_masked.py:print(f"Vector loaded: {len(gdf)} buildings")
+./scripts/04b_build_z_total_masked.py:print("\nRasterizing building mask...")
+./scripts/04b_build_z_total_masked.py:    dtype="uint8"
+./scripts/04b_build_z_total_masked.py:building_pixels = int(mask.sum())
+./scripts/04b_build_z_total_masked.py:print(f"  Building pixels: {building_pixels}")
+./scripts/04b_build_z_total_masked.py:print("Applying building mask...")
+./scripts/04b_build_z_total_masked.py:print("Building Z_total raster...")
+./scripts/06_normalize_to_8bit.py:z_norm = np.zeros_like(z_clipped, dtype=np.uint8)
+./scripts/06_normalize_to_8bit.py:).astype(np.uint8)
+./scripts/06_normalize_to_8bit.py:    "dtype": "uint8",
+./scripts/07_extract_grid_1cm.py:grid = np.zeros((N_ROWS, N_COLS), dtype=np.uint8)
+./scripts/08_extract_grid_2cm.py:grid_1cm = np.array(grid_1cm, dtype=np.uint8)
+./scripts/08_extract_grid_2cm.py:grid_2cm = np.zeros((OUT_ROWS, OUT_COLS), dtype=np.uint8)
+./scripts/09_generate_actuator_plan.py:print("Arquivo:", OUTPUT_PLAN)
+./tests/test_grid_normalization.py:def test_clamp_requires_bounds():
+./tools/architecture/generate_project_context.py:# As seguintes regras são fundamentais para qualquer novo chat.
+./tools/architecture/generate_project_context.py:# - Sempre incluir comandos bash
+./tools/architecture/pipeline_execution_flow.py:Gera documentação automática da arquitetura de execução.
+./tools/architecture/pipeline_execution_flow.py:# Build flow report
+./tools/architecture/pipeline_execution_flow.py:def build_pipeline_flow():
+./tools/architecture/pipeline_execution_flow.py:    flow = build_pipeline_flow()
+./tools/architecture/pipeline_execution_flow.py:Gera documentação automática da arquitetura de execução.
+./tools/architecture/pipeline_execution_flow.py:def build_pipeline_flow():
+./tools/architecture/pipeline_execution_flow.py:    flow = build_pipeline_flow()
+./tools/calibration/adjust_micro_angle_final.py:    Image.fromarray(rotated.astype(np.uint8)).save(RASTER_OUT)
+./tools/calibration/affine_adjust_visual_v52.py:    img_out = (cropped * 255).astype(np.uint8)
+./tools/calibration/align_by_avenida_line.py:    img_out = (final * 255).astype(np.uint8)
+./tools/calibration/align_ipt_raster_manual_final.py:    Image.fromarray((crop * 255).astype(np.uint8)).save(RASTER_OUT)
+./tools/calibration/align_ipt_raster_test.py:    img = (r * 255).astype(np.uint8)
+./tools/calibration/align_ipt_raster_v43.py:- duas quinas da calçada (referência real)
+./tools/calibration/align_ipt_raster_v43.py:P1 = (3.2, 5.0)   # quina esquerda
+./tools/calibration/align_ipt_raster_v43.py:P2 = (8.7, 4.1)   # quina direita
+./tools/calibration/align_ipt_raster_v44.py:# você ajusta estas quinas da calçada
+./tools/calibration/align_ipt_raster_v46.py:# (editar aqui)
+./tools/calibration/align_ipt_raster_v47.py:    # flip equivalente 180°
+./tools/calibration/align_ipt_raster_v49_manual_lines.py:    out = (cropped * 255).astype(np.uint8)
+./tools/calibration/align_ipt_raster_v53.py:    Image.fromarray((crop * 255).astype(np.uint8)).save(RASTER_OUT)
+./tools/calibration/align_urbanism_pca_v7.py:    Image.fromarray((crop * 255).astype(np.uint8)).save(RASTER_OUT)
+./tools/calibration/fine_rotate_v50_v51.py:    arr = (arr * 255).clip(0,255).astype(np.uint8)
+./tools/calibration/fit_bbox_to_table_v48.py:    resized = Image.fromarray((crop * 255).astype(np.uint8)).resize(
+./tools/calibration/fit_bbox_to_table_v48.py:    canvas = np.ones((TARGET_H, TARGET_W), dtype=np.uint8) * 255
+./tools/calibration/fix_left_alignment_v54.py:    Image.fromarray((best_img * 255).astype(np.uint8)).save(OUT_FILE)
+./tools/calibration/make_final_raster_neg70.py:    Image.fromarray(crop.astype(np.uint8)).save(RASTER_OUT)
+./tools/calibration/make_raster_angle_compare_v55.py:    Image.fromarray((rot * 255).astype(np.uint8)).save(out_path)
+./tools/calibration/make_raster_angle_compare_v55.py:    print("\nArquivos gerados para comparação visual.")
+./tools/calibration/make_raster_geo_aligned.py:    Image.fromarray((cropped * 255).astype(np.uint8)).save(OUT_PNG)
+./tools/calibration/make_raster_v3_for_v41.py:    resized = Image.fromarray((crop * 255).astype(np.uint8)).resize(
+./tools/calibration/make_raster_v3_for_v41.py:    canvas = np.ones((target_h, target_w), dtype=np.uint8) * 255
+./tools/calibration/make_raster_v4_authorized.py:canvas = np.full((h+200, w+200), 255, dtype=np.uint8)
+./tools/calibration/make_raster_v4_watermark.py:    # volta para uint8
+./tools/calibration/make_raster_v4_watermark.py:    out = (crop * 255).astype(np.uint8)
+./tools/calibration/make_raster_v5_semantic.py:    Image.fromarray(cropped.astype(np.uint8)).save(OUT_RASTER)
+./tools/calibration/make_raster_v6_fine_adjust.py:    img_out = (raster_crop * 255).astype(np.uint8)
+./tools/calibration/rotate_from_neg60_minutes.py:    Image.fromarray((rot * 255).astype(np.uint8)).save(out_path)
+./tools/calibration/rotate_manual_angle.py:    img_out = (final * 255).astype(np.uint8)
+./tools/calibration/rotate_manual_two_angles.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./tools/calibration/rotate_manual_two_angles_fine.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./tools/calibration/rotate_manual_two_angles_fine_v2.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./tools/calibration/rotate_manual_two_angles_fine_v3.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./tools/calibration/rotate_manual_two_angles_fine_v4.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./tools/calibration/rotate_manual_two_angles_fine_v5.py:    Image.fromarray(crop.astype(np.uint8)).save(out_path)
+./tools/calibration/rotate_visual_B_vertical.py:ANGLE = 88.0   # ajuste fino aqui (ex: 87.5 / 88 / 89)
+./tools/calibration/rotate_visual_B_vertical.py:    out_img = (crop * 255).astype(np.uint8)
+./tools/context/resume_project_context.py:# IPT-CitySpace – ChatGPT Context Builder (Version 4)
+./tools/context/resume_project_context.py:# Build pipeline text
+./tools/context/resume_project_context.py:def build_pipeline_text(pipeline):
+./tools/context/resume_project_context.py:# Build DOT diagram
+./tools/context/resume_project_context.py:def build_dot():
+./tools/context/resume_project_context.py:# Build ChatGPT context
+./tools/context/resume_project_context.py:def build_context(pipeline):
+./tools/context/resume_project_context.py:Este arquivo consolida o contexto do projeto para
+./tools/context/resume_project_context.py:    sections.append(build_pipeline_text(pipeline))
+./tools/context/resume_project_context.py:    build_dot()
+./tools/context/resume_project_context.py:    print("Building ChatGPT boot context...\n")
+./tools/context/resume_project_context.py:    build_context(pipeline)
+./tools/fix_file_variable.py:print("\nArquivos corrigidos:", files_fixed)
+./tools/ingest_drone_dataset.py:2. Valida existência dos arquivos
+./tools/ingest_drone_dataset.py:print("\n[1] Procurando arquivos entregues pelo cliente...\n")
+./tools/ingest_drone_dataset.py:print("Arquivos encontrados:")
+./tools/ingest_drone_dataset.py:print("\n[3] Movendo arquivos para RAW...\n")
+./tools/ingest_drone_dataset.py:print("\nArquivos prontos para pipeline raster:\n")
+./visualization/mesa_virtual_2d.py:Ela detecta automaticamente arquivos 1cm e 2cm.
+./visualization/mesa_virtual_2d.py:        raise RuntimeError(f"Nenhum arquivo contendo '{keyword}' encontrado.")
+./visualization/mesa_virtual_2d_layers.py:        raise RuntimeError(f"Nenhum arquivo contendo '{keyword}' encontrado.")
+./visualization/mesa_virtual_pinos_layers.py:grid_building = grid_total * 0.6
+./visualization/mesa_virtual_pinos_layers.py:pins_building = to_pins(grid_building)
+./visualization/mesa_virtual_pinos_layers.py:pins_total = to_pins(grid_dtm + grid_building)
+./visualization/mesa_virtual_pinos_layers.py:datasets = [pins_dtm, pins_building, pins_total]
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:grid_uint8 = np.loadtxt(GRID_UINT8, delimiter=";", dtype=np.uint8)
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:rows, cols = grid_uint8.shape
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif.py:Este arquivo é propositalmente VERBOSO e DIDÁTICO.
+./visualization/render_temporal_gif.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif.py:    print("Arquivo:", CSV_PATH)
+./visualization/render_temporal_gif.py:    print("Arquivo de saída:", GIF_PATH)
+./visualization/render_temporal_gif.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_canonico.py:GRID_UINT8    = DATA_DIR / "grid_uint8.csv"
+./visualization/render_temporal_gif_canonico.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_canonico.py:    rgb = np.zeros((h, w, 3), dtype=np.uint8)
+./visualization/render_temporal_gif_canonico.py:print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v1.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v1.py:    rgb = np.zeros((h, w, 3), dtype=np.uint8)
+./visualization/render_temporal_gif_v1.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v10.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v10.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v11.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v11.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v12.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v12.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v13.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v13.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v14.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v14.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v15.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v15.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v16.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v16.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v17.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v17.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v2.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v2.py:    rgb = np.zeros((h, w, 3), dtype=np.uint8)
+./visualization/render_temporal_gif_v2.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v21.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v21.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v22.py:• Legenda agora comunica a equivalência física
+./visualization/render_temporal_gif_v22.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v22.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v23.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v23.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v24.py:• Comunicação visual focada na leitura arquitetônica
+./visualization/render_temporal_gif_v24.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v24.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v25.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v25.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v26.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v26.py:    print(f"Arquivo GIF : {GIF_PATH}")
+./visualization/render_temporal_gif_v27.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v27.py:    print(f"Arquivo GIF : {GIF_PATH}")
+./visualization/render_temporal_gif_v28.py:• Contraste e hierarquia visual corretos (GIS-style)
+./visualization/render_temporal_gif_v28.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v28.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v29.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v29.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v3.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v31.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v31.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v32.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v32.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v33.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v33.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v34.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v34.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v35.py:• Legenda com equivalência REAL:
+./visualization/render_temporal_gif_v35.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v35.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v36.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v36.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v37.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v37.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v38.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v38.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v39.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v39.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v4.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v4.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v40.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v40.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v41.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v42.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v43_25d.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v43_terrain_building.py:GIF_PATH = OUT_DIR / "mesa_virtual_v43_terrain_building.gif"
+./visualization/render_temporal_gif_v43_terrain_building.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v5.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v5.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v6.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v6.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v7.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v7.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v8.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v8.py:    print("Arquivo:", GIF_PATH)
+./visualization/render_temporal_gif_v9.py:    argb = np.frombuffer(fig.canvas.tostring_argb(), dtype=np.uint8)
+./visualization/render_temporal_gif_v9.py:    print("Arquivo:", GIF_PATH)
+./visualization/tools/filter_candidate_tifs.py:- NÃO lê pixels (muito rápido).
+./visualization/tools/filter_candidate_tifs.py:- Exclui automaticamente Lisboa e mosaicos grandes
+./visualization/tools/filter_candidate_tifs.py:    * arquivos pequenos/médios
+./visualization/tools/scan_funcoes_mesa_virtual.py:    # arquivos
+./visualization/tools/scan_funcoes_mesa_virtual.py:def arquivo_relevante(path: Path) -> bool:
+./visualization/tools/scan_funcoes_mesa_virtual.py:def analisar_arquivo(py_path: Path, writer):
+./visualization/tools/scan_funcoes_mesa_virtual.py:            "arquivo",
+./visualization/tools/scan_funcoes_mesa_virtual.py:                if arquivo_relevante(py_file):
+./visualization/tools/scan_funcoes_mesa_virtual.py:                    analisar_arquivo(py_file, writer)
+./visualization/tools/scan_intersection_code.py:    "build"
+./visualization/tools/scan_ipt_height_artifacts.py:- Localiza arquivos relacionados ao IPT
+./visualization/tools/scan_ipt_height_artifacts.py:- NÃO altera nenhum arquivo
+./visualization/tools/scan_ipt_height_artifacts.py:    print(f"Total de arquivos relevantes encontrados: {len(files)}\n")
+./visualization/tools/scan_ipt_height_artifacts.py:        print(f"Arquivo: {p}")
+./visualization/tools/scan_ipt_height_artifacts.py:    print(f"  Arquivos totais encontrados : {len(files)}")
+./visualization/tools/scan_rotation_code.py:    "build"
+./visualization/tools/scan_rotation_code.py:# Varredura de arquivos
+./visualization/tools/testar_tif_ipcota.py:    print(f"→ Arquivo: {TIFF_PATH}")

@@ -1,0 +1,97 @@
+import geopandas as gpd
+import rasterio
+from shapely.geometry import Polygon
+from pathlib import Path
+
+# =========================================
+# CONFIG
+# =========================================
+GRID_ROWS = 8
+GRID_COLS = 16
+
+BASE = Path(__file__).resolve().parents[1]
+
+DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+OUTPUT = BASE / "offline/products/scientific/grid_8x16_metric.gpkg"
+
+
+# =========================================
+# BUILD GRID FROM RASTER (REAL UTM)
+# =========================================
+def build_grid():
+
+    with rasterio.open(DTM_PATH) as r:
+
+        xmin, ymin, xmax, ymax = r.bounds
+
+        width = xmax - xmin
+        height = ymax - ymin
+
+        cell_size = max(width / GRID_COLS, height / GRID_ROWS)
+
+        grid_width = GRID_COLS * cell_size
+        grid_height = GRID_ROWS * cell_size
+
+        center_x = xmin + width / 2
+        center_y = ymin + height / 2
+
+        xmin = center_x - grid_width / 2
+        ymin = center_y - grid_height / 2
+
+        print("========================================")
+        print("GRID DOMAIN (REAL UTM)")
+        print("========================================")
+        print("Raster bounds:", r.bounds)
+        print("Grid size:", grid_width, grid_height)
+        print("Cell size:", cell_size)
+
+        cells = []
+
+        for r_i in range(GRID_ROWS):
+            for c_i in range(GRID_COLS):
+
+                x1 = xmin + c_i * cell_size
+                y1 = ymin + r_i * cell_size
+
+                x2 = x1 + cell_size
+                y2 = y1 + cell_size
+
+                poly = Polygon([(x1, y1), (x2, y1), (x2, y2), (x1, y2)])
+
+                centroid = poly.centroid
+
+                cells.append(
+                    {
+                        "row": r_i,
+                        "col": c_i,
+                        "cx": centroid.x,
+                        "cy": centroid.y,
+                        "geometry": poly,
+                    }
+                )
+
+        gdf = gpd.GeoDataFrame(cells, crs=r.crs)
+
+        return gdf
+
+
+# =========================================
+# MAIN
+# =========================================
+def main():
+
+    print("\n=================================================")
+    print("CITYSPACE – GRID BUILDER (UTM CORRECT)")
+    print("=================================================")
+
+    gdf = build_grid()
+
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+
+    gdf.to_file(OUTPUT, driver="GPKG")
+
+    print("Grid saved:", OUTPUT)
+
+
+if __name__ == "__main__":
+    main()

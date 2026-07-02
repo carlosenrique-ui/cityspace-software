@@ -1,0 +1,814 @@
+# BACKLOG – Globe-CitySpace
+
+Última atualização: 2026-06-20
+
+---
+
+# Visão
+
+O Globe-CitySpace evoluiu de um protótipo de geração de grids geoespaciais para uma plataforma de:
+
+- Spatial OLAP
+- Digital Twins
+- Tangible Interfaces
+- Geração automática de Mesas Tangíveis
+
+A arquitetura conceitual atual é:
+
+Globo
+→ Cidade
+→ Projeto
+→ Escala
+→ Área de Estudo
+→ Grid
+→ Mesa Tangível
+
+---
+
+# B001 – Modo Globo
+
+Prioridade: Alta
+
+Descrição:
+
+Tela inicial do sistema apresentando o globo terrestre.
+
+Fluxo:
+
+Globo
+→ Continente
+→ País
+→ Cidade
+→ Projeto
+
+Possível visualização inicial:
+
+- América do Sul
+- Sem cidade selecionada
+- Sem projeto selecionado
+
+Justificativa:
+
+Explica o nome Globe-CitySpace.
+
+Status:
+Backlog
+
+---
+
+# B002 – Spatial Drill-Down
+
+Prioridade: Alta
+
+Descrição:
+
+Implementar navegação hierárquica espacial semelhante a ferramentas Spatial OLAP.
+
+Hierarquia sugerida:
+
+Planeta
+→ Continente
+→ País
+→ Estado
+→ Região Metropolitana
+→ Município
+→ Distrito
+→ Bairro
+→ Quadra
+→ Edificação
+
+Operações:
+
+- Drill-Down
+- Drill-Up
+
+Status:
+Backlog
+
+---
+
+# B003 – Múltiplos Projetos por Cidade
+
+Prioridade: Alta
+
+Exemplo:
+
+São Paulo
+- IPT-Edifícios
+- Mobilidade
+- Carbono
+- Defesa Civil
+- Drenagem
+
+Santos
+- Porto
+- Carbono
+- Mobilidade
+
+Bertioga
+- Turismo
+- Restinga
+- Defesa Civil
+
+Status:
+Backlog
+
+---
+
+# B004 – Navigation Widget 3D
+
+Prioridade: Média
+
+Adicionar widget semelhante aos globos 3D modernos.
+
+Funcionalidades:
+
+- Norte
+- Rotação
+- Inclinação
+- Zoom
+- Bússola
+
+Exemplos:
+
+- Cesium Navigation
+- ArcGIS Scene Viewer
+- Google Earth
+
+Status:
+Backlog
+
+---
+
+# B005 – Rotação Dinâmica do Grid
+
+Prioridade: Concluído
+
+Descrição:
+
+Rotação manual do grid.
+
+Implementado:
+
+- Campo numérico
+- Reset Norte
+
+Status:
+Implementado
+
+---
+
+# B006 – Alinhamento Automático à Via
+
+Prioridade: Alta
+
+Descrição:
+
+Usuário seleciona dois pontos.
+
+Sistema calcula:
+
+- Azimute
+- Orientação do corredor
+
+Grid é rotacionado automaticamente.
+
+Aplicações:
+
+- Rodovias
+- Corredores de ônibus
+- Ferrovias
+- Hidrovias
+- Linhas de transmissão
+
+Status:
+Backlog
+
+---
+
+# B007 – Mosaicos de Grids
+
+Prioridade: Alta
+
+Descrição:
+
+Permitir composição de múltiplos grids.
+
+Objetivo:
+
+Representar corredores maiores que a mesa física.
+
+Possíveis modos:
+
+- Frame a frame
+- Mosaico espacial
+- Animação temporal
+
+Status:
+Backlog
+
+---
+
+# B008 – Orientação por Fenômeno
+
+Prioridade: Alta
+
+Descrição:
+
+Permitir que a orientação da área de estudo seja baseada no fenômeno analisado.
+
+Exemplos:
+
+- Eixo viário
+- Curso d'água
+- Linha férrea
+- Rede elétrica
+
+Status:
+Backlog
+
+---
+
+# B009 – Catálogo de Provedores de Geodados
+
+Prioridade: Alta
+
+Descrição:
+
+Cadastro dos provedores de dados necessários para cada projeto.
+
+Exemplos:
+
+- GeoSampa
+- IDE-SJC
+- IDE-Santos
+- Overture
+- FABDEM
+- OpenTopography
+- WorldDEM
+- LiDAR local
+
+Status:
+Backlog
+
+---
+
+# B010 – Pipeline de Projeto
+
+Prioridade: Alta
+
+Fluxo:
+
+Seleção da área
+→ Aquisição de dados
+→ Tratamento
+→ Variáveis temáticas
+→ Modelo digital
+→ Mesa Tangível
+
+Status:
+Backlog
+
+---
+
+# B011 – Biblioteca de Domínios
+
+Prioridade: Alta
+
+Domínios inicialmente previstos:
+
+- Mobilidade
+- Carbono
+- Defesa Civil
+- Drenagem
+- Energia
+- Saúde
+- Segurança
+- Planejamento Urbano
+
+Status:
+Backlog
+
+---
+
+# B012 – Spatial OLAP + Digital Twin + Tangible Interface
+
+Prioridade: Estratégica
+
+Descrição:
+
+Formalizar a arquitetura conceitual do Globe-CitySpace.
+
+Conceito:
+
+Spatial OLAP
++
+Digital Twin
++
+Mesa Tangível
+
+Possível tema de artigo técnico e publicações futuras.
+
+Status:
+Pesquisa contínua
+
+---
+
+# B013 – Integração Mesa Tangível
+
+Prioridade: Alta
+
+Descrição:
+
+Integração completa entre:
+
+- Globe-CitySpace
+- Pipeline Offline
+- Projeção Mapeada
+- Atuadores físicos
+
+Status:
+Em desenvolvimento
+
+---
+
+# Histórico
+
+09/2025
+Início da pesquisa e evolução conceitual do Globe-CitySpace.
+
+2025–2026
+Evolução contínua:
+
+- UX
+- Geodados
+- Escalas
+- Grids
+- Spatial OLAP
+- Digital Twins
+- Mesa Tangível
+
+
+---
+
+# R001 – Refatoração Arquitetural: Cidade × Projeto × Área de Estudo
+
+Prioridade: Alta
+
+Motivação:
+
+O diagnóstico do main.js mostrou que o sistema ainda trata o IPT como uma cidade especial, enquanto a arquitetura conceitual atual define:
+
+São Paulo = Cidade
+
+IPT-Edifícios = Projeto dentro de São Paulo
+
+Problema atual:
+
+- Cidade, projeto, área de estudo e grid ainda estão parcialmente acoplados.
+- O código contém múltiplos pontos com activeCityKey = "ipt".
+- Há vários window.addEventListener("load"), causando disputas de estado na interface.
+- O modo exploratório pode ser contaminado pelo estado do projeto IPT.
+
+Objetivo da refatoração:
+
+Separar claramente:
+
+1. Cidade
+2. Projeto
+3. Área de Estudo
+4. Escala
+5. Grid
+6. Dados de origem
+7. Projeção Mapeada
+8. Mesa Tangível
+
+Nova lógica conceitual:
+
+Globo
+→ Cidade
+→ Exploração
+→ Escolha da Área de Estudo
+→ Escala
+→ Grid
+→ Projeto
+→ Geodados
+→ Gêmeo Digital
+→ Mesa Tangível
+
+Regras esperadas:
+
+- IPT-Edifícios deixa de ser tratado como cidade.
+- IPT-Edifícios passa a ser projeto especial da cidade de São Paulo.
+- O modo exploratório passa a ser o comportamento principal.
+- O grid é gerado a partir da área de estudo escolhida.
+- O projeto é criado ou ativado depois da definição da área.
+- Projeção Mapeada só aparece para projetos com pipeline de dados processado.
+
+Status:
+Backlog técnico prioritário
+
+
+---
+
+# R002 – Inventário dos Handlers de Inicialização
+
+Prioridade: Alta
+
+Motivação:
+
+O diagnóstico do main.js identificou múltiplos `window.addEventListener("load")`,
+o que pode causar disputa de estado entre diferentes partes da interface.
+
+Problema atual:
+
+- Vários blocos de inicialização executam ao carregar a página.
+- Diferentes handlers alteram cidade, projeto, escala, botões e grid.
+- Isso pode gerar comportamentos concorrentes, como:
+  - botões aparecendo e sumindo;
+  - cidade selecionada diferente do ponto de referência;
+  - modo exploratório contaminado pelo IPT;
+  - grid anterior permanecendo após troca de contexto.
+
+Objetivo:
+
+Mapear todos os handlers de inicialização do `main.js`.
+
+Inventariar para cada handler:
+
+1. Linha inicial
+2. Função executada
+3. Elementos HTML alterados
+4. Variáveis globais alteradas
+5. Eventos registrados
+6. Relação com cidade
+7. Relação com projeto
+8. Relação com grid
+9. Relação com escala
+10. Risco de conflito
+
+Resultado esperado:
+
+Criar uma tabela técnica com todos os handlers de inicialização,
+identificando quais devem ser preservados, consolidados ou movidos
+para uma função central de inicialização.
+
+Status:
+Backlog técnico prioritário
+
+
+---
+
+# R004 – Separação Cidade × Projeto
+
+Prioridade: Alta
+
+Motivação:
+
+O diagnóstico R003 mostrou que `activeCityKey` está representando dois conceitos diferentes:
+
+1. Cidade
+2. Projeto especial IPT
+
+Problema atual:
+
+- `activeCityKey = "ipt"` transforma o IPT em cidade.
+- O correto é:
+  - `activeCityKey = "sao_paulo"`
+  - `activeProjectKey = "ipt_edificios"`
+
+Nova arquitetura proposta:
+
+- `activeCityKey`: representa apenas cidades.
+- `activeProjectKey`: representa projetos dentro de uma cidade.
+- `activeStudyArea`: representa a área/grid escolhida.
+- `currentPoint`: representa o ponto de referência atual.
+
+Regras esperadas:
+
+- São Paulo é sempre cidade.
+- IPT-Edifícios é sempre projeto dentro de São Paulo.
+- O modo exploratório usa cidade + ponto + escala + rotação.
+- O projeto usa cidade + projeto + dados + pipeline.
+- Projeção Mapeada só depende de `activeProjectKey`.
+- Grid exploratório não depende de projeto.
+- Grid IPT depende do projeto IPT-Edifícios.
+
+Resultado esperado:
+
+Eliminar gradualmente o uso de:
+
+`activeCityKey === "ipt"`
+
+substituindo por:
+
+`activeProjectKey === "ipt_edificios"`
+
+Status:
+Backlog técnico prioritário
+
+
+---
+
+# R006 – Plano de Migração IPT → Projeto
+
+Prioridade: Alta
+
+Motivação:
+
+Os diagnósticos R003, R004 e R005 mostraram que coexistem
+duas arquiteturas:
+
+Arquitetura Legada:
+activeCityKey = "ipt"
+
+Arquitetura Nova:
+citySelect = "sao_paulo"
+projectSelect = "ipt_edificios"
+
+Objetivo:
+
+Migrar gradualmente todas as dependências IPT
+de Cidade para Projeto.
+
+Estratégia:
+
+Fase 1 — Inventário
+- Nenhuma alteração funcional.
+- Catalogar todas as dependências.
+
+Fase 2 — Dupla Compatibilidade
+- Manter activeCityKey.
+- Introduzir activeProjectKey.
+- Ambos coexistem temporariamente.
+
+Fase 3 — Migração
+- Escalas IPT passam para projeto.
+- Grid IPT passa para projeto.
+- Projeção Mapeada passa para projeto.
+- Painéis IPT passam para projeto.
+
+Fase 4 — Validação
+- Testar São Paulo sem projeto.
+- Testar São Paulo + IPT-Edifícios.
+- Testar Bertioga.
+- Testar Santos.
+- Testar Sorocaba.
+- Testar São José dos Campos.
+
+Fase 5 — Desativação
+- Remover dependências antigas somente
+  após validação completa.
+
+Critério de Aceitação:
+
+Cidade:
+- São Paulo
+- Santos
+- Sorocaba
+- Bertioga
+- São José dos Campos
+
+Projeto:
+- Nenhum
+- IPT-Edifícios
+
+Área de Estudo:
+- Independente do Projeto
+
+Grid:
+- Independente do Projeto
+- Exceto IPT-Edifícios
+
+Status:
+Backlog técnico prioritário
+
+
+---
+
+# R007 – Inventário de activeProjectKey
+
+Prioridade: Alta
+
+Motivação:
+
+O plano R006 definiu a Fase 2 como dupla compatibilidade:
+
+- manter `activeCityKey`;
+- introduzir `activeProjectKey`;
+- permitir coexistência temporária.
+
+Objetivo:
+
+Planejar onde e como a variável `activeProjectKey` será introduzida
+sem quebrar o comportamento atual.
+
+Estado atual:
+
+- Cidade e projeto ainda estão parcialmente acoplados.
+- IPT-Edifícios já aparece no menu como projeto.
+- A função `isIpt()` já representa a arquitetura nova:
+  cidade = São Paulo
+  projeto = IPT-Edifícios
+
+Arquitetura proposta:
+
+- `activeCityKey`: cidade ativa
+- `activeProjectKey`: projeto ativo
+- `activeStudyArea`: área/grid selecionado
+- `currentPoint`: ponto de referência
+
+Valores iniciais sugeridos:
+
+- `activeProjectKey = "none"`
+- `activeProjectKey = "ipt_edificios"`
+
+Inventário necessário:
+
+Mapear funções que deverão consultar projeto:
+
+1. `isIpt()`
+2. `activateIpt()`
+3. `panelIpt()`
+4. `setIptScale()`
+5. `configureProjectionButton()`
+6. `syncUI()`
+7. `createScaledArea()`
+8. `createIptDemoGrid()`
+9. `updateProjectionMappingVisibility()`
+10. handlers de mudança de cidade/projeto
+
+Critério de aceitação:
+
+- `activeCityKey` nunca deve receber `"ipt"` no fluxo novo.
+- IPT-Edifícios deve ser ativado por `activeProjectKey`.
+- São Paulo sem projeto deve continuar modo exploratório.
+- São Paulo + IPT-Edifícios deve acionar pipeline IPT.
+- O modo exploratório deve funcionar para qualquer cidade.
+
+Status:
+Backlog técnico prioritário
+
+
+---
+
+# R008 – Mapa de Introdução de activeProjectKey
+
+Prioridade: Alta
+
+Motivação:
+
+R007 definiu a necessidade de introduzir activeProjectKey
+sem quebrar o comportamento atual.
+
+Objetivo:
+
+Definir exatamente onde activeProjectKey será:
+
+- declarado;
+- atualizado;
+- consultado;
+- sincronizado com projectSelect.
+
+Estado atual:
+
+Cidade:
+activeCityKey
+
+Projeto:
+projectSelect (UI)
+
+Estado futuro:
+
+Cidade:
+activeCityKey
+
+Projeto:
+activeProjectKey
+
+UI:
+projectSelect
+
+Estratégia:
+
+Fase A — Declaração
+
+Adicionar:
+
+let activeProjectKey = "none";
+
+sem alterar lógica existente.
+
+Fase B — Sincronização
+
+projectSelect
+→ activeProjectKey
+
+Fase C — Leitura Dupla
+
+Permitir coexistência:
+
+activeCityKey
+activeProjectKey
+
+Fase D — Migração
+
+Substituir gradualmente:
+
+activeCityKey === "ipt"
+
+por
+
+activeProjectKey === "ipt_edificios"
+
+Locais candidatos:
+
+1. isIpt()
+2. activateIpt()
+3. activateIptMode()
+4. panelIpt()
+5. setIptPanel()
+6. setIptScale()
+7. createIptDemoGrid()
+8. createScaledArea()
+9. updateProjectionMappingVisibility()
+10. syncUI()
+11. refreshContext()
+12. handlers de cidade/projeto
+
+Critério de aceitação:
+
+- Nenhuma regressão visual.
+- Nenhuma perda de funcionalidade.
+- São Paulo continua exploratório.
+- IPT-Edifícios continua operacional.
+- activeProjectKey passa a existir.
+- activeCityKey continua compatível.
+
+Status:
+Backlog técnico prioritário
+
+
+---
+
+# R008.1 – Congelamento Arquitetural Globe-CitySpace
+
+Prioridade: Alta
+
+Objetivo:
+
+Registrar a arquitetura-alvo antes da introdução de activeProjectKey.
+
+Arquitetura Funcional:
+
+Globo
+→ Cidade
+→ Área de Estudo
+→ Escala
+→ Grid
+→ Projeto
+→ Geodados
+→ Gêmeo Digital
+→ Mesa Tangível
+
+Entidades Principais:
+
+activeCityKey
+activeProjectKey
+activeStudyArea
+currentPoint
+
+Regras:
+
+Cidade:
+- São Paulo
+- Santos
+- Sorocaba
+- Bertioga
+- São José dos Campos
+
+Projeto:
+- none
+- ipt_edificios
+
+Área de Estudo:
+- independente do projeto
+
+Grid:
+- independente do projeto
+- exceção: IPT-Edifícios
+
+Projeção Mapeada:
+- depende exclusivamente do projeto
+
+Critério de Aceitação:
+
+- Cidade e Projeto desacoplados.
+- São Paulo continua funcionando sem projeto.
+- IPT-Edifícios continua funcionando.
+- Modo exploratório continua padrão.
+- Nenhuma regressão visual.
+
+Status:
+Arquitetura congelada para início do R009.
+

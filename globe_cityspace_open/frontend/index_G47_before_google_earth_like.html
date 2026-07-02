@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Globe-CitySpace</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.122/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.122/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <div id="topbar">
+    <strong>Globe-CitySpace</strong>
+
+    <select id="citySelect">
+      <option value="sjc">São José dos Campos</option>
+      <option value="sao_paulo">São Paulo</option>
+      <option value="ipt">IPT - Campus Principal</option>
+      <option value="santos">Santos</option>
+      <option value="sorocaba">Sorocaba</option>
+    </select>
+
+    <button id="flyCity">Ir para cidade</button>
+
+    <input id="latInput" type="number" step="0.000001" placeholder="Latitude" value="-23.189000">
+    <input id="lonInput" type="number" step="0.000001" placeholder="Longitude" value="-45.887000">
+    <button id="flyLatLon">Ir para Lat/Lon</button>
+
+    <button id="enablePickPoint">
+      Usar ponto clicado
+    </button>
+
+    <select id="scaleSelect">
+      <option value="500">1:500</option>
+      <option value="1000">1:1000</option>
+      <option value="2500">1:2500</option>
+      <option value="5000" selected>1:5000</option>
+      <option value="10000">1:10000</option>
+    </select>
+
+    <button id="createArea">Criar Área pela Escala</button>
+
+    <button id="exportGrid">
+      Exportar Grid JSON
+    </button>
+  </div>
+
+  <div id="infoPanel">
+    <strong>Área CitySpace</strong>
+    <div id="areaInfo">Nenhuma área criada.</div>
+  </div>
+
+  <div id="cesiumContainer"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>

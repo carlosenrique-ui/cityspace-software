@@ -1,0 +1,11 @@
+offline/pipeline_dag.py:"offline/data/stage1_reproject/dtm/*.tif",
+offline/pipeline_dag.py:"offline/data/stage1_reproject/dsm/*.tif"
+offline/pipeline_dag.py:"offline/data/stage1_reproject/dtm/*.tif",
+offline/pipeline_dag.py:"offline/data/stage1_reproject/dsm/*.tif"
+offline/pipeline_dag.py:"offline/data/stage2_rotate/dtm/*.tif",
+offline/pipeline_dag.py:"offline/data/stage2_rotate/dsm/*.tif"
+offline/pipeline_dag.py:"offline/data/stage2_rotate/dtm/*.tif"
+offline/pipeline_dag.py:"offline/data/stage3_clip/dtm/*.tif"
+offline/pipeline_dag.py:"offline/data/stage3_clip/dtm/*.tif"
+offline/pipeline_dag.py:"offline/data/stage4_normalize/Z_total.tif"
+offline/pipeline_dag.py:"offline/data/stage4_normalize/Z_total.tif"

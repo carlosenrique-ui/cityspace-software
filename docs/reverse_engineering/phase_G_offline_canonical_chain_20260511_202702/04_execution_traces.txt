@@ -1,0 +1,92 @@
+offline/run_offline_pipeline.py:import subprocess
+offline/run_offline_pipeline.py:from pathlib import Path
+offline/run_offline_pipeline.py:from offline.validation.validate_rotation_pca_grid import run as _rotation_pca_grid_run
+offline/run_offline_pipeline.py:        subprocess.run(
+offline/pipeline_runner.py:import json
+offline/pipeline_runner.py:import numpy as np
+offline/pipeline_runner.py:from pathlib import Path
+offline/pipeline_runner.py:from runner.runner_engine import RunnerEngine
+offline/pipeline_runner.py:from runner.virtual_actuator import VirtualActuator
+offline/pipeline_runner.py:from runner.path import zigzag_scan
+offline/scientific_runner.py:from pathlib import Path
+offline/scientific_runner.py:import fiona
+offline/scientific_runner.py:from shapely.geometry import shape, mapping, box
+offline/pipeline/01_build_scientific_grid.py:import geopandas as gpd
+offline/pipeline/01_build_scientific_grid.py:import numpy as np
+offline/pipeline/01_build_scientific_grid_BACKUP.py:import numpy as np
+offline/pipeline/01_build_scientific_grid_BACKUP.py:import pandas as pd
+offline/pipeline/01_build_scientific_grid_BACKUP.py:from pathlib import Path
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:from pathlib import Path
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:import pandas as pd
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:import numpy as np
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:from pathlib import Path
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:import geopandas as gpd
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:from shapely.ops import unary_union
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:from shapely.geometry import Polygon, MultiPolygon
+offline/pipeline/02_compute_cell_metrics.py:from offline.scientific_cell_metrics_utm import main
+offline/pipeline/02_join_grid_metrics_with_geom.py:import pandas as pd
+offline/pipeline/02_join_grid_metrics_with_geom.py:import geopandas as gpd
+offline/pipeline/02_join_grid_metrics_with_geom.py:from pathlib import Path
+offline/pipeline/03b_generate_contours_clean_UI.py:from pathlib import Path
+offline/pipeline/03b_generate_contours_clean_UI.py:import geopandas as gpd
+offline/pipeline/03b_generate_contours_clean_UI.py:from shapely.geometry import box
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:from pathlib import Path
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:import geopandas as gpd
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:import subprocess
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:subprocess.run(cmd, check=True)
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:from pathlib import Path
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:import geopandas as gpd
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:from shapely.affinity import rotate, translate, scale
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:from shapely.geometry import box
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:from pathlib import Path
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:import json
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:import numpy as np
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:import pandas as pd
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:import geopandas as gpd
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:from shapely.geometry import Point, LineString, mapping
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:from scipy.ndimage import zoom, gaussian_filter
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:import matplotlib.pyplot as plt
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:from pathlib import Path
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:import json
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:import numpy as np
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:import geopandas as gpd
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:from shapely.geometry import Point, LineString, Polygon, MultiPolygon, mapping
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:from shapely.ops import unary_union
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:from scipy.interpolate import RBFInterpolator
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:from scipy.ndimage import gaussian_filter
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:import matplotlib.pyplot as plt
+offline/pipeline/03_generate_contours_clean.py:import geopandas as gpd
+offline/pipeline/03_generate_contours_clean.py:import numpy as np
+offline/pipeline/03_generate_contours_clean.py:import matplotlib.pyplot as plt
+offline/pipeline/03_generate_contours_clean.py:from shapely.geometry import LineString
+offline/pipeline/03_generate_contours_clean.py:from shapely.affinity import rotate
+offline/pipeline/03_generate_contours_clean.py:from pathlib import Path
+offline/pipeline/03_scientific_to_semantic.py:from offline.adapters.scientific_to_semantic_adapter import main
+offline/pipeline/04b_generate_actuator_geospatial.py:import geopandas as gpd
+offline/pipeline/04b_generate_actuator_geospatial.py:from pathlib import Path
+offline/pipeline/04_generate_actuator_plan.py:from __future__ import annotations
+offline/pipeline/04_generate_actuator_plan.py:import os
+offline/pipeline/04_generate_actuator_plan.py:from pathlib import Path
+offline/pipeline/04_generate_actuator_plan.py:import geopandas as gpd
+offline/pipeline/04_generate_actuator_plan.py:import numpy as np
+offline/pipeline/04_generate_actuator_plan.py:import pandas as pd
+offline/pipeline/04_generate_actuator_plan.py:from shapely.geometry import Point
+offline/pipeline/04_generate_actuator_plan.py:    print(f"USING SPATIAL COLS: x, y (derived from cx,cy or geometry)")
+offline/pipeline/05_apply_rotation_to_contours.py:from offline.config.system_parameters import ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.py:import geopandas as gpd
+offline/pipeline/05_apply_rotation_to_contours.py:from shapely.affinity import rotate, translate
+offline/pipeline/05_apply_rotation_to_contours.py:from pathlib import Path
+offline/pipeline/05_generate_grid_mask_from_polygon.py:from pathlib import Path
+offline/pipeline/05_generate_grid_mask_from_polygon.py:import pandas as pd
+offline/pipeline/05_generate_grid_mask_from_polygon.py:import geopandas as gpd
+offline/pipeline/06b_esri_to_grid_simple.py:from pathlib import Path
+offline/pipeline/06b_esri_to_grid_simple.py:import numpy as np
+offline/pipeline/06b_esri_to_grid_simple.py:import geopandas as gpd
+offline/pipeline/06b_esri_to_grid_simple.py:import requests
+offline/pipeline/06b_esri_to_grid_simple.py:from PIL import Image
+offline/pipeline/06b_esri_to_grid_simple.py:from io import BytesIO
+offline/pipeline/06b_esri_to_grid_simple.py:from pyproj import Transformer
+offline/pipeline/06_generate_esri_overlay_grid.py:from pathlib import Path
+offline/pipeline/06_generate_esri_overlay_grid.py:import requests
+offline/pipeline/06_generate_esri_overlay_grid.py:import geopandas as gpd
+offline/pipeline/06_generate_esri_overlay_grid.py:from pyproj import Transformer

@@ -1,0 +1,125 @@
+import rasterio
+import fiona
+import numpy as np
+import csv
+from shapely.geometry import shape
+from rasterio.mask import mask
+from pathlib import Path
+
+# ==========================================================
+# IPT-CitySpace – FASE 3 DEFINITIVA (100% UTM)
+# ==========================================================
+
+BASE = Path(__file__).resolve().parents[1]
+
+GRID_PATH = BASE / "offline/products/scientific/grid_8x16_metric.gpkg"
+GRID_LAYER = "grid_8x16_metric"
+
+DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+
+BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+BUILDINGS_LAYER = "buildings_scientific_rotated"
+
+OUTPUT_CSV = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+
+
+def mean_raster_in_geom(raster_path, geom):
+
+    with rasterio.open(raster_path) as src:
+
+        try:
+            out_image, _ = mask(src, [geom], crop=True)
+        except ValueError:
+            return 0.0
+
+        data = out_image[0]
+
+        if src.nodata is not None:
+            data = data[data != src.nodata]
+
+        if data.size == 0:
+            return 0.0
+
+        return float(np.mean(data))
+
+
+def main():
+
+    print("\n=================================================")
+    print("IPT-CitySpace – FASE 3 DEFINITIVA (UTM)")
+    print("=================================================\n")
+
+    print("[1/5] Lendo grid...")
+
+    with fiona.open(GRID_PATH, layer=GRID_LAYER) as grid:
+        cells = list(grid)
+
+    total_cells = len(cells)
+    print(f"Total de células: {total_cells}")
+
+    print("[2/5] Lendo edifícios...")
+
+    with fiona.open(BUILDINGS_PATH, layer=BUILDINGS_LAYER) as bld:
+        buildings = [shape(f["geometry"]) for f in bld]
+
+    print(f"Total edifícios: {len(buildings)}")
+
+    print("[3/5] Processando células...\n")
+
+    results = []
+
+    for i, cell in enumerate(cells):
+
+        geom = shape(cell["geometry"])
+        area_cell = geom.area
+
+        print(f"→ Célula {i+1}/{total_cells}")
+
+        mean_dtm = mean_raster_in_geom(DTM_PATH, geom)
+        mean_dsm = mean_raster_in_geom(DSM_PATH, geom)
+
+        altura_edificio = max(0.0, mean_dsm - mean_dtm)
+        altura_total = mean_dsm
+
+        area_build = 0.0
+        for b in buildings:
+            if b.intersects(geom):
+                area_build += b.intersection(geom).area
+
+        percent_build = (area_build / area_cell) * 100.0
+        percent_terrain = 100.0 - percent_build
+
+        results.append([
+            i,
+            mean_dtm,
+            mean_dsm,
+            altura_edificio,
+            altura_total,
+            percent_build,
+            percent_terrain
+        ])
+
+    print("\n[4/5] Salvando CSV...")
+
+    with open(OUTPUT_CSV, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            "cell_id",
+            "mean_dtm_m",
+            "mean_dsm_m",
+            "altura_edificio_m",
+            "altura_total_m",
+            "percent_building",
+            "percent_terrain"
+        ])
+        writer.writerows(results)
+
+    print("[5/5] Finalizado.")
+    print("✔ Métricas científicas calculadas.")
+    print(f"Arquivo: {OUTPUT_CSV.name}")
+    print("\n=================================================\n")
+
+
+if __name__ == "__main__":
+    main()

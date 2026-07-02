@@ -1,0 +1,1059 @@
+=== GREP PROJECTION / PROJECTOR / WATERMARK ===
+offline/loading/validate_crs.py:12:    - Nenhuma reprojeção ocorre aqui
+offline/loading/validate_crs.py:32:            "Reprojeção deve ocorrer em offline/geo."
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:16:OUT_MASK_NPY = BASE / "offline/products/scientific/grid_terrain_nan_polygon.npy"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:44:mask = np.zeros((ROWS, COLS), dtype=bool)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:50:        mask[r, c] = poly.contains(Point(x, y))
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:52:print("Dentro polígono:", mask.sum(), "/", ROWS * COLS)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:67:mask_fine = np.zeros((ny, nx), dtype=bool)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:77:        mask_fine[rr, cc] = poly.contains(Point(xw, yw))
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:80:fine[~mask_fine] = np.nan
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:82:np.save(OUT_MASK_NPY, fine)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:90:mask = np.zeros((NY, NX), dtype=bool)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:93:        mask[rr, cc] = geom.contains(Point(X[rr, cc], Y[rr, cc]))
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:95:Z_masked = Z.copy()
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:96:Z_masked[~mask] = np.nan
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:98:np.savez_compressed(OUT_SURFACE, x=x, y=y, z=Z_masked)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:100:zmin = np.nanmin(Z_masked)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:101:zmax = np.nanmax(Z_masked)
+offline/pipeline/03_generate_contours_clean.py:63:mask = gdf.geometry.union_all()
+offline/pipeline/03_generate_contours_clean.py:64:contours = contours[contours.intersects(mask)]
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:14:MASK_GPKG = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:25:    if not MASK_GPKG.exists():
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:26:        raise FileNotFoundError(f"Máscara/envelope não encontrado: {MASK_GPKG}")
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:29:    mask = gpd.read_file(MASK_GPKG)
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:30:    return df, mask
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:78:def apply_mask(df_out: pd.DataFrame, mask: gpd.GeoDataFrame) -> pd.DataFrame:
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:80:        mask_union = mask.union_all()
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:82:        mask_union = mask.unary_union
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:84:    def mask_value(row: pd.Series) -> float:
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:86:        return 0.0 if not mask_union.contains(p) else float(row["z_cm"])
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:89:    df_out["z_cm"] = df_out.apply(mask_value, axis=1)
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:105:    df, mask = load_inputs()
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:109:    print(f"MASK GPKG: {MASK_GPKG}")
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:113:    df_out = apply_mask(df_out, mask)
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:81:# APPLY MASK (FINAL STAGE)
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:87:mask = gpd.read_file("offline/products/scientific/urban_envelope_scientific_rotated.gpkg")
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:88:mask_union = mask.unary_union
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:90:def apply_mask(row):
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:92:    return 0.0 if not mask_union.contains(p) else row["z_cm"]
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:94:df_out["z_cm"] = df_out.apply(apply_mask, axis=1)
+offline/pipeline/04_generate_actuator_plan.py:14:MASK_GPKG = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/pipeline/04_generate_actuator_plan.py:25:    if not MASK_GPKG.exists():
+offline/pipeline/04_generate_actuator_plan.py:26:        raise FileNotFoundError(f"Máscara/envelope não encontrado: {MASK_GPKG}")
+offline/pipeline/04_generate_actuator_plan.py:29:    mask = gpd.read_file(MASK_GPKG)
+offline/pipeline/04_generate_actuator_plan.py:43:    return df, mask
+offline/pipeline/04_generate_actuator_plan.py:87:def apply_mask(df_out: pd.DataFrame, mask: gpd.GeoDataFrame) -> pd.DataFrame:
+offline/pipeline/04_generate_actuator_plan.py:89:        mask_union = mask.union_all()
+offline/pipeline/04_generate_actuator_plan.py:91:        mask_union = mask.unary_union
+offline/pipeline/04_generate_actuator_plan.py:93:    def mask_value(row: pd.Series) -> float:
+offline/pipeline/04_generate_actuator_plan.py:95:        return 0.0 if not mask_union.contains(p) else float(row["z_cm"])
+offline/pipeline/04_generate_actuator_plan.py:98:    df_out["z_cm"] = df_out.apply(mask_value, axis=1)
+offline/pipeline/04_generate_actuator_plan.py:114:    df, mask = load_inputs()
+offline/pipeline/04_generate_actuator_plan.py:118:    print(f"MASK GPKG: {MASK_GPKG}")
+offline/pipeline/04_generate_actuator_plan.py:123:    df_out = apply_mask(df_out, mask)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:17:OUT_GPKG = BASE / "offline/products/scientific/grid_8x16_enriched_masked.gpkg"
+offline/pipeline/05_generate_grid_mask_from_polygon.py:18:OUT_CSV = BASE / "offline/products/scientific/grid_metrics_utm_masked.csv"
+offline/pipeline/05_generate_grid_mask_from_polygon.py:21:print("05 — GRID MASK FROM POLÍGONO")
+offline/pipeline/05_generate_grid_mask_from_polygon.py:52:mask_cols = grid[["row", "col", "inside_ratio", "is_inside_polygon"]].copy()
+offline/pipeline/05_generate_grid_mask_from_polygon.py:53:df = df.merge(mask_cols, on=["row", "col"], how="left")
+offline/pipeline/06b_esri_to_grid_simple.py:12:OUT = BASE / "offline/products/snapshots/ipt_fase2_semantic/esri_overlay_grid.png"
+offline/pipeline/06_generate_esri_overlay_grid.py:9:OUT = BASE / "offline/products/snapshots/ipt_fase2_semantic/esri_overlay_grid.png"
+offline/processing/build_mask_local_grid.py:6:def build_mask_local_grid(grid_meta, shapefile_path):
+offline/processing/build_mask_local_grid.py:17:    print("[MaskLocal] Construindo máscara local de edifícios")
+offline/processing/build_mask_local_grid.py:29:    print(f"[MaskLocal] Mesa física: {mesa_width} x {mesa_height} cm")
+offline/processing/build_mask_local_grid.py:36:    print(f"[MaskLocal] Edifícios carregados: {len(gdf)}")
+offline/processing/build_mask_local_grid.py:37:    print("[MaskLocal] CRS ignorado (sistema local da mesa)")
+offline/processing/build_mask_local_grid.py:43:    print(f"[MaskLocal] Bounds originais: {minx, miny, maxx, maxy}")
+offline/processing/build_mask_local_grid.py:50:    print(f"[MaskLocal] Bounds após offset: {minx, miny, maxx, maxy}")
+offline/processing/build_mask_local_grid.py:58:    print(f"[MaskLocal] Aplicando escala:")
+offline/processing/build_mask_local_grid.py:67:    print(f"[MaskLocal] Bounds finais (mesa): {minx, miny, maxx, maxy}")
+offline/processing/build_mask_local_grid.py:72:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+offline/processing/build_mask_local_grid.py:85:                    mask[r, c] = 1
+offline/processing/build_mask_local_grid.py:88:    pixels = int(mask.sum())
+offline/processing/build_mask_local_grid.py:89:    print(f"[MaskLocal] Células marcadas como edifício: {pixels}")
+offline/processing/build_mask_local_grid.py:90:    print("[MaskLocal] Máscara local construída com sucesso\n")
+offline/processing/build_mask_local_grid.py:92:    return mask
+offline/processing/clip_raster.py:2:from rasterio.mask import mask
+offline/processing/clip_raster.py:22:            out_image, out_transform = mask(
+offline/processing/compute_heights.py:3:def compute_heights(dsm, dtm, mask):
+offline/processing/compute_heights.py:25:    ndsm[mask == 0] = 0
+offline/processing/rasterize_mask.py:4:def rasterize_mask(vector_gdf, raster_meta):
+offline/processing/rasterize_mask.py:25:    mask = rasterize(
+offline/processing/rasterize_mask.py:34:    pixels = int(mask.sum())
+offline/processing/rasterize_mask.py:38:    return mask
+offline/processing/reproject_raster.py:6:    print("[ReprojectRaster] Iniciando reprojeção do raster")
+offline/processing/reproject_raster.py:42:    print("[ReprojectRaster] Reprojeção concluída\n")
+offline/raster/core/clip_raster_by_envelope.py:2:from rasterio.mask import mask
+offline/raster/core/clip_raster_by_envelope.py:22:        out_image, out_transform = mask(
+offline/raster/core/reclip_rasters_to_domain.py:2:from rasterio.mask import mask
+offline/raster/core/reclip_rasters_to_domain.py:35:        out_image, out_transform = mask(
+offline/raster/core/reproject_rasters_to_utm.py:3:Reprojeção dos rasters originais
+offline/raster/core/reproject_rasters_to_utm.py:70:print("REPROJEÇÃO FINALIZADA")
+offline/raster/core/rotate_raster_scientific.py:82:    # reprojeção (warp real)
+offline/raster/pipeline/scientific_raster_runner.py:13:from rasterio.mask import mask
+offline/raster/pipeline/scientific_raster_runner.py:68:        out_image, out_transform = mask(src, geom, crop=True)
+offline/raster/pipeline/scientific_raster_runner.py:86:# BUILDING MASK
+offline/raster/pipeline/scientific_raster_runner.py:89:def build_building_mask(reference_raster):
+offline/raster/pipeline/scientific_raster_runner.py:91:    print("\nBuilding mask from vector")
+offline/raster/pipeline/scientific_raster_runner.py:99:        mask_raster = rasterize(
+offline/raster/pipeline/scientific_raster_runner.py:107:    print("Building pixels:", np.sum(mask_raster))
+offline/raster/pipeline/scientific_raster_runner.py:109:    return mask_raster
+offline/raster/pipeline/scientific_raster_runner.py:139:    # building mask
+offline/raster/pipeline/scientific_raster_runner.py:142:    building_mask = build_building_mask(DSM_CLIP)
+offline/raster/pipeline/scientific_raster_runner.py:145:    ndsm_buildings[building_mask == 0] = np.nan
+offline/raster/pipeline/scientific_raster_runner.py:162:    height[building_mask == 0] = 0
+offline/render_dxf_ipt_para_mesa_16x8.py:73:        alpha=1.0
+offline/scientific_cell_metrics.py.bak:6:from rasterio.mask import mask
+offline/scientific_cell_metrics.py.bak:32:            out_image, _ = mask(src, [geom], crop=True)
+offline/scientific_cell_metrics_utm.py:2:from rasterio.mask import mask
+offline/scientific_cell_metrics_utm.py:27:            dsm_img, _ = mask(dsm, geom, crop=True)
+offline/scientific_cell_metrics_utm.py:28:            dtm_img, _ = mask(dtm, geom, crop=True)
+offline/scientific_cell_metrics_utm.py.bak:6:from rasterio.mask import mask
+offline/scientific_cell_metrics_utm.py.bak:32:            out_image, _ = mask(src, [geom], crop=True)
+offline/tools/audit_alignment_grid_raster.py:4:# Raster × Scientific Grid × Watermark
+offline/tools/audit_alignment_grid_raster.py:17:WATERMARK = ENGINE_ROOT / "offline/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_v53.png"
+offline/tools/audit_alignment_grid_raster.py:25:    print("Raster × Grid × Watermark")
+offline/tools/audit_lowest_points_dtm_dsm.py:45:        mask = data != src.nodata
+offline/tools/audit_lowest_points_dtm_dsm.py:47:        valid = data[mask]
+offline/tools/buildings_height_model.py:9:from rasterio.mask import mask
+offline/tools/buildings_height_model.py:38:            out_image, _ = mask(src, [geom], crop=True)
+offline/tools/generate_grid_aligned_watermark.py:16:OUTPUT_PNG = ONLINE_ASSETS_DIR / "ipt_mask_rotated_grid_aligned.png"
+offline/tools/generate_grid_aligned_watermark.py:41:        SCIENTIFIC_DIR / "buildings_mask.gpkg",
+offline/tools/generate_grid_aligned_watermark.py:110:    fig.patch.set_alpha(0.0)
+offline/tools/generate_grid_aligned_watermark.py:133:    print_header("IPT-CITYSPACE | GRID-ALIGNED WATERMARK")
+offline/tools/generate_grid_aligned_watermark_v2.py:15:OUTPUT_PNG = ONLINE_ASSETS_DIR / "ipt_mask_rotated_grid_aligned_v2.png"
+offline/tools/generate_grid_aligned_watermark_v2.py:109:    fig.patch.set_alpha(0.0)
+offline/tools/generate_grid_aligned_watermark_v2.py:132:    print_header("IPT-CITYSPACE | GRID-ALIGNED WATERMARK V2")
+offline/tools/rebuild_scientific_raster_runner.py:16:from rasterio.mask import mask
+offline/tools/rebuild_scientific_raster_runner.py:122:            out_image, out_transform = mask(src, [geom], crop=True)
+offline/tools/recompute_altimetry_ndsm.py:92:            valid_mask = dtm_cell > NODATA_LIMIT
+offline/tools/recompute_altimetry_ndsm.py:94:            if not np.any(valid_mask):
+offline/tools/recompute_altimetry_ndsm.py:98:            dtm_valid = dtm_cell[valid_mask]
+offline/tools/recompute_altimetry_ndsm.py:99:            ndsm_valid = ndsm_cell[valid_mask]
+offline/tools/recompute_altimetry_ndsm.py:111:            building_mask = ndsm_valid > NDSM_THRESHOLD
+offline/tools/recompute_altimetry_ndsm.py:113:            if np.any(building_mask):
+offline/tools/recompute_altimetry_ndsm.py:115:                    np.percentile(ndsm_valid[building_mask], PERCENTILE)
+offline/validate_dxf_ipt_original_rotated_clean.py:92:            alpha=0.9,
+offline/validate_dxf_ipt_original_rotated_clean.py:103:            alpha=1.0,
+offline/validation/contract_registry.py:197:            "can_be_watermark": True,
+offline/validation/reports/contract_registry_expanded.txt:181:            "can_be_watermark": True,
+offline/vector/core/apply_rigid_transform_clean.py:12:Este sistema NÃO é uma reprojeção cartográfica.
+online/renderers/fase3/FASE_3_4_mesa_legenda.py:14:MASK_PATH = FASE2_DIR / "mask_local_8x16.npy"
+online/renderers/fase3/FASE_3_4_mesa_legenda.py:23:mask = np.load(MASK_PATH)
+online/renderers/fase3/FASE_3_4_mesa_legenda.py:40:        if mask[r, c] == 1:
+online/renderers/fase3/FASE_3_5_verificacao_contrato.py:10:mask_local = np.load(FASE2_DIR / "mask_local_8x16.npy")
+online/renderers/fase3/FASE_3_5_verificacao_contrato.py:37:    mask_local.shape == (8, 16),
+online/renderers/fase3/FASE_3_5_verificacao_contrato.py:39:    f"Máscara inesperada: {mask_local.shape}"
+online/renderers/fase3/FASE_3_5_verificacao_contrato.py:43:    int(mask_local.sum()) > 0,
+online/renderers/fase3/FASE_3_5_verificacao_contrato.py:44:    f"Máscara contém edifícios ({int(mask_local.sum())} células)",
+online/renderers/fase3/FASE_3_5_verificacao_contrato.py:56:    meta["mask_local"] is True,
+online/renderers/faseC/FASE_C_1_contrato_temporal.py:9:mask = np.load(FASE2_DIR / "mask_local_8x16.npy")
+online/renderers/faseC/FASE_C_1_contrato_temporal.py:31:assert mask.shape == (rows, cols), "Máscara incompatível com contrato temporal"
+online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:15:MASK_PATH = FASE2_DIR / "mask_local_8x16.npy"
+online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:22:mask = np.load(MASK_PATH)
+online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:73:    frame[mask == 1] = 1.0
+online/renderers/faseC/FASE_C_3_player_temporal_valores.py:15:MASK_PATH = FASE2_DIR / "mask_local_8x16.npy"
+online/renderers/faseC/FASE_C_3_player_temporal_valores.py:22:mask = np.load(MASK_PATH)
+online/renderers/faseC/FASE_C_3_player_temporal_valores.py:51:profile[mask == 0] = 0
+online/renderers/generate_gif_planta_baixa_ipt.py:9:# - Aplicar DXF como overlay fixo
+online/renderers/generate_gif_planta_baixa_ipt.py:47:    dxf_alpha=0.3
+online/renderers/generate_gif_planta_baixa_ipt.py:99:        # Overlay DXF
+online/renderers/generate_gif_planta_baixa_ipt.py:108:            alpha=dxf_alpha,
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v1.py:100:ax.grid(color="white", linewidth=0.5, alpha=0.4)
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v1.py:105:# OVERLAY DXF
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v1.py:114:            alpha=0.6
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v2_gif.py:131:    ax.grid(color="white", linewidth=0.5, alpha=0.4)
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v2_gif.py:146:                alpha=0.5
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:151:        ax.grid(color="white", linewidth=0.5, alpha=0.4)
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:167:                    alpha=0.5
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:140:        ax.grid(color="white", linewidth=0.5, alpha=0.4)
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:154:                    alpha=0.4
+online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:75:DXF_ALPHA = 0.30
+online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:160:    ax.grid(color="white", linewidth=0.5, alpha=0.4)
+online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:168:    # DXF OVERLAY — PLANTA IPT
+online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:177:                alpha=DXF_ALPHA
+online/renderers/layer2d.py:17:        alpha: float = 1.0,
+online/renderers/layer2d.py:24:        self.alpha = alpha
+online/renderers/layer2d.py:57:            "alpha": self.alpha,
+online/renderers/layers/layer_dxf_lines.py:29:        alpha=0.4,
+online/renderers/layers/layer_dxf_lines.py:50:        self.alpha = alpha
+online/renderers/layers/layer_dxf_lines.py:89:            alpha=self.alpha,
+online/renderers/render_mesa_ipt_2d25_canonico.py:9:# - Leitura humana / projeção
+online/renderers/render_mesa_ipt_2d25_canonico.py:41:# PARÂMETROS VISUAIS (PROJEÇÃO)
+online/renderers/render_mesa_ipt_2d25_canonico.py:49:DXF_ALPHA = 0.30
+online/renderers/render_mesa_ipt_2d25_canonico.py:86:        alpha=DXF_ALPHA,
+online/renderers/render_mesa_ipt_2d25_canonico.py:118:    ax.grid(color="black", alpha=0.15, linewidth=0.5)
+online/renderers/render_mesa_ipt_2d25_integrada.py:67:DXF_ALPHA = 0.85
+online/renderers/render_mesa_ipt_2d25_integrada.py:174:    gdf.plot(ax=ax, color=DXF_COLOR, linewidth=DXF_LW, alpha=DXF_ALPHA, zorder=6)
+online/renderers/render_mesa_ipt_2d25_integrada.py:193:    ax.grid(alpha=0.2)
+online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:38:DXF_ALPHA = 0.85
+online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:118:        alpha=DXF_ALPHA, zorder=8
+online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:136:    ax.grid(alpha=0.15)
+online/renderers/render_mesa_ipt_animacao_zigzag.py:193:                      alpha=0.85,
+online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:33:ALPHA_GRID = 0.8
+online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:91:    alpha=0.35,
+online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:100:    alpha=ALPHA_GRID,
+online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:113:            alpha=0.06,
+online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:123:            alpha=0.06,
+online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:143:    alpha=0.0,
+online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:157:    fill_rect.set_alpha(0.15 + 0.25 * np.sin(np.pi * phase))
+online/renderers/render_mesa_ipt_validacao_geometrica.py:62:DXF_ALPHA = 0.9
+online/renderers/render_mesa_ipt_validacao_geometrica.py:168:        alpha=DXF_ALPHA,
+online/renderers/render_mesa_ipt_validacao_geometrica.py:202:    ax.grid(alpha=0.2)
+online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:100:                alpha=0.85
+online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:152:                    alpha=0.85,
+online/renderers/render_mesa_ipt_zigzag_canonico.py:161:            alpha=0.9
+online/renderers/render_mesa_ipt_zigzag_canonico.py:174:            ax.axvline(x - 0.5, color="white", alpha=0.15, linewidth=0.5)
+online/renderers/render_mesa_ipt_zigzag_canonico.py:176:            ax.axhline(y - 0.5, color="white", alpha=0.15, linewidth=0.5)
+online/renderers/render_mesa_ipt_zigzag_integrada_final.py:128:                alpha=0.95,
+online/renderers/render_temporal_gif_v41_2.py:3:Mesa Virtual — GIF Temporal V41.2 (WATERMARK FIX)
+online/renderers/render_temporal_gif_v41_2.py:116:    print("IPT-CITYSPACE — RENDER V41.2 (WATERMARK)")
+online/renderers/render_temporal_gif_v41_2.py:129:    urban_mask = raster > URBAN_THRESHOLD
+online/renderers/render_temporal_gif_v41_2.py:158:            is_urban = urban_mask[ry, rx]
+online/renderers/render_temporal_gif_v41_2.py:172:                alpha=0.35,
+online/renderers/render_temporal_gif_v41_2.py:183:                alpha=0.85,
+online/renderers/render_temporal_gif_v42_2.py:156:                alpha=0.30,
+online/renderers/render_temporal_gif_v42_2.py:166:                alpha=0.85,
+online/renderers/tests/test_generate_gif_planta_baixa_ipt.py:7:# - Testar visualização humana e para projeção
+online/renderers/tests/test_generate_gif_planta_baixa_ipt.py:8:# - Ajustar contraste, alpha, colormap e ritmo
+online/renderers/tests/test_generate_gif_planta_baixa_ipt.py:32:    GIF_FPS = 5            # mais lento para projeção
+online/renderers/tests/test_generate_gif_planta_baixa_ipt.py:38:    DXF_ALPHA = 0.25       # transparência da planta (0.15–0.35)
+online/renderers/tests/test_generate_gif_planta_baixa_ipt.py:47:        dxf_alpha=DXF_ALPHA
+online/renderers/tests/test_planta_baixa_ipt_single_layer.py:3:# Renderer2D + DXF overlay
+online/renderers/tests/test_planta_baixa_ipt_single_layer.py:8:# - DXF como overlay visual
+online/renderers/tests/test_planta_baixa_ipt_single_layer.py:62:    # Aplicar DXF como overlay visual
+online/renderers/tests/test_planta_baixa_ipt_single_layer.py:64:    print("[INFO] Aplicando DXF como overlay")
+online/renderers/tests/test_planta_baixa_ipt_single_layer.py:81:        alpha=0.7,
+online/renderers/tests/test_renderer2d_multilayer.py:25:        alpha=1.0,
+online/renderers/tests/test_renderer2d_multilayer.py:42:        alpha=0.7,
+online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:9:# - DXF como overlay de referência
+online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:49:        alpha=1.0,
+online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:69:    # Overlay DXF (Planta Baixa IPT)
+online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:71:    print("[INFO] Aplicando overlay DXF")
+online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:87:        alpha=0.7,
+online/renderers/tests/test_renderer2d_with_dxf.py:69:        alpha=0.4,
+online/renderers/tests/test_timeline_renderer2d.py:25:        alpha=1.0,
+online/renderers/visualizar_mesa_ipt_alturas.py:103:        alpha=0.95
+online/renderers/visualizar_mesa_ipt_bmp_dxf_alturas.py:93:        alpha=0.95
+online/ui/dash_v100_2.py:2:# IPT-CitySpace – DASH V100.2 (ATUADOR + IPT WATERMARK)
+online/ui/dash_v100_2.py:15:IPT_LOGO = "assets/ipt_mask.png"
+online/ui/dash_v100_contours_dtm_fit.py:61:mask = np_img[:, :, 0:3].mean(axis=2) < 240
+online/ui/dash_v100_contours_dtm_fit.py:62:coords = np.argwhere(mask)
+online/ui/dash_v100_contours_dtm_fit.py:134:# WATERMARK
+online/ui/dash_v101_contours_clean_2m.py:61:mask = np_img[:, :, 0:3].mean(axis=2) < 240
+online/ui/dash_v101_contours_clean_2m.py:62:coords = np.argwhere(mask)
+online/ui/dash_v101_contours_clean_2m.py:134:# WATERMARK
+online/ui/dash_v101_fisico.py:15:IPT_LOGO = "assets/ipt_mask.png"
+online/ui/dash_v101_fix.py:16:IPT_LOGO = "assets/ipt_mask.png"
+online/ui/dash_v101_fix.py:49:# WATERMARK (GRID-ALIGNED)
+online/ui/dash_v101_fix.py:145:    # WATERMARK APLICADO AO GRID
+online/ui/dash_v101_fix.py:147:    alpha = (estado > 0).astype(float)
+online/ui/dash_v101_fix.py:148:    overlay = logo * alpha
+online/ui/dash_v101_fix.py:162:    # watermark
+online/ui/dash_v101_fix.py:164:        z=overlay,
+online/ui/dash_v102_contours_dtm_true.py:61:mask = np_img[:, :, 0:3].mean(axis=2) < 240
+online/ui/dash_v102_contours_dtm_true.py:62:coords = np.argwhere(mask)
+online/ui/dash_v102_contours_dtm_true.py:134:# WATERMARK
+online/ui/dash_v103_contours_dtm_rotated.py:61:mask = np_img[:, :, 0:3].mean(axis=2) < 240
+online/ui/dash_v103_contours_dtm_rotated.py:62:coords = np.argwhere(mask)
+online/ui/dash_v103_contours_dtm_rotated.py:134:# WATERMARK
+online/ui/dash_v104_dtm_true_grid_fit.py:46:mask = np_img[:, :, 0:3].mean(axis=2) < 240
+online/ui/dash_v104_dtm_true_grid_fit.py:47:coords = np.argwhere(mask)
+online/ui/dash_v108_grid_terrain_contours_nan_polygon.py:14:GRID_MASKED_PATH = CORE_ROOT / "offline/products/scientific/grid_terrain_nan_polygon.npy"
+online/ui/dash_v108_grid_terrain_contours_nan_polygon.py:22:grid = np.load(GRID_MASKED_PATH)
+online/ui/dash_v108_grid_terrain_contours_nan_polygon.py:90:    print("GRID MASKED:", GRID_MASKED_PATH)
+online/ui/dash_v112_true_align_projection_ready.py:3:# Fiel ao renderer V42, preparado para projeção na mesa real
+online/ui/dash_v112_true_align_projection_ready.py:31:# PROJECTION / REAL MESA PARAMETERS
+online/ui/dash_v112_true_align_projection_ready.py:44:# modo projeção: sem título, sem toolbar, sem margens grandes
+online/ui/dash_v112_true_align_projection_ready.py:45:PROJECTION_MODE = True
+online/ui/dash_v112_true_align_projection_ready.py:105:    # WATERMARK / BASE IPT
+online/ui/dash_v112_true_align_projection_ready.py:166:    title = "" if PROJECTION_MODE else "V112 — True Align Projection Ready"
+online/ui/dash_v112_true_align_projection_ready.py:170:        margin=dict(l=0, r=0, t=0 if PROJECTION_MODE else 36, b=0),
+online/ui/dash_v112_true_align_projection_ready.py:237:    print("V112 — TRUE ALIGN / PROJECTION READY")
+online/ui/dash_v112_true_align_projection_ready.py:247:    print("Projection mode:", PROJECTION_MODE)
+online/ui/dash_v113_true_align_flipud.py:3:# Fiel ao renderer V42, preparado para projeção na mesa real
+online/ui/dash_v113_true_align_flipud.py:31:# PROJECTION / REAL MESA PARAMETERS
+online/ui/dash_v113_true_align_flipud.py:44:# modo projeção: sem título, sem toolbar, sem margens grandes
+online/ui/dash_v113_true_align_flipud.py:45:PROJECTION_MODE = True
+online/ui/dash_v113_true_align_flipud.py:105:    # WATERMARK / BASE IPT
+online/ui/dash_v113_true_align_flipud.py:166:    title = "" if PROJECTION_MODE else "V113 — True Align FlipUD Projection Ready"
+online/ui/dash_v113_true_align_flipud.py:170:        margin=dict(l=0, r=0, t=0 if PROJECTION_MODE else 36, b=0),
+online/ui/dash_v113_true_align_flipud.py:245:    print("V113 — TRUE ALIGN / FLIPUD / PROJECTION READY")
+online/ui/dash_v113_true_align_flipud.py:255:    print("Projection mode:", PROJECTION_MODE)
+online/ui/dash_v114_watermark_calibrator_projection.py:74:    # Watermark usando extent equivalente ao Matplotlib V42
+online/ui/dash_v114_watermark_calibrator_projection.py:158:                html.Div("V114 Watermark Calibrator", style={"fontWeight": "bold", "marginBottom": "6px"}),
+online/ui/dash_v114_watermark_calibrator_projection.py:229:    print("V114 — WATERMARK CALIBRATOR")
+online/ui/dash_v115_projection_baseline.py:98:    # WATERMARK FIXA
+online/ui/dash_v115_projection_baseline.py:243:    print("V115 — PROJECTION BASELINE")
+online/ui/dash_v117_pino_teto_contour.py:82:def add_watermark(fig, png, rows, cols):
+online/ui/dash_v117_pino_teto_contour.py:131:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v117_pino_teto_contour.py:132:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v117_pino_teto_contour.py:180:    add_watermark(fig, png, rows, cols)
+online/ui/dash_v118_layers_pino_teto_contours.py:75:def remove_small_components(mask, min_cells=4):
+online/ui/dash_v118_layers_pino_teto_contours.py:76:    mask = mask.copy()
+online/ui/dash_v118_layers_pino_teto_contours.py:77:    visited = np.zeros_like(mask, dtype=bool)
+online/ui/dash_v118_layers_pino_teto_contours.py:78:    rows, cols = mask.shape
+online/ui/dash_v118_layers_pino_teto_contours.py:82:            if not mask[r, c] or visited[r, c]:
+online/ui/dash_v118_layers_pino_teto_contours.py:96:                        if mask[nr, nc] and not visited[nr, nc]:
+online/ui/dash_v118_layers_pino_teto_contours.py:102:                    mask[rr, cc] = False
+online/ui/dash_v118_layers_pino_teto_contours.py:104:    return mask
+online/ui/dash_v118_layers_pino_teto_contours.py:107:def apply_mask(Z, mask):
+online/ui/dash_v118_layers_pino_teto_contours.py:109:    out[~mask] = np.nan
+online/ui/dash_v118_layers_pino_teto_contours.py:120:def add_watermark(fig, png, rows, cols):
+online/ui/dash_v118_layers_pino_teto_contours.py:151:def add_contours(fig, Z, mask, name, color, dash, interval_m, width_main=2.0):
+online/ui/dash_v118_layers_pino_teto_contours.py:164:    mask_hi = zoom(mask.astype(float), upscale, order=0) > 0.5
+online/ui/dash_v118_layers_pino_teto_contours.py:165:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v118_layers_pino_teto_contours.py:237:        add_watermark(fig, png, rows, cols)
+online/ui/dash_v118_layers_pino_teto_contours.py:261:            valid_mask,
+online/ui/dash_v118_layers_pino_teto_contours.py:272:            valid_mask,
+online/ui/dash_v118_layers_pino_teto_contours.py:304:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v118_layers_pino_teto_contours.py:305:valid_mask = remove_small_components(valid_mask, MIN_COMPONENT_CELLS)
+online/ui/dash_v118_layers_pino_teto_contours.py:307:z_terrain_m = apply_mask(z_terrain_m, valid_mask)
+online/ui/dash_v118_layers_pino_teto_contours.py:308:z_total_m = apply_mask(z_total_m, valid_mask)
+online/ui/dash_v118_layers_pino_teto_contours.py:309:z_total_cm = apply_mask(z_total_cm, valid_mask)
+online/ui/dash_v118_layers_pino_teto_contours.py:366:    print("Valid cells:", int(valid_mask.sum()))
+online/ui/dash_v119_layers_cotas_compare.py:77:def remove_small_components(mask, min_cells=4):
+online/ui/dash_v119_layers_cotas_compare.py:78:    mask = mask.copy()
+online/ui/dash_v119_layers_cotas_compare.py:79:    visited = np.zeros_like(mask, dtype=bool)
+online/ui/dash_v119_layers_cotas_compare.py:80:    rows, cols = mask.shape
+online/ui/dash_v119_layers_cotas_compare.py:84:            if not mask[r, c] or visited[r, c]:
+online/ui/dash_v119_layers_cotas_compare.py:97:                        if mask[nr, nc] and not visited[nr, nc]:
+online/ui/dash_v119_layers_cotas_compare.py:103:                    mask[rr, cc] = False
+online/ui/dash_v119_layers_cotas_compare.py:105:    return mask
+online/ui/dash_v119_layers_cotas_compare.py:108:def apply_mask(Z, mask):
+online/ui/dash_v119_layers_cotas_compare.py:110:    out[~mask] = np.nan
+online/ui/dash_v119_layers_cotas_compare.py:121:def add_watermark(fig, png, rows, cols):
+online/ui/dash_v119_layers_cotas_compare.py:152:def contour_segments(Z, mask, interval_m):
+online/ui/dash_v119_layers_cotas_compare.py:165:    mask_hi = zoom(mask.astype(float), upscale, order=0) > 0.5
+online/ui/dash_v119_layers_cotas_compare.py:166:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v119_layers_cotas_compare.py:255:        add_watermark(fig, png, rows, cols)
+online/ui/dash_v119_layers_cotas_compare.py:306:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v119_layers_cotas_compare.py:307:valid_mask = remove_small_components(valid_mask, MIN_COMPONENT_CELLS)
+online/ui/dash_v119_layers_cotas_compare.py:309:z_terrain_m = apply_mask(z_terrain_m, valid_mask)
+online/ui/dash_v119_layers_cotas_compare.py:310:z_total_m = apply_mask(z_total_m, valid_mask)
+online/ui/dash_v119_layers_cotas_compare.py:311:z_total_cm = apply_mask(z_total_cm, valid_mask)
+online/ui/dash_v119_layers_cotas_compare.py:315:terrain_segments = contour_segments(z_terrain_m, valid_mask, interval_m=2.0)
+online/ui/dash_v119_layers_cotas_compare.py:316:total_segments = contour_segments(z_total_m, valid_mask, interval_m=5.0)
+online/ui/dash_v119_layers_cotas_compare.py:375:    print("Valid cells:", int(valid_mask.sum()))
+online/ui/dash_v120_esri_overlay_grid.py:25:    CORE_ROOT / "offline/products/snapshots/ipt_fase2_semantic/esri_overlay_grid.png",
+online/ui/dash_v120_esri_overlay_grid.py:26:    CORE_ROOT / "online/assets/esri_overlay_grid.png",
+online/ui/dash_v120_esri_overlay_grid.py:83:def remove_small_components(mask, min_cells=4):
+online/ui/dash_v120_esri_overlay_grid.py:84:    mask = mask.copy()
+online/ui/dash_v120_esri_overlay_grid.py:85:    visited = np.zeros_like(mask, dtype=bool)
+online/ui/dash_v120_esri_overlay_grid.py:86:    rows, cols = mask.shape
+online/ui/dash_v120_esri_overlay_grid.py:90:            if not mask[r, c] or visited[r, c]:
+online/ui/dash_v120_esri_overlay_grid.py:103:                        if mask[nr, nc] and not visited[nr, nc]:
+online/ui/dash_v120_esri_overlay_grid.py:109:                    mask[rr, cc] = False
+online/ui/dash_v120_esri_overlay_grid.py:111:    return mask
+online/ui/dash_v120_esri_overlay_grid.py:114:def apply_mask(Z, mask):
+online/ui/dash_v120_esri_overlay_grid.py:116:    out[~mask] = np.nan
+online/ui/dash_v120_esri_overlay_grid.py:127:def add_watermark(fig, png, rows, cols):
+online/ui/dash_v120_esri_overlay_grid.py:158:def contour_segments(Z, mask, interval_m):
+online/ui/dash_v120_esri_overlay_grid.py:171:    mask_hi = zoom(mask.astype(float), upscale, order=0) > 0.5
+online/ui/dash_v120_esri_overlay_grid.py:172:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v120_esri_overlay_grid.py:257:def add_esri_overlay(fig, esri, rows, cols):
+online/ui/dash_v120_esri_overlay_grid.py:270:        name="ESRI_OVERLAY_GRID",
+online/ui/dash_v120_esri_overlay_grid.py:279:        add_esri_overlay(fig, esri, rows, cols)
+online/ui/dash_v120_esri_overlay_grid.py:282:        add_watermark(fig, png, rows, cols)
+online/ui/dash_v120_esri_overlay_grid.py:333:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v120_esri_overlay_grid.py:334:valid_mask = remove_small_components(valid_mask, MIN_COMPONENT_CELLS)
+online/ui/dash_v120_esri_overlay_grid.py:336:z_terrain_m = apply_mask(z_terrain_m, valid_mask)
+online/ui/dash_v120_esri_overlay_grid.py:337:z_total_m = apply_mask(z_total_m, valid_mask)
+online/ui/dash_v120_esri_overlay_grid.py:338:z_total_cm = apply_mask(z_total_cm, valid_mask)
+online/ui/dash_v120_esri_overlay_grid.py:349:terrain_segments = contour_segments(z_terrain_m, valid_mask, interval_m=2.0)
+online/ui/dash_v120_esri_overlay_grid.py:350:total_segments = contour_segments(z_total_m, valid_mask, interval_m=5.0)
+online/ui/dash_v120_esri_overlay_grid.py:401:    print("V120 — LAYERS + COTAS + ESRI OVERLAY GRID")
+online/ui/dash_v120_esri_overlay_grid.py:411:    print("Valid cells:", int(valid_mask.sum()))
+online/ui/dash_v121_esri_calibrator.py:16:ESRI = BASE / "offline/products/snapshots/ipt_fase2_semantic/esri_overlay_grid.png"
+online/ui/dash_v121_esri_calibrator.py:53:    # ESRI overlay
+online/ui/dash_v122_masked_layers_cotas.py:77:def remove_small_components(mask, min_cells=4):
+online/ui/dash_v122_masked_layers_cotas.py:78:    mask = mask.copy()
+online/ui/dash_v122_masked_layers_cotas.py:79:    visited = np.zeros_like(mask, dtype=bool)
+online/ui/dash_v122_masked_layers_cotas.py:80:    rows, cols = mask.shape
+online/ui/dash_v122_masked_layers_cotas.py:84:            if not mask[r, c] or visited[r, c]:
+online/ui/dash_v122_masked_layers_cotas.py:97:                        if mask[nr, nc] and not visited[nr, nc]:
+online/ui/dash_v122_masked_layers_cotas.py:103:                    mask[rr, cc] = False
+online/ui/dash_v122_masked_layers_cotas.py:105:    return mask
+online/ui/dash_v122_masked_layers_cotas.py:108:def apply_mask(Z, mask):
+online/ui/dash_v122_masked_layers_cotas.py:110:    out[~mask] = np.nan
+online/ui/dash_v122_masked_layers_cotas.py:121:def add_watermark(fig, png, rows, cols):
+online/ui/dash_v122_masked_layers_cotas.py:152:def contour_segments(Z, mask, interval_m):
+online/ui/dash_v122_masked_layers_cotas.py:165:    mask_hi = zoom(mask.astype(float), upscale, order=0) > 0.5
+online/ui/dash_v122_masked_layers_cotas.py:166:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v122_masked_layers_cotas.py:255:        add_watermark(fig, png, rows, cols)
+online/ui/dash_v122_masked_layers_cotas.py:282:    if "mask" in layers:
+online/ui/dash_v122_masked_layers_cotas.py:284:            z=np.where(valid_mask, 1, np.nan),
+online/ui/dash_v122_masked_layers_cotas.py:289:            name="VALID_MASK",
+online/ui/dash_v122_masked_layers_cotas.py:316:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v122_masked_layers_cotas.py:317:valid_mask = remove_small_components(valid_mask, MIN_COMPONENT_CELLS)
+online/ui/dash_v122_masked_layers_cotas.py:320:# V122 MASK — DOMÍNIO FÍSICO/URBANÍSTICO DA MESA
+online/ui/dash_v122_masked_layers_cotas.py:327:height_mask = np.isfinite(z_total_cm) & (z_total_cm > 0)
+online/ui/dash_v122_masked_layers_cotas.py:328:valid_mask = valid_mask & height_mask
+online/ui/dash_v122_masked_layers_cotas.py:330:z_terrain_m = apply_mask(z_terrain_m, valid_mask)
+online/ui/dash_v122_masked_layers_cotas.py:331:z_total_m = apply_mask(z_total_m, valid_mask)
+online/ui/dash_v122_masked_layers_cotas.py:332:z_total_cm = apply_mask(z_total_cm, valid_mask)
+online/ui/dash_v122_masked_layers_cotas.py:336:terrain_segments = contour_segments(z_terrain_m, valid_mask, interval_m=2.0)
+online/ui/dash_v122_masked_layers_cotas.py:337:total_segments = contour_segments(z_total_m, valid_mask, interval_m=5.0)
+online/ui/dash_v122_masked_layers_cotas.py:354:                {"label": "Máscara válida", "value": "mask"},
+online/ui/dash_v122_masked_layers_cotas.py:388:    print("V122 — MASKED LAYERS + COTAS")
+online/ui/dash_v122_masked_layers_cotas.py:397:    print("Valid cells masked:", int(valid_mask.sum()))
+online/ui/dash_v123_mask_iptraster.py:40:# V123 — MASK FROM IPT RASTER
+online/ui/dash_v123_mask_iptraster.py:42:def build_mask_from_raster(png_path, rows, cols, threshold=0.15):
+online/ui/dash_v123_mask_iptraster.py:47:    mask = np.zeros((rows, cols), dtype=bool)
+online/ui/dash_v123_mask_iptraster.py:64:                mask[r, c] = True
+online/ui/dash_v123_mask_iptraster.py:66:    return mask
+online/ui/dash_v123_mask_iptraster.py:107:def remove_small_components(mask, min_cells=4):
+online/ui/dash_v123_mask_iptraster.py:108:    mask = mask.copy()
+online/ui/dash_v123_mask_iptraster.py:109:    visited = np.zeros_like(mask, dtype=bool)
+online/ui/dash_v123_mask_iptraster.py:110:    rows, cols = mask.shape
+online/ui/dash_v123_mask_iptraster.py:114:            if not mask[r, c] or visited[r, c]:
+online/ui/dash_v123_mask_iptraster.py:127:                        if mask[nr, nc] and not visited[nr, nc]:
+online/ui/dash_v123_mask_iptraster.py:133:                    mask[rr, cc] = False
+online/ui/dash_v123_mask_iptraster.py:135:    return mask
+online/ui/dash_v123_mask_iptraster.py:138:def apply_mask(Z, mask):
+online/ui/dash_v123_mask_iptraster.py:140:    out[~mask] = np.nan
+online/ui/dash_v123_mask_iptraster.py:151:def add_watermark(fig, png, rows, cols):
+online/ui/dash_v123_mask_iptraster.py:182:def contour_segments(Z, mask, interval_m):
+online/ui/dash_v123_mask_iptraster.py:195:    mask_hi = zoom(mask.astype(float), upscale, order=0) > 0.5
+online/ui/dash_v123_mask_iptraster.py:196:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v123_mask_iptraster.py:285:        add_watermark(fig, png, rows, cols)
+online/ui/dash_v123_mask_iptraster.py:312:    if "mask" in layers:
+online/ui/dash_v123_mask_iptraster.py:314:            z=np.where(valid_mask, 1, np.nan),
+online/ui/dash_v123_mask_iptraster.py:319:            name="VALID_MASK",
+online/ui/dash_v123_mask_iptraster.py:346:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v123_mask_iptraster.py:347:valid_mask = remove_small_components(valid_mask, MIN_COMPONENT_CELLS)
+online/ui/dash_v123_mask_iptraster.py:350:# V122 MASK — DOMÍNIO FÍSICO/URBANÍSTICO DA MESA
+online/ui/dash_v123_mask_iptraster.py:357:height_mask = np.isfinite(z_total_cm) & (z_total_cm > 0)
+online/ui/dash_v123_mask_iptraster.py:363:raster_mask = build_mask_from_raster(PNG_PATH, GRID_ROWS, GRID_COLS, threshold=0.15)
+online/ui/dash_v123_mask_iptraster.py:366:raster_mask = fix_like_v42(raster_mask).astype(bool)
+online/ui/dash_v123_mask_iptraster.py:368:valid_mask = valid_mask & height_mask & raster_mask
+online/ui/dash_v123_mask_iptraster.py:370:z_terrain_m = apply_mask(z_terrain_m, valid_mask)
+online/ui/dash_v123_mask_iptraster.py:371:z_total_m = apply_mask(z_total_m, valid_mask)
+online/ui/dash_v123_mask_iptraster.py:372:z_total_cm = apply_mask(z_total_cm, valid_mask)
+online/ui/dash_v123_mask_iptraster.py:376:terrain_segments = contour_segments(z_terrain_m, valid_mask, interval_m=2.0)
+online/ui/dash_v123_mask_iptraster.py:377:total_segments = contour_segments(z_total_m, valid_mask, interval_m=5.0)
+online/ui/dash_v123_mask_iptraster.py:394:                {"label": "Máscara válida", "value": "mask"},
+online/ui/dash_v123_mask_iptraster.py:428:    print("V123 — IPT RASTER MASK + LAYERS + COTAS")
+online/ui/dash_v123_mask_iptraster.py:437:    print("Valid cells IPT raster mask:", int(valid_mask.sum()))
+online/ui/dash_v124_offline_mask.py:17:CSV_PATH = CORE_ROOT / "offline/products/scientific/grid_metrics_utm_masked.csv"
+online/ui/dash_v124_offline_mask.py:77:def remove_small_components(mask, min_cells=4):
+online/ui/dash_v124_offline_mask.py:78:    mask = mask.copy()
+online/ui/dash_v124_offline_mask.py:79:    visited = np.zeros_like(mask, dtype=bool)
+online/ui/dash_v124_offline_mask.py:80:    rows, cols = mask.shape
+online/ui/dash_v124_offline_mask.py:84:            if not mask[r, c] or visited[r, c]:
+online/ui/dash_v124_offline_mask.py:97:                        if mask[nr, nc] and not visited[nr, nc]:
+online/ui/dash_v124_offline_mask.py:103:                    mask[rr, cc] = False
+online/ui/dash_v124_offline_mask.py:105:    return mask
+online/ui/dash_v124_offline_mask.py:108:def apply_mask(Z, mask):
+online/ui/dash_v124_offline_mask.py:110:    out[~mask] = np.nan
+online/ui/dash_v124_offline_mask.py:121:def add_watermark(fig, png, rows, cols):
+online/ui/dash_v124_offline_mask.py:152:def contour_segments(Z, mask, interval_m):
+online/ui/dash_v124_offline_mask.py:165:    mask_hi = zoom(mask.astype(float), upscale, order=0) > 0.5
+online/ui/dash_v124_offline_mask.py:166:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v124_offline_mask.py:255:        add_watermark(fig, png, rows, cols)
+online/ui/dash_v124_offline_mask.py:282:    if "mask" in layers:
+online/ui/dash_v124_offline_mask.py:284:            z=np.where(valid_mask, 1, np.nan),
+online/ui/dash_v124_offline_mask.py:289:            name="VALID_MASK",
+online/ui/dash_v124_offline_mask.py:316:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v124_offline_mask.py:317:valid_mask = remove_small_components(valid_mask, MIN_COMPONENT_CELLS)
+online/ui/dash_v124_offline_mask.py:320:# V122 MASK — DOMÍNIO FÍSICO/URBANÍSTICO DA MESA
+online/ui/dash_v124_offline_mask.py:327:height_mask = np.isfinite(z_total_cm) & (z_total_cm > 0)
+online/ui/dash_v124_offline_mask.py:333:offline_mask = df["is_inside_polygon"].values.reshape(GRID_ROWS, GRID_COLS)
+online/ui/dash_v124_offline_mask.py:335:offline_mask = fix_like_v42(offline_mask).astype(bool)
+online/ui/dash_v124_offline_mask.py:337:valid_mask = height_mask & offline_mask
+online/ui/dash_v124_offline_mask.py:339:z_terrain_m = apply_mask(z_terrain_m, valid_mask)
+online/ui/dash_v124_offline_mask.py:340:z_total_m = apply_mask(z_total_m, valid_mask)
+online/ui/dash_v124_offline_mask.py:341:z_total_cm = apply_mask(z_total_cm, valid_mask)
+online/ui/dash_v124_offline_mask.py:345:terrain_segments = contour_segments(z_terrain_m, valid_mask, interval_m=2.0)
+online/ui/dash_v124_offline_mask.py:346:total_segments = contour_segments(z_total_m, valid_mask, interval_m=5.0)
+online/ui/dash_v124_offline_mask.py:363:                {"label": "Máscara válida", "value": "mask"},
+online/ui/dash_v124_offline_mask.py:397:    print("V124 — OFFLINE MASK + LAYERS + COTAS")
+online/ui/dash_v124_offline_mask.py:406:    print("Valid cells OFFLINE mask:", int(valid_mask.sum()))
+online/ui/dash_v125_polygon_alignment_calibrator.py:112:def add_watermark(fig, png):
+online/ui/dash_v125_polygon_alignment_calibrator.py:194:def add_polygon_cell_mask(fig, geom):
+online/ui/dash_v125_polygon_alignment_calibrator.py:195:    mask = np.full((GRID_ROWS, GRID_COLS), np.nan)
+online/ui/dash_v125_polygon_alignment_calibrator.py:202:                mask[r, c] = 1
+online/ui/dash_v125_polygon_alignment_calibrator.py:205:        z=mask,
+online/ui/dash_v125_polygon_alignment_calibrator.py:210:        name="POLYGON_CELL_MASK",
+online/ui/dash_v125_polygon_alignment_calibrator.py:220:        add_watermark(fig, PNG)
+online/ui/dash_v125_polygon_alignment_calibrator.py:235:    if "polygon_mask" in layers:
+online/ui/dash_v125_polygon_alignment_calibrator.py:236:        add_polygon_cell_mask(fig, poly_t)
+online/ui/dash_v125_polygon_alignment_calibrator.py:279:                {"label": "Máscara por célula", "value": "polygon_mask"},
+online/ui/dash_v125_polygon_alignment_calibrator.py:282:            value=["base", "pinos", "polygon", "polygon_fill", "polygon_mask", "grid"],
+online/ui/dash_v125_polygon_alignment_calibrator.py:349:    print("V125 — POLYGON ALIGNMENT CALIBRATOR")
+online/ui/dash_v127_final_operational_table.py:90:def add_watermark(fig, png):
+online/ui/dash_v127_final_operational_table.py:136:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v127_final_operational_table.py:137:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v127_final_operational_table.py:267:def add_annotations(fig, cell_mode, projector_mode):
+online/ui/dash_v127_final_operational_table.py:288:    if projector_mode == "invertido":
+online/ui/dash_v127_final_operational_table.py:299:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v127_final_operational_table.py:305:        add_watermark(fig, PNG)
+online/ui/dash_v127_final_operational_table.py:341:    add_annotations(fig, cell_mode, projector_mode)
+online/ui/dash_v127_final_operational_table.py:346:    if projector_mode == "invertido":
+online/ui/dash_v127_final_operational_table.py:420:            id="projector-mode",
+online/ui/dash_v127_final_operational_table.py:520:    Input("projector-mode", "value"),
+online/ui/dash_v127_final_operational_table.py:522:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v127_final_operational_table.py:530:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v127_final_operational_table.py:540:        f"projector={projector_mode}\n"
+online/ui/dash_v128_1_fixed_ui.py:81:    # 🔥 WATERMARK CORRIGIDO (não interfere no zigzag)
+online/ui/dash_v128_2_fixed_no_regression.py:130:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_2_fixed_no_regression.py:131:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_2_fixed_no_regression.py:163:def add_watermark(fig):
+online/ui/dash_v128_2_fixed_no_regression.py:282:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_2_fixed_no_regression.py:286:        add_watermark(fig)
+online/ui/dash_v128_2_fixed_no_regression.py:359:    if projector_mode == "invertido":
+online/ui/dash_v128_2_fixed_no_regression.py:454:            id="projector-mode",
+online/ui/dash_v128_2_fixed_no_regression.py:583:    Input("projector-mode", "value"),
+online/ui/dash_v128_2_fixed_no_regression.py:585:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_2_fixed_no_regression.py:595:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_2_fixed_no_regression.py:605:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_4_final_sem_regressao.py:145:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_4_final_sem_regressao.py:146:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_4_final_sem_regressao.py:178:def add_watermark(fig):
+online/ui/dash_v128_4_final_sem_regressao.py:362:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_4_final_sem_regressao.py:366:        add_watermark(fig)
+online/ui/dash_v128_4_final_sem_regressao.py:423:    if projector_mode == "invertido":
+online/ui/dash_v128_4_final_sem_regressao.py:528:                id="projector-mode",
+online/ui/dash_v128_4_final_sem_regressao.py:711:    Input("projector-mode", "value"),
+online/ui/dash_v128_4_final_sem_regressao.py:713:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_4_final_sem_regressao.py:723:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_4_final_sem_regressao.py:734:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_10_final_ajustes_finos.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_10_final_ajustes_finos.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_10_final_ajustes_finos.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_10_final_ajustes_finos.py:356:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_10_final_ajustes_finos.py:360:        add_watermark(fig)
+online/ui/dash_v128_7_10_final_ajustes_finos.py:417:    if projector_mode == "invertido":
+online/ui/dash_v128_7_10_final_ajustes_finos.py:531:                id="projector-mode",
+online/ui/dash_v128_7_10_final_ajustes_finos.py:719:    Input("projector-mode", "value"),
+online/ui/dash_v128_7_10_final_ajustes_finos.py:721:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_10_final_ajustes_finos.py:731:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_10_final_ajustes_finos.py:742:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_11_menu_final.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_11_menu_final.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_11_menu_final.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_11_menu_final.py:347:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_11_menu_final.py:351:        add_watermark(fig)
+online/ui/dash_v128_7_11_menu_final.py:408:    if projector_mode == "invertido":
+online/ui/dash_v128_7_11_menu_final.py:522:                id="projector-mode",
+online/ui/dash_v128_7_11_menu_final.py:710:    Input("projector-mode", "data"),
+online/ui/dash_v128_7_11_menu_final.py:712:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_11_menu_final.py:722:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_11_menu_final.py:733:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_12_sem_projetor_labels.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_12_sem_projetor_labels.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_12_sem_projetor_labels.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_12_sem_projetor_labels.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_12_sem_projetor_labels.py:359:        add_watermark(fig)
+online/ui/dash_v128_7_12_sem_projetor_labels.py:416:    if projector_mode == "invertido":
+online/ui/dash_v128_7_12_sem_projetor_labels.py:530:                id="projector-mode",
+online/ui/dash_v128_7_12_sem_projetor_labels.py:721:    projector_mode = "normal"
+online/ui/dash_v128_7_12_sem_projetor_labels.py:731:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_12_sem_projetor_labels.py:742:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:359:        add_watermark(fig)
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:416:    if projector_mode == "invertido":
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:530:                id="projector-mode",
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:718:    Input("projector-mode", "data"),
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:720:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:730:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:741:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:359:        add_watermark(fig)
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:416:    if projector_mode == "invertido":
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:529:            dcc.Store(id="projector-mode", data="normal"),
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:531:                id="projector-mode",
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:719:    Input("projector-mode", "data"),
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:721:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:731:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:742:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:359:        add_watermark(fig)
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:416:    if projector_mode == "invertido":
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:529:            dcc.Store(id="projector-mode", data="normal"),
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:531:                id="projector-mode-duplicate-disabled-1",
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:719:    Input("projector-mode", "data"),
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:721:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:731:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:742:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:359:        add_watermark(fig)
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:416:    if projector_mode == "invertido":
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:529:            dcc.Store(id="projector-mode", data="normal"),
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:531:                id="projector-mode-duplicate-disabled-1",
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:719:    Input("projector-mode", "data"),
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:721:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:731:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:742:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:359:        add_watermark(fig)
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:416:    if projector_mode == "invertido":
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:530:                id="projector-mode-duplicate-disabled-1",
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:721:    projector_mode = "normal"
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:731:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:742:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:359:        add_watermark(fig)
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:416:    if projector_mode == "invertido":
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:529:                id="projector-mode",
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:719:    projector_mode = "normal"
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:729:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:740:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_19_menu_final.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_19_menu_final.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_19_menu_final.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_19_menu_final.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_19_menu_final.py:359:        add_watermark(fig)
+online/ui/dash_v128_7_19_menu_final.py:416:    if projector_mode == "invertido":
+online/ui/dash_v128_7_19_menu_final.py:711:    projector_mode = "normal"
+online/ui/dash_v128_7_19_menu_final.py:721:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_19_menu_final.py:732:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_1_final_visual_adjust.py:145:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_1_final_visual_adjust.py:146:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_1_final_visual_adjust.py:178:def add_watermark(fig):
+online/ui/dash_v128_7_1_final_visual_adjust.py:360:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_1_final_visual_adjust.py:364:        add_watermark(fig)
+online/ui/dash_v128_7_1_final_visual_adjust.py:421:    if projector_mode == "invertido":
+online/ui/dash_v128_7_1_final_visual_adjust.py:523:                id="projector-mode",
+online/ui/dash_v128_7_1_final_visual_adjust.py:706:    Input("projector-mode", "value"),
+online/ui/dash_v128_7_1_final_visual_adjust.py:708:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_1_final_visual_adjust.py:718:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_1_final_visual_adjust.py:729:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_20_work_from_719.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_20_work_from_719.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_20_work_from_719.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_20_work_from_719.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_20_work_from_719.py:359:        add_watermark(fig)
+online/ui/dash_v128_7_20_work_from_719.py:416:    if projector_mode == "invertido":
+online/ui/dash_v128_7_20_work_from_719.py:711:    projector_mode = "normal"
+online/ui/dash_v128_7_20_work_from_719.py:721:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_20_work_from_719.py:732:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_2_north_scale_readable.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_2_north_scale_readable.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_2_north_scale_readable.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_2_north_scale_readable.py:359:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_2_north_scale_readable.py:363:        add_watermark(fig)
+online/ui/dash_v128_7_2_north_scale_readable.py:420:    if projector_mode == "invertido":
+online/ui/dash_v128_7_2_north_scale_readable.py:522:                id="projector-mode",
+online/ui/dash_v128_7_2_north_scale_readable.py:706:    Input("projector-mode", "value"),
+online/ui/dash_v128_7_2_north_scale_readable.py:708:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_2_north_scale_readable.py:718:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_2_north_scale_readable.py:729:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_3_north_position.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_3_north_position.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_3_north_position.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_3_north_position.py:359:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_3_north_position.py:363:        add_watermark(fig)
+online/ui/dash_v128_7_3_north_position.py:420:    if projector_mode == "invertido":
+online/ui/dash_v128_7_3_north_position.py:522:                id="projector-mode",
+online/ui/dash_v128_7_3_north_position.py:706:    Input("projector-mode", "value"),
+online/ui/dash_v128_7_3_north_position.py:708:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_3_north_position.py:718:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_3_north_position.py:729:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_4_scroll_2x2.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_4_scroll_2x2.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_4_scroll_2x2.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_4_scroll_2x2.py:359:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_4_scroll_2x2.py:363:        add_watermark(fig)
+online/ui/dash_v128_7_4_scroll_2x2.py:420:    if projector_mode == "invertido":
+online/ui/dash_v128_7_4_scroll_2x2.py:522:                id="projector-mode",
+online/ui/dash_v128_7_4_scroll_2x2.py:706:    Input("projector-mode", "value"),
+online/ui/dash_v128_7_4_scroll_2x2.py:708:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_4_scroll_2x2.py:718:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_4_scroll_2x2.py:729:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_5_north_visible.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_5_north_visible.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_5_north_visible.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_5_north_visible.py:354:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_5_north_visible.py:358:        add_watermark(fig)
+online/ui/dash_v128_7_5_north_visible.py:415:    if projector_mode == "invertido":
+online/ui/dash_v128_7_5_north_visible.py:517:                id="projector-mode",
+online/ui/dash_v128_7_5_north_visible.py:701:    Input("projector-mode", "value"),
+online/ui/dash_v128_7_5_north_visible.py:703:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_5_north_visible.py:713:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_5_north_visible.py:724:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_6a_sem_projetor_invertido.py:89:def add_watermark(fig):
+online/ui/dash_v128_7_6a_sem_projetor_invertido.py:129:    add_watermark(fig)
+online/ui/dash_v128_7_6b_sem_projetor.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_6b_sem_projetor.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_6b_sem_projetor.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_6b_sem_projetor.py:354:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_6b_sem_projetor.py:358:        add_watermark(fig)
+online/ui/dash_v128_7_6b_sem_projetor.py:415:    if projector_mode == "invertido":
+online/ui/dash_v128_7_6b_sem_projetor.py:514:dcc.Store(id="projector-mode", data="normal"),
+online/ui/dash_v128_7_6b_sem_projetor.py:693:    Input("projector-mode", "data"),
+online/ui/dash_v128_7_6b_sem_projetor.py:695:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_6b_sem_projetor.py:705:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_6b_sem_projetor.py:716:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_6_north_left_final.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_6_north_left_final.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_6_north_left_final.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_6_north_left_final.py:354:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_6_north_left_final.py:358:        add_watermark(fig)
+online/ui/dash_v128_7_6_north_left_final.py:415:    if projector_mode == "invertido":
+online/ui/dash_v128_7_6_north_left_final.py:517:                id="projector-mode",
+online/ui/dash_v128_7_6_north_left_final.py:701:    Input("projector-mode", "value"),
+online/ui/dash_v128_7_6_north_left_final.py:703:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_6_north_left_final.py:713:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_6_north_left_final.py:724:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_7_north_left_micro.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_7_north_left_micro.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_7_north_left_micro.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_7_north_left_micro.py:354:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_7_north_left_micro.py:358:        add_watermark(fig)
+online/ui/dash_v128_7_7_north_left_micro.py:415:    if projector_mode == "invertido":
+online/ui/dash_v128_7_7_north_left_micro.py:517:                id="projector-mode",
+online/ui/dash_v128_7_7_north_left_micro.py:701:    Input("projector-mode", "value"),
+online/ui/dash_v128_7_7_north_left_micro.py:703:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_7_north_left_micro.py:713:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_7_north_left_micro.py:724:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_7_final_operational_ui.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_7_final_operational_ui.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_7_final_operational_ui.py:177:def add_watermark(fig):
+online/ui/dash_v128_7_final_operational_ui.py:373:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_7_final_operational_ui.py:377:        add_watermark(fig)
+online/ui/dash_v128_7_final_operational_ui.py:434:    if projector_mode == "invertido":
+online/ui/dash_v128_7_final_operational_ui.py:536:                id="projector-mode",
+online/ui/dash_v128_7_final_operational_ui.py:719:    Input("projector-mode", "value"),
+online/ui/dash_v128_7_final_operational_ui.py:721:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_7_final_operational_ui.py:731:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_7_final_operational_ui.py:742:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_8_1_final_sem_projetor_fix.py:111:def add_watermark(fig):
+online/ui/dash_v128_8_1_final_sem_projetor_fix.py:173:        add_watermark(fig)
+online/ui/dash_v128_8_final_sem_projetor.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_8_final_sem_projetor.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_8_final_sem_projetor.py:177:def add_watermark(fig):
+online/ui/dash_v128_8_final_sem_projetor.py:365:        add_watermark(fig)
+online/ui/dash_v128_8_final_visual_fix.py:109:    # watermark
+online/ui/dash_v128_final_clean_operational_ui.py:130:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_final_clean_operational_ui.py:131:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_final_clean_operational_ui.py:163:def add_watermark(fig):
+online/ui/dash_v128_final_clean_operational_ui.py:296:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_final_clean_operational_ui.py:300:        add_watermark(fig)
+online/ui/dash_v128_final_clean_operational_ui.py:351:    if projector_mode == "invertido":
+online/ui/dash_v128_final_clean_operational_ui.py:445:            id="projector-mode",
+online/ui/dash_v128_final_clean_operational_ui.py:574:    Input("projector-mode", "value"),
+online/ui/dash_v128_final_clean_operational_ui.py:576:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_final_clean_operational_ui.py:586:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_final_clean_operational_ui.py:596:        f"projector={projector_mode}\\n"
+online/ui/dash_v128_final_operational_table.py:90:def add_watermark(fig, png):
+online/ui/dash_v128_final_operational_table.py:136:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/dash_v128_final_operational_table.py:137:    Z_hi[~mask_hi] = np.nan
+online/ui/dash_v128_final_operational_table.py:267:def add_annotations(fig, cell_mode, projector_mode):
+online/ui/dash_v128_final_operational_table.py:288:    if projector_mode == "invertido":
+online/ui/dash_v128_final_operational_table.py:299:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/dash_v128_final_operational_table.py:305:        add_watermark(fig, PNG)
+online/ui/dash_v128_final_operational_table.py:341:    add_annotations(fig, cell_mode, projector_mode)
+online/ui/dash_v128_final_operational_table.py:346:    if projector_mode == "invertido":
+online/ui/dash_v128_final_operational_table.py:420:            id="projector-mode",
+online/ui/dash_v128_final_operational_table.py:520:    Input("projector-mode", "value"),
+online/ui/dash_v128_final_operational_table.py:522:def update_ui(layers, step, cell_mode, mesa_real, projector_mode):
+online/ui/dash_v128_final_operational_table.py:530:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/dash_v128_final_operational_table.py:540:        f"projector={projector_mode}\n"
+online/ui/dash_v44_full_digital_twin.py:123:        alpha=0.85
+online/ui/dash_v45_full_real.py:133:        alpha=0.2,
+online/ui/dash_v45_full_real.py:145:        alpha=0.85,
+online/ui/dash_v47_frame_player_overlay.py:46:# OVERLAY (SÓ HIGHLIGHT)
+online/ui/dash_v47_frame_player_overlay.py:49:def overlay(img, frame):
+online/ui/dash_v47_frame_player_overlay.py:150:    frame = overlay(images[current], current)
+online/ui/dash_v84_active_pin.py:116:  source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v84_LOCKED.py:116:  source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v85_visual_fit.py:116:  source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v85_visual_refined.py:108:            source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v86_layers_ready.py:261:                source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v86_visual_clean.py:27:img = Image.open("assets/ipt_mask_rotated_simple.png")
+online/ui/dash_v86_visual_clean.py:110:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v87_fix_zigzag.py:256:                source="/assets/ipt_mask_rotated_simple.png",
+online/ui/Dash_v87_image_lock.py:18:IPT_LOGO = "assets/ipt_mask.png"
+online/ui/Dash_v87_image_lock.py:124:    mask = (estado > 0).astype(float)
+online/ui/Dash_v87_image_lock.py:125:    overlay = logo * mask
+online/ui/Dash_v87_image_lock.py:137:        z=overlay,
+online/ui/dash_v88_fix_path_bounds.py:259:                source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v88_grid_fix.py:27:img = Image.open("assets/ipt_mask_rotated_simple.png")
+online/ui/dash_v88_grid_fix.py:110:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v89_final_fit.py:27:img = Image.open("assets/ipt_mask_rotated_simple.png")
+online/ui/dash_v89_final_fit.py:110:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v89_use_real_path.py:225:                source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v90_urban_fit.py:27:img = Image.open("assets/ipt_mask_rotated_simple.png")
+online/ui/dash_v90_urban_fit.py:109:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v91_altimetric_motion.py:110:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v91_speed_control.py:189:            source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v92_real_plan.py:188:            source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v93_centroid_final.py:109:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v93_robust_plan.py:200:            source="/assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v94_2_normalizado.py:147:    # watermark IPT
+online/ui/dash_v94_2_normalizado.py:151:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v94_clean_marker.py:107:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v94_clean_no_marker.py:109:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v94_real_legend.py:97: # watermark IPT
+online/ui/dash_v94_real_legend.py:99:  source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v94_real_pipeline.py:144:    # watermark IPT (mantido)
+online/ui/dash_v94_real_pipeline.py:148:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v95_1_real_transparente.py:95:  source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v95_2d.py:131:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v95_2d_final_corrigido.py:147:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v95_2_real_base.py:161:    # IPT WATERMARK
+online/ui/dash_v95_2_real_base.py:165:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v95_2_real_final.py:122:  source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v95_3_clean_callbacks.py:137:        source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v95_3_real_hard.py:118:  source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v95_4_blindado.py:12:MASK_PATH = "assets/ipt_mask_rotated_simple.png"
+online/ui/dash_v95_4_blindado.py:95:                source=MASK_PATH,
+online/ui/dash_v95_4_real_correct.py:85:  source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v95_5_incremental.py:16:MASK_PATH = "assets/ipt_mask_rotated_simple.png"
+online/ui/dash_v95_5_incremental.py:160:                source=MASK_PATH,
+online/ui/dash_v95_6_hard_stable.py:13:MASK_PATH = "assets/ipt_mask_rotated_simple.png"
+online/ui/dash_v95_6_hard_stable.py:164:                source=MASK_PATH,
+online/ui/dash_v95_real_corrigido.py:162:    # watermark IPT (corrigido e estável)
+online/ui/dash_v95_real_corrigido.py:166:                source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v96_3clocks_watermark_test.py:13:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_v3.png"
+online/ui/dash_v96_3clocks_watermark_test.py:16:# WATERMARK TRANSFORM — somente watermark
+online/ui/dash_v96_3clocks_watermark_test.py:23:WATERMARK_OPACITY = 0.28
+online/ui/dash_v96_3clocks_watermark_test.py:28:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_3clocks_watermark_test.py:196:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_3clocks_watermark_test.py:239:    print(">>> DASH V96 | 3 CLOCKS | WATERMARK TEST <<<", flush=True)
+online/ui/dash_v96_3clocks_watermark_test.py.bak_before_v3_png:13:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_3clocks_watermark_test.py.bak_before_v3_png:16:# WATERMARK TRANSFORM — somente watermark
+online/ui/dash_v96_3clocks_watermark_test.py.bak_before_v3_png:23:WATERMARK_OPACITY = 0.28
+online/ui/dash_v96_3clocks_watermark_test.py.bak_before_v3_png:28:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_3clocks_watermark_test.py.bak_before_v3_png:196:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_3clocks_watermark_test.py.bak_before_v3_png:239:    print(">>> DASH V96 | 3 CLOCKS | WATERMARK TEST <<<", flush=True)
+online/ui/dash_v96_3clocks_watermark_test.py.bak_white_arrows:13:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_3clocks_watermark_test.py.bak_white_arrows:16:# WATERMARK TRANSFORM — somente watermark
+online/ui/dash_v96_3clocks_watermark_test.py.bak_white_arrows:23:WATERMARK_OPACITY = 0.28
+online/ui/dash_v96_3clocks_watermark_test.py.bak_white_arrows:28:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_3clocks_watermark_test.py.bak_white_arrows:196:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_3clocks_watermark_test.py.bak_white_arrows:239:    print(">>> DASH V96 | 3 CLOCKS | WATERMARK TEST <<<", flush=True)
+online/ui/dash_v96_engine_separado.py:13:MASK_PATH = "assets/ipt_mask_rotated_simple.png"
+online/ui/dash_v96_engine_separado.py:166:                source=MASK_PATH,
+online/ui/dash_v96_modo_fisico.py:121:        source="assets/ipt_mask_rotated_simple.png",
+online/ui/dash_v96_png_v3_alpha_stable.py:12:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_v3.png"
+online/ui/dash_v96_png_v3_alpha_stable.py:14:# ajuste fino APENAS do watermark
+online/ui/dash_v96_png_v3_alpha_stable.py:19:WATERMARK_OPACITY = 0.35
+online/ui/dash_v96_png_v3_alpha_stable.py:25:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_png_v3_alpha_stable.py:29:alpha = arr[:, :, 3]
+online/ui/dash_v96_png_v3_alpha_stable.py:32:white_mask = (rgb[:, :, 0] > 245) & (rgb[:, :, 1] > 245) & (rgb[:, :, 2] > 245)
+online/ui/dash_v96_png_v3_alpha_stable.py:33:alpha[white_mask] = 0
+online/ui/dash_v96_png_v3_alpha_stable.py:35:arr[:, :, 3] = alpha
+online/ui/dash_v96_png_v3_alpha_stable.py:149:        opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_png_v3_alpha_stable.py:187:    print(">>> DASH V96 PNG V3 ALPHA STABLE <<<", flush=True)
+online/ui/dash_v96_png_v3_alpha_stable.py:188:    print(f"WATERMARK={WATERMARK}", flush=True)
+online/ui/dash_v96_png_v3_stable.py:13:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_v3.png"
+online/ui/dash_v96_png_v3_stable.py:16:# AJUSTE SOMENTE DO WATERMARK
+online/ui/dash_v96_png_v3_stable.py:26:WATERMARK_OPACITY = 0.30
+online/ui/dash_v96_png_v3_stable.py:32:# LOAD WATERMARK
+online/ui/dash_v96_png_v3_stable.py:34:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_png_v3_stable.py:177:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_png_v3_stable.py:221:    print(f"WATERMARK={WATERMARK}", flush=True)
+online/ui/dash_v96_rotation_fix.py:19:MASK_PATH = "assets/ipt_mask.png"
+online/ui/dash_v96_rotation_fix.py:129:    # IPT MASK (SE EXISTIR)
+online/ui/dash_v96_rotation_fix.py:132:        ipt_mask = plt.imread(MASK_PATH)
+online/ui/dash_v96_rotation_fix.py:136:                source=ipt_mask,
+online/ui/dash_v96_watermark_146_test.py:14:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_146_test.py:17:# AJUSTE SOMENTE DO WATERMARK
+online/ui/dash_v96_watermark_146_test.py:28:WATERMARK_OPACITY = 0.30
+online/ui/dash_v96_watermark_146_test.py:33:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_146_test.py:160:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_146_test.py:204:    print(">>> DASH V96 WATERMARK 146 TEST <<<", flush=True)
+online/ui/dash_v96_watermark_calibrator.py:12:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_calibrator.py:48:def make_watermark(rotate_deg):
+online/ui/dash_v96_watermark_calibrator.py:49:    img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_calibrator.py:108:                html.Div("WATERMARK_OPACITY"),
+online/ui/dash_v96_watermark_calibrator.py:197:                source=make_watermark(rotate_deg),
+online/ui/dash_v96_watermark_calibrator.py:267:        f"WATERMARK_OPACITY = {wm_opacity:.2f}"
+online/ui/dash_v96_watermark_calibrator.py:272:    print(">>> DASH V96 WATERMARK CALIBRATOR FIXED <<<", flush=True)
+online/ui/dash_v96_watermark_calibrator.py:273:    print(f"WATERMARK={WATERMARK}", flush=True)
+online/ui/dash_v96_watermark_centroid_fit.py:12:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_centroid_fit.py:15:# AJUSTE SOMENTE DO WATERMARK
+online/ui/dash_v96_watermark_centroid_fit.py:26:WATERMARK_OPACITY = 0.28
+online/ui/dash_v96_watermark_centroid_fit.py:32:# WATERMARK: flip + padding + rotate around center
+online/ui/dash_v96_watermark_centroid_fit.py:34:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_centroid_fit.py:182:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_centroid_fit.py:225:    print(">>> DASH V96 WATERMARK CENTROID FIT <<<", flush=True)
+online/ui/dash_v96_watermark_color_centroid.py:12:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_color_centroid.py:15:# AJUSTE SOMENTE DO WATERMARK
+online/ui/dash_v96_watermark_color_centroid.py:24:WATERMARK_OPACITY = 0.28
+online/ui/dash_v96_watermark_color_centroid.py:68:# WATERMARK: flip + padding + rotação sem corte
+online/ui/dash_v96_watermark_color_centroid.py:70:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_color_centroid.py:98:alpha = rotated.getchannel("A")
+online/ui/dash_v96_watermark_color_centroid.py:99:bbox = alpha.getbbox()
+online/ui/dash_v96_watermark_color_centroid.py:220:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_color_centroid.py:263:    print(">>> DASH V96 WATERMARK COLOR CENTROID <<<", flush=True)
+online/ui/dash_v96_watermark_final.py:2:# DASH V96 – WATERMARK FINAL (SEM DISTORÇÃO)
+online/ui/dash_v96_watermark_final.py:23:# LOAD WATERMARK (SEU ARQUIVO CORRETO)
+online/ui/dash_v96_watermark_final.py:25:WATERMARK_PATH = "/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_v3.png"
+online/ui/dash_v96_watermark_final.py:27:with open(WATERMARK_PATH, "rb") as f:
+online/ui/dash_v96_watermark_final.py:55:# WATERMARK (SOMENTE POSICIONAMENTO)
+online/ui/dash_v96_watermark_fit_final.py:14:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_fit_final.py:23:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_fit_final.py:195:    print(">>> RUNNING WATERMARK FIT FINAL <<<", flush=True)
+online/ui/dash_v96_watermark_fit_only.py:14:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_fit_only.py:17:# AJUSTE SOMENTE DO WATERMARK
+online/ui/dash_v96_watermark_fit_only.py:23:WATERMARK_OPACITY = 0.32
+online/ui/dash_v96_watermark_fit_only.py:28:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_fit_only.py:155:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_fit_only.py:201:    print(">>> RUNNING V96 WATERMARK FIT ONLY <<<", flush=True)
+online/ui/dash_v96_watermark_fit_only.py:205:    print(f">>> WATERMARK_OPACITY = {WATERMARK_OPACITY}", flush=True)
+online/ui/dash_v96_watermark_fit_test_068.py:14:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_fit_test_068.py:17:# AJUSTE FINO (somente watermark)
+online/ui/dash_v96_watermark_fit_test_068.py:22:WATERMARK_OPACITY = 0.28
+online/ui/dash_v96_watermark_fit_test_068.py:28:# LOAD WATERMARK
+online/ui/dash_v96_watermark_fit_test_068.py:30:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_fit_test_068.py:128:    # WATERMARK AJUSTADO
+online/ui/dash_v96_watermark_fit_test_068.py:139:        opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_fit_test_072.py:14:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_fit_test_072.py:17:# AJUSTE FINO (somente watermark)
+online/ui/dash_v96_watermark_fit_test_072.py:22:WATERMARK_OPACITY = 0.30
+online/ui/dash_v96_watermark_fit_test_072.py:28:# LOAD WATERMARK
+online/ui/dash_v96_watermark_fit_test_072.py:30:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_fit_test_072.py:128:    # WATERMARK AJUSTADO
+online/ui/dash_v96_watermark_fit_test_072.py:139:        opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_fit_test_078.py:14:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_fit_test_078.py:17:# AJUSTE SOMENTE DO WATERMARK
+online/ui/dash_v96_watermark_fit_test_078.py:23:WATERMARK_OPACITY = 0.32
+online/ui/dash_v96_watermark_fit_test_078.py:28:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_fit_test_078.py:155:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_fit_test_078.py:198:    print(">>> RUNNING V96 WATERMARK FIT TEST 0.78 <<<", flush=True)
+online/ui/dash_v96_watermark_fix_cut.py:10:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_fix_cut.py:20:WATERMARK_OPACITY = 0.28
+online/ui/dash_v96_watermark_fix_cut.py:28:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_fix_cut.py:105:        sizing="stretch",opacity=WATERMARK_OPACITY,layer="above"
+online/ui/dash_v96_watermark_fix_ids.py:10:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_fix_ids.py:17:WATERMARK_OPACITY = 0.28
+online/ui/dash_v96_watermark_fix_ids.py:22:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_fix_ids.py:158:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_fix_ids.py:201:    print(">>> DASH V96 WATERMARK FIX IDS <<<", flush=True)
+online/ui/dash_v96_watermark_flip_test.py:14:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_flip_test.py:16:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_flip_test.py:172:    print(">>> RUNNING WATERMARK FLIP TEST <<<", flush=True)
+online/ui/dash_v96_watermark_left_pivot.py:12:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_left_pivot.py:15:# V96 - AJUSTE SOMENTE DO WATERMARK
+online/ui/dash_v96_watermark_left_pivot.py:26:WATERMARK_OPACITY = 0.28
+online/ui/dash_v96_watermark_left_pivot.py:32:def build_watermark_base64():
+online/ui/dash_v96_watermark_left_pivot.py:33:    img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_left_pivot.py:62:    alpha = rotated.getchannel("A")
+online/ui/dash_v96_watermark_left_pivot.py:63:    bbox = alpha.getbbox()
+online/ui/dash_v96_watermark_left_pivot.py:77:IMG = build_watermark_base64()
+online/ui/dash_v96_watermark_left_pivot.py:204:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_left_pivot.py:247:    print(">>> DASH V96 WATERMARK LEFT PIVOT <<<", flush=True)
+online/ui/dash_v96_watermark_ok.py:9:# IPT-CITYSPACE | DASH V96 | WATERMARK OK
+online/ui/dash_v96_watermark_ok.py:14:# - usando novo watermark alinhado ao grid
+online/ui/dash_v96_watermark_ok.py:22:print(">>> IPT-CITYSPACE | V96 WATERMARK OK <<<", flush=True)
+online/ui/dash_v96_watermark_ok.py:148:                source="/assets/ipt_mask_rotated_grid_aligned.png",
+online/ui/dash_v96_watermark_ok.py:199:    print(">>> RUNNING V96 WATERMARK OK <<<", flush=True)
+online/ui/dash_v96_watermark_paper_test.py:11:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_paper_test.py:13:with open(WATERMARK, "rb") as f:
+online/ui/dash_v96_watermark_paper_test.py:162:    print(">>> RUNNING WATERMARK PAPER TEST <<<", flush=True)
+online/ui/dash_v96_watermark_pca_calibrator.py:10:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_pca_calibrator.py:43:img0 = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_pca_calibrator.py:63:def make_watermark(rotate_deg):
+online/ui/dash_v96_watermark_pca_calibrator.py:64:    img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_pca_calibrator.py:83:        source=make_watermark(rotate_deg),
+online/ui/dash_v96_watermark_pca_calibrator.py:144:    html.Div("WATERMARK_OPACITY"),
+online/ui/dash_v96_watermark_pca_calibrator.py:164:          f"WATERMARK_OPACITY={op:.2f}",
+online/ui/dash_v96_watermark_pca_calibrator.py:169:    print(">>> DASH V96 PCA WATERMARK CALIBRATOR <<<", flush=True)
+online/ui/dash_v96_watermark_pca_calibrator.py:170:    print(f"WATERMARK={WATERMARK}", flush=True)
+online/ui/dash_v96_watermark_scale_test.py:14:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_scale_test.py:16:WATERMARK_SCALE = 0.94
+online/ui/dash_v96_watermark_scale_test.py:17:WATERMARK_X = (1.0 - WATERMARK_SCALE) / 2.0
+online/ui/dash_v96_watermark_scale_test.py:18:WATERMARK_Y = 1.0 - (1.0 - WATERMARK_SCALE) / 2.0
+online/ui/dash_v96_watermark_scale_test.py:20:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_scale_test.py:143:                x=WATERMARK_X,
+online/ui/dash_v96_watermark_scale_test.py:144:                y=WATERMARK_Y,
+online/ui/dash_v96_watermark_scale_test.py:145:                sizex=WATERMARK_SCALE,
+online/ui/dash_v96_watermark_scale_test.py:146:                sizey=WATERMARK_SCALE,
+online/ui/dash_v96_watermark_scale_test.py:191:    print(">>> RUNNING WATERMARK SCALE TEST <<<", flush=True)
+online/ui/dash_v96_watermark_scale_test.py:192:    print(f">>> WATERMARK_SCALE = {WATERMARK_SCALE}", flush=True)
+online/ui/dash_v96_watermark_scale_test.py:193:    print(f">>> WATERMARK_X = {WATERMARK_X}", flush=True)
+online/ui/dash_v96_watermark_scale_test.py:194:    print(f">>> WATERMARK_Y = {WATERMARK_Y}", flush=True)
+online/ui/dash_v96_watermark_test.py:11:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_test.py:13:with open(WATERMARK, "rb") as f:
+online/ui/dash_v96_watermark_test.py:186:    print(">>> RUNNING V96 WATERMARK TEST <<<", flush=True)
+online/ui/dash_v96_watermark_transform_test.py:14:WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/assets/ipt_mask_rotated_grid_aligned_v2.png"
+online/ui/dash_v96_watermark_transform_test.py:17:# AJUSTE SOMENTE DO WATERMARK
+online/ui/dash_v96_watermark_transform_test.py:25:WATERMARK_OPACITY = 0.30
+online/ui/dash_v96_watermark_transform_test.py:31:# LOAD + TRANSFORM WATERMARK
+online/ui/dash_v96_watermark_transform_test.py:33:img = Image.open(WATERMARK).convert("RGBA")
+online/ui/dash_v96_watermark_transform_test.py:171:                opacity=WATERMARK_OPACITY,
+online/ui/dash_v96_watermark_transform_test.py:215:    print(">>> RUNNING WATERMARK TRANSFORM TEST <<<", flush=True)
+online/ui/dash_v96_watermark_v2.py:9:# IPT-CITYSPACE | DASH V96 | WATERMARK V2
+online/ui/dash_v96_watermark_v2.py:14:# - usando watermark v2 gerado do vetor urbanismo_scientific_rotated.gpkg
+online/ui/dash_v96_watermark_v2.py:22:print(">>> IPT-CITYSPACE | V96 WATERMARK V2 <<<", flush=True)
+online/ui/dash_v96_watermark_v2.py:148:                source="/assets/ipt_mask_rotated_grid_aligned_v2.png",
+online/ui/dash_v96_watermark_v2.py:199:    print(">>> RUNNING V96 WATERMARK V2 <<<", flush=True)
+online/ui/dash_v97_final_clean.py:18:# - mantém watermark
+online/ui/dash_v97_final_clean.py:55:    Retorna o caminho do asset de watermark, priorizando o online/assets oficial.
+online/ui/dash_v97_final_clean.py:59:        OFFICIAL_ASSETS_DIR / "ipt_mask_rotated_simple.png",
+online/ui/dash_v97_final_clean.py:60:        LEGACY_ASSETS_DIR / "ipt_mask_rotated_simple.png",
+online/ui/dash_v97_final_clean.py:65:            print(f"[OK] watermark encontrada: {path}", flush=True)
+online/ui/dash_v97_final_clean.py:68:    print("[WARN] watermark não encontrada em nenhum path conhecido.", flush=True)
+online/ui/dash_v97_final_clean.py:249:WATERMARK_PATH = _resolve_asset_image()
+online/ui/dash_v97_final_clean.py:363:    if WATERMARK_PATH is not None:
+online/ui/dash_v97_final_clean.py:367:                    source=WATERMARK_PATH,
+online/ui/dash_v97_tempo_fisico.py:13:MASK_PATH = "assets/ipt_mask_rotated_simple.png"
+online/ui/dash_v97_tempo_fisico.py:195:                source=MASK_PATH,
+online/ui/dash_v97_watermark_fit.py:2:# DASH V97 – WATERMARK FIT (SEM CORTAR / SEM DEGRADAR)
+online/ui/dash_v97_watermark_fit.py:45:mask = np_img[:, :, 0:3].mean(axis=2) < 240  # remove branco/cinza claro
+online/ui/dash_v97_watermark_fit.py:47:coords = np.argwhere(mask)
+online/ui/dash_v97_watermark_fit.py:87:# WATERMARK (agora sem "papel")
+online/ui/dash_v98_contours_overlay.py:2:# DASH V98 – GRID + WATERMARK + CONTOURS
+online/ui/dash_v98_contours_overlay.py:59:mask = np_img[:, :, 0:3].mean(axis=2) < 240
+online/ui/dash_v98_contours_overlay.py:60:coords = np.argwhere(mask)
+online/ui/dash_v98_contours_overlay.py:118:# WATERMARK
+online/ui/dash_v99_contours_mesa_space.py:69:# LOAD PNG WATERMARK
+online/ui/dash_v99_contours_mesa_space.py:75:mask = np_img[:, :, 0:3].mean(axis=2) < 240
+online/ui/dash_v99_contours_mesa_space.py:76:coords = np.argwhere(mask)
+online/ui/dash_v99_contours_mesa_space.py:146:# WATERMARK
+online/ui/temporal_player_grid_controls_app.py:8:- Grid lógico = tela = projeção
+online/ui/temporal_player_grid_controls_app.py:28:CELL_SIZE_CM = 1.0  # decisão física alvo (projeção)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:77:def remove_small_components(mask, min_cells=4):
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:78:    mask = mask.copy()
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:79:    visited = np.zeros_like(mask, dtype=bool)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:80:    rows, cols = mask.shape
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:84:            if not mask[r, c] or visited[r, c]:
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:97:                        if mask[nr, nc] and not visited[nr, nc]:
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:103:                    mask[rr, cc] = False
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:105:    return mask
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:108:def apply_mask(Z, mask):
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:110:    out[~mask] = np.nan
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:121:def add_watermark(fig, png, rows, cols):
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:152:def contour_segments(Z, mask, interval_m):
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:165:    mask_hi = zoom(mask.astype(float), upscale, order=0) > 0.5
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:166:    Z_hi[~mask_hi] = np.nan
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:255:        add_watermark(fig, png, rows, cols)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:306:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:307:valid_mask = remove_small_components(valid_mask, MIN_COMPONENT_CELLS)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:309:z_terrain_m = apply_mask(z_terrain_m, valid_mask)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:310:z_total_m = apply_mask(z_total_m, valid_mask)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:311:z_total_cm = apply_mask(z_total_cm, valid_mask)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:315:terrain_segments = contour_segments(z_terrain_m, valid_mask, interval_m=2.0)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:316:total_segments = contour_segments(z_total_m, valid_mask, interval_m=5.0)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:375:    print("Valid cells:", int(valid_mask.sum()))
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:144:    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:145:    Z_hi[~mask_hi] = np.nan
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:177:def add_watermark(fig):
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:355:def make_fig(layers, step, cell_mode, projector_mode):
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:359:        add_watermark(fig)
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:416:    if projector_mode == "invertido":
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:711:    projector_mode = "normal"
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:721:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:732:        f"projector={projector_mode}\\n"

@@ -1,0 +1,61 @@
+@app.callback(
+    Output("cartographic-scale", "children"),
+    Input("cell-mode", "value"),
+)
+def update_cartographic_scale(cell_mode):
+    if cell_mode == "2x2 cm":
+        return "Escala Cartográfica: 1:4433"
+    return "Escala Cartográfica: 1:8867"
+
+
+# =========================================
+# CALLBACK — MENU
+# =========================================
+
+@app.callback(
+    Output("menu-body", "style"),
+    Output("menu-panel", "style"),
+    Input("btn-menu", "n_clicks"),
+)
+def toggle_menu(n_clicks):
+    open_menu = (n_clicks or 0) % 2 == 1
+
+    panel_style = {
+        "position": "fixed",
+        "left": "8px",
+        "top": "8px",
+        "zIndex": 10,
+        "background": "rgba(255,255,255,0.90)",
+        "padding": "10px",
+        "border": "1px solid #ccc",
+        "borderRadius": "8px",
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+    }
+
+    if open_menu:
+        panel_style["width"] = "350px"
+        return {"display": "block"}, panel_style
+
+    panel_style["width"] = "95px"
+    return {"display": "none"}, panel_style
+
+
+# =========================================
+# CALLBACK — CONTROLES
+# =========================================
+
+@app.callback(
+    Output("step-store", "data"),
+    Output("playing-store", "data"),
+    Output("direction-store", "data"),
+    Output("clock", "disabled"),
+    Output("clock", "interval"),
+    Input("btn-forward", "n_clicks"),
+    Input("btn-back", "n_clicks"),
+    Input("btn-pause", "n_clicks"),
+    Input("btn-reset", "n_clicks"),
+    Input("clock", "n_intervals"),
+    State("step-store", "data"),
+    State("playing-store", "data"),
+    State("direction-store", "data"),

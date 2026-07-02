@@ -1,0 +1,118 @@
+"""
+IPT-CitySpace
+Scientific → Semantic Adapter
+
+Converte grid_metrics_utm.csv
+para formato compatível com FASE2 (UI / GIF).
+"""
+
+from pathlib import Path
+import numpy as np
+import pandas as pd
+import json
+
+from offline.config.experiment_config import (
+    GRID_ROWS,
+    GRID_COLS,
+    PIN_MAX_CM
+)
+
+# ======================================================
+# PATHS
+# ======================================================
+
+ENGINE_ROOT = Path(__file__).resolve().parents[2]
+
+SCIENTIFIC_DIR = ENGINE_ROOT / "offline/products/scientific"
+OUT_DIR = ENGINE_ROOT / "offline/products/snapshots/ipt_fase2_semantic"
+
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+INPUT_CSV = SCIENTIFIC_DIR / "grid_metrics_utm.csv"
+
+UINT8_MAX = 255.0
+
+
+# ======================================================
+def log(msg):
+    print(f"[ADAPTER] {msg}")
+
+
+# ======================================================
+def main():
+
+    log("==============================================")
+    log("Scientific → Semantic Adapter")
+    log("==============================================")
+
+    if not INPUT_CSV.exists():
+        raise FileNotFoundError(f"Arquivo não encontrado: {INPUT_CSV}")
+
+    df = pd.read_csv(INPUT_CSV)
+
+    expected_cells = GRID_ROWS * GRID_COLS
+    actual_cells = len(df)
+
+    if actual_cells != expected_cells:
+        raise ValueError(
+            f"Incompatibilidade de dimensão: "
+            f"Esperado {expected_cells}, encontrado {actual_cells}"
+        )
+
+    # --------------------------------------------------
+    # GRID ALTIMETRIA
+    # --------------------------------------------------
+
+    if "z_total_m" not in df.columns:
+        raise ValueError("Coluna z_total_m não encontrada no CSV científico")
+
+    z_total = df["z_total_m"].values.reshape(GRID_ROWS, GRID_COLS)
+
+    # terreno e building não estão no pipeline atual
+    terrain = np.zeros_like(z_total)
+    building = np.zeros_like(z_total)
+
+    # --------------------------------------------------
+    # NORMALIZAÇÃO PARA PINO
+    # --------------------------------------------------
+
+    z_max = np.nanmax(z_total)
+
+    if z_max <= 0:
+        log("⚠ z_max <= 0 detectado. Gerando grid zerado.")
+        pino_cm = np.zeros_like(z_total)
+    else:
+        pino_cm = (z_total / z_max) * PIN_MAX_CM
+        pino_cm = np.clip(pino_cm, 0, PIN_MAX_CM)
+
+    grid_uint8 = (pino_cm / PIN_MAX_CM) * UINT8_MAX
+    grid_uint8 = np.clip(grid_uint8, 0, UINT8_MAX)
+    grid_uint8 = grid_uint8.astype(np.uint8)
+
+    # --------------------------------------------------
+    # SAVE
+    # --------------------------------------------------
+
+    np.savetxt(OUT_DIR / "grid_uint8.csv", grid_uint8, delimiter=";", fmt="%d")
+    np.savetxt(OUT_DIR / "grid_pino_cm.csv", pino_cm, delimiter=";", fmt="%.3f")
+    np.savetxt(OUT_DIR / "grid_terrain_m.csv", terrain, delimiter=";", fmt="%.3f")
+    np.savetxt(OUT_DIR / "grid_building_m.csv", building, delimiter=";", fmt="%.3f")
+    np.savetxt(OUT_DIR / "grid_z_total_m.csv", z_total, delimiter=";", fmt="%.3f")
+
+    metadata = {
+        "source": "scientific_pipeline_utm",
+        "grid_shape": [GRID_ROWS, GRID_COLS],
+        "pin_max_cm": PIN_MAX_CM,
+        "description": "Adapter output for UI compatibility"
+    }
+
+    with open(OUT_DIR / "metadata.json", "w") as f:
+        json.dump(metadata, f, indent=2)
+
+    log("✔ Adapter finalizado com sucesso.")
+    log(f"Output em: {OUT_DIR}")
+
+
+# ======================================================
+if __name__ == "__main__":
+    main()

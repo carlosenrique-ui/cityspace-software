@@ -1,0 +1,523 @@
+===== offline/run_offline_pipeline.py =====
+# ==========================================================
+# IPT-CitySpace Offline Pipeline Runner
+# ==========================================================
+
+import subprocess
+from pathlib import Path
+
+from offline.validation.validate_rotation_pca_grid import run as _rotation_pca_grid_run
+
+
+PIPELINE_DIR = Path("offline/pipeline")
+
+
+def _run_pca_alignment_gate() -> None:
+    """
+    Gate de alinhamento PCA.
+    - Bloqueia o pipeline se alignment_status != OK
+    - Não bloqueia por historical_delta_status, mas alerta forte
+    """
+    base_dir = Path(__file__).resolve().parents[1]
+    report = _rotation_pca_grid_run(base_dir)
+
+    alignment_status = report.get("status", {}).get("alignment_status")
+    historical_delta_status = report.get("status", {}).get("historical_delta_status")
+
+    print("\n================ PCA ALIGNMENT GATE ================")
+    print("alignment_status:", alignment_status)
+    print("historical_delta_status:", historical_delta_status)
+
+    if historical_delta_status == "CONTRACT-ADDITIVE-REQUIRED":
+        print(
+            "[WARNING] Delta histórico de rotação divergiu do contrato. "
+            "Pipeline seguirá, mas isso exige revisão contratual."
+        )
+
+    if alignment_status != "OK":
+        raise RuntimeError(
+            "Gate de alinhamento PCA bloqueou o pipeline: alignment_status != OK"
+        )
+
+
+def main():
+
+    _run_pca_alignment_gate()
+
+    print("\n===================================")
+    print(" IPT-CitySpace OFFLINE PIPELINE ")
+    print("===================================\n")
+
+    steps = sorted(PIPELINE_DIR.glob("*.py"))
+
+    for step in steps:
+
+        module = step.with_suffix("").as_posix().replace("/", ".")
+
+        print(f"\nRunning: {module}\n")
+
+        subprocess.run(
+            ["python", "-m", module],
+            check=True
+        )
+
+    print("\nPipeline finished.\n")
+
+
+if __name__ == "__main__":
+    main()
+
+===== offline/pipeline_runner.py =====
+import json
+import numpy as np
+from pathlib import Path
+
+from runner.runner_engine import RunnerEngine
+from runner.virtual_actuator import VirtualActuator
+from runner.path import zigzag_scan
+
+# =========================================
+# PATHS
+# =========================================
+BASE = Path("offline/products/runtime")
+
+GRID_PATH = BASE / "grid_cm.npy"
+OUTPUT_PATH = BASE / "actuator_plan.json"
+
+# =========================================
+# LOAD GRID REAL
+# =========================================
+if not GRID_PATH.exists():
+    raise Exception(f"❌ grid_cm.npy não encontrado: {GRID_PATH}")
+
+grid = np.load(GRID_PATH).tolist()
+
+rows = len(grid)
+cols = len(grid[0])
+
+print("========================================")
+print("PIPELINE RUNNER – GRID REAL")
+print("========================================")
+print("Grid:", rows, "x", cols)
+
+# =========================================
+# PATH (zigzag)
+# =========================================
+path = zigzag_scan(cols=cols, rows=rows)
+
+# =========================================
+# ACTUATOR
+# =========================================
+actuator = VirtualActuator()
+
+timing = {
+    "move": 0.2,
+    "pin": 0.3,
+    "hold": 0.1,
+}
+
+engine = RunnerEngine(
+    grid=grid,
+    path=path,
+    actuator=actuator,
+    timing=timing,
+    realtime=False,
+)
+
+engine.run()
+
+# =========================================
+# SAVE PLAN
+# =========================================
+plan = {
+    "meta": {
+        "rows": rows,
+        "cols": cols,
+        "cell_size_cm": 1,
+        "pin_max_cm": 10,
+        "generated_by": "pipeline_runner_final",
+        "version": "1.0",
+    },
+    "timing": timing,
+    "events": actuator.events,
+}
+
+with open(OUTPUT_PATH, "w") as f:
+    json.dump(plan, f, indent=2)
+
+print("========================================")
+print("✅ ACTUATOR PLAN GERADO")
+print("========================================")
+
+===== offline/scientific_runner.py =====
+"""
+===============================================================================
+IPT-CitySpace
+SCIENTIFIC RUNNER – FASE 1
+Construção do Domínio 1:2 Centrado
+===============================================================================
+
+Cria o retângulo fixo 1:2 centrado no envelope científico rotacionado.
+
+Base: IPT_LOCAL_METRIC (metros reais)
+
+Resultado:
+offline/products/scientific/domain_rect_1x2.gpkg
+===============================================================================
+"""
+
+from pathlib import Path
+import fiona
+from shapely.geometry import shape, mapping, box
+
+# ============================================================================
+# BASE DO PROJETO (ipt-cityspace-engine)
+# ============================================================================
+
+BASE = Path(__file__).resolve().parents[1]
+
+INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+OUTPUT_PATH = BASE / "offline/products/scientific/domain_rect_1x2.gpkg"
+
+LAYER_INPUT = "urban_envelope_scientific_rotated_clean"
+LAYER_OUTPUT = "domain_rect_1x2"
+
+
+def main():
+
+    print("\n=================================================")
+    print("IPT-CitySpace – SCIENTIFIC RUNNER")
+    print("FASE 1 – DOMÍNIO 1:2 CENTRADO")
+    print("=================================================\n")
+
+    print("[1/6] Verificando arquivos...")
+    print(f"INPUT : {INPUT_PATH}")
+    print(f"OUTPUT: {OUTPUT_PATH}\n")
+
+    if not INPUT_PATH.exists():
+        print("ERRO: Envelope científico rotacionado não encontrado.")
+        return
+
+    print("[2/6] Lendo envelope científico rotacionado...")
+
+    with fiona.open(INPUT_PATH, layer=LAYER_INPUT) as src:
+        crs = src.crs
+        geometries = [shape(feature["geometry"]) for feature in src]
+
+    print(f"Total de geometrias: {len(geometries)}")
+
+    merged = geometries[0]
+    for geom in geometries[1:]:
+        merged = merged.union(geom)
+
+    print("[3/6] Calculando bounding box científico...")
+
+    minx, miny, maxx, maxy = merged.bounds
+
+    width = maxx - minx
+    height = maxy - miny
+
+    print(f"MinX: {minx:.3f}")
+    print(f"MinY: {miny:.3f}")
+    print(f"MaxX: {maxx:.3f}")
+    print(f"MaxY: {maxy:.3f}")
+    print(f"Largura atual: {width:.3f} m")
+    print(f"Altura atual : {height:.3f} m\n")
+
+    print("[4/6] Calculando centro geométrico...")
+
+    center_x = (minx + maxx) / 2
+    center_y = (miny + maxy) / 2
+
+    print(f"Centro X: {center_x:.3f}")
+    print(f"Centro Y: {center_y:.3f}\n")
+
+    print("[5/6] Ajustando para proporção 1:2...")
+
+    target_ratio = 1 / 2  # largura / altura
+
+    current_ratio = width / height
+
+    if current_ratio > target_ratio:
+        # Muito largo → aumentar altura
+        new_width = width
+        new_height = width / target_ratio
+        print("Envelope muito largo → aumentando altura")
+    else:
+        # Muito alto → aumentar largura
+        new_height = height
+        new_width = height * target_ratio
+        print("Envelope muito alto → aumentando largura")
+
+    half_w = new_width / 2
+    half_h = new_height / 2
+
+    rect = box(
+        center_x - half_w,
+        center_y - half_h,
+        center_x + half_w,
+        center_y + half_h
+    )
+
+    print(f"Nova largura: {new_width:.3f} m")
+    print(f"Nova altura : {new_height:.3f} m\n")
+
+    print("[6/6] Salvando domínio oficial 1:2...")
+
+    schema = {
+        "geometry": "Polygon",
+        "properties": {}
+    }
+
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    with fiona.open(
+        OUTPUT_PATH,
+        "w",
+        driver="GPKG",
+        schema=schema,
+        crs=crs,
+        layer=LAYER_OUTPUT
+    ) as dst:
+
+        dst.write({
+            "geometry": mapping(rect),
+            "properties": {}
+        })
+
+    print("\n✔ Domínio 1:2 criado com sucesso.")
+    print(f"Arquivo gerado: {OUTPUT_PATH.name}\n")
+
+
+if __name__ == "__main__":
+    main()
+===== offline/raster/pipeline/scientific_raster_runner.py =====
+#!/usr/bin/env python3
+# ==========================================================
+# IPT-CitySpace – Scientific Raster Runner
+# Método B + Modelo Urbano
+# ==========================================================
+
+import rasterio
+import numpy as np
+import subprocess
+import pyogrio
+
+from pathlib import Path
+from rasterio.mask import mask
+from rasterio.features import rasterize
+
+# ----------------------------------------------------------
+# PATHS
+# ----------------------------------------------------------
+
+BASE = Path(__file__).resolve().parents[3]
+
+DSM_LOCAL = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+
+DSM_CLIP = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+
+HEIGHT = BASE / "offline/data/processed/height/HEIGHT.tif"
+HEIGHT_TOTAL = BASE / "offline/data/processed/height/HEIGHT_TOTAL.tif"
+
+ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+
+
+# ----------------------------------------------------------
+# ENVELOPE
+# ----------------------------------------------------------
+
+def load_envelope():
+
+    df = pyogrio.read_dataframe(ENVELOPE)
+
+    geom = [df.geometry.iloc[0]]
+
+    print("\n=================================================")
+    print("[ENVELOPE]")
+    print("=================================================")
+
+    print("Bounds:", df.geometry.iloc[0].bounds)
+
+    return geom
+
+
+# ----------------------------------------------------------
+# CLIP RASTER
+# ----------------------------------------------------------
+
+def clip_raster(input_raster, output_raster, geom):
+
+    print("\n=================================================")
+    print("[CLIP]", input_raster.name)
+    print("=================================================")
+
+    with rasterio.open(input_raster) as src:
+
+        print("Raster bounds:", src.bounds)
+
+        out_image, out_transform = mask(src, geom, crop=True)
+
+        profile = src.profile.copy()
+
+        profile.update(
+            height=out_image.shape[1],
+            width=out_image.shape[2],
+            transform=out_transform
+        )
+
+        with rasterio.open(output_raster, "w", **profile) as dst:
+
+            dst.write(out_image)
+
+    print("[OK] Saved:", output_raster.name)
+
+
+# ----------------------------------------------------------
+# BUILDING MASK
+# ----------------------------------------------------------
+
+def build_building_mask(reference_raster):
+
+    print("\nBuilding mask from vector")
+
+    df = pyogrio.read_dataframe(BUILDINGS)
+
+    with rasterio.open(reference_raster) as src:
+
+        shapes = [(geom, 1) for geom in df.geometry]
+
+        mask_raster = rasterize(
+            shapes,
+            out_shape=(src.height, src.width),
+            transform=src.transform,
+            fill=0,
+            dtype="uint8"
+        )
+
+    print("Building pixels:", np.sum(mask_raster))
+
+    return mask_raster
+
+
+# ----------------------------------------------------------
+# HEIGHT MODEL (Método B)
+# ----------------------------------------------------------
+
+def compute_height_models():
+
+    print("\n=================================================")
+    print("[ALTIMETRIA – MÉTODO B]")
+    print("=================================================")
+
+    with rasterio.open(DSM_CLIP) as dsm:
+        dsm_data = dsm.read(1)
+        profile = dsm.profile
+
+    with rasterio.open(DTM_CLIP) as dtm:
+        dtm_data = dtm.read(1)
+
+    # ------------------------------------------------------
+    # nDSM
+    # ------------------------------------------------------
+
+    ndsm = dsm_data - dtm_data
+
+    ndsm[ndsm < 0] = 0
+    ndsm[ndsm > 120] = 0
+
+    # ------------------------------------------------------
+    # building mask
+    # ------------------------------------------------------
+
+    building_mask = build_building_mask(DSM_CLIP)
+
+    ndsm_buildings = ndsm.copy()
+    ndsm_buildings[building_mask == 0] = np.nan
+
+    valid = ndsm_buildings[~np.isnan(ndsm_buildings)]
+
+    if len(valid) > 0:
+        p90 = np.percentile(valid, 90)
+    else:
+        p90 = 0
+
+    print("Robust building height p90:", p90)
+
+    # ------------------------------------------------------
+    # urban model
+    # ------------------------------------------------------
+
+    height = ndsm.copy()
+
+    height[building_mask == 0] = 0
+
+    height_total = dtm_data + height
+
+    profile.update(dtype="float32")
+
+    with rasterio.open(HEIGHT, "w", **profile) as dst:
+        dst.write(height.astype("float32"), 1)
+
+    with rasterio.open(HEIGHT_TOTAL, "w", **profile) as dst:
+        dst.write(height_total.astype("float32"), 1)
+
+    print("HEIGHT saved:", HEIGHT.name)
+    print("HEIGHT_TOTAL saved:", HEIGHT_TOTAL.name)
+
+    print("Height min:", np.nanmin(height))
+    print("Height max:", np.nanmax(height))
+
+
+# ----------------------------------------------------------
+# BUILD URBAN GRID
+# ----------------------------------------------------------
+
+def build_scientific_grid():
+
+    print("\n=================================================")
+    print("[GRID URBANO]")
+    print("=================================================")
+
+    subprocess.run(
+        ["python", "-m", "offline.scientific_grid_builder"],
+        check=True
+    )
+
+    subprocess.run(
+        ["python", "-m", "offline.scientific_cell_metrics_utm"],
+        check=True
+    )
+
+    print("\nGrid urbano gerado")
+
+
+# ----------------------------------------------------------
+# MAIN
+# ----------------------------------------------------------
+
+def main():
+
+    print("\n=================================================")
+    print("IPT-CitySpace – SCIENTIFIC RASTER RUNNER")
+    print("=================================================")
+
+    geom = load_envelope()
+
+    clip_raster(DSM_LOCAL, DSM_CLIP, geom)
+    clip_raster(DTM_LOCAL, DTM_CLIP, geom)
+
+    compute_height_models()
+
+    build_scientific_grid()
+
+    print("\n=================================================")
+    print("RUNNER FINALIZADO")
+    print("=================================================")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,150 @@
+{
+  "DSM_CLIP": {
+    "path": "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif",
+    "exists": true,
+    "crs": "EPSG:31983",
+    "width": 6894,
+    "height": 4771,
+    "bounds": [
+      4599.522,
+      1191.146,
+      5624.482,
+      1900.471
+    ],
+    "transform": [
+      0.148674,
+      0.0,
+      4599.521613,
+      0.0,
+      -0.148674,
+      1900.471371,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "nodata": -32767.0,
+    "min": -9.127562522888184,
+    "max": 39.71584701538086,
+    "mean": 4.0001995145819205,
+    "pixel_size_x": 0.14867431226434935,
+    "pixel_size_y": -0.14867431226434935,
+    "north_up": true
+  },
+  "DTM_CLIP": {
+    "path": "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif",
+    "exists": true,
+    "crs": "EPSG:31983",
+    "width": 6894,
+    "height": 4771,
+    "bounds": [
+      4599.522,
+      1191.146,
+      5624.482,
+      1900.471
+    ],
+    "transform": [
+      0.148674,
+      0.0,
+      4599.521613,
+      0.0,
+      -0.148674,
+      1900.471371,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "nodata": -32767.0,
+    "min": -11.059696197509766,
+    "max": 10.317117691040039,
+    "mean": -3.09486433043928,
+    "pixel_size_x": 0.14867431226434935,
+    "pixel_size_y": -0.14867431226434935,
+    "north_up": true
+  },
+  "DSM_LOCAL": {
+    "path": "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif",
+    "exists": true,
+    "crs": "EPSG:31983",
+    "width": 6894,
+    "height": 4771,
+    "bounds": [
+      4599.522,
+      1191.146,
+      5624.482,
+      1900.471
+    ],
+    "transform": [
+      0.148674,
+      0.0,
+      4599.521613,
+      0.0,
+      -0.148674,
+      1900.471371,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "nodata": -32767.0,
+    "min": -9.127562522888184,
+    "max": 39.71584701538086,
+    "mean": 5.5411424653579,
+    "pixel_size_x": 0.14867431226434935,
+    "pixel_size_y": -0.14867431226434935,
+    "north_up": true
+  },
+  "DTM_LOCAL": {
+    "path": "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif",
+    "exists": true,
+    "crs": "EPSG:31983",
+    "width": 6894,
+    "height": 4771,
+    "bounds": [
+      4599.522,
+      1191.146,
+      5624.482,
+      1900.471
+    ],
+    "transform": [
+      0.148674,
+      0.0,
+      4599.521613,
+      0.0,
+      -0.148674,
+      1900.471371,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "nodata": -32767.0,
+    "min": -11.059696197509766,
+    "max": 24.186376571655273,
+    "mean": -1.3297644410355585,
+    "pixel_size_x": 0.14867431226434935,
+    "pixel_size_y": -0.14867431226434935,
+    "north_up": true
+  },
+  "DSM_CLIP_minus_DTM_CLIP": {
+    "available": true,
+    "shape": [
+      4771,
+      6894
+    ],
+    "min": -10.638736009597778,
+    "max": 38.911442041397095,
+    "mean": 7.095818691613063,
+    "positive_pixels": 7273487,
+    "nonzero_pixels": 8900075
+  },
+  "DSM_LOCAL_minus_DTM_LOCAL": {
+    "available": true,
+    "shape": [
+      4771,
+      6894
+    ],
+    "min": -10.638736009597778,
+    "max": 38.911442041397095,
+    "mean": 6.868585099478728,
+    "positive_pixels": 8643388,
+    "nonzero_pixels": 10600390
+  }
+}

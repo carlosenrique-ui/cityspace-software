@@ -1,0 +1,23 @@
+# Phase B — Critical Function Extract
+
+Canonical UI: online/ui/dash_v128_7_19_menu_final.py
+
+- first_existing starts at line 58
+- image_to_data_uri starts at line 67
+- fix_like_v42 starts at line 75
+- build_grids starts at line 82
+- build_zigzag_path starts at line 112
+- contour_segments starts at line 131
+- add_watermark starts at line 177
+- add_north_scale starts at line 210
+- add_grid_lines starts at line 239
+- add_contours starts at line 263
+- active_cell_shape starts at line 294
+- add_annotations starts at line 307
+- current_grid starts at line 340
+- make_fig starts at line 355
+- send_to_real_table starts at line 433
+- update_cartographic_scale starts at line 597
+- toggle_menu starts at line 612
+- control_loop starts at line 656
+- update_ui starts at line 710

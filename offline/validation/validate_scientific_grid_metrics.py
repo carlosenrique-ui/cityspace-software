@@ -1,0 +1,60 @@
+"""
+IPT-CitySpace
+Validação do Grid Científico 8x16 (UTM)
+
+Objetivo:
+- Verificar integridade do CSV científico
+- Detectar NaNs
+- Detectar valores zero indevidos
+- Confirmar consistência dimensional
+"""
+
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+# ======================================================
+# PATHS
+# ======================================================
+
+ENGINE_ROOT = Path(__file__).resolve().parents[2]
+CSV_PATH = ENGINE_ROOT / "offline/products/scientific/{GRID_METRICS_CSV}"
+
+GRID_ROWS = 8
+GRID_COLS = 16
+
+# ======================================================
+def log(msg):
+    print(f"[VALIDATION] {msg}")
+
+# ======================================================
+def main():
+
+    log("==============================================")
+    log("Validação Grid Científico 8x16 (UTM)")
+    log("==============================================")
+
+    if not CSV_PATH.exists():
+        raise FileNotFoundError(f"Arquivo não encontrado: {CSV_PATH}")
+
+    df = pd.read_csv(CSV_PATH)
+
+    log(f"Total registros: {len(df)}")
+
+    if len(df) != GRID_ROWS * GRID_COLS:
+        raise ValueError("Quantidade de células inválida.")
+
+    z_total = df["altura_total_m"].values.reshape(GRID_ROWS, GRID_COLS)
+
+    log(f"z_min  : {np.nanmin(z_total)}")
+    log(f"z_max  : {np.nanmax(z_total)}")
+    log(f"z_mean : {np.nanmean(z_total)}")
+
+    log(f"Contém NaN? {np.isnan(z_total).any()}")
+    log(f"Todos zero? {np.all(z_total == 0)}")
+
+    log("✔ Validação concluída.")
+
+# ======================================================
+if __name__ == "__main__":
+    main()

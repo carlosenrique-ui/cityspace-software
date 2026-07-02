@@ -1,0 +1,79 @@
+./online/actuators/test_virtual_actuator_legacy.py:from online.renderers.renderer2d import Renderer2D
+./online/actuators/test_virtual_actuator_legacy.py:renderer = Renderer2D(actuator)
+./online/actuators/test_virtual_actuator_legacy.py:    renderer=renderer,
+./online/controllers/temporal_controller.py:    def __init__(self, visual_actuator, renderer):
+./online/controllers/temporal_controller.py:        self.renderer = renderer
+./online/controllers/temporal_controller.py:        self.renderer.render(frame)
+./online/controllers/test_temporal_controller.py:from online.renderers.renderer2d import Renderer2D
+./online/controllers/test_temporal_controller.py:    renderer = Renderer2D(virtual_actuator)
+./online/controllers/test_temporal_controller.py:        renderer=renderer,
+./online/legacy/time_event_driven/temporal_conductor_event_driven.py:        renderer,
+./online/legacy/time_event_driven/temporal_conductor_event_driven.py:        self.renderer = renderer
+./online/legacy/time_event_driven/temporal_conductor_event_driven.py:        self.renderer.render(frame)
+./online/renderers/colormaps.py:# online/renderers/colormaps.py
+./online/renderers/generate_gif_planta_baixa_ipt.py:from online.renderers.renderer2d import Renderer2D
+./online/renderers/generate_gif_planta_baixa_ipt.py:from online.renderers.colormaps import height_colormap
+./online/renderers/generate_gif_planta_baixa_ipt.py:    renderer = Renderer2D(
+./online/renderers/generate_gif_planta_baixa_ipt.py:        renderer.render_png(
+./online/renderers/layer2d.py:# online/renderers/layer2d.py
+./online/renderers/layers/layer_dxf_lines.py:# precisa recebê-lo para integração correta ao renderer.
+./online/renderers/layers/layer_dxf_lines.py:from online.renderers.layer2d import Layer2D
+./online/renderers/renderer2d.py:# online/renderers/renderer2d.py
+./online/renderers/renderer2d.py:    Este renderer é a base comum entre:
+./online/renderers/tests/test_generate_gif_planta_baixa_ipt.py:from online.renderers.generate_gif_planta_baixa_ipt import generate_gif
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:from online.renderers.renderer2d import Renderer2D
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:from online.renderers.colormaps import height_colormap
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    renderer = Renderer2D(
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    renderer.render_png(
+./online/renderers/tests/test_renderer2d.py:# online/renderers/test_renderer2d.py
+./online/renderers/tests/test_renderer2d.py:from online.renderers.renderer2d import Renderer2D
+./online/renderers/tests/test_renderer2d.py:from online.renderers.colormaps import height_colormap
+./online/renderers/tests/test_renderer2d.py:    renderer = Renderer2D(
+./online/renderers/tests/test_renderer2d.py:    renderer.render_png(
+./online/renderers/tests/test_renderer2d.py:        save_path="visualization/debug/test_renderer2d.png",
+./online/renderers/tests/test_renderer2d.py:    print("✔ test_renderer2d OK — PNG gerado em visualization/debug")
+./online/renderers/tests/test_renderer2d_frame.py:from online.renderers.renderer2d import Renderer2D
+./online/renderers/tests/test_renderer2d_frame.py:def test_renderer2d_frame():
+./online/renderers/tests/test_renderer2d_frame.py:    renderer = Renderer2D(actuator)
+./online/renderers/tests/test_renderer2d_frame.py:    renderer.render(frame)
+./online/renderers/tests/test_renderer2d_frame.py:    test_renderer2d_frame()
+./online/renderers/tests/test_renderer2d_multilayer.py:# online/renderers/test_renderer2d_multilayer.py
+./online/renderers/tests/test_renderer2d_multilayer.py:from online.renderers.renderer2d import Renderer2D
+./online/renderers/tests/test_renderer2d_multilayer.py:from online.renderers.layer2d import Layer2D
+./online/renderers/tests/test_renderer2d_multilayer.py:from online.renderers.colormaps import height_colormap
+./online/renderers/tests/test_renderer2d_multilayer.py:    renderer = Renderer2D(grid_shape=shape)
+./online/renderers/tests/test_renderer2d_multilayer.py:    renderer.add_layer(layer_terrain)
+./online/renderers/tests/test_renderer2d_multilayer.py:    renderer.add_layer(layer_buildings)
+./online/renderers/tests/test_renderer2d_multilayer.py:    renderer.render(
+./online/renderers/tests/test_renderer2d_multilayer.py:        save_path="visualization/debug/renderer2d_multilayer.png",
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:from online.renderers.renderer2d import Renderer2D
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:from online.renderers.layer2d import Layer2D
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:from online.renderers.colormaps import height_colormap
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    renderer = Renderer2D(None, grid_shape=shape)
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    renderer.add_layer(layer_planta)
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    renderer.render(
+./online/renderers/tests/test_renderer2d_with_dxf.py:from online.renderers.renderer2d import Renderer2D
+./online/renderers/tests/test_renderer2d_with_dxf.py:from online.renderers.layers.layer_dxf_lines import LayerDXFLines
+./online/renderers/tests/test_renderer2d_with_dxf.py:    renderer = Renderer2D(
+./online/renderers/tests/test_renderer2d_with_dxf.py:    fig, ax = renderer.render(estado_mesa)
+./online/renderers/tests/test_timeline_renderer2d.py:# online/renderers/test_timeline_renderer2d.py
+./online/renderers/tests/test_timeline_renderer2d.py:from online.renderers.renderer2d import Renderer2D
+./online/renderers/tests/test_timeline_renderer2d.py:from online.renderers.layer2d import Layer2D
+./online/renderers/tests/test_timeline_renderer2d.py:from online.renderers.colormaps import height_colormap
+./online/renderers/tests/test_timeline_renderer2d.py:    renderer = Renderer2D(grid_shape=(rows, cols))
+./online/renderers/tests/test_timeline_renderer2d.py:    renderer.add_layer(terrain_layer)
+./online/renderers/tests/test_timeline_renderer2d.py:    renderer.render(
+./online/renderers/tests/test_visual_snapshot_adapter.py:from online.renderers.renderer2d import Renderer2D
+./online/renderers/tests/test_visual_snapshot_adapter.py:    renderer = Renderer2D(actuator)
+./online/renderers/tests/test_visual_snapshot_adapter.py:    renderer.render(frame)
+./online/renderers/timeline_renderer_adapter.py:    def __init__(self, timeline, renderer):
+./online/renderers/timeline_renderer_adapter.py:        self.renderer = renderer
+./online/renderers/timeline_renderer_adapter.py:        self.renderer.render_frame(frame)
+./online/renderers/visual_snapshot_adapter.py:# online/renderers/visual_snapshot_adapter.py
+./online/tests/dash_virtual_table_player_ui_clean.py:from online.renderers.renderer_factory import get_gif_path
+./online/ui/dash_virtual_table_player.py:from online.renderers.renderer_factory import get_gif_path
+./online/ui/legacy/temporal_player_app.py:from online.renderers.renderer2d import Renderer2D
+./online/ui/legacy/temporal_player_app.py:renderer = Renderer2D(actuator)
+./online/ui/legacy/temporal_player_app.py:    renderer=renderer,
+./visualization/render_temporal_gif_canonico.py:Este renderer:
+./visualization/render_temporal_gif_canonico.py:print("[RENDER] Iniciando renderer canônico")

@@ -1,0 +1,105 @@
+=== V128.7.28 ===
+        "width": "fit-content",
+        "minWidth": "32cm",
+        "margin": "24px auto",
+        "display": "block",
+    })
+
+], style={
+    "margin": 0,
+    "padding": 0,
+    "width": "100vw",
+    "minHeight": "100vh",
+    "overflowX": "auto",
+    "overflowY": "auto",
+    "background": "white",
+})
+
+
+
+@app.callback(
+    Output("cartographic-scale", "children"),
+    Input("cell-mode", "value"),
+)
+def update_cartographic_scale(cell_mode):
+    if cell_mode == "2x2 cm":
+        return "Escala Cartográfica: 1:4433"
+    return "Escala Cartográfica: 1:8867"
+
+
+# =========================================
+# CALLBACK — MENU
+# =========================================
+
+@app.callback(
+    Output("menu-body", "style"),
+    Output("menu-panel", "style"),
+    Input("btn-menu", "n_clicks"),
+)
+def toggle_menu(n_clicks):
+    open_menu = (n_clicks or 0) % 2 == 1
+
+    panel_style = {
+        "position": "fixed",
+        "left": "8px",
+        "top": "8px",
+        "zIndex": 10,
+        "background": "rgba(255,255,255,0.90)",
+        "padding": "10px",
+        "border": "1px solid #ccc",
+        "borderRadius": "8px",
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+
+=== V128.7.27 ===
+        )
+    ], id="graph-wrap", style={
+        "width": "fit-content",
+        "minWidth": "32cm",
+        "margin": "24px auto",
+        "display": "block",
+    })
+
+], style={
+    "margin": 0,
+    "padding": 0,
+    "width": "100vw",
+    "minHeight": "100vh",
+    "overflowX": "auto",
+    "overflowY": "auto",
+    "background": "white",
+})
+
+
+
+@app.callback(
+    Output("cartographic-scale", "children"),
+    Input("cell-mode", "value"),
+)
+def update_cartographic_scale(cell_mode):
+    if cell_mode == "2x2 cm":
+        return "Escala Cartográfica: 1:4433"
+    return "Escala Cartográfica: 1:8867"
+
+
+# =========================================
+# CALLBACK — MENU
+# =========================================
+
+@app.callback(
+    Output("menu-body", "style"),
+    Output("menu-panel", "style"),
+    Input("btn-menu", "n_clicks"),
+)
+def toggle_menu(n_clicks):
+    open_menu = (n_clicks or 0) % 2 == 1
+
+    panel_style = {
+        "position": "fixed",
+        "left": "8px",
+        "top": "8px",
+        "zIndex": 10,
+        "background": "rgba(255,255,255,0.90)",
+        "padding": "10px",
+        "border": "1px solid #ccc",
+        "borderRadius": "8px",

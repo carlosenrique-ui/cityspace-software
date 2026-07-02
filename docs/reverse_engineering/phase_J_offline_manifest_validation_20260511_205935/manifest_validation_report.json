@@ -1,0 +1,57 @@
+{
+  "summary": {
+    "source_manifest": "docs/reverse_engineering/phase_I_offline_canonical_manifest_20260511_205309/offline_canonical_manifest.json",
+    "total_files_checked": 7,
+    "missing_files": [],
+    "compile_failed": [],
+    "all_files_exist": true,
+    "all_py_compile_ok": true,
+    "does_execute_pipeline": false,
+    "does_modify_code": false,
+    "does_modify_runner": false
+  },
+  "files": [
+    {
+      "file": "offline/run_offline_pipeline.py",
+      "exists": true,
+      "py_compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "offline/validation/validate_rotation_pca_grid.py",
+      "exists": true,
+      "py_compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "offline/pipeline/01_build_scientific_grid.py",
+      "exists": true,
+      "py_compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "offline/pipeline/02_compute_cell_metrics.py",
+      "exists": true,
+      "py_compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "offline/pipeline/02_join_grid_metrics_with_geom.py",
+      "exists": true,
+      "py_compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "offline/pipeline/03_scientific_to_semantic.py",
+      "exists": true,
+      "py_compile_ok": true,
+      "error": null
+    },
+    {
+      "file": "offline/pipeline/04_generate_actuator_plan.py",
+      "exists": true,
+      "py_compile_ok": true,
+      "error": null
+    }
+  ]
+}

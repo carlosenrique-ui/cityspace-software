@@ -1,0 +1,82 @@
+{
+  "contract_type": "ipt_reference_dataset_products",
+  "contract_version": "G6.0",
+  "project_name": "IPT North 1:5000",
+  "source_project": "IPT-CitySpace",
+  "source_policy": {
+    "terrain_provider": "IPT DTM 2018",
+    "surface_provider": "IPT DSM 2018",
+    "footprint_provider": "IPT DXF",
+    "height_reference": "minimum survey elevation normalized to zero",
+    "outside_survey_envelope": "NaN or outside survey envelope set to zero",
+    "surroundings_policy": "no inference outside IPT survey envelope"
+  },
+  "spatial_policy": {
+    "scale": 5000,
+    "rotation_deg": 0.0,
+    "north_up": true,
+    "grid_rows": 8,
+    "grid_cols": 16,
+    "pin_layout": "column_zigzag",
+    "origin": "upper_left",
+    "x_prime": "right",
+    "y_prime": "down",
+    "z_prime": "up"
+  },
+  "height_model": {
+    "input_total_min_m": 0.0,
+    "input_total_max_m": 42.492,
+    "pin_height_cm_range": [
+      0,
+      10
+    ],
+    "gray_value_range": [
+      0,
+      255
+    ]
+  },
+  "source_files": {
+    "terrain": "offline/products/grid_terrain_m.csv",
+    "building": "offline/products/grid_building_m.csv",
+    "total": "offline/products/grid_z_total_m.csv"
+  },
+  "products": [
+    "grid_terrain_m.csv",
+    "grid_building_m.csv",
+    "grid_z_total_m.csv",
+    "grid_pino_cm.csv",
+    "grid_uint8.csv",
+    "ipt_north_5000_cells.csv",
+    "ipt_north_5000_cells.xlsx",
+    "ipt_north_5000_1cm.bmp",
+    "ipt_north_5000_1cm.png",
+    "preview_1cm.png",
+    "ipt_north_5000_2cm.bmp",
+    "ipt_north_5000_2cm.png",
+    "preview_2cm.png"
+  ],
+  "projection_mapping_products": {
+    "purpose": "Images intended for projection mapping over the tangible 16x8 physical table",
+    "north_up": true,
+    "rotation_deg": 0.0,
+    "cell_modes": [
+      "1cm",
+      "2cm"
+    ],
+    "products": [
+      "projection_mapping_viridis_1cm.png",
+      "projection_mapping_gray_1cm.png",
+      "projection_mapping_calibration_1cm.png",
+      "projection_mapping_viridis_2cm.png",
+      "projection_mapping_gray_2cm.png",
+      "projection_mapping_calibration_2cm.png",
+      "projection_mapping_legend_cm.png"
+    ],
+    "corner_validation": {
+      "P001": "upper_left",
+      "P008": "lower_left",
+      "P121": "lower_right",
+      "P128": "upper_right"
+    }
+  }
+}

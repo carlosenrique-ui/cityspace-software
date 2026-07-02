@@ -1,0 +1,257 @@
+import numpy as np
+import pandas as pd
+import dash
+from dash import dcc, html, Input, Output, State, ctx
+import plotly.graph_objects as go
+from pathlib import Path
+
+BASE = Path("/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean")
+DATA = BASE / "globe_cityspace_open/projects/ipt_north_5000"
+
+ROWS, COLS = 8, 16
+
+def load_matrix(name):
+    return pd.read_csv(DATA / name, sep=";", header=None).values.astype(float)
+
+terrain = load_matrix("grid_terrain_m.csv")
+building = load_matrix("grid_building_m.csv")
+z_total = load_matrix("grid_z_total_m.csv")
+target_cm = load_matrix("grid_pino_cm.csv")
+uint8 = load_matrix("grid_uint8.csv")
+
+path = []
+for c in range(COLS):
+    rr = range(ROWS) if c % 2 == 0 else range(ROWS - 1, -1, -1)
+    for r in rr:
+        path.append((r, c))
+
+def build_mesh(z, active_rc=None):
+    X=[]; Y=[]; Z=[]
+    I=[]; J=[]; K=[]
+    intensity=[]
+
+    faces = [
+        (0,1,2),(0,2,3),
+        (4,5,6),(4,6,7),
+        (0,1,5),(0,5,4),
+        (1,2,6),(1,6,5),
+        (2,3,7),(2,7,6),
+        (3,0,4),(3,4,7),
+    ]
+
+    for r in range(ROWS):
+        for c in range(COLS):
+            h = float(z[r, c])
+            if h <= 0:
+                h = 0.03
+
+            s = 0.82
+            x0, x1 = c - s/2, c + s/2
+            y0, y1 = r - s/2, r + s/2
+            z0, z1 = 0, h
+
+            base = len(X)
+            verts = [
+                (x0,y0,z0),(x1,y0,z0),(x1,y1,z0),(x0,y1,z0),
+                (x0,y0,z1),(x1,y0,z1),(x1,y1,z1),(x0,y1,z1),
+            ]
+
+            for x,y,zz in verts:
+                X.append(x); Y.append(y); Z.append(zz)
+                intensity.append(h)
+
+            for a,b,cidx in faces:
+                I.append(base+a); J.append(base+b); K.append(base+cidx)
+
+    return X,Y,Z,I,J,K,intensity
+
+app = dash.Dash(__name__)
+app.title = "Mesa Virtual 3D IPT"
+
+app.layout = html.Div([
+    html.A(
+        "← Voltar ao IPT-CitySpace",
+        href="http://127.0.0.1:8050",
+        style={
+            "display":"inline-block",
+            "background":"#0f766e",
+            "color":"white",
+            "padding":"8px 12px",
+            "borderRadius":"6px",
+            "textDecoration":"none",
+            "fontWeight":"bold",
+            "marginBottom":"8px"
+        }
+    ),
+    html.H2("Mesa Virtual 3D — IPT-CitySpace", style={"marginBottom":"4px"}),
+    html.Div("128 pinos virtuais | trajetória ZigZag | BMP 0–255 → altura física 0–10 cm"),
+    html.Br(),
+
+    html.Div([
+        html.Button("⏮ Backward", id="back"),
+        html.Button("▶ Play", id="play"),
+        html.Button("⏸ Pause", id="pause"),
+        html.Button("Forward ⏭", id="forward"),
+        html.Button("↺ Reset", id="reset"),
+    ], style={"display":"inline-block", "marginRight":"30px"}),
+
+    html.Div([
+        html.Label("Velocidade: "),
+        dcc.Slider(
+            id="speed",
+            min=1,
+            max=10,
+            step=1,
+            value=4,
+            marks={1:"1", 5:"5", 10:"10"},
+        ),
+    ], style={"display":"inline-block", "width":"320px", "verticalAlign":"middle"}),
+
+    dcc.Graph(id="g3d", style={"height":"76vh"}),
+
+    html.Div(id="info", style={
+        "fontFamily":"monospace",
+        "fontSize":"15px",
+        "padding":"8px",
+        "background":"#111",
+        "color":"#eee"
+    }),
+
+    dcc.Interval(id="timer", interval=140),
+    dcc.Store(id="step", data=0),
+    dcc.Store(id="running", data=False),
+    dcc.Store(id="direction", data=1),
+])
+
+@app.callback(
+    Output("running","data"),
+    Input("play","n_clicks"),
+    Input("pause","n_clicks"),
+    State("running","data"),
+    prevent_initial_call=True
+)
+def set_running(play, pause, running):
+    if ctx.triggered_id == "play":
+        return True
+    if ctx.triggered_id == "pause":
+        return False
+    return running
+
+@app.callback(
+    Output("direction","data"),
+    Input("forward","n_clicks"),
+    Input("back","n_clicks"),
+    State("direction","data"),
+    prevent_initial_call=True
+)
+def set_direction(fwd, back, direction):
+    if ctx.triggered_id == "forward":
+        return 1
+    if ctx.triggered_id == "back":
+        return -1
+    return direction
+
+@app.callback(
+    Output("step","data"),
+    Input("timer","n_intervals"),
+    Input("reset","n_clicks"),
+    Input("forward","n_clicks"),
+    Input("back","n_clicks"),
+    State("running","data"),
+    State("direction","data"),
+    State("speed","value"),
+    State("step","data"),
+)
+def update_step(n, reset, fwd, back, running, direction, speed, step):
+    trig = ctx.triggered_id
+    step = int(step or 0)
+
+    if trig == "reset":
+        return 0
+
+    if trig == "forward":
+        return min(len(path)-1, step + 1)
+
+    if trig == "back":
+        return max(0, step - 1)
+
+    if running:
+        delta = max(1, int(speed or 1))
+        return max(0, min(len(path)-1, step + int(direction) * delta))
+
+    return step
+
+@app.callback(
+    Output("g3d","figure"),
+    Output("info","children"),
+    Input("step","data")
+)
+def draw(step):
+    step = int(step or 0)
+
+    z = np.zeros((ROWS, COLS), dtype=float)
+
+    if step >= 0:
+        for i in range(step + 1):
+            r, c = path[i]
+            z[r, c] = target_cm[r, c]
+
+    r_active, c_active = path[step]
+    active_h = max(float(z[r_active, c_active]), 0.03)
+
+    X,Y,Z,I,J,K,intensity = build_mesh(z)
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Mesh3d(
+        x=X, y=Y, z=Z,
+        i=I, j=J, k=K,
+        intensity=intensity,
+        colorscale="Turbo",
+        cmin=0,
+        cmax=10,
+        opacity=1.0,
+        colorbar=dict(title="Pino<br>cm"),
+        lighting=dict(ambient=0.45, diffuse=0.8, specular=0.25),
+        lightposition=dict(x=100, y=-100, z=200),
+        name="Pinos"
+    ))
+
+    fig.add_trace(go.Scatter3d(
+        x=[c_active],
+        y=[r_active],
+        z=[active_h + 0.6],
+        mode="markers+text",
+        marker=dict(size=8, color="red"),
+        text=[f"P{step+1:03d}"],
+        textposition="top center",
+        name="Pino ativo"
+    ))
+
+    fig.update_layout(
+        title="Mesa Virtual 3D — pinos subindo/descendo em trajetória ZigZag",
+        showlegend=False,
+        scene=dict(
+            xaxis=dict(title="Colunas", range=[-1, COLS]),
+            yaxis=dict(title="Linhas", range=[-1, ROWS]),
+            zaxis=dict(title="Altura do pino (cm)", range=[0, 11]),
+            aspectratio=dict(x=2.4, y=1.2, z=0.75),
+            camera=dict(eye=dict(x=1.75, y=-2.2, z=1.35))
+        ),
+        margin=dict(l=0, r=0, t=40, b=0)
+    )
+
+    info = (
+        f"Pino ativo: P{step+1:03d} | linha={r_active} coluna={c_active} | "
+        f"terreno_m={terrain[r_active,c_active]:.3f} | "
+        f"edificio_m={building[r_active,c_active]:.3f} | "
+        f"z_total_m={z_total[r_active,c_active]:.3f} | "
+        f"pino_cm={target_cm[r_active,c_active]:.3f} | "
+        f"BMP={int(uint8[r_active,c_active])}"
+    )
+
+    return fig, info
+
+if __name__ == "__main__":
+    print(">>> MESA VIRTUAL 3D IPT - PINOS DINAMICOS <<<", flush=True)
+    app.run(host="0.0.0.0", port=8060, debug=False)

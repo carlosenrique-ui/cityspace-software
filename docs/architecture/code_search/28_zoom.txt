@@ -1,0 +1,13 @@
+./online/core/modes.py:    allow_zoom: bool
+./online/core/modes.py:        allow_zoom=False,
+./online/core/modes.py:        allow_zoom=True,
+./online/core/modes.py:        allow_zoom=False,
+./online/ui/legacy/app.py:            zoom=16,
+./tools/calibration/align_ipt_raster_test.py:from scipy.ndimage import rotate, zoom
+./tools/calibration/align_ipt_raster_test.py:    r = zoom(r, SCALE)
+./tools/calibration/align_ipt_raster_v42.py:from scipy.ndimage import rotate, zoom, shift
+./tools/calibration/align_ipt_raster_v42.py:    raster = zoom(
+./tools/calibration/align_ipt_raster_v47.py:from scipy.ndimage import rotate, zoom
+./tools/calibration/align_ipt_raster_v47.py:    crop_scaled = zoom(crop, scale, order=1)
+./tools/calibration/make_raster_v4_authorized.py:from scipy.ndimage import rotate, zoom
+./tools/calibration/make_raster_v4_authorized.py:img = zoom(img, SCALE, order=1)

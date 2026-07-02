@@ -1,0 +1,32 @@
+offline/adapters/scientific_to_semantic_adapter.py:Converte grid_metrics_utm.csv
+offline/adapters/scientific_to_semantic_adapter.py:INPUT_CSV = SCIENTIFIC_DIR / "grid_metrics_utm.csv"
+offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_z_total_m.csv", z_total, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:    with open(OUT_DIR / "metadata.json", "w") as f:
+offline/analysis/time_estimator.py:    plan = Path("products/latest/actuator_plan.json")
+offline/config/system_paths.py:GRID_METRICS_UTM_CSV = SCIENTIFIC_PRODUCTS / "grid_metrics_utm.csv"
+offline/grid_to_pin_height.py:OUT_JSON = BASE / "products/final/actuator_plan.json"
+offline/loading/offline_product.py:            meta_path = snapshot_path / "metadata.json"
+offline/loading/offline_product.py:        meta_path = output_dir / "metadata.json"
+offline/pipeline/01_build_scientific_grid_BACKUP.py:df.to_csv(OUT/"grid_metrics_utm.csv",index=False)
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:total_path = BASE / "offline/products/grid_z_total_m.csv"
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:out = BASE / "offline/products/scientific/grid_metrics_utm.csv"
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:print("BUILD grid_metrics_utm.csv FROM MATRIX CSVs")
+offline/pipeline/02_join_grid_metrics_with_geom.py:CSV_PATH = BASE / "grid_metrics_utm.csv"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:GRID_PATH = BASE / "offline/products/scientific/grid_metrics_utm.csv"
+offline/pipeline/05_generate_grid_mask_from_polygon.py:GRID_CSV = BASE / "offline/products/scientific/grid_metrics_utm.csv"
+offline/pipeline_runner.py:OUTPUT_PATH = BASE / "actuator_plan.json"
+offline/tools/08_generate_grid_npy.py:OUT  = BASE / "grid.npy"
+offline/tools/08_generate_grid_npy.py:print("✅ grid.npy gerado:", OUT)
+offline/tools/audit_alignment_grid_raster.py:GRID_CSV = ENGINE_ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+offline/tools/audit_grid_dimensions.py:    "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+offline/tools/audit_scientific_grid.py:path = ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+offline/tools/export_z_total_to_excel.py:Export grid_z_total_m.csv to Excel
+offline/tools/export_z_total_to_excel.py:CSV_PATH = ENGINE_ROOT / "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+offline/tools/generate_actuator_plan_from_csv.py:CSV = BASE / "offline/products/grid_z_total_m.csv"
+offline/tools/generate_actuator_plan_from_csv.py:OUT = BASE / "offline/products/actuator_plan.json"
+offline/tools/recompute_altimetry_ndsm.py:OUT_TOTAL = BASE / "offline/products/grid_z_total_m.csv"
+offline/validation/contract_registry.py:            "scientific_grid_csv": "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/products/scientific/grid_metrics_utm.csv",
+offline/validation/contract_registry_BASE_SAFE.py:                engine_root / "offline/products/scientific/grid_metrics_utm.csv"
+offline/validation/validate_contract_master.py:            recommendation="Gerar offline/products/scientific/grid_metrics_utm.csv",
+offline/validation/validate_grid_z_total_vs_dxf.py:- offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv
+offline/validation/validate_grid_z_total_vs_dxf.py:    / "grid_z_total_m.csv"

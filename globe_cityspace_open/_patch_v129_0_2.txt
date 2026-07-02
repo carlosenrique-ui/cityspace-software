@@ -1,0 +1,24 @@
+=== BACKUP ===
+'globe_cityspace_open/frontend/main.js' -> 'globe_cityspace_open/frontend/main.js.bak_v129_0_2_20260618_180541'
+'globe_cityspace_open/frontend/index.html' -> 'globe_cityspace_open/frontend/index.html.bak_v129_0_2_20260618_180541'
+OK: patch V129.0.2 aplicado.
+=== CONFERÊNCIA ===
+1105:createScaledArea = function () {
+1818:    cities.bertioga = {
+1819:      name: "Bertioga",
+1826:      cities.ipt.name = "IPT-Edifícios";
+1835:      <option value="bertioga">Bertioga</option>
+1852:          <option value="ipt_edificios">IPT-Edifícios</option>
+1897:        <option value="8867" selected>1:8867 — IPT-Edifícios 1×1 cm</option>
+1898:        <option value="4433">1:4433 — IPT-Edifícios 2×2 cm</option>
+1940:        Projeto: IPT-Edifícios<br>
+2019:/* PATCH V129.0.2 — UX COERENTE EXPLORACAO PROJETO GRID */
+2021:  console.log("PATCH V129.0.2 ativo");
+2024:    "Para evoluir esta área para um Projeto de Gêmeo Digital " +
+2025:    "com Mesa Tangível, é necessária a integração de geodados " +
+2074:        <option value="8867" selected>1:8867 — IPT-Edifícios 1×1 cm</option>
+2075:        <option value="4433">1:4433 — IPT-Edifícios 2×2 cm</option>
+2125:        Projeto: IPT-Edifícios<br>
+2179:  createScaledArea = function () {
+2247:  window.createScaledArea = createScaledArea;
+=== REINICIANDO DOCKER ===

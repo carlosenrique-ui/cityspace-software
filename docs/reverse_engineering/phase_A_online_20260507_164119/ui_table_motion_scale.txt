@@ -1,0 +1,25 @@
+109:# ZIGZAG — COLUNA / CANTO SUPERIOR ESQUERDO
+112:def build_zigzag_path():
+347:        r, c = ZIGZAG_PATH[i]
+407:    row, col = ZIGZAG_PATH[step]
+435:        return "Mesa Real OFF"
+465:ZIGZAG_PATH = build_zigzag_path()
+466:TOTAL_STEPS = len(ZIGZAG_PATH)
+509:            html.Div("Escala visual"),
+511:                id="cell-mode",
+513:                    {"label": "1 x 1 cm", "value": "1x1 cm"},
+514:                    {"label": "2 x 2 cm", "value": "2x2 cm"},
+516:                value="1x1 cm",
+521:            html.Div(id="cartographic-scale", style={
+531:            html.Div("Mesa"),
+594:    Output("cartographic-scale", "children"),
+595:    Input("cell-mode", "value"),
+597:def update_cartographic_scale(cell_mode):
+598:    if cell_mode == "2x2 cm":
+599:        return "Escala Cartográfica: 1:4433"
+600:    return "Escala Cartográfica: 1:8867"
+707:    Input("cell-mode", "value"),
+715:    row, col = ZIGZAG_PATH[step]
+725:        f"zigzag: coluna, topo-esquerda\\n"
+736:    if cell_mode == "1x1 cm":
+761:    print("Zigzag starts:", ZIGZAG_PATH[0])

@@ -1,0 +1,14 @@
+5:from PIL import Image
+23:CSV_PATH = CORE_ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+25:PNG_CANDIDATES = [
+26:    CORE_ROOT / "offline/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_final.png",
+27:    PROJECT_ROOT / "offline/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_final.png",
+30:NORTH_CANDIDATES = [
+31:    CORE_ROOT / "online/assets/north_arrow_scale.png",
+32:    PROJECT_ROOT / "online/assets/north_arrow_scale.png",
+33:    CORE_ROOT / "assets/north_arrow_scale.png",
+34:    PROJECT_ROOT / "assets/north_arrow_scale.png",
+447:PNG_PATH = first_existing(PNG_CANDIDATES)
+448:NORTH_PATH = first_existing(NORTH_CANDIDATES, required=False)
+450:DF = pd.read_csv(CSV_PATH)
+757:    print("CSV:", CSV_PATH)

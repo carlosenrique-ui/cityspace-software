@@ -1,0 +1,22 @@
+{
+  "status": "dry-run-documentation-only",
+  "does_execute_pipeline": false,
+  "does_modify_code": false,
+  "does_modify_runner": false,
+  "entrypoint_candidate": "offline/run_offline_pipeline.py",
+  "validation_gate": "offline/validation/validate_rotation_pca_grid.py",
+  "canonical_steps": [
+    "offline/pipeline/01_build_scientific_grid.py",
+    "offline/pipeline/02_compute_cell_metrics.py",
+    "offline/pipeline/02_join_grid_metrics_with_geom.py",
+    "offline/pipeline/03_scientific_to_semantic.py",
+    "offline/pipeline/04_generate_actuator_plan.py"
+  ],
+  "required_online_products": [
+    "offline/products/scientific/grid_metrics_utm.csv",
+    "offline/products/runtime/grid.npy",
+    "offline/products/runtime/actuator_plan.json",
+    "offline/products/runtime/metadata.json",
+    "offline/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_final.png"
+  ]
+}

@@ -1,0 +1,114 @@
+offline/adapters/scientific_to_semantic_adapter.py:SCIENTIFIC_DIR = ENGINE_ROOT / "offline/products/scientific"
+offline/adapters/scientific_to_semantic_adapter.py:        "source": "scientific_pipeline_utm",
+offline/ingestion/auto_dataset_ingestion.py:"offline.raster.pipeline.scientific_raster_runner"
+offline/pipeline_dag.py:"script": "offline/raster/core/rotate_raster_scientific.py",
+offline/pipeline_dag.py:"name": "build_scientific_grid",
+offline/pipeline_dag.py:"script": "offline/scientific_grid_builder.py",
+offline/pipeline_dag.py:"offline/products/scientific/grid_8x16_metric.gpkg"
+offline/pipeline_dag.py:"script": "offline/scientific_cell_metrics_utm.py",
+offline/pipeline_dag.py:"offline/products/scientific/grid_8x16_metric.gpkg"
+offline/pipeline_dag.py:"offline/products/scientific/grid_metrics_8x16_utm.csv"
+offline/pipeline_dag.py:"offline/products/scientific/grid_metrics_8x16_utm.csv"
+offline/processing/apply_rigid_transform_vector_scientific.py:PARAMS_PATH = BASE_DIR / "offline/products/scientific/rigid_transform_params.json"
+offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:ENVELOPE_PATH  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:OUT_ENVELOPE  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/processing/build_official_urban_envelope_rotated.py:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+offline/processing/build_official_urban_envelope_rotated.py:OUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/processing/build_official_urban_envelope_rotated.py:        layer="urban_envelope_scientific_rotated",
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_ENVELOPE = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific.gpkg",
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/products/generate_contours_from_dtm.py:URBAN_MASK = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/products/generate_contours_matplotlib.py:URBAN_ENVELOPE = PROJECT_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/products/generate_contours_matplotlib.py:TRANSFORM_FILE = PROJECT_ROOT / "offline/products/scientific/rigid_transform_params.json"
+offline/products/snapshots/ipt_fase2_semantic/metadata.json:  "source": "scientific_pipeline_utm",
+offline/raster/core/reclip_rasters_to_domain.py:DOMAIN_PATH = BASE / "offline/products/scientific/domain_rect_1x2.gpkg"
+offline/raster/core/rotate_raster_scientific.py:def rotate_raster_scientific(input_path, output_path, rigid_affine):
+offline/raster/pipeline/scientific_raster_runner.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/raster/validation/validate_rigid_transform.py:ORIG_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/raster/validation/validate_rigid_transform.py:ROT_PATH  = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/raster/validation/validate_rigid_transform.py:LAYER_ORIG = "urban_envelope_scientific"
+offline/raster/validation/validate_rigid_transform.py:LAYER_ROT = "urban_envelope_scientific_rotated_clean"
+offline/scientific_cell_metrics.py:GRID_PATH = BASE / "offline/products/scientific/grid_8x16_metric.gpkg"
+offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics.py:OUTPUT_CSV = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+offline/scientific_cell_metrics_utm.py:GRID_PATH = BASE / "offline/products/scientific/grid_8x16_metric.gpkg"
+offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics_utm.py:OUTPUT_CSV = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+offline/scientific_grid_builder.py:INPUT_PATH = BASE / "products/scientific/domain_rect_1x2.gpkg"
+offline/scientific_grid_builder.py:OUTPUT_PATH = BASE / "products/scientific/grid_8x16_metric.gpkg"
+offline/scientific_runner.py:offline/products/scientific/domain_rect_1x2.gpkg
+offline/scientific_runner.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/scientific_runner.py:OUTPUT_PATH = BASE / "offline/products/scientific/domain_rect_1x2.gpkg"
+offline/scientific_runner.py:LAYER_INPUT = "urban_envelope_scientific_rotated_clean"
+offline/tests/test_scientific_runner_integration.py:from runner.scientific_runner_engine import build_sequence_from_csv
+offline/tests/test_scientific_runner_integration.py:CSV_PATH = BASE / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+offline/tools/align_raster_to_envelope.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/audit_fix_envelope_pipeline.py:urban_envelope_scientific_rotated_clean.gpkg
+offline/tools/audit_fix_envelope_pipeline.py:urban_envelope_scientific_rotated_clean.gpkg
+offline/tools/audit_fix_envelope_pipeline.py:OLD = "urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/audit_fix_envelope_pipeline.py:NEW = "urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/audit_fix_envelope_pipeline.py:    "apply_rigid_transform_vector_scientific.py",
+offline/tools/audit_fix_envelope_pipeline.py:    "set_crs_scientific.py"
+offline/tools/buildings_height_model.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/buildings_height_model.py:OUTPUT = BASE / "offline/products/scientific/buildings_with_height.gpkg"
+offline/tools/build_pipeline_execution_order.py:"offline/raster/core/normalize_raster_to_scientific_system.py",
+offline/tools/build_pipeline_execution_order.py:"offline/raster/pipeline/scientific_raster_runner.py",
+offline/tools/build_pipeline_execution_order.py:"offline/processing/apply_rigid_transform_vector_scientific.py",
+offline/tools/build_pipeline_execution_order.py:"offline/processing/dxf_hatch_to_scientific_gpkg_spline.py",
+offline/tools/build_pipeline_execution_order.py:"offline/scientific_runner.py",
+offline/tools/build_pipeline_execution_order.py:"offline/scientific_grid_builder.py",
+offline/tools/build_pipeline_execution_order.py:"offline/scientific_cell_metrics.py",
+offline/tools/build_pipeline_execution_order.py:"offline/scientific_cell_metrics_utm.py",
+offline/tools/build_pipeline_execution_order.py:"offline/adapters/scientific_to_semantic_adapter.py",
+offline/tools/fix_raster_affine_order.py:Affine no scientific_raster_runner.py
+offline/tools/fix_raster_affine_order.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/fix_raster_affine_order_final.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/fix_raster_rotation_center.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/fix_raster_rotation_center_safe.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/fix_raster_transform_remove_translation.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/fix_raster_vertical_alignment.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/fix_runner_envelope_loader.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/fix_runner_envelope_loader.py:    layer="urban_envelope_scientific_rotated_clean"
+offline/tools/fix_runner_envelope_loader_v2.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/fix_scientific_raster_runner_envelope.py:offline/raster/pipeline/scientific_raster_runner.py
+offline/tools/fix_scientific_raster_runner_envelope.py:TARGET = ROOT / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/fix_scientific_raster_runner_envelope.py:        layer="urban_envelope_scientific_rotated_clean"
+offline/tools/fix_scientific_raster_transform.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/fix_scientific_raster_transform.py:    print("\nFixing scientific raster transform\n")
+offline/tools/reanchor_raster_to_envelope.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/rebuild_scientific_raster_runner.py:FILE = BASE / "offline/raster/pipeline/scientific_raster_runner.py"
+offline/tools/rebuild_scientific_raster_runner.py:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+offline/tools/rebuild_scientific_raster_runner.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/rebuild_scientific_raster_runner.py:        layer="urban_envelope_scientific_rotated_clean"
+offline/tools/recompute_rigid_transform.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+offline/tools/recompute_rigid_transform.py:BUILDINGS_ROT = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/recompute_rigid_transform.py:OUT = BASE / "offline/products/scientific/rigid_transform_params.json"
+offline/tools/shift_raster_to_envelope.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/snap_vector_to_raster_grid.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/snap_vector_to_raster_grid.py:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/validation/validate_grid_vs_raster_alignment.py:GRID_PATH = BASE / "offline/products/scientific/grid_8x16_metric.gpkg"
+offline/validation/validate_raster_local_offset.py:DOMAIN_PATH = BASE / "offline/products/scientific/domain_rect_1x2.gpkg"
+offline/validation/validate_rigid_transform_full.py:PARAMS_PATH = ENGINE_ROOT / "offline/products/scientific/rigid_transform_params.json"
+offline/validation/validate_rigid_transform_full.py:ROTATED_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/validation/validate_rigid_transform_json.py:PARAMS_PATH = ENGINE_ROOT / "offline/products/scientific/rigid_transform_params.json"
+offline/validation/validate_rigid_transform_parameters.py:ORIGINAL_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_original.gpkg"
+offline/validation/validate_rigid_transform_parameters.py:ROTATED_PATH  = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/validation/validate_rigid_transform_parameters.py:LAYER_ROTATED  = "urban_envelope_scientific_rotated_clean"
+offline/validation/validate_rotated_raster_vs_envelope.py:ENVELOPE_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/validation/validate_scientific_grid_metrics.py:CSV_PATH = ENGINE_ROOT / "offline/products/scientific/grid_metrics_8x16_utm.csv"
+offline/vector/core/apply_rigid_transform_clean.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/vector/core/apply_rigid_transform_clean.py:OUTPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/vector/core/apply_rigid_transform_clean.py:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+offline/vector/core/apply_rigid_transform_clean.py:LAYER_INPUT = "urban_envelope_scientific"
+offline/vector/core/apply_rigid_transform_clean.py:LAYER_OUTPUT = "urban_envelope_scientific_rotated_clean"
+offline/vector/core/build_domain_1x2_utm.py:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/vector/core/build_domain_1x2_utm.py:INPUT_LAYER = "urban_envelope_scientific_rotated_clean"
+offline/vector/core/build_domain_1x2_utm.py:OUTPUT_PATH = BASE / "offline/products/scientific/domain_rect_1x2_utm.gpkg"

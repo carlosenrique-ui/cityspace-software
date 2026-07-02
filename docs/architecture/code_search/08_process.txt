@@ -1,0 +1,104 @@
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/data/pipeline_log.txt:[LOG] Falha ao processar SplineEdge: Invalid inputs.
+offline/ingestion/auto_dataset_ingestion.py:import subprocess
+offline/ingestion/auto_dataset_ingestion.py:subprocess.run(cmd)
+offline/pipeline_dag.py:"script": "offline/processing/reproject_raster.py",
+offline/pipeline_dag.py:"script": "offline/processing/clip_raster.py",
+offline/pipeline_dag.py:"script": "offline/processing/normalize.py",
+offline/pipeline_dag.py:"script": "offline/processing/compute_heights.py",
+offline/pipeline_runner.py:✔ NÃO processa raster
+offline/pipeline_runner.py:✔ NÃO processa vetor
+offline/processing/apply_rigid_transform_vector_scientific.py:def process_layer(input_path, output_path, angle, cx, cy, dx, dy):
+offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(BUILDINGS_PATH, OUT_BUILDINGS, angle, cx, cy, dx, dy)
+offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(ENVELOPE_PATH, OUT_ENVELOPE, angle, cx, cy, dx, dy)
+offline/products/generate_contours_cartographic.py:import subprocess
+offline/products/generate_contours_cartographic.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_cartographic.py:    subprocess.run([
+offline/products/generate_contours_cartographic_v2.py:import subprocess
+offline/products/generate_contours_cartographic_v2.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_cartographic_v2.py:    subprocess.run([
+offline/products/generate_contours_cartographic_v3.py:import subprocess
+offline/products/generate_contours_cartographic_v3.py:DTM = ENGINE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_cartographic_v3.py:    subprocess.run([
+offline/products/generate_contours_from_dtm.py:import subprocess
+offline/products/generate_contours_from_dtm.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_from_dtm.py:    subprocess.run(cmd, check=True)
+offline/products/generate_contours_from_dtm.py:def process_contours():
+offline/products/generate_contours_from_dtm.py:    process_contours()
+offline/products/generate_contours_matplotlib.py:import subprocess
+offline/products/generate_contours_matplotlib.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_matplotlib.py:subprocess.run(cmd, check=True)
+offline/products/generate_contours_methodB.py:import subprocess
+offline/products/generate_contours_methodB.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_methodB.py:    subprocess.run(cmd, check=True)
+offline/products/generate_contours_simple.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_tiles.py:import subprocess
+offline/products/generate_contours_tiles.py:subprocess.run([
+offline/products/generate_contours_tiles.py:subprocess.run([
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+offline/raster/core/compute_ndsm.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLEAN.tif"
+offline/raster/core/compute_ndsm.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/compute_ndsm.py:NDSM = BASE / "offline/data/processed/dsm/IPT_2018_NDSM.tif"
+offline/raster/core/filter_dsm_spikes.py:DSM_IN = BASE / "offline/data/processed/dsm/IPT_2018_DSM_Z.tif"
+offline/raster/core/filter_dsm_spikes.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLEAN.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:DTM_UTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:DSM_UTM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:DSM_LOCAL = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/raster/core/normalize_vertical_reference.py:DSM_IN = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/raster/core/normalize_vertical_reference.py:DTM_IN = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/normalize_vertical_reference.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_Z.tif"
+offline/raster/core/normalize_vertical_reference.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/reclip_rasters_to_domain.py:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/reclip_rasters_to_domain.py:DSM_ROT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/raster/core/reclip_rasters_to_domain.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_DOMAIN.tif"
+offline/raster/core/reclip_rasters_to_domain.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_DOMAIN.tif"
+offline/raster/core/reproject_rasters_to_utm.py:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/raster/core/reproject_rasters_to_utm.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DSM_INPUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DTM_INPUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DSM_ROT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DSM_CLIP = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/raster/pipeline/scientific_raster_runner.py:Z_TERRENO = BASE / "offline/data/processed/dtm/Z_TERRENO.tif"
+offline/raster/pipeline/scientific_raster_runner.py:NDSM = BASE / "offline/data/processed/dsm/NDSM.tif"
+offline/raster/pipeline/scientific_raster_runner.py:Z_TOTAL = BASE / "offline/data/processed/dsm/Z_TOTAL.tif"
+offline/scientific_cell_metrics.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/scientific_cell_metrics.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/scientific_cell_metrics_utm.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/scientific_cell_metrics_utm.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/tools/build_pipeline_execution_order.py:"offline/processing/apply_rigid_transform_vector_scientific.py",
+offline/tools/build_pipeline_execution_order.py:"offline/processing/build_official_urban_envelope_rotated.py",
+offline/tools/build_pipeline_execution_order.py:"offline/processing/dxf_hatch_to_scientific_gpkg_spline.py",
+offline/tools/cleanup_project_structure.py:import subprocess
+offline/tools/cleanup_project_structure.py:    subprocess.run(["git", "add", "."])
+offline/tools/cleanup_project_structure.py:    subprocess.run(["git", "commit", "-m", msg])
+offline/validation/audit_altitude_statistics.py:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/validation/audit_altitude_statistics.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/validation/audit_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/validation/audit_raster_alignment.py:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/validation/validate_grid_vs_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_raster_local_offset.py:RASTER_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_rotated_raster_vs_envelope.py:RASTER_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"

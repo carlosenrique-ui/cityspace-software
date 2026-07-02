@@ -1,0 +1,44 @@
+offline/data/output/maquete_final/maquete_log.txt:nDSM_masked: min=0.000, max=32775.980
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: Máscara de edifícios encontrado em /mnt/c/IPT-CitySpace-2018/data/mask_edificios.tif
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] Máscara binária criada (mask > 0 → 1).
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:41] nDSM_masked stats: min=0.000, max=0.000
+offline/data/output/maquete_mask/maquete_from_mask.log:Calculando Z_total = DTM + nDSM_masked (somente onde há prédio)...
+offline/data/pipeline_log.txt:[LOG] Máscara raster salva em: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.tif
+offline/data/pipeline_log.txt:[LOG] PNG da máscara salvo: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.png
+offline/data/pipeline_log_gpkg.txt:[LOG] Máscara raster salva em: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.tif
+offline/data/pipeline_log_gpkg.txt:[LOG] PNG da máscara salvo em: /mnt/c/IPT-CitySpace-2018/data/mask_edificios.png
+offline/processing/build_mask_local_grid.py:def build_mask_local_grid(grid_meta, shapefile_path):
+offline/processing/build_mask_local_grid.py:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+offline/processing/build_mask_local_grid.py:                    mask[r, c] = 1
+offline/processing/build_mask_local_grid.py:    pixels = int(mask.sum())
+offline/processing/build_mask_local_grid.py:    return mask
+offline/processing/clip_raster.py:from rasterio.mask import mask
+offline/processing/clip_raster.py:            out_image, out_transform = mask(
+offline/processing/compute_heights.py:def compute_heights(dsm, dtm, mask):
+offline/processing/compute_heights.py:    ndsm[mask == 0] = 0
+offline/processing/rasterize_mask.py:def rasterize_mask(vector_gdf, raster_meta):
+offline/processing/rasterize_mask.py:    mask = rasterize(
+offline/processing/rasterize_mask.py:    pixels = int(mask.sum())
+offline/processing/rasterize_mask.py:    return mask
+offline/products/generate_contours_from_dtm.py:        layer="urban_mask",
+offline/products/generate_contours_matplotlib.py:mask = unary_union(envelope.geometry)
+offline/products/generate_contours_matplotlib.py:    inter = geom.intersection(mask)
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:from offline.processing.build_mask_local_grid import build_mask_local_grid
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:mask = build_mask_local_grid(
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:print(" Shape da máscara:", mask.shape)
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:print(" Células de edifício:", int(mask.sum()))
+offline/products/snapshots/ipt_fase2_semantic/tests/test_mask_local_grid.py:for row in mask:
+offline/raster/core/clip_raster_by_envelope.py:from rasterio.mask import mask
+offline/raster/core/clip_raster_by_envelope.py:        out_image, out_transform = mask(
+offline/raster/core/reclip_rasters_to_domain.py:from rasterio.mask import mask
+offline/raster/core/reclip_rasters_to_domain.py:        out_image, out_transform = mask(
+offline/raster/pipeline/scientific_raster_runner.py:from rasterio.mask import mask
+offline/raster/pipeline/scientific_raster_runner.py:        out_image, out_transform = mask(
+offline/scientific_cell_metrics.py:from rasterio.mask import mask
+offline/scientific_cell_metrics.py:            out_image, _ = mask(src, [geom], crop=True)
+offline/scientific_cell_metrics_utm.py:from rasterio.mask import mask
+offline/scientific_cell_metrics_utm.py:            out_image, _ = mask(src, [geom], crop=True)
+offline/tools/buildings_height_model.py:from rasterio.mask import mask
+offline/tools/buildings_height_model.py:            out_image, _ = mask(src, [geom], crop=True)
+offline/tools/rebuild_scientific_raster_runner.py:from rasterio.mask import mask
+offline/tools/rebuild_scientific_raster_runner.py:            out_image, out_transform = mask(src, [geom], crop=True)

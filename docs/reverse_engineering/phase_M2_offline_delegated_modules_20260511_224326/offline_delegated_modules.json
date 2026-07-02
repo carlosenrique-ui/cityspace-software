@@ -1,0 +1,111 @@
+{
+  "offline.adapters.scientific_to_semantic_adapter": {
+    "path": "offline/adapters/scientific_to_semantic_adapter.py",
+    "exists": true,
+    "functions": [
+      "log",
+      "main"
+    ],
+    "imports": [
+      "from pathlib import Path",
+      "numpy",
+      "pandas",
+      "json",
+      "from offline.config.experiment_config import GRID_ROWS, GRID_COLS, PIN_MAX_CM"
+    ],
+    "writes": [
+      {
+        "line": 110,
+        "text": "json.dump(metadata, f, indent=2)"
+      }
+    ],
+    "reads": [
+      {
+        "line": 51,
+        "text": "df = pd.read_csv(INPUT_CSV)"
+      }
+    ],
+    "main_guard": true,
+    "subprocess_calls": [],
+    "module_string_candidates": []
+  },
+  "offline.scientific_cell_metrics_utm": {
+    "path": "offline/scientific_cell_metrics_utm.py",
+    "exists": true,
+    "functions": [
+      "main"
+    ],
+    "imports": [
+      "geopandas",
+      "rasterio",
+      "numpy",
+      "pandas",
+      "from rasterio.mask import mask",
+      "from shapely.geometry import box"
+    ],
+    "writes": [
+      {
+        "line": 63,
+        "text": "df.to_csv(OUT, index=False)"
+      }
+    ],
+    "reads": [
+      {
+        "line": 14,
+        "text": "gdf = gpd.read_file(GRID, engine=\"pyogrio\")"
+      },
+      {
+        "line": 15,
+        "text": "dsm = rasterio.open(DSM)"
+      },
+      {
+        "line": 16,
+        "text": "dtm = rasterio.open(DTM)"
+      }
+    ],
+    "main_guard": true,
+    "subprocess_calls": [],
+    "module_string_candidates": []
+  },
+  "offline.validation.validate_rotation_pca_grid": {
+    "path": "offline/validation/validate_rotation_pca_grid.py",
+    "exists": true,
+    "functions": [
+      "normalize_0_180",
+      "normalize_signed_180",
+      "angle_from_vector",
+      "pca_angle_from_xy",
+      "compute_grid_fit",
+      "get_rotation_state",
+      "compare_with_rotation_state",
+      "classify",
+      "run",
+      "main"
+    ],
+    "imports": [
+      "from __future__ import annotations",
+      "json",
+      "math",
+      "from pathlib import Path",
+      "from typing import Dict, Any",
+      "numpy",
+      "pandas",
+      "from offline.validation.contract_registry import build_contract"
+    ],
+    "writes": [
+      {
+        "line": 205,
+        "text": "out_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding=\"utf-8\")"
+      }
+    ],
+    "reads": [
+      {
+        "line": 162,
+        "text": "df = pd.read_csv(csv_path)"
+      }
+    ],
+    "main_guard": true,
+    "subprocess_calls": [],
+    "module_string_candidates": []
+  }
+}

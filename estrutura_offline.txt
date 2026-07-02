@@ -1,0 +1,198 @@
+offline
+├── __init__.py
+├── __pycache__
+│   ├── __init__.cpython-312.pyc
+│   └── scientific_cell_metrics_utm.cpython-312.pyc
+├── adapters
+│   ├── scientific_to_semantic_adapter.py
+│   └── scientific_to_semantic_adapter.py.bak
+├── analysis
+│   ├── scan_project_usage.py
+│   └── time_estimator.py
+├── assets
+├── config
+│   ├── __init__.py
+│   ├── experiment_config.py
+│   ├── system_parameters.py
+│   └── system_paths.py
+├── data
+│   └── processed
+│       ├── dsm
+│       │   ├── IPT_2018_DSM_CLIP.tif
+│       │   └── IPT_2018_DSM_LOCAL.tif
+│       ├── dtm
+│       │   ├── IPT_2018_DTM_CLIP.tif
+│       │   └── IPT_2018_DTM_LOCAL.tif
+│       └── height
+│           ├── HEIGHT.tif
+│           └── HEIGHT_TOTAL.tif
+├── debug
+├── ingestion
+│   ├── __init__.py
+│   └── auto_dataset_ingestion.py
+├── loading
+│   ├── load_raster.py
+│   ├── load_vector.py
+│   ├── offline_product.py
+│   └── validate_crs.py
+├── pipeline
+│   ├── 01_build_scientific_grid.py
+│   ├── 01_build_scientific_grid_BACKUP.py
+│   ├── 02_compute_cell_metrics.py
+│   ├── 02_join_grid_metrics_with_geom.py
+│   ├── 03_generate_contours_clean.py
+│   ├── 03_scientific_to_semantic.py
+│   ├── 04_generate_actuator_plan.py
+│   ├── 04b_generate_actuator_geospatial.py
+│   └── 05_apply_rotation_to_contours.py
+├── pipeline_controller.py
+├── pipeline_dag.py
+├── pipeline_dag.py.bak
+├── pipeline_dag_runtime.py
+├── pipeline_runner.py
+├── processing
+│   ├── align_data.py
+│   ├── align_vector_to_raster.py
+│   ├── apply_rigid_transform_vector_scientific.py
+│   ├── build_mask_local_grid.py
+│   ├── build_official_urban_envelope_rotated.py
+│   ├── clip_raster.py
+│   ├── compute_heights.py
+│   ├── dxf_hatch_to_scientific_gpkg_spline.py
+│   ├── fit_raster_to_vector.py
+│   ├── normalize.py
+│   ├── rasterize_mask.py
+│   ├── reproject_raster.py
+│   └── set_crs_scientific.py
+├── products
+│   ├── runtime
+│   │   ├── actuator_plan.json
+│   │   ├── grid.npy
+│   │   └── metadata.json
+│   ├── scientific -> /mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific
+│   └── snapshots
+│       └── ipt_fase2_semantic
+│           ├── grid_building_m.csv
+│           ├── grid_pino_cm.csv
+│           ├── grid_terrain_m.csv
+│           ├── grid_uint8.csv
+│           ├── grid_z_total_m.csv
+│           └── metadata.json
+├── raster
+│   ├── __init__.py
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── clip_raster_by_envelope.py
+│   │   ├── compute_ndsm.py
+│   │   ├── filter_dsm_spikes.py
+│   │   ├── normalize_raster_to_scientific_system.py
+│   │   ├── normalize_vertical_reference.py
+│   │   ├── reclip_rasters_to_domain.py
+│   │   ├── reproject_rasters_to_utm.py
+│   │   └── rotate_raster_scientific.py
+│   ├── pipeline
+│   │   ├── __init__.py
+│   │   └── scientific_raster_runner.py
+│   └── validation
+│       └── validate_rigid_transform.py
+├── render_dxf_ipt_para_mesa_16x8.py
+├── run_offline_pipeline.py
+├── scientific_cell_metrics.py
+├── scientific_cell_metrics.py.bak
+├── scientific_cell_metrics_utm.py
+├── scientific_cell_metrics_utm.py.bak
+├── scientific_grid_builder.py
+├── scientific_grid_builder.py.bak
+├── scientific_runner.py
+├── tests
+│   ├── test_generate_contours_layer.py
+│   ├── test_generate_contours_topografico.py
+│   ├── test_geojson_to_grid.py
+│   ├── test_grid_to_pin_height.py
+│   ├── test_grid_to_temporal_sequence.py
+│   ├── test_metrics_integrity.py
+│   ├── test_scientific_runner_integration.py
+│   └── test_scientific_runner_integration.py.bak
+├── tools
+│   ├── 05_recompute_rotation_from_grid.py
+│   ├── 06_recompute_rotation_true.py
+│   ├── 07_detect_rotation_from_envelope.py
+│   ├── 08_generate_grid_npy.py
+│   ├── ENGINE_ROOT = Path("
+│   │   └── mnt
+│   │       └── c
+│   ├── align_envelope_to_buildings.py
+│   ├── align_raster_to_envelope.py
+│   ├── analyze_pipeline_products.py
+│   ├── apply_rigid_transform_raster_scientific.py
+│   ├── audit_alignment_grid_raster.py
+│   ├── audit_altimetry_outputs.py
+│   ├── audit_altimetry_rasters.py
+│   ├── audit_coordinate_systems.py
+│   ├── audit_csv_products.py
+│   ├── audit_fix_envelope_pipeline.py
+│   ├── audit_fix_set_pin.py
+│   ├── audit_grid_dimensions.py
+│   ├── audit_grid_raster_crs_alignment.py
+│   ├── audit_lowest_points_dtm_dsm.py
+│   ├── audit_raster_minmax.py
+│   ├── audit_rigid_jsons.py
+│   ├── audit_scientific_grid.py
+│   ├── build_pipeline_execution_order.py
+│   ├── buildings_height_model.py
+│   ├── cleanup_project_structure.py
+│   ├── desrotate_urban_envelope.py
+│   ├── detect_pipeline_scripts.py
+│   ├── export_z_total_to_excel.py
+│   ├── fix_context_snapshot.py
+│   ├── fix_context_snapshot_v2.py
+│   ├── fix_context_snapshot_v3.py
+│   ├── fix_raster_affine_order.py
+│   ├── fix_raster_affine_order_final.py
+│   ├── fix_raster_rotation_center.py
+│   ├── fix_raster_rotation_center_safe.py
+│   ├── fix_raster_transform_remove_translation.py
+│   ├── fix_raster_vertical_alignment.py
+│   ├── fix_runner_envelope_loader.py
+│   ├── fix_runner_envelope_loader_v2.py
+│   ├── fix_scientific_raster_runner_envelope.py
+│   ├── fix_scientific_raster_transform.py
+│   ├── fix_urban_envelope_geometry.py
+│   ├── generate_actuator_plan_from_csv.py
+│   ├── generate_pipeline_dag.py
+│   ├── list_rasters.py
+│   ├── offline
+│   │   └── tools
+│   ├── reanchor_raster_to_envelope.py
+│   ├── rebuild_scientific_raster_runner.py
+│   ├── recompute_altimetry_ndsm.py
+│   ├── recompute_rigid_transform.py
+│   ├── recompute_rigid_transform_utm_to_local.py
+│   ├── recompute_transform_from_envelope.py
+│   ├── run_full_alignment_pipeline.py
+│   ├── search_canon_substring.py
+│   ├── shift_raster_to_envelope.py
+│   ├── snap_vector_to_raster_grid.py
+│   └── split_canon_scan_results.py
+├── validate_dxf_ipt_original_rotated_clean.py
+├── validation
+│   ├── __init__.py
+│   ├── audit_altitude_statistics.py
+│   ├── audit_raster_alignment.py
+│   ├── fix_validation_scripts.py
+│   ├── validate_grid_vs_raster_alignment.py
+│   ├── validate_grid_vs_raster_alignment.py.bak
+│   ├── validate_grid_z_total_vs_dxf.py
+│   ├── validate_raster_local_offset.py
+│   ├── validate_rigid_transform_full.py
+│   ├── validate_rigid_transform_json.py
+│   ├── validate_rigid_transform_parameters.py
+│   ├── validate_rotated_raster_vs_envelope.py
+│   ├── validate_scientific_grid_metrics.py
+│   └── validate_scientific_grid_metrics.py.bak
+└── vector
+    └── core
+        ├── apply_rigid_transform_clean.py
+        └── build_domain_1x2_utm.py
+
+34 directories, 161 files

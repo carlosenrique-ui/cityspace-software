@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Globe-CitySpace — IPT Virtual Table G6.1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <strong>Globe-CitySpace</strong>
+    <span>G6.1 — IPT Virtual Table | North-Up | 1:5000</span>
+  </header>
+
+  <main>
+    <section id="panel">
+      <h2>IPT North 1:5000</h2>
+      <p>Fonte: IPT DTM/DSM/DXF</p>
+      <p>Altura dos pinos: 0–10 cm</p>
+      <p>Gray: 0–255</p>
+      <p>Rotação: 0° | Norte para cima</p>
+
+      <button id="viewTop">Vista topo</button>
+      <button id="viewOblique">Vista oblíqua</button>
+
+      <div id="info">Carregando dados...</div>
+    </section>
+
+    <section id="sceneWrapper">
+      <div id="north">↑ NORTE</div>
+      <div id="table" class="oblique"></div>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

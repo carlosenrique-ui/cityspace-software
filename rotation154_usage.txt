@@ -1,0 +1,21 @@
+offline/config/system_parameters.py:64:ROTATION_DEG = 154.63
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:28:ROTATION_DEG = 154.63
+offline/render_dxf_ipt_para_mesa_16x8.py:7:# - Aplicar APENAS a rotação trigonométrica validada (154.63°)
+offline/render_dxf_ipt_para_mesa_16x8.py:25:ANGLE_DEG = 154.63  # rotação trigonométrica validada
+offline/validate_dxf_ipt_original_rotated_clean.py:6:#   - Rotação global rígida (154.63°)
+offline/validate_dxf_ipt_original_rotated_clean.py:33:ANGLE_DEG = 154.63
+offline/validation/contract_registry.py:139:                    "angle_deg": 154.63,
+offline/validation/contract_registry.py:158:                        "source_orientation_deg": 154.63,
+offline/validation/contract_registry.py:159:                        "applied_rotation_deg": -154.63,
+offline/validation/reports/rotation_pca_grid_report.json:35:        "source_orientation_deg": 154.63,
+offline/validation/reports/rotation_pca_grid_report.json:36:        "applied_rotation_deg": -154.63,
+offline/validation/reports/rotation_pca_grid_stdout.txt:8:contract comparison: {'pca_vs_geospatial_deg': -154.63, 'pca_vs_physical_deg': -146.82, 'geospatial_vs_physical_deg': 7.81}
+online/renderers/fase3/FASE_3_3_layout_mesa.py:8:#   ROTATION_DEG = 154.63
+online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:15:ROTATION_DEG = 154.63  # rotação real do IPT (referência)
+online/renderers/render_mesa_ipt_2d25_integrada.py:8:#   - Rotação trigonométrica aplicada = 154.63°
+online/renderers/render_mesa_ipt_2d25_integrada.py:54:ANGLE_DEG = 154.63
+online/renderers/render_mesa_ipt_animacao_zigzag.py:46:ANGLE_DEG = 154.63
+online/renderers/render_mesa_ipt_validacao_geometrica.py:8:#   - Aplicar rotação consolidada (154.63°)
+online/renderers/render_mesa_ipt_validacao_geometrica.py:56:ANGLE_DEG = 154.63  # alinhamento IPT ↔ eixo físico da mesa
+online/renderers/visualizar_mesa_ipt_bmp_dxf_alturas.py:26:DXF_PATH = "/mnt/c/IPT-CitySpace-2018/data/dxf/IPT-2018-DXF_ROT_154_63.dxf"
+online/ui/dash_v96_watermark_146_test.py:19:# máscara/geospatial: 154.63°

@@ -1,0 +1,581 @@
+.
+├── assets
+│   └── ipt_mask_rotated_simple.png
+├── config
+│   ├── system_parameters.py
+│   └── system_paths.py
+├── debug_raster_vs_grid.py
+├── docs
+│   ├── OFFLINE_PIPELINE.md
+│   ├── Offline_pipeline_stabilization
+│   ├── TESTE_CALIBRACAO_E_RENDER_V43_2025-02-08.md
+│   ├── TESTE_TEMPORAL_FINAL_2025-02-07.md
+│   ├── architecture
+│   │   ├── cityspace_coordinate_systems.md
+│   │   ├── code_audit
+│   │   │   ├── 01_usage_zigzag_column_scanner.txt
+│   │   │   ├── 02_usage_zigzag_scan.txt
+│   │   │   ├── 03_usage_runner_path.txt
+│   │   │   ├── 04_usage_set_pin.txt
+│   │   │   ├── 05_set_pin_offline.txt
+│   │   │   ├── 06_set_pin_global.txt
+│   │   │   ├── 08_mask_usage.txt
+│   │   │   ├── 09_mask_consumers.txt
+│   │   │   ├── audit_set_pin_fixed.txt
+│   │   │   ├── audit_set_pin_found.txt
+│   │   │   ├── building_usage.txt
+│   │   │   ├── dsm_usage.txt
+│   │   │   ├── dtm_usage.txt
+│   │   │   ├── envelope_audit_fixed.txt
+│   │   │   ├── envelope_audit_found.txt
+│   │   │   ├── height_usage.txt
+│   │   │   ├── mask_usage.txt
+│   │   │   ├── percentile_usage.txt
+│   │   │   ├── raster_runner_envelope_fix.txt
+│   │   │   ├── raster_usage.txt
+│   │   │   ├── scientific_usage.txt
+│   │   │   └── urban_height_audit.txt
+│   │   ├── code_search
+│   │   │   ├── 01_pipeline.txt
+│   │   │   ├── 02_dag.txt
+│   │   │   ├── 03_runner.txt
+│   │   │   ├── 04_flow.txt
+│   │   │   ├── 05_task.txt
+│   │   │   ├── 06_stage.txt
+│   │   │   ├── 07_execute.txt
+│   │   │   ├── 08_process.txt
+│   │   │   ├── 21_render.txt
+│   │   │   ├── 22_renderer.txt
+│   │   │   ├── 23_visualization.txt
+│   │   │   ├── 24_ui.txt
+│   │   │   ├── 25_layers.txt
+│   │   │   ├── 26_scene.txt
+│   │   │   ├── 27_camera.txt
+│   │   │   └── 28_zoom.txt
+│   │   ├── pipeline_auto_dag.dot
+│   │   ├── pipeline_auto_dag_report.txt
+│   │   ├── pipeline_execution_flow.md
+│   │   ├── pipeline_execution_order.txt
+│   │   └── pipeline_map.txt
+│   ├── development
+│   │   └── workflow_method.md
+│   ├── pipeline_overview
+│   ├── reverse_engineering
+│   │   └── v41_pipeline_trace.txt
+│   └── 📄 ROADMAP DE CONSOLIDAÇÃO ARQUITETURAL.docx
+├── estrutura_offline.txt
+├── fix_config_raster_paths.py
+├── fix_grid_path.py
+├── fix_grid_path_runtime.py
+├── fix_grid_path_v2.py
+├── fix_raster_paths.py
+├── fix_raster_paths_v2.py
+├── fix_scientific_cell_metrics.py
+├── fix_scientific_cell_metrics_clean.py
+├── fix_scientific_cell_metrics_v2.py
+├── offline
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   └── __init__.cpython-312.pyc
+│   ├── adapters
+│   │   ├── scientific_to_semantic_adapter.py
+│   │   └── scientific_to_semantic_adapter.py.bak
+│   ├── analysis
+│   │   ├── scan_project_usage.py
+│   │   └── time_estimator.py
+│   ├── assets
+│   ├── config
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-312.pyc
+│   │   │   └── system_parameters.cpython-312.pyc
+│   │   ├── experiment_config.py
+│   │   ├── system_parameters.py
+│   │   └── system_paths.py
+│   ├── data
+│   │   └── processed
+│   │       ├── dsm
+│   │       ├── dtm
+│   │       └── height
+│   ├── debug
+│   ├── grid_to_pin_height.py
+│   ├── ingestion
+│   │   ├── __init__.py
+│   │   └── auto_dataset_ingestion.py
+│   ├── loading
+│   │   ├── load_raster.py
+│   │   ├── load_vector.py
+│   │   ├── offline_product.py
+│   │   └── validate_crs.py
+│   ├── pipeline
+│   │   ├── 01_build_scientific_grid.py
+│   │   ├── 01_build_scientific_grid_BACKUP.py
+│   │   ├── 02_compute_cell_metrics.py
+│   │   ├── 02_join_grid_metrics_with_geom.py
+│   │   ├── 03_generate_contours_clean.py
+│   │   ├── 03_scientific_to_semantic.py
+│   │   ├── 04_generate_actuator_plan.py
+│   │   ├── 04b_generate_actuator_geospatial.py
+│   │   ├── 05_apply_rotation_to_contours.py
+│   │   └── 99_export_final_mesa.py
+│   ├── pipeline_controller.py
+│   ├── pipeline_dag.py
+│   ├── pipeline_dag.py.bak
+│   ├── pipeline_dag_runtime.py
+│   ├── pipeline_runner.py
+│   ├── processing
+│   │   ├── align_data.py
+│   │   ├── align_vector_to_raster.py
+│   │   ├── apply_rigid_transform_vector_scientific.py
+│   │   ├── build_mask_local_grid.py
+│   │   ├── build_official_urban_envelope_rotated.py
+│   │   ├── clip_raster.py
+│   │   ├── compute_heights.py
+│   │   ├── dxf_hatch_to_scientific_gpkg_spline.py
+│   │   ├── fit_raster_to_vector.py
+│   │   ├── normalize.py
+│   │   ├── rasterize_mask.py
+│   │   ├── reproject_raster.py
+│   │   └── set_crs_scientific.py
+│   ├── products
+│   │   ├── north_arrow_scale.JPEG
+│   │   ├── north_arrow_scale.png
+│   │   ├── runtime
+│   │   │   ├── actuator_plan.json
+│   │   │   ├── grid.npy
+│   │   │   └── metadata.json
+│   │   ├── scientific -> /mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific
+│   │   └── snapshots
+│   │       ├── final_freeze_20260408_1121
+│   │       └── ipt_fase2_semantic
+│   ├── raster
+│   │   ├── __init__.py
+│   │   ├── core
+│   │   │   ├── __init__.py
+│   │   │   ├── clip_raster_by_envelope.py
+│   │   │   ├── compute_ndsm.py
+│   │   │   ├── filter_dsm_spikes.py
+│   │   │   ├── normalize_raster_to_scientific_system.py
+│   │   │   ├── normalize_vertical_reference.py
+│   │   │   ├── reclip_rasters_to_domain.py
+│   │   │   ├── reproject_rasters_to_utm.py
+│   │   │   └── rotate_raster_scientific.py
+│   │   ├── pipeline
+│   │   │   ├── __init__.py
+│   │   │   └── scientific_raster_runner.py
+│   │   └── validation
+│   │       └── validate_rigid_transform.py
+│   ├── render_dxf_ipt_para_mesa_16x8.py
+│   ├── run_offline_pipeline.py
+│   ├── scientific_cell_metrics.py
+│   ├── scientific_cell_metrics.py.bak
+│   ├── scientific_cell_metrics_utm.py
+│   ├── scientific_cell_metrics_utm.py.bak
+│   ├── scientific_grid_builder.py
+│   ├── scientific_grid_builder.py.bak
+│   ├── scientific_runner.py
+│   ├── tests
+│   │   ├── test_generate_contours_layer.py
+│   │   ├── test_generate_contours_topografico.py
+│   │   ├── test_geojson_to_grid.py
+│   │   ├── test_grid_to_pin_height.py
+│   │   ├── test_grid_to_temporal_sequence.py
+│   │   ├── test_metrics_integrity.py
+│   │   ├── test_scientific_runner_integration.py
+│   │   └── test_scientific_runner_integration.py.bak
+│   ├── tools
+│   │   ├── 05_recompute_rotation_from_grid.py
+│   │   ├── 06_recompute_rotation_true.py
+│   │   ├── 07_detect_rotation_from_envelope.py
+│   │   ├── 08_generate_grid_npy.py
+│   │   ├── ENGINE_ROOT = Path("
+│   │   │   └── mnt
+│   │   ├── align_envelope_to_buildings.py
+│   │   ├── align_raster_to_envelope.py
+│   │   ├── analyze_pipeline_products.py
+│   │   ├── apply_rigid_transform_raster_scientific.py
+│   │   ├── audit_alignment_grid_raster.py
+│   │   ├── audit_altimetry_outputs.py
+│   │   ├── audit_altimetry_rasters.py
+│   │   ├── audit_coordinate_systems.py
+│   │   ├── audit_csv_products.py
+│   │   ├── audit_fix_envelope_pipeline.py
+│   │   ├── audit_fix_set_pin.py
+│   │   ├── audit_grid_dimensions.py
+│   │   ├── audit_grid_raster_crs_alignment.py
+│   │   ├── audit_lowest_points_dtm_dsm.py
+│   │   ├── audit_raster_minmax.py
+│   │   ├── audit_rigid_jsons.py
+│   │   ├── audit_scientific_grid.py
+│   │   ├── build_pipeline_execution_order.py
+│   │   ├── buildings_height_model.py
+│   │   ├── cleanup_project_structure.py
+│   │   ├── desrotate_urban_envelope.py
+│   │   ├── detect_pipeline_scripts.py
+│   │   ├── export_z_total_to_excel.py
+│   │   ├── fix_context_snapshot.py
+│   │   ├── fix_context_snapshot_v2.py
+│   │   ├── fix_context_snapshot_v3.py
+│   │   ├── fix_raster_affine_order.py
+│   │   ├── fix_raster_affine_order_final.py
+│   │   ├── fix_raster_rotation_center.py
+│   │   ├── fix_raster_rotation_center_safe.py
+│   │   ├── fix_raster_transform_remove_translation.py
+│   │   ├── fix_raster_vertical_alignment.py
+│   │   ├── fix_runner_envelope_loader.py
+│   │   ├── fix_runner_envelope_loader_v2.py
+│   │   ├── fix_scientific_raster_runner_envelope.py
+│   │   ├── fix_scientific_raster_transform.py
+│   │   ├── fix_urban_envelope_geometry.py
+│   │   ├── generate_actuator_plan_from_csv.py
+│   │   ├── generate_pipeline_dag.py
+│   │   ├── list_rasters.py
+│   │   ├── offline
+│   │   │   └── tools
+│   │   ├── reanchor_raster_to_envelope.py
+│   │   ├── rebuild_scientific_raster_runner.py
+│   │   ├── recompute_altimetry_ndsm.py
+│   │   ├── recompute_rigid_transform.py
+│   │   ├── recompute_rigid_transform_utm_to_local.py
+│   │   ├── recompute_transform_from_envelope.py
+│   │   ├── run_full_alignment_pipeline.py
+│   │   ├── search_canon_substring.py
+│   │   ├── shift_raster_to_envelope.py
+│   │   ├── snap_vector_to_raster_grid.py
+│   │   └── split_canon_scan_results.py
+│   ├── validate_dxf_ipt_original_rotated_clean.py
+│   ├── validation
+│   │   ├── __init__.py
+│   │   ├── audit_altitude_statistics.py
+│   │   ├── audit_raster_alignment.py
+│   │   ├── fix_validation_scripts.py
+│   │   ├── validate_grid_vs_raster_alignment.py
+│   │   ├── validate_grid_vs_raster_alignment.py.bak
+│   │   ├── validate_grid_z_total_vs_dxf.py
+│   │   ├── validate_raster_local_offset.py
+│   │   ├── validate_rigid_transform_full.py
+│   │   ├── validate_rigid_transform_json.py
+│   │   ├── validate_rigid_transform_parameters.py
+│   │   ├── validate_rotated_raster_vs_envelope.py
+│   │   ├── validate_scientific_grid_metrics.py
+│   │   └── validate_scientific_grid_metrics.py.bak
+│   └── vector
+│       └── core
+│           ├── apply_rigid_transform_clean.py
+│           └── build_domain_1x2_utm.py
+├── online
+│   ├── __init__.py
+│   ├── actuators
+│   │   ├── __init__.py
+│   │   ├── test_virtual_actuator_legacy.py
+│   │   ├── virtual_actuator.py
+│   │   └── virtual_actuator_legacy.py
+│   ├── app_v42_player.py
+│   ├── assets
+│   │   └── north_arrow_scale.png
+│   ├── config
+│   │   ├── __init__.py
+│   │   ├── actuators.yaml
+│   │   ├── online
+│   │   │   └── tests
+│   │   └── tables.yaml
+│   ├── contracts
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   ├── actuator_commands.py
+│   │   ├── construction_frame.py
+│   │   └── temporal_event.py
+│   ├── controllers
+│   │   ├── temporal_controller.py
+│   │   └── test_temporal_controller.py
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── actuator_events.py
+│   │   ├── calibration.py
+│   │   ├── event.py
+│   │   ├── event_bus.py
+│   │   ├── grid_pin_adapter.py
+│   │   ├── grid_pin_mapper.py
+│   │   ├── grid_profile.py
+│   │   ├── logical_grid.py
+│   │   ├── modes.py
+│   │   ├── physical_motion_profile.py
+│   │   ├── state.py
+│   │   ├── state_manager.py
+│   │   ├── system_runtime.py
+│   │   ├── temporal_conductor.py
+│   │   ├── temporal_core_directional.py
+│   │   ├── temporal_event.py
+│   │   ├── temporal_player.py
+│   │   ├── temporal_sequence.py
+│   │   ├── temporal_state.py
+│   │   ├── test_calibration.py
+│   │   ├── test_grid_pin_integration.py
+│   │   ├── test_grid_pin_mapper.py
+│   │   ├── test_grid_profile.py
+│   │   ├── test_logical_grid.py
+│   │   ├── test_modes.py
+│   │   ├── test_temporal_conductor.py
+│   │   ├── test_temporal_conductor_player.py
+│   │   ├── test_temporal_player.py
+│   │   ├── time_profile.py
+│   │   └── timebase.py
+│   ├── dash_v81_physical_elevation.py
+│   ├── data
+│   │   ├── __init__.py
+│   │   ├── height_maps.py
+│   │   └── temporal_layer.py
+│   ├── hardware
+│   │   ├── __init__.py
+│   │   ├── actuator_interface.py
+│   │   ├── mock_pin.py
+│   │   ├── mock_table.py
+│   │   └── test_mock_table.py
+│   ├── legacy
+│   │   ├── construction_timeline
+│   │   │   ├── construction_timeline.py
+│   │   │   └── test_construction_timeline.py
+│   │   └── time_event_driven
+│   │       └── temporal_conductor_event_driven.py
+│   ├── online
+│   │   └── outputs
+│   ├── outputs
+│   │   ├── mesa_virtual_debug_v1.png
+│   │   ├── mesa_virtual_debug_v2.gif
+│   │   ├── mesa_virtual_debug_v3.gif
+│   │   ├── mesa_virtual_debug_v4.gif
+│   │   └── mesa_virtual_semantica_ipt.gif
+│   ├── physical
+│   │   ├── __init__.py
+│   │   ├── actuator_model.py
+│   │   ├── motion_profile.py
+│   │   └── table_model.py
+│   ├── renderers
+│   │   ├── __init__.py
+│   │   ├── colormaps.py
+│   │   ├── extract_timeline_from_gif.py
+│   │   ├── fase3
+│   │   │   ├── FASE_3_1_mesa_virtual.py
+│   │   │   ├── FASE_3_2_camadas.py
+│   │   │   ├── FASE_3_3_layout_mesa.py
+│   │   │   ├── FASE_3_4_mesa_legenda.py
+│   │   │   ├── FASE_3_5_verificacao_contrato.py
+│   │   │   └── utils.py
+│   │   ├── fase4
+│   │   │   └── mesa_fisica.py
+│   │   ├── faseC
+│   │   │   ├── FASE_C_1_contrato_temporal.py
+│   │   │   ├── FASE_C_2_player_temporal_estatico.py
+│   │   │   ├── FASE_C_3_player_temporal_valores.py
+│   │   │   └── FASE_C_4_1_renderer_canonico.py
+│   │   ├── generate_gif_planta_baixa_ipt.py
+│   │   ├── ipt_fase2_semantic
+│   │   │   ├── mesa_virtual_debug_v1.py
+│   │   │   ├── mesa_virtual_debug_v2_gif.py
+│   │   │   ├── mesa_virtual_debug_v3_gif.py
+│   │   │   ├── mesa_virtual_debug_v4_gif.py
+│   │   │   └── mesa_virtual_semantic_2d.py
+│   │   ├── layer2d.py
+│   │   ├── layers
+│   │   │   └── layer_dxf_lines.py
+│   │   ├── render_mesa_ipt_2d25_canonico.py
+│   │   ├── render_mesa_ipt_2d25_integrada.py
+│   │   ├── render_mesa_ipt_2d25_scanner_zigzag.py
+│   │   ├── render_mesa_ipt_animacao_zigzag.py
+│   │   ├── render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py
+│   │   ├── render_mesa_ipt_validacao_geometrica.py
+│   │   ├── render_mesa_ipt_zigzag_alturas_gif.py
+│   │   ├── render_mesa_ipt_zigzag_alturas_gif_verbose.py
+│   │   ├── render_mesa_ipt_zigzag_canonico.py
+│   │   ├── render_mesa_ipt_zigzag_integrada_final.py
+│   │   ├── render_temporal_gif_v41_2.py
+│   │   ├── render_temporal_gif_v42_2.py
+│   │   ├── renderer2d.py
+│   │   ├── renderer_factory.py
+│   │   ├── tests
+│   │   │   ├── test_generate_gif_planta_baixa_ipt.py
+│   │   │   ├── test_planta_baixa_ipt_single_layer.py
+│   │   │   ├── test_renderer2d.py
+│   │   │   ├── test_renderer2d_frame.py
+│   │   │   ├── test_renderer2d_multilayer.py
+│   │   │   ├── test_renderer2d_planta_baixa_ipt.py
+│   │   │   ├── test_renderer2d_with_dxf.py
+│   │   │   ├── test_timeline_renderer2d.py
+│   │   │   └── test_visual_snapshot_adapter.py
+│   │   ├── timeline_export_adapter.py
+│   │   ├── timeline_renderer_adapter.py
+│   │   ├── visual_snapshot_adapter.py
+│   │   ├── visualizar_mesa_ipt_alturas.py
+│   │   └── visualizar_mesa_ipt_bmp_dxf_alturas.py
+│   ├── runtime
+│   │   ├── bootstrap_mock.py
+│   │   ├── bootstrap_serial.py
+│   │   ├── plan_execution_runner.py
+│   │   ├── plan_player.py
+│   │   └── plan_player_adapter.py
+│   ├── states
+│   │   ├── __init__.py
+│   │   ├── actuator_statechart.py
+│   │   ├── analysis.py
+│   │   ├── initialization.py
+│   │   ├── online_root.py
+│   │   ├── presentation.py
+│   │   └── temporal_sequence.py
+│   ├── tests
+│   │   ├── dash_virtual_table_player_ui_clean.py
+│   │   ├── run_ensaio_geral.py
+│   │   ├── test_eventbus_state_manager.py
+│   │   ├── test_offline_product_loader.py
+│   │   ├── test_plan_execution_runner.py
+│   │   ├── test_plan_player.py
+│   │   ├── test_temporal_conductor.py
+│   │   ├── test_temporal_conductor_eventbus.py
+│   │   └── test_temporal_statechart.py
+│   ├── time
+│   │   ├── __init__.py
+│   │   └── timebase.py
+│   ├── ui
+│   │   ├── Dash_v87_image_lock.py
+│   │   ├── assets
+│   │   │   └── ipt_mask_rotated_simple.png
+│   │   ├── console_player.py
+│   │   ├── dash_62_final_integrated.py
+│   │   ├── dash_eventbus_grid_app.py
+│   │   ├── dash_gif_player_app.py
+│   │   ├── dash_runner_view.py
+│   │   ├── dash_temporal_directional_app.py
+│   │   ├── dash_temporal_player.py
+│   │   ├── dash_v0_base.py
+│   │   ├── dash_v100_1.py
+│   │   ├── dash_v100_2.py
+│   │   ├── dash_v100_height_anim.py
+│   │   ├── dash_v101_fisico.py
+│   │   ├── dash_v101_fix.py
+│   │   ├── dash_v44_full_digital_twin.py
+│   │   ├── dash_v45_full_real.py
+│   │   ├── dash_v46_frame_player_pro.py
+│   │   ├── dash_v47_frame_player_overlay.py
+│   │   ├── dash_v47_frame_player_pro.py
+│   │   ├── dash_v47_frame_player_scaled.py
+│   │   ├── dash_v48_frame_player_clean.py
+│   │   ├── dash_v49_core_synced.py
+│   │   ├── dash_v49_fixed.py
+│   │   ├── dash_v50_temporal_truth.py
+│   │   ├── dash_v70_master_final.py
+│   │   ├── dash_v72_cityspace_official.py
+│   │   ├── dash_v73_cityspace_gridfix.py
+│   │   ├── dash_v74_cityspace_centered.py
+│   │   ├── dash_v75_2_restored.py
+│   │   ├── dash_v75_3_fixed.py
+│   │   ├── dash_v75_cityspace_controls.py
+│   │   ├── dash_v76_time_continuous.py
+│   │   ├── dash_v77_cityspace_physics.py
+│   │   ├── dash_v77_visual_layer.py
+│   │   ├── dash_v78_1_zoom_fixed.py
+│   │   ├── dash_v78_zoom_centered.py
+│   │   ├── dash_v79_physical_grid_zoom.py
+│   │   ├── dash_v80_1_scale_fixed.py
+│   │   ├── dash_v80_true_physical_scale.py
+│   │   ├── dash_v81_physical_elevation.py
+│   │   ├── dash_v83_grid_border.py
+│   │   ├── dash_v84_LOCKED.py
+│   │   ├── dash_v84_active_pin.py
+│   │   ├── dash_v85_LOCKED.py
+│   │   ├── dash_v85_visual_fit.py
+│   │   ├── dash_v85_visual_refined.py
+│   │   ├── dash_v86_layers_ready.py
+│   │   ├── dash_v86_visual_clean.py
+│   │   ├── dash_v87_fix_zigzag.py
+│   │   ├── dash_v88_fix_path_bounds.py
+│   │   ├── dash_v88_grid_fix.py
+│   │   ├── dash_v89_final_fit.py
+│   │   ├── dash_v89_use_real_path.py
+│   │   ├── dash_v90_urban_fit.py
+│   │   ├── dash_v91_altimetric_motion.py
+│   │   ├── dash_v91_speed_control.py
+│   │   ├── dash_v92_real_plan.py
+│   │   ├── dash_v93_centroid_final.py
+│   │   ├── dash_v93_robust_plan.py
+│   │   ├── dash_v94_2_normalizado.py
+│   │   ├── dash_v94_clean_marker.py
+│   │   ├── dash_v94_clean_no_marker.py
+│   │   ├── dash_v94_real_fix.py
+│   │   ├── dash_v94_real_legend.py
+│   │   ├── dash_v94_real_pipeline.py
+│   │   ├── dash_v95_1_real_transparente.py
+│   │   ├── dash_v95_2_real_base.py
+│   │   ├── dash_v95_2_real_final.py
+│   │   ├── dash_v95_2d.py
+│   │   ├── dash_v95_2d_final_corrigido.py
+│   │   ├── dash_v95_3_clean_callbacks.py
+│   │   ├── dash_v95_3_real_hard.py
+│   │   ├── dash_v95_3d_urban.py
+│   │   ├── dash_v95_4_blindado.py
+│   │   ├── dash_v95_4_real_correct.py
+│   │   ├── dash_v95_5_debug.py
+│   │   ├── dash_v95_5_incremental.py
+│   │   ├── dash_v95_6_hard_stable.py
+│   │   ├── dash_v95_6_stable.py
+│   │   ├── dash_v95_real_corrigido.py
+│   │   ├── dash_v96_engine_separado.py
+│   │   ├── dash_v96_modo_fisico.py
+│   │   ├── dash_v96_rotation_fix.py
+│   │   ├── dash_v97_2_metodoB.py
+│   │   ├── dash_v97_2_metodoB_fix.py
+│   │   ├── dash_v97_final_clean.py
+│   │   ├── dash_v97_tempo_fisico.py
+│   │   ├── dash_v99_3d_buildings_zigzag.py
+│   │   ├── dash_v99_zigzag_final.py
+│   │   ├── dash_virtual_table_player.py
+│   │   ├── dash_virtual_table_player_v42.py
+│   │   ├── fix_callback_grid.py
+│   │   ├── fix_plan_events.py
+│   │   ├── fix_render_z.py
+│   │   ├── fix_ui_use_plan.py
+│   │   ├── force_full_grid.py
+│   │   ├── layers.py
+│   │   ├── legacy
+│   │   │   ├── app.py
+│   │   │   ├── dash_app.py
+│   │   │   ├── player2d_app.py
+│   │   │   ├── temporal_player_app.py
+│   │   │   └── temporal_player_video_app.py
+│   │   ├── main.py
+│   │   ├── patch_v50_apply_events.py
+│   │   ├── patch_v50_full_fix.py
+│   │   ├── patch_v50_loader.py
+│   │   ├── temporal_player_grid_app.py
+│   │   ├── temporal_player_grid_controls_app.py
+│   │   ├── test_visual_adapter.py
+│   │   └── visual_adapter.py
+│   └── visualization
+├── products
+│   ├── actuator_plan.json
+│   ├── final
+│   │   ├── actuator_plan.json
+│   │   ├── actuator_plan_zigzag.json
+│   │   └── grid_height.csv
+│   └── latest
+│       └── actuator_plan.json
+├── project_tree.txt
+├── runner
+│   ├── __init__.py
+│   ├── base_actuator.py
+│   ├── path.py
+│   ├── runner_engine.py
+│   ├── scientific_runner_engine.py
+│   └── virtual_actuator.py
+├── scan07042026.txt
+├── scripts
+│   ├── 98_autoscan_diagnostics.py
+│   └── validate_and_prepare_actuator_plan.py
+└── tests
+    ├── test_base_actuator.py
+    ├── test_geo_cells.py
+    ├── test_grid_normalization.py
+    ├── test_path.py
+    ├── test_plan_player_adapter.py
+    ├── test_runner_engine.py
+    └── test_virtual_actuator_legacy.py
+
+83 directories, 495 files

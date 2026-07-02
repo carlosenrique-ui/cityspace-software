@@ -1,0 +1,36 @@
+{
+  "contract_type": "grid_products",
+  "contract_version": "G5.6",
+  "source_height_contract": "globe_cityspace_open/projects/ipt_campus_height_contract_G55.json",
+  "coordinate_system": {
+    "origin": "upper_left",
+    "origin_xyz_cm": [
+      0,
+      0,
+      0
+    ],
+    "x_prime": "right",
+    "y_prime": "down",
+    "z_prime": "up"
+  },
+  "grid": {
+    "cols_x_prime": 16,
+    "rows_y_prime": 8,
+    "supported_cell_sizes_cm": [
+      1,
+      2
+    ]
+  },
+  "products": [
+    "grid_gray_1cm.bmp",
+    "grid_gray_1cm.png",
+    "grid_gray_1cm.csv",
+    "grid_gray_1cm.xlsx",
+    "grid_gray_1cm_validation.png",
+    "grid_gray_2cm.bmp",
+    "grid_gray_2cm.png",
+    "grid_gray_2cm.csv",
+    "grid_gray_2cm.xlsx",
+    "grid_gray_2cm_validation.png"
+  ]
+}

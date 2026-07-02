@@ -1,0 +1,101 @@
+413-    x_range = [-0.5, GRID_COLS - 0.5]
+414-    y_range = [GRID_ROWS - 0.5, -0.5]
+415-
+416-    if projector_mode == "invertido":
+417-        x_range = [GRID_COLS - 0.5, -0.5]
+418-        y_range = [-0.5, GRID_ROWS - 0.5]
+419-
+420-    fig.update_layout(
+421-        margin=dict(l=95, r=90, t=70, b=260),
+422-        xaxis=dict(visible=False, range=x_range, constrain="domain"),
+423-        yaxis=dict(visible=False, range=y_range, scaleanchor="x", scaleratio=1),
+424-        plot_bgcolor="white",
+425-        paper_bgcolor="white",
+426-        autosize=True,
+427-        uirevision="v128_7_19",
+428-    )
+429-
+430-    return fig
+431-
+432-
+433:def send_to_real_table(row, col, value_cm, mesa_on):
+434-    if not mesa_on:
+435-        return "Mesa Real OFF"
+436-
+437-    if not np.isfinite(value_cm) or value_cm <= 0:
+438-        value_cm = 0.0
+439-
+440-    return f"MODO REAL SIMULADO row={row} col={col} z_cm={value_cm:.2f}"
+441-
+442-
+443-# =========================================
+444-# DATA LOAD
+445-# =========================================
+446-
+447-PNG_PATH = first_existing(PNG_CANDIDATES)
+448-NORTH_PATH = first_existing(NORTH_CANDIDATES, required=False)
+449-
+450-DF = pd.read_csv(CSV_PATH)
+451-
+452-Z_TERRAIN_M, Z_TOTAL_M, Z_PINO_CM = build_grids(DF)
+453-
+454-# Remover ruído: 3 células do canto superior direito
+455-Z_TERRAIN_M[0, GRID_COLS-3:GRID_COLS] = np.nan
+456-Z_TOTAL_M[0, GRID_COLS-3:GRID_COLS] = np.nan
+457-Z_PINO_CM[0, GRID_COLS-3:GRID_COLS] = np.nan
+458-
+459-PNG_URI = image_to_data_uri(PNG_PATH)
+460-NORTH_URI = image_to_data_uri(NORTH_PATH) if NORTH_PATH is not None else None
+461-
+462-TERRAIN_CONTOURS = contour_segments(Z_TERRAIN_M, interval_m=2.0)
+463-TOTAL_CONTOURS = contour_segments(Z_TOTAL_M, interval_m=5.0)
+464-
+465-ZIGZAG_PATH = build_zigzag_path()
+466-TOTAL_STEPS = len(ZIGZAG_PATH)
+467-
+468-
+469-# =========================================
+470-# DASH
+471-# =========================================
+472-
+473-app = dash.Dash(__name__)
+474-
+475-app.layout = html.Div([
+476-    dcc.Store(id="step-store", data=0),
+477-    dcc.Store(id="playing-store", data=False),
+478-    dcc.Store(id="direction-store", data=1),
+479-
+480-    dcc.Interval(
+481-        id="clock",
+482-        interval=VIRTUAL_INTERVAL_MS,
+483-        n_intervals=0,
+484-        disabled=True,
+485-    ),
+486-
+487-    html.Div([
+488-        html.Button("☰ MENU", id="btn-menu", n_clicks=0),
+489-
+490-        html.Div(id="menu-body", children=[
+491-            html.Br(),
+492-
+493-            dcc.Checklist(
+494-                id="layers",
+495-                options=[
+496-                    {"label": "Base IPT", "value": "base"},
+497-                    {"label": "Pinos / Teto z_total", "value": "pinos"},
+498-                    {"label": "Contour terreno z_terrain_m", "value": "contour_terrain"},
+499-                    {"label": "Cotas terreno", "value": "cota_terrain"},
+500-                    {"label": "Contour teto z_total_m", "value": "contour_total"},
+501-                    {"label": "Cotas teto", "value": "cota_total"},
+502-                    {"label": "Grid 16x8", "value": "grid"},
+503-                ],
+504-                value=["base", "pinos", "contour_total", "cota_total", "grid"],
+505-            ),
+506-
+507-            html.Hr(),
+508-
+509-            html.Div("Escala visual"),
+510-            dcc.RadioItems(
+511-                id="cell-mode",
+512-                options=[
+513-                    {"label": "1 x 1 cm", "value": "1x1 cm"},

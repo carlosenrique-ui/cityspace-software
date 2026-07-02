@@ -1,0 +1,15 @@
+=== BACKUP ===
+'globe_cityspace_open/frontend/main.js' -> 'globe_cityspace_open/frontend/main.js.bak_v129_0_7_grid_rotacao_20260618_184927'
+=== CONFERÊNCIA ===
+2145:/* PATCH V129.0.7 — ROTACAO DINAMICA GRID EXPLORATORIO */
+2147:  console.log("PATCH V129.0.7 ativo — rotação dinâmica do grid");
+2154:    if (el("gridRotationDeg")) return;
+2163:      <label for="gridRotationDeg">Rotação:</label>
+2164:      <input id="gridRotationDeg"
+2179:    el("gridRotationDeg").addEventListener("input", function () {
+2185:      el("gridRotationDeg").value = "0";
+2220:  function drawRotatedExploratoryGrid(centerLat, centerLon, widthM, heightM, angleDeg) {
+2311:    const angle = parseFloat(el("gridRotationDeg")?.value || exploratoryGridAngleDeg || 0);
+2313:    const bounds = drawRotatedExploratoryGrid(
+2354:      Rotação do Grid: ${angle.toFixed(1)}°<br>
+=== REINICIANDO DOCKER ===

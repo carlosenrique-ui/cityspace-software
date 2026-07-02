@@ -1,0 +1,35 @@
+# ==========================================================
+# IPT-CitySpace Offline Pipeline Runner
+# ==========================================================
+
+import subprocess
+from pathlib import Path
+
+
+PIPELINE_DIR = Path("offline/pipeline")
+
+
+def main():
+
+    print("\n===================================")
+    print(" IPT-CitySpace OFFLINE PIPELINE ")
+    print("===================================\n")
+
+    steps = sorted(PIPELINE_DIR.glob("*.py"))
+
+    for step in steps:
+
+        module = step.with_suffix("").as_posix().replace("/", ".")
+
+        print(f"\nRunning: {module}\n")
+
+        subprocess.run(
+            ["python", "-m", module],
+            check=True
+        )
+
+    print("\nPipeline finished.\n")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,128 @@
+online/ui/dash_v118_layers_pino_teto_contours.py:67:def fix_like_v42(grid):
+online/ui/dash_v118_layers_pino_teto_contours.py:300:z_terrain_m = fix_like_v42(z_terrain_raw)
+online/ui/dash_v118_layers_pino_teto_contours.py:301:z_total_m = fix_like_v42(z_total_m_raw)
+online/ui/dash_v118_layers_pino_teto_contours.py:302:z_total_cm = fix_like_v42(z_total_cm_raw)
+online/ui/dash_v118_layers_pino_teto_contours.py:304:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v119_layers_cotas_compare.py:66:def fix_like_v42(grid):
+online/ui/dash_v119_layers_cotas_compare.py:302:z_terrain_m = fix_like_v42(z_terrain_raw)
+online/ui/dash_v119_layers_cotas_compare.py:303:z_total_m = fix_like_v42(z_total_m_raw)
+online/ui/dash_v119_layers_cotas_compare.py:304:z_total_cm = fix_like_v42(z_total_cm_raw)
+online/ui/dash_v119_layers_cotas_compare.py:306:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v120_esri_overlay_grid.py:72:def fix_like_v42(grid):
+online/ui/dash_v120_esri_overlay_grid.py:329:z_terrain_m = fix_like_v42(z_terrain_raw)
+online/ui/dash_v120_esri_overlay_grid.py:330:z_total_m = fix_like_v42(z_total_m_raw)
+online/ui/dash_v120_esri_overlay_grid.py:331:z_total_cm = fix_like_v42(z_total_cm_raw)
+online/ui/dash_v120_esri_overlay_grid.py:333:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v122_masked_layers_cotas.py:66:def fix_like_v42(grid):
+online/ui/dash_v122_masked_layers_cotas.py:312:z_terrain_m = fix_like_v42(z_terrain_raw)
+online/ui/dash_v122_masked_layers_cotas.py:313:z_total_m = fix_like_v42(z_total_m_raw)
+online/ui/dash_v122_masked_layers_cotas.py:314:z_total_cm = fix_like_v42(z_total_cm_raw)
+online/ui/dash_v122_masked_layers_cotas.py:316:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v123_mask_iptraster.py:96:def fix_like_v42(grid):
+online/ui/dash_v123_mask_iptraster.py:342:z_terrain_m = fix_like_v42(z_terrain_raw)
+online/ui/dash_v123_mask_iptraster.py:343:z_total_m = fix_like_v42(z_total_m_raw)
+online/ui/dash_v123_mask_iptraster.py:344:z_total_cm = fix_like_v42(z_total_cm_raw)
+online/ui/dash_v123_mask_iptraster.py:346:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v123_mask_iptraster.py:366:raster_mask = fix_like_v42(raster_mask).astype(bool)
+online/ui/dash_v124_offline_mask.py:66:def fix_like_v42(grid):
+online/ui/dash_v124_offline_mask.py:312:z_terrain_m = fix_like_v42(z_terrain_raw)
+online/ui/dash_v124_offline_mask.py:313:z_total_m = fix_like_v42(z_total_m_raw)
+online/ui/dash_v124_offline_mask.py:314:z_total_cm = fix_like_v42(z_total_cm_raw)
+online/ui/dash_v124_offline_mask.py:316:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/dash_v124_offline_mask.py:335:offline_mask = fix_like_v42(offline_mask).astype(bool)
+online/ui/dash_v125_polygon_alignment_calibrator.py:63:def fix_like_v42(grid):
+online/ui/dash_v125_polygon_alignment_calibrator.py:260:Z_TOTAL_CM = fix_like_v42(build_grid(df))
+online/ui/dash_v127_final_operational_table.py:46:def fix_like_v42(grid):
+online/ui/dash_v127_final_operational_table.py:77:        fix_like_v42(z_terrain_m),
+online/ui/dash_v127_final_operational_table.py:78:        fix_like_v42(z_total_m),
+online/ui/dash_v127_final_operational_table.py:79:        fix_like_v42(z_total_cm),
+online/ui/dash_v128_2_fixed_no_regression.py:54:def fix_like_v42(grid):
+online/ui/dash_v128_2_fixed_no_regression.py:88:        fix_like_v42(z_terrain_m),
+online/ui/dash_v128_2_fixed_no_regression.py:89:        fix_like_v42(z_total_m),
+online/ui/dash_v128_2_fixed_no_regression.py:90:        fix_like_v42(z_total_cm),
+online/ui/dash_v128_4_final_sem_regressao.py:66:def fix_like_v42(grid):
+online/ui/dash_v128_4_final_sem_regressao.py:97:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_4_final_sem_regressao.py:98:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_10_final_ajustes_finos.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_10_final_ajustes_finos.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_10_final_ajustes_finos.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_11_menu_final.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_11_menu_final.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_11_menu_final.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_12_sem_projetor_labels.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_12_sem_projetor_labels.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_12_sem_projetor_labels.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_19_menu_final.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_19_menu_final.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_19_menu_final.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_1_final_visual_adjust.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_1_final_visual_adjust.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_1_final_visual_adjust.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_20_work_from_719.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_20_work_from_719.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_20_work_from_719.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_2_north_scale_readable.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_2_north_scale_readable.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_2_north_scale_readable.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_3_north_position.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_3_north_position.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_3_north_position.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_4_scroll_2x2.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_4_scroll_2x2.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_4_scroll_2x2.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_5_north_visible.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_5_north_visible.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_5_north_visible.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_6a_sem_projetor_invertido.py:54:def fix_like_v42(grid):
+online/ui/dash_v128_7_6a_sem_projetor_invertido.py:68:    return fix_like_v42(z_total_m)
+online/ui/dash_v128_7_6b_sem_projetor.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_6b_sem_projetor.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_6b_sem_projetor.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_6_north_left_final.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_6_north_left_final.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_6_north_left_final.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_7_north_left_micro.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_7_north_left_micro.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_7_north_left_micro.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_7_final_operational_ui.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_7_final_operational_ui.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_7_final_operational_ui.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_8_1_final_sem_projetor_fix.py:68:def fix_like_v42(grid):
+online/ui/dash_v128_8_1_final_sem_projetor_fix.py:86:    return fix_like_v42(z_total_m)
+online/ui/dash_v128_8_final_sem_projetor.py:75:def fix_like_v42(grid):
+online/ui/dash_v128_8_final_sem_projetor.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/dash_v128_8_final_sem_projetor.py:100:    z_total_m = fix_like_v42(z_total_m)
+online/ui/dash_v128_final_clean_operational_ui.py:54:def fix_like_v42(grid):
+online/ui/dash_v128_final_clean_operational_ui.py:88:        fix_like_v42(z_terrain_m),
+online/ui/dash_v128_final_clean_operational_ui.py:89:        fix_like_v42(z_total_m),
+online/ui/dash_v128_final_clean_operational_ui.py:90:        fix_like_v42(z_total_cm),
+online/ui/dash_v128_final_operational_table.py:46:def fix_like_v42(grid):
+online/ui/dash_v128_final_operational_table.py:77:        fix_like_v42(z_terrain_m),
+online/ui/dash_v128_final_operational_table.py:78:        fix_like_v42(z_total_m),
+online/ui/dash_v128_final_operational_table.py:79:        fix_like_v42(z_total_cm),
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:66:def fix_like_v42(grid):
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:302:z_terrain_m = fix_like_v42(z_terrain_raw)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:303:z_total_m = fix_like_v42(z_total_m_raw)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:304:z_total_cm = fix_like_v42(z_total_cm_raw)
+online/ui/_baseline_locked/dash_v119_layers_cotas_compare_LOCKED.py:306:valid_mask = fix_like_v42(valid_raw).astype(bool)
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:75:def fix_like_v42(grid):
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:99:    z_terrain_m = fix_like_v42(z_terrain_m)
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:100:    z_total_m = fix_like_v42(z_total_m)

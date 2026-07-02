@@ -1,0 +1,4 @@
+./assets/ipt_mask_rotated_simple.png
+./online/assets/ipt_mask_rotated_grid_aligned.png
+./online/assets/ipt_mask_rotated_grid_aligned_v2.png
+./online/ui/assets/ipt_mask_rotated_simple.png

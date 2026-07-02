@@ -1,0 +1,26 @@
+241:        fig.add_trace(go.Scatter(
+252:        fig.add_trace(go.Scatter(
+265:        fig.add_trace(go.Scatter(
+282:            fig.add_trace(go.Scatter(
+355:def make_fig(layers, step, cell_mode, projector_mode):
+358:    if "base" in layers:
+363:    if "pinos" in layers:
+364:        fig.add_trace(go.Heatmap(
+397:    if "contour_terrain" in layers:
+398:        add_contours(fig, TERRAIN_CONTOURS, "TERRENO", "black", "solid", "cota_terrain" in layers)
+400:    if "contour_total" in layers:
+401:        add_contours(fig, TOTAL_CONTOURS, "TETO", "white", "dash", "cota_total" in layers)
+403:    if "grid" in layers:
+494:                id="layers",
+496:                    {"label": "Base IPT", "value": "base"},
+497:                    {"label": "Pinos / Teto z_total", "value": "pinos"},
+498:                    {"label": "Contour terreno z_terrain_m", "value": "contour_terrain"},
+499:                    {"label": "Cotas terreno", "value": "cota_terrain"},
+500:                    {"label": "Contour teto z_total_m", "value": "contour_total"},
+501:                    {"label": "Cotas teto", "value": "cota_total"},
+502:                    {"label": "Grid 16x8", "value": "grid"},
+705:    Input("layers", "value"),
+710:def update_ui(layers, step, cell_mode, mesa_real):
+721:    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+766:    print("Contours terreno:", len(TERRAIN_CONTOURS))
+767:    print("Contours teto:", len(TOTAL_CONTOURS))

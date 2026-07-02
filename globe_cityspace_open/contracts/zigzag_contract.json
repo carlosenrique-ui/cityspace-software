@@ -1,0 +1,11 @@
+{
+  "contract_name": "ZigZag Contract",
+  "contract_version": "G5.0",
+
+  "rows": 8,
+  "cols": 16,
+
+  "description": "Serpentine scan pattern for physical table",
+
+  "scan_mode": "zigzag"
+}

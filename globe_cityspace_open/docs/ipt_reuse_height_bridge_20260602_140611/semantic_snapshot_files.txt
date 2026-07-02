@@ -1,0 +1,8 @@
+=== products semantic snapshot ===
+offline/products/snapshots/ipt_fase2_semantic/esri_overlay_grid.png
+offline/products/snapshots/ipt_fase2_semantic/grid_building_m.csv
+offline/products/snapshots/ipt_fase2_semantic/grid_pino_cm.csv
+offline/products/snapshots/ipt_fase2_semantic/grid_terrain_m.csv
+offline/products/snapshots/ipt_fase2_semantic/grid_uint8.csv
+offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv
+offline/products/snapshots/ipt_fase2_semantic/metadata.json

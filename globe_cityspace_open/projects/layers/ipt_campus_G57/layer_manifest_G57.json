@@ -1,0 +1,23 @@
+{
+  "contract_type": "layer_products",
+  "contract_version": "G5.7",
+  "description": "Layer Engine MVP generated from Height Contract",
+  "layers": [
+    {
+      "name": "Viridis Height Layer",
+      "source": "gray_value",
+      "purpose": "analytical visual layer for presentation"
+    },
+    {
+      "name": "Pin Preview Layer",
+      "source": "pin_height_cm",
+      "purpose": "virtual table preview without hardware"
+    }
+  ],
+  "products": [
+    "viridis_layer_1cm.png",
+    "pin_preview_1cm.png",
+    "viridis_layer_2cm.png",
+    "pin_preview_2cm.png"
+  ]
+}

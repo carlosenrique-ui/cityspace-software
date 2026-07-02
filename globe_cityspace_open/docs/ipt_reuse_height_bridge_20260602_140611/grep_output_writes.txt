@@ -1,0 +1,68 @@
+=== GREP OUTPUT WRITES ===
+offline/adapters/scientific_to_semantic_adapter.py:88:    grid_uint8 = (pino_cm / PIN_MAX_CM) * UINT8_MAX
+offline/adapters/scientific_to_semantic_adapter.py:89:    grid_uint8 = np.clip(grid_uint8, 0, UINT8_MAX)
+offline/adapters/scientific_to_semantic_adapter.py:90:    grid_uint8 = grid_uint8.astype(np.uint8)
+offline/adapters/scientific_to_semantic_adapter.py:96:    np.savetxt(OUT_DIR / "grid_uint8.csv", grid_uint8, delimiter=";", fmt="%d")
+offline/adapters/scientific_to_semantic_adapter.py:97:    np.savetxt(OUT_DIR / "grid_pino_cm.csv", pino_cm, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:98:    np.savetxt(OUT_DIR / "grid_terrain_m.csv", terrain, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:99:    np.savetxt(OUT_DIR / "grid_building_m.csv", building, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:100:    np.savetxt(OUT_DIR / "grid_z_total_m.csv", z_total, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py.bak:78:    grid_uint8 = (pino_cm / PIN_MAX_CM) * UINT8_MAX
+offline/adapters/scientific_to_semantic_adapter.py.bak:79:    grid_uint8 = np.clip(grid_uint8, 0, UINT8_MAX)
+offline/adapters/scientific_to_semantic_adapter.py.bak:80:    grid_uint8 = grid_uint8.astype(np.uint8)
+offline/adapters/scientific_to_semantic_adapter.py.bak:86:    np.savetxt(OUT_DIR / "grid_uint8.csv", grid_uint8, delimiter=";", fmt="%d")
+offline/adapters/scientific_to_semantic_adapter.py.bak:87:    np.savetxt(OUT_DIR / "grid_pino_cm.csv", pino_cm, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py.bak:88:    np.savetxt(OUT_DIR / "grid_terrain_m.csv", terrain, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py.bak:89:    np.savetxt(OUT_DIR / "grid_building_m.csv", building, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py.bak:90:    np.savetxt(OUT_DIR / "grid_z_total_m.csv", z_total, delimiter=";", fmt="%.3f")
+offline/config/system_paths.py:39:HEIGHT = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/config/system_paths.py:40:HEIGHT_TOTAL = BASE / "offline/data/processed/height/HEIGHT_TOTAL.tif"
+offline/grid_to_pin_height.py:55:    df.to_csv(INPUT, index=False)
+offline/loading/offline_product.py:57:        np.savetxt(grid_path, self.grid, fmt="%d", delimiter=";", newline="\n")
+offline/pipeline/01_build_scientific_grid_BACKUP.py:20:df.to_csv(OUT/"grid_metrics_utm.csv",index=False)
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:7:terrain_path = BASE / "offline/products/grid_terrain_m.csv"
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:8:building_path = BASE / "offline/products/grid_building_m.csv"
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:9:total_path = BASE / "offline/products/grid_z_total_m.csv"
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:46:df.to_csv(out, index=False)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:15:OUT_GEOJSON = BASE / "offline/products/scientific/curvas_grid_terrain_2m_nan_polygon.geojson"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:16:OUT_MASK_NPY = BASE / "offline/products/scientific/grid_terrain_nan_polygon.npy"
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:97:    df_out.to_csv(OUTPUT_CSV, index=False)
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:106:df_out.to_csv("offline/products/final/grid_height.csv", index=False)
+offline/pipeline/04_generate_actuator_plan.py:106:    df_out.to_csv(OUTPUT_CSV, index=False)
+offline/pipeline/05_generate_grid_mask_from_polygon.py:57:df.to_csv(OUT_CSV, index=False)
+offline/pipeline/_99_export_final_mesa.DISABLED.bak:72:pd.DataFrame(grid_cm).to_csv(RUN / "mesa_grid_cm.csv", index=False)
+offline/raster/pipeline/scientific_raster_runner.py:28:HEIGHT = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/raster/pipeline/scientific_raster_runner.py:29:HEIGHT_TOTAL = BASE / "offline/data/processed/height/HEIGHT_TOTAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:164:    height_total = dtm_data + height
+offline/raster/pipeline/scientific_raster_runner.py:171:    with rasterio.open(HEIGHT_TOTAL, "w", **profile) as dst:
+offline/raster/pipeline/scientific_raster_runner.py:172:        dst.write(height_total.astype("float32"), 1)
+offline/raster/pipeline/scientific_raster_runner.py:175:    print("HEIGHT_TOTAL saved:", HEIGHT_TOTAL.name)
+offline/scientific_cell_metrics_utm.py:63:    df.to_csv(OUT, index=False)
+offline/tools/audit_grid_dimensions.py:14:    "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+offline/tools/buildings_height_model.py:15:HEIGHT_RASTER = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/tools/export_z_total_to_excel.py:3:Export grid_z_total_m.csv to Excel
+offline/tools/export_z_total_to_excel.py:22:CSV_PATH = ENGINE_ROOT / "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+offline/tools/export_z_total_to_excel.py:31:OUT_XLSX = OUT_DIR / "grid_z_total_m.xlsx"
+offline/tools/generate_actuator_plan_from_csv.py:6:CSV = BASE / "offline/products/grid_z_total_m.csv"
+offline/tools/recompute_altimetry_ndsm.py:27:OUT_TERRAIN = BASE / "offline/products/grid_terrain_m.csv"
+offline/tools/recompute_altimetry_ndsm.py:28:OUT_BUILDING = BASE / "offline/products/grid_building_m.csv"
+offline/tools/recompute_altimetry_ndsm.py:29:OUT_TOTAL = BASE / "offline/products/grid_z_total_m.csv"
+offline/tools/recompute_altimetry_ndsm.py:75:    grid_terrain = np.full((GRID_ROWS, GRID_COLS), np.nan)
+offline/tools/recompute_altimetry_ndsm.py:76:    grid_building = np.zeros((GRID_ROWS, GRID_COLS))
+offline/tools/recompute_altimetry_ndsm.py:124:            grid_terrain[i, j] = z_terrain
+offline/tools/recompute_altimetry_ndsm.py:125:            grid_building[i, j] = z_building
+offline/tools/recompute_altimetry_ndsm.py:141:    min_terrain = np.nanmin(grid_terrain)
+offline/tools/recompute_altimetry_ndsm.py:144:    grid_terrain -= min_terrain
+offline/tools/recompute_altimetry_ndsm.py:151:    grid_terrain = np.nan_to_num(grid_terrain, nan=0.0)
+offline/tools/recompute_altimetry_ndsm.py:160:    np.savetxt(OUT_TERRAIN, grid_terrain, fmt="%.3f", delimiter=";")
+offline/tools/recompute_altimetry_ndsm.py:161:    np.savetxt(OUT_BUILDING, grid_building, fmt="%.3f", delimiter=";")
+offline/tools/recompute_altimetry_ndsm.py:162:    np.savetxt(OUT_TOTAL, grid_total, fmt="%.3f", delimiter=";")
+offline/validation/validate_grid_z_total_vs_dxf.py:17:- offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv
+offline/validation/validate_grid_z_total_vs_dxf.py:22:- visualization/validation/validacao_grid_z_total_vs_dxf.png
+offline/validation/validate_grid_z_total_vs_dxf.py:41:GRID_Z_TOTAL = (
+offline/validation/validate_grid_z_total_vs_dxf.py:47:    / "grid_z_total_m.csv"
+offline/validation/validate_grid_z_total_vs_dxf.py:63:OUT_IMG = OUT_DIR / "validacao_grid_z_total_vs_dxf.png"
+offline/validation/validate_grid_z_total_vs_dxf.py:80:    log(f"Carregando grid: {GRID_Z_TOTAL}")
+offline/validation/validate_grid_z_total_vs_dxf.py:82:    if not GRID_Z_TOTAL.exists():
+offline/validation/validate_grid_z_total_vs_dxf.py:83:        raise FileNotFoundError(GRID_Z_TOTAL)
+offline/validation/validate_grid_z_total_vs_dxf.py:85:    grid = np.loadtxt(GRID_Z_TOTAL, delimiter=";")

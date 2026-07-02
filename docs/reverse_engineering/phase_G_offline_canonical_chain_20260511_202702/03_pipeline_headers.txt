@@ -1,0 +1,1369 @@
+===== offline/pipeline/01_build_scientific_grid.py =====
+# =========================================
+# IPT-CitySpace – GRID BUILDER (SQUARE FIX)
+# =========================================
+
+import geopandas as gpd
+import numpy as np
+
+ROWS = 8
+COLS = 16
+
+INPUT_GPKG = "offline/products/scientific/grid_8x16_metric.gpkg"
+OUTPUT_DEBUG = "offline/products/scientific/grid_square_debug.txt"
+
+print(">>> LOAD GRID ORIGINAL")
+gdf = gpd.read_file(INPUT_GPKG)
+
+xmin, ymin, xmax, ymax = gdf.total_bounds
+
+dx = xmax - xmin
+dy = ymax - ymin
+
+print("\n>>> ORIGINAL DOMAIN")
+print("DX:", dx)
+print("DY:", dy)
+
+# =========================================
+# 🔥 STEP 1 — CALCULAR CÉLULA QUADRADA
+# =========================================
+cell = max(dx / COLS, dy / ROWS)
+cell_x = cell
+cell_y = cell
+
+cell = max(cell_x, cell_y)
+
+print("\n>>> CELL ORIGINAL")
+print("cell_x:", cell_x)
+print("cell_y:", cell_y)
+
+print("\n>>> CELL FINAL (SQUARE)")
+print("cell:", cell)
+
+# =========================================
+# 🔥 STEP 2 — NOVO DOMÍNIO
+# =========================================
+new_dx = cell * COLS
+new_dy = cell * ROWS
+
+offset_x = (new_dx - dx) / 2
+offset_y = (new_dy - dy) / 2
+
+xmin_new = xmin - offset_x
+xmax_new = xmax + offset_x
+
+ymin_new = ymin - offset_y
+ymax_new = ymax + offset_y
+
+print("\n>>> NEW DOMAIN")
+print("DX:", new_dx)
+print("DY:", new_dy)
+
+print("\n>>> OFFSET")
+print("offset_x:", offset_x)
+print("offset_y:", offset_y)
+
+# =========================================
+# 🔥 STEP 3 — GERAR GRID QUADRADO (COORDENADAS)
+# =========================================
+grid_cells = []
+
+for r in range(ROWS):
+    for c in range(COLS):
+        x0 = xmin_new + c * cell
+        x1 = x0 + cell
+
+        y0 = ymin_new + r * cell
+        y1 = y0 + cell
+
+        grid_cells.append((r, c, x0, y0, x1, y1))
+
+print("\n>>> TOTAL CELLS:", len(grid_cells))
+
+# =========================================
+# DEBUG SAVE
+# =========================================
+with open(OUTPUT_DEBUG, "w") as f:
+    for row in grid_cells:
+        f.write(str(row) + "\n")
+
+print("\n>>> GRID SQUARE GERADO")
+print(">>> PRONTO PARA AMOSTRAGEM DSM/DTM")
+
+===== offline/pipeline/01_build_scientific_grid_BACKUP.py =====
+import numpy as np
+import pandas as pd
+from pathlib import Path
+
+ROWS=8
+COLS=16
+
+OUT=Path("offline/products/scientific")
+OUT.mkdir(parents=True,exist_ok=True)
+
+data=[]
+
+for r in range(ROWS):
+    for c in range(COLS):
+        zt=np.random.uniform(0,30)
+        zb=np.random.uniform(0,20) if np.random.rand()>0.6 else 0
+        data.append([r,c,zt,zb,zt+zb])
+
+df=pd.DataFrame(data,columns=["row","col","z_terrain_m","z_building_m","z_total_m"])
+df.to_csv(OUT/"grid_metrics_utm.csv",index=False)
+
+print("OK CSV")
+
+===== offline/pipeline/02_compute_cell_metrics.py =====
+# ==========================================================
+# PIPELINE STEP 02
+# Compute Cell Metrics
+# ==========================================================
+
+from offline.scientific_cell_metrics_utm import main
+
+if __name__ == "__main__":
+
+    print("\nSTEP 02 – COMPUTE CELL METRICS\n")
+
+    main()
+===== offline/pipeline/02_join_grid_metrics_with_geom.py =====
+import pandas as pd
+import geopandas as gpd
+from pathlib import Path
+
+# =========================================
+# PATHS
+# =========================================
+BASE = Path("offline/products/scientific")
+
+CSV_PATH = BASE / "grid_metrics_utm.csv"
+GPKG_PATH = BASE / "grid_8x16_metric.gpkg"
+OUT_PATH = BASE / "grid_8x16_enriched.gpkg"
+
+# =========================================
+# LOAD
+# =========================================
+print("📥 Loading CSV...")
+df = pd.read_csv(CSV_PATH)
+
+print("📥 Loading GPKG...")
+gdf = gpd.read_file(GPKG_PATH)
+
+print("📊 Shapes:")
+print("CSV:", df.shape)
+print("GPKG:", gdf.shape)
+
+# =========================================
+# CHECK KEYS
+# =========================================
+required_cols = ["row", "col"]
+
+for col in required_cols:
+    if col not in df.columns:
+        raise Exception(f"❌ CSV missing column: {col}")
+    if col not in gdf.columns:
+        raise Exception(f"❌ GPKG missing column: {col}")
+
+# =========================================
+# JOIN
+# =========================================
+print("🔗 Performing JOIN on (row, col)...")
+
+gdf_merged = gdf.merge(df, on=["row", "col"], how="left")
+
+# =========================================
+# VALIDATION
+# =========================================
+nulls = gdf_merged["z_total_m"].isna().sum()
+
+if nulls > 0:
+    print(f"⚠️ WARNING: {nulls} células sem match!")
+else:
+    print("✅ JOIN completo (sem perdas)")
+
+# =========================================
+# EXPORT
+# =========================================
+print("💾 Saving enriched GPKG...")
+gdf_merged.to_file(OUT_PATH, driver="GPKG")
+
+print("✅ OUTPUT:", OUT_PATH)
+
+===== offline/pipeline/02b_build_grid_metrics_from_recompute.py =====
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+BASE = Path(__file__).resolve().parents[2]
+
+terrain_path = BASE / "offline/products/grid_terrain_m.csv"
+building_path = BASE / "offline/products/grid_building_m.csv"
+total_path = BASE / "offline/products/grid_z_total_m.csv"
+
+out = BASE / "offline/products/scientific/grid_metrics_utm.csv"
+
+ROWS = 8
+COLS = 16
+
+print("========================================")
+print("BUILD grid_metrics_utm.csv FROM MATRIX CSVs")
+print("========================================")
+
+def load_matrix(path):
+    print("Lendo:", path)
+    arr = np.loadtxt(path, delimiter=";")
+    print("shape:", arr.shape, "min:", np.nanmin(arr), "max:", np.nanmax(arr))
+    if arr.shape != (ROWS, COLS):
+        raise ValueError(f"Shape inválido em {path}: {arr.shape}, esperado {(ROWS, COLS)}")
+    return arr
+
+terrain = load_matrix(terrain_path)
+building = load_matrix(building_path)
+total = load_matrix(total_path)
+
+records = []
+for r in range(ROWS):
+    for c in range(COLS):
+        records.append({
+            "row": r,
+            "col": c,
+            "z_terrain_m": float(terrain[r, c]),
+            "z_building_m": float(building[r, c]),
+            "z_total_m": float(total[r, c]),
+        })
+
+df = pd.DataFrame(records)
+
+out.parent.mkdir(parents=True, exist_ok=True)
+df.to_csv(out, index=False)
+
+print("========================================")
+print("OUTPUT:", out)
+print("rows:", len(df))
+print(df.head(20).to_string(index=False))
+print("========================================")
+
+===== offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py =====
+from pathlib import Path
+import geopandas as gpd
+from shapely.ops import unary_union
+from shapely.geometry import Polygon, MultiPolygon
+
+BASE = Path(__file__).resolve().parents[2]
+
+INPUT = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+OUTPUT = BASE / "offline/products/scientific/poligono_urbanismo_ipt_outer.gpkg"
+
+gdf = gpd.read_file(INPUT)
+
+print("INPUT:", INPUT)
+print("rows:", len(gdf))
+print("crs:", gdf.crs)
+print("bounds:", gdf.total_bounds)
+print("geom types:", gdf.geometry.geom_type.value_counts().to_dict())
+
+geom = unary_union(gdf.geometry)
+
+# dissolve + limpeza
+geom = geom.buffer(0)
+
+# preencher buracos internos e corredores internos
+# buffer positivo/negativo fecha vazios estreitos sem alterar muito a borda externa
+geom = geom.buffer(35).buffer(-35)
+
+# se ainda for MultiPolygon, mantém a maior parte
+if isinstance(geom, MultiPolygon):
+    geom = max(list(geom.geoms), key=lambda g: g.area)
+
+# remove buracos internos explicitamente
+if isinstance(geom, Polygon):
+    geom = Polygon(geom.exterior)
+
+# suavização leve da borda externa
+geom = geom.simplify(5, preserve_topology=True)
+
+out = gpd.GeoDataFrame(
+    {"id": [1], "name": ["poligono_urbanismo_ipt_outer"]},
+    geometry=[geom],
+    crs=gdf.crs
+)
+
+out.to_file(OUTPUT)
+
+print("========================================")
+print("OUTPUT:", OUTPUT)
+print("rows:", len(out))
+print("bounds:", out.total_bounds)
+print("area:", float(out.geometry.area.iloc[0]))
+print("========================================")
+
+===== offline/pipeline/03_generate_contours_clean.py =====
+import geopandas as gpd
+import numpy as np
+import matplotlib.pyplot as plt
+from shapely.geometry import LineString
+from shapely.affinity import rotate
+from pathlib import Path
+
+BASE = Path('offline/products/scientific')
+IN_PATH = BASE / 'grid_8x16_enriched.gpkg'
+OUT_PATH = BASE / 'grid_contours_clean.gpkg'
+
+print('STEP 03 – CLEAN CONTOURS (UTM FIX)')
+
+# carregar
+gdf = gpd.read_file(IN_PATH, engine='pyogrio')
+
+# 🔥 filtro urbano
+gdf = gdf[(gdf['z_terrain_m'] > 0) | (gdf['z_building_m'] > 0)]
+
+# ordenar
+gdf = gdf.sort_values(['row','col'])
+
+rows = int(gdf['row'].max() + 1)
+cols = int(gdf['col'].max() + 1)
+
+# matriz Z
+Z = np.full((rows, cols), np.nan)
+
+for _, r in gdf.iterrows():
+    Z[int(r['row']), int(r['col'])] = r['z_terrain_m']
+
+print('Z min/max:', np.nanmin(Z), np.nanmax(Z))
+
+# 🔥 coordenadas UTM reais (CENTRO DAS CÉLULAS)
+xs = gdf.groupby('col')['geometry'].first().centroid.x.sort_index().values
+ys = gdf.groupby('row')['geometry'].first().centroid.y.sort_index().values
+
+X, Y = np.meshgrid(xs, ys)
+
+# níveis
+levels = np.linspace(np.nanmin(Z), np.nanmax(Z), 10)
+
+# contours
+cs = plt.contour(X, Y, Z, levels=levels)
+
+lines = []
+values = []
+
+for i, level in enumerate(cs.levels):
+    segs = cs.allsegs[i]
+    for seg in segs:
+        if len(seg) > 1:
+            lines.append(LineString(seg))
+            values.append(level)
+
+# 🔥 CRS correto
+contours = gpd.GeoDataFrame({
+    'elevation': values,
+    'geometry': lines
+}, crs=gdf.crs)
+
+# 🔥 máscara urbana (agora FUNCIONA)
+mask = gdf.geometry.union_all()
+contours = contours[contours.intersects(mask)]
+
+# rotação opcional
+angle = 0
+contours['geometry'] = contours['geometry'].apply(lambda g: rotate(g, angle, origin='center'))
+
+# salvar
+contours.to_file(OUT_PATH, driver='GPKG', engine='pyogrio')
+
+print('Contours FINAL:', OUT_PATH)
+
+===== offline/pipeline/03_scientific_to_semantic.py =====
+# ==========================================================
+# PIPELINE STEP 03
+# Scientific → Semantic Adapter
+# ==========================================================
+
+from offline.adapters.scientific_to_semantic_adapter import main
+
+if __name__ == "__main__":
+
+    print("\nSTEP 03 – SCIENTIFIC TO SEMANTIC GRID\n")
+
+    main()
+===== offline/pipeline/03b_generate_contours_clean_UI.py =====
+# =========================================
+# IPT-CITYSPACE — CURVAS DTM LIMPAS PARA UI
+# =========================================
+
+from pathlib import Path
+import geopandas as gpd
+
+# =========================================
+# PATHS
+# =========================================
+
+BASE = Path(__file__).resolve().parents[2]
+PROJECT = BASE.parent
+
+INPUT = PROJECT / "offline/products/terrain/curvas_nivel_terreno_suavizadas_UI.geojson"
+OUTPUT = BASE / "offline/products/scientific/curvas_ui_clean_2m.gpkg"
+
+# =========================================
+# LOAD
+# =========================================
+
+gdf = gpd.read_file(INPUT)
+
+print("INPUT:", INPUT)
+print("rows original:", len(gdf))
+
+# =========================================
+# 1) REMOVER COTA ZERO
+# =========================================
+
+gdf = gdf[gdf["elevation"] > 0]
+
+# =========================================
+# 2) INTERVALO DE 2m
+# =========================================
+
+gdf = gdf[gdf["elevation"] % 2 == 0]
+
+print("rows após filtro 2m:", len(gdf))
+
+# =========================================
+# 3) CLIP ESPACIAL (REMOVE LIXO LATERAL)
+# =========================================
+
+minx, miny, maxx, maxy = gdf.total_bounds
+
+# reduz bounding box em 5% (remove bordas ruins)
+dx = (maxx - minx) * 0.05
+dy = (maxy - miny) * 0.05
+
+from shapely.geometry import box
+
+clip_geom = box(
+    minx + dx,
+    miny + dy,
+    maxx - dx,
+    maxy - dy
+)
+
+clip_gdf = gpd.GeoDataFrame(
+    geometry=[clip_geom],
+    crs=gdf.crs
+)
+
+gdf = gpd.clip(gdf, clip_gdf)
+
+print("rows após clip:", len(gdf))
+
+# =========================================
+# 4) SUAVIZAÇÃO (SIMPLIFY)
+# =========================================
+
+gdf["geometry"] = gdf.geometry.simplify(
+    tolerance=0.5,  # ajuste fino
+    preserve_topology=True
+)
+
+print("rows final:", len(gdf))
+
+# =========================================
+# SAVE
+# =========================================
+
+OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+gdf.to_file(OUTPUT)
+
+print("========================================")
+print("OUTPUT:", OUTPUT)
+print("========================================")
+
+===== offline/pipeline/03c_generate_contours_from_DTM_TRUE.py =====
+# =========================================
+# IPT-CITYSPACE — CONTOURS DIRETO DO DTM REAL
+# =========================================
+
+from pathlib import Path
+import geopandas as gpd
+import subprocess
+
+# =========================================
+# PATHS
+# =========================================
+
+BASE = Path(__file__).resolve().parents[2]
+
+DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+
+OUTPUT = BASE / "offline/products/scientific/curvas_dtm_true_2m.gpkg"
+
+# =========================================
+# CHECK
+# =========================================
+
+if not DTM.exists():
+    raise FileNotFoundError(f"DTM não encontrado: {DTM}")
+
+print("DTM:", DTM)
+
+# =========================================
+# GDAL CONTOUR
+# =========================================
+
+cmd = [
+    "gdal_contour",
+    "-i", "2",
+    "-a", "elevation",
+    str(DTM),
+    str(OUTPUT)
+]
+
+print("Executando:", " ".join(cmd))
+subprocess.run(cmd, check=True)
+
+# =========================================
+# LOAD RESULT
+# =========================================
+
+gdf = gpd.read_file(OUTPUT)
+
+print("rows bruto:", len(gdf))
+
+# =========================================
+# REMOVER COTA ZERO
+# =========================================
+
+gdf = gdf[gdf["elevation"] > 0]
+
+# =========================================
+# SUAVIZAÇÃO LEVE
+# =========================================
+
+gdf["geometry"] = gdf.geometry.simplify(
+    tolerance=0.3,
+    preserve_topology=True
+)
+
+print("rows final:", len(gdf))
+
+# =========================================
+# SAVE FINAL
+# =========================================
+
+gdf.to_file(OUTPUT)
+
+print("========================================")
+print("OUTPUT:", OUTPUT)
+print("========================================")
+
+===== offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py =====
+from pathlib import Path
+import geopandas as gpd
+from shapely.affinity import rotate, translate, scale
+from shapely.geometry import box
+
+# =========================================
+# PATHS
+# =========================================
+
+BASE = Path(__file__).resolve().parents[2]
+
+INPUT = BASE / "offline/products/scientific/curvas_dtm_true_2m.gpkg"
+OUTPUT = BASE / "offline/products/scientific/curvas_dtm_rotated_scientific.gpkg"
+
+# =========================================
+# LOAD
+# =========================================
+
+gdf = gpd.read_file(INPUT, layer="curvas_dtm_true_2m")
+
+print("INPUT:", INPUT)
+print("rows:", len(gdf))
+
+# =========================================
+# ROTATION PARAM
+# =========================================
+
+ROTATION_DEG = 154.63
+
+minx, miny, maxx, maxy = gdf.total_bounds
+cx = (minx + maxx) / 2
+cy = (miny + maxy) / 2
+
+print("Centro:", cx, cy)
+
+# =========================================
+# 1) ROTATE
+# =========================================
+
+gdf["geometry"] = gdf.geometry.apply(
+    lambda g: rotate(g, ROTATION_DEG, origin=(cx, cy))
+)
+
+# =========================================
+# 2) TRANSLATE TO ORIGIN
+# =========================================
+
+minx, miny, maxx, maxy = gdf.total_bounds
+
+gdf["geometry"] = gdf.geometry.apply(
+    lambda g: translate(g, xoff=-minx, yoff=-miny)
+)
+
+# =========================================
+# 3) RECALCULAR BOUNDS (CRÍTICO)
+# =========================================
+
+minx, miny, maxx, maxy = gdf.total_bounds
+
+print("Bounds pós translate:", minx, miny, maxx, maxy)
+
+# =========================================
+# 4) FLIP Y CORRETO
+# =========================================
+
+gdf["geometry"] = gdf.geometry.apply(
+    lambda g: scale(g, xfact=1, yfact=-1, origin=(0, maxy))
+)
+
+# =========================================
+# 5) CLIP SUAVE (OPCIONAL)
+# =========================================
+
+margin_x = (maxx - minx) * 0.02
+margin_y = (maxy - miny) * 0.02
+
+clip_geom = box(
+    minx + margin_x,
+    miny + margin_y,
+    maxx - margin_x,
+    maxy - margin_y
+)
+
+clip_gdf = gpd.GeoDataFrame(geometry=[clip_geom], crs=gdf.crs)
+
+gdf = gpd.clip(gdf, clip_gdf)
+
+print("rows após clean:", len(gdf))
+
+# =========================================
+# SAVE
+# =========================================
+
+gdf.to_file(OUTPUT)
+
+print("========================================")
+print("OUTPUT:", OUTPUT)
+print("========================================")
+
+===== offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py =====
+from pathlib import Path
+import json
+import numpy as np
+import pandas as pd
+import geopandas as gpd
+from shapely.geometry import Point, LineString, mapping
+from scipy.ndimage import zoom, gaussian_filter
+import matplotlib.pyplot as plt
+
+BASE = Path(__file__).resolve().parents[2]
+
+GRID_PATH = BASE / "offline/products/scientific/grid_metrics_utm.csv"
+POLYGON_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+
+OUT_GEOJSON = BASE / "offline/products/scientific/curvas_grid_terrain_2m_nan_polygon.geojson"
+OUT_MASK_NPY = BASE / "offline/products/scientific/grid_terrain_nan_polygon.npy"
+
+ROWS = 8
+COLS = 16
+UPSCALE = 30
+INTERVAL_M = 2.0
+SMOOTH_SIGMA = 1.0
+
+print("========================================")
+print("GRID TERRAIN CONTOURS — FIX")
+print("========================================")
+
+df = pd.read_csv(GRID_PATH)
+
+grid = (
+    df.pivot(index="row", columns="col", values="z_terrain_m")
+    .reindex(index=range(ROWS), columns=range(COLS))
+    .values
+    .astype(float)
+)
+
+poly = gpd.read_file(POLYGON_PATH).dissolve().geometry.iloc[0]
+minx, miny, maxx, maxy = gpd.read_file(POLYGON_PATH).total_bounds
+
+# =========================================
+# MÁSCARA NO GRID
+# =========================================
+
+mask = np.zeros((ROWS, COLS), dtype=bool)
+
+for r in range(ROWS):
+    for c in range(COLS):
+        x = minx + ((c + 0.5) / COLS) * (maxx - minx)
+        y = maxy - ((r + 0.5) / ROWS) * (maxy - miny)
+        mask[r, c] = poly.contains(Point(x, y))
+
+print("Dentro polígono:", mask.sum(), "/", ROWS * COLS)
+
+# =========================================
+# INTERPOLAÇÃO SEM NAN
+# =========================================
+
+fine = zoom(grid, UPSCALE, order=3)
+fine = gaussian_filter(fine, sigma=SMOOTH_SIGMA)
+
+# =========================================
+# GERAR MÁSCARA FINA DIRETO NO POLIGONO
+# evita cortes quadriculados do grid 8x16
+# =========================================
+
+ny, nx = fine.shape
+mask_fine = np.zeros((ny, nx), dtype=bool)
+
+for rr in range(ny):
+    for cc in range(nx):
+        gx = cc / (nx - 1) * (COLS - 1)
+        gy = rr / (ny - 1) * (ROWS - 1)
+
+        xw = minx + ((gx + 0.5) / COLS) * (maxx - minx)
+        yw = maxy - ((gy + 0.5) / ROWS) * (maxy - miny)
+
+        mask_fine[rr, cc] = poly.contains(Point(xw, yw))
+
+# aplicar NaN depois
+fine[~mask_fine] = np.nan
+
+np.save(OUT_MASK_NPY, fine)
+
+# =========================================
+# CONTOURS
+# =========================================
+
+ny, nx = fine.shape
+x = np.linspace(0, COLS - 1, nx)
+y = np.linspace(0, ROWS - 1, ny)
+X, Y = np.meshgrid(x, y)
+
+zmin = np.nanmin(fine)
+zmax = np.nanmax(fine)
+
+levels = np.arange(
+    np.ceil(zmin / INTERVAL_M) * INTERVAL_M,
+    zmax + INTERVAL_M,
+    INTERVAL_M
+)
+
+fig, ax = plt.subplots()
+cs = ax.contour(X, Y, fine, levels=levels)
+plt.close(fig)
+
+features = []
+
+for level, segments in zip(cs.levels, cs.allsegs):
+    for coords in segments:
+        if len(coords) < 2:
+            continue
+
+        line = LineString(coords).simplify(0.02, preserve_topology=True)
+
+        if not line.is_empty:
+            features.append({
+                "type": "Feature",
+                "properties": {"elevation": float(level)},
+                "geometry": mapping(line),
+            })
+
+geojson = {"type": "FeatureCollection", "features": features}
+
+OUT_GEOJSON.write_text(json.dumps(geojson))
+
+print("========================================")
+print("OUTPUT:", OUT_GEOJSON)
+print("features:", len(features))
+print("========================================")
+
+===== offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py =====
+from pathlib import Path
+import json
+import numpy as np
+import geopandas as gpd
+from shapely.geometry import Point, LineString, Polygon, MultiPolygon, mapping
+from shapely.ops import unary_union
+from scipy.interpolate import RBFInterpolator
+from scipy.ndimage import gaussian_filter
+import matplotlib.pyplot as plt
+
+BASE = Path(__file__).resolve().parents[2]
+
+GRID_GPKG = BASE / "offline/products/scientific/grid_8x16_enriched.gpkg"
+POLY_SRC = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+
+OUT_POLY = BASE / "offline/products/scientific/poligono_urbanismo_ipt_outer_real.gpkg"
+OUT_GEOJSON = BASE / "offline/products/scientific/curvas_rbf_terrain_2m_real.geojson"
+OUT_SURFACE = BASE / "offline/products/scientific/rbf_terrain_surface_real.npz"
+
+INTERVAL_M = 2.0
+NX = 700
+NY = 360
+SMOOTH_SIGMA = 1.0
+POLYGON_SHRINK_M = 0.0
+
+print("========================================")
+print("V110 REAL — RBF em cx/cy UTM")
+print("========================================")
+
+grid = gpd.read_file(GRID_GPKG)
+poly_gdf = gpd.read_file(POLY_SRC)
+
+geom = unary_union(poly_gdf.geometry).buffer(0)
+if isinstance(geom, MultiPolygon):
+    geom = max(list(geom.geoms), key=lambda g: g.area)
+if isinstance(geom, Polygon):
+    geom = Polygon(geom.exterior)
+
+if POLYGON_SHRINK_M != 0:
+    shrunk = geom.buffer(-POLYGON_SHRINK_M)
+    if not shrunk.is_empty:
+        geom = shrunk.buffer(0)
+
+poly = gpd.GeoDataFrame(
+    {"id": [1], "name": ["poligono_urbanismo_ipt_outer_real"]},
+    geometry=[geom],
+    crs=poly_gdf.crs,
+)
+poly.to_file(OUT_POLY, driver="GPKG")
+
+if grid.crs != poly.crs:
+    grid = grid.to_crs(poly.crs)
+
+points = []
+values = []
+
+for _, r in grid.iterrows():
+    pt = Point(float(r["cx"]), float(r["cy"]))
+    z = float(r["z_terrain_m"])
+    ztot = float(r["z_total_m"])
+
+    if np.isfinite(z) and z > 0:
+        points.append([pt.x, pt.y])
+        values.append(z)
+
+points = np.asarray(points, dtype=float)
+values = np.asarray(values, dtype=float)
+
+print("Amostras válidas:", len(points))
+print("z min/max:", float(values.min()), float(values.max()))
+print("Polígono bounds:", poly.total_bounds)
+
+rbf = RBFInterpolator(
+    points,
+    values,
+    kernel="thin_plate_spline",
+    smoothing=1.0,
+)
+
+minx, miny, maxx, maxy = poly.total_bounds
+x = np.linspace(minx, maxx, NX)
+y = np.linspace(miny, maxy, NY)
+X, Y = np.meshgrid(x, y)
+
+query = np.column_stack([X.ravel(), Y.ravel()])
+Z = rbf(query).reshape(NY, NX)
+Z = gaussian_filter(Z, sigma=SMOOTH_SIGMA)
+Z[Z < 0] = 0
+
+mask = np.zeros((NY, NX), dtype=bool)
+for rr in range(NY):
+    for cc in range(NX):
+        mask[rr, cc] = geom.contains(Point(X[rr, cc], Y[rr, cc]))
+
+Z_masked = Z.copy()
+Z_masked[~mask] = np.nan
+
+np.savez_compressed(OUT_SURFACE, x=x, y=y, z=Z_masked)
+
+zmin = np.nanmin(Z_masked)
+zmax = np.nanmax(Z_masked)
+levels = np.arange(np.ceil(zmin / INTERVAL_M) * INTERVAL_M, zmax + INTERVAL_M, INTERVAL_M)
+
+print("Surface min/max:", float(zmin), float(zmax))
+print("Levels:", levels.tolist())
+
+fig, ax = plt.subplots()
+cs = ax.contour(X, Y, Z, levels=levels)
+plt.close(fig)
+
+features = []
+
+for level, segments in zip(cs.levels, cs.allsegs):
+    for coords in segments:
+        if len(coords) < 8:
+            continue
+
+        line = LineString(coords).simplify(1.0, preserve_topology=True)
+
+        if line.is_empty:
+            continue
+
+        # mantém apenas linhas cujo centro cai no polígono externo
+        if not geom.contains(line.interpolate(0.5, normalized=True)):
+            continue
+
+        features.append({
+            "type": "Feature",
+            "properties": {
+                "elevation": float(level),
+                "source": "RBF_REAL_CX_CY_Z_TERRAIN",
+            },
+            "geometry": mapping(line),
+        })
+
+geojson = {"type": "FeatureCollection", "features": features}
+OUT_GEOJSON.write_text(json.dumps(geojson), encoding="utf-8")
+
+print("========================================")
+print("OUT_POLY:", OUT_POLY)
+print("OUT_GEOJSON:", OUT_GEOJSON)
+print("OUT_SURFACE:", OUT_SURFACE)
+print("features:", len(features))
+print("========================================")
+
+===== offline/pipeline/04_generate_actuator_plan.py =====
+from __future__ import annotations
+
+import os
+from pathlib import Path
+
+import geopandas as gpd
+import numpy as np
+import pandas as pd
+from shapely.geometry import Point
+
+
+ENGINE_ROOT = Path(".")
+INPUT_GPKG = ENGINE_ROOT / "offline/products/scientific/grid_8x16_enriched.gpkg"
+MASK_GPKG = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+OUTPUT_DIR = ENGINE_ROOT / "offline/products/final"
+OUTPUT_CSV = OUTPUT_DIR / "grid_height.csv"
+
+PIN_MAX_CM = 10.0
+
+
+def load_inputs() -> tuple[pd.DataFrame, gpd.GeoDataFrame]:
+    if not INPUT_GPKG.exists():
+        raise FileNotFoundError(f"GPKG enriquecido não encontrado: {INPUT_GPKG}")
+
+    if not MASK_GPKG.exists():
+        raise FileNotFoundError(f"Máscara/envelope não encontrado: {MASK_GPKG}")
+
+    gdf = gpd.read_file(INPUT_GPKG)
+    mask = gpd.read_file(MASK_GPKG)
+
+    df = pd.DataFrame(gdf.drop(columns="geometry"))
+
+    # Padronização espacial:
+    # o GPKG enriquecido atual traz cx, cy.
+    if "cx" in df.columns and "cy" in df.columns:
+        df["x"] = df["cx"].astype(float)
+        df["y"] = df["cy"].astype(float)
+    else:
+        # fallback: extrai da geometria
+        df["x"] = gdf.geometry.x.astype(float)
+        df["y"] = gdf.geometry.y.astype(float)
+
+    return df, mask
+
+
+def validate_columns(df: pd.DataFrame) -> None:
+    required = ["row", "col", "x", "y", "z_terrain_m", "z_building_m", "z_total_m"]
+    missing = [c for c in required if c not in df.columns]
+    if missing:
+        raise ValueError(f"Colunas obrigatórias ausentes no GPKG enriquecido: {missing}")
+
+
+def build_actuator_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    df_out = df.copy()
+
+    z_total = df_out["z_total_m"].astype(float).to_numpy()
+    z_terrain = df_out["z_terrain_m"].astype(float).to_numpy()
+    z_building = df_out["z_building_m"].astype(float).to_numpy()
+
+    zmax = float(np.nanmax(z_total))
+    if zmax <= 0:
+        raise ValueError(f"z_total_m inválido para normalização: zmax={zmax}")
+
+    z_cm = (z_total / zmax) * PIN_MAX_CM
+
+    ratio_terrain = np.divide(
+        z_terrain,
+        z_total,
+        out=np.zeros_like(z_total, dtype=float),
+        where=z_total != 0,
+    )
+    ratio_building = np.divide(
+        z_building,
+        z_total,
+        out=np.zeros_like(z_total, dtype=float),
+        where=z_total != 0,
+    )
+
+    df_out["z_cm"] = z_cm
+    df_out["z_total_cm"] = z_cm.copy()
+    df_out["z_terrain_cm"] = z_cm * ratio_terrain
+    df_out["z_building_cm"] = z_cm * ratio_building
+
+    return df_out
+
+
+def apply_mask(df_out: pd.DataFrame, mask: gpd.GeoDataFrame) -> pd.DataFrame:
+    try:
+        mask_union = mask.union_all()
+    except Exception:
+        mask_union = mask.unary_union
+
+    def mask_value(row: pd.Series) -> float:
+        p = Point(float(row["x"]), float(row["y"]))
+        return 0.0 if not mask_union.contains(p) else float(row["z_cm"])
+
+    df_out = df_out.copy()
+    df_out["z_cm"] = df_out.apply(mask_value, axis=1)
+    df_out["z_total_cm"] = df_out["z_cm"]
+
+    return df_out
+
+
+def save_output(df_out: pd.DataFrame) -> None:
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    df_out.to_csv(OUTPUT_CSV, index=False)
+    print(">>> FINAL CSV GERADO")
+    print(f">>> OUTPUT: {OUTPUT_CSV}")
+
+
+def main() -> None:
+    print("\nSTEP 04 – GENERATE ACTUATOR PLAN\n")
+
+    df, mask = load_inputs()
+    validate_columns(df)
+
+    print(f"INPUT GPKG: {INPUT_GPKG}")
+    print(f"MASK GPKG: {MASK_GPKG}")
+    print(f"ROWS: {len(df)}")
+    print(f"USING SPATIAL COLS: x, y (derived from cx,cy or geometry)")
+
+    df_out = build_actuator_dataframe(df)
+    df_out = apply_mask(df_out, mask)
+
+    print(f"z_total_m max: {float(df_out['z_total_m'].max())}")
+    print(f"z_cm max: {float(df_out['z_cm'].max())}")
+
+    save_output(df_out)
+
+
+if __name__ == "__main__":
+    main()
+
+===== offline/pipeline/04b_generate_actuator_geospatial.py =====
+import geopandas as gpd
+from pathlib import Path
+
+BASE = Path('offline/products/scientific')
+
+IN_PATH = BASE / 'grid_8x16_enriched.gpkg'
+OUT_PATH = BASE / 'grid_8x16_actuators.gpkg'
+
+print('STEP 04B – ACTUATOR GEOSPATIAL')
+
+gdf = gpd.read_file(IN_PATH, engine='pyogrio')
+
+print('Loaded:', gdf.shape)
+
+gdf['zone_type'] = gdf['z_total_m'].apply(
+    lambda z: 'HIGH_RISE' if z > 30 else ('MID_RISE' if z > 15 else 'LOW_RISE')
+)
+
+gdf['actuator_intensity'] = gdf['z_total_m'] / 10
+
+gdf['risk_level'] = gdf['z_building_m'].apply(
+    lambda z: 'HIGH' if z > 10 else ('MEDIUM' if z > 5 else 'LOW')
+)
+
+gdf.to_file(OUT_PATH, driver='GPKG', engine='pyogrio')
+
+print('OUTPUT:', OUT_PATH)
+
+===== offline/pipeline/05_apply_rotation_to_contours.py =====
+from offline.config.system_parameters import ROTATION_DEG
+import geopandas as gpd
+from shapely.affinity import rotate, translate
+from pathlib import Path
+
+print("========================================")
+print("STEP 05 – APPLY SCIENTIFIC ROTATION")
+print("========================================")
+
+BASE = Path("offline/products/scientific")
+
+IN_PATH  = BASE / "grid_contours_clean.gpkg"
+OUT_PATH = BASE / "grid_contours_rotated_scientific.gpkg"
+
+ANGLE = ROTATION_DEG
+
+if not IN_PATH.exists():
+    raise Exception(f"❌ Input não encontrado: {IN_PATH}")
+
+gdf = gpd.read_file(IN_PATH, engine="pyogrio")
+
+print("Loaded:", gdf.shape)
+
+# =========================================
+# CENTRO GLOBAL (robusto)
+# =========================================
+centroid = gdf.geometry.union_all().centroid
+cx, cy = centroid.x, centroid.y
+
+print("Centro:", cx, cy)
+print("Rotação:", ANGLE)
+
+# =========================================
+# ROTATION
+# =========================================
+gdf["geometry"] = gdf.geometry.apply(
+    lambda g: rotate(g, ANGLE, origin=(cx, cy), use_radians=False)
+)
+
+# =========================================
+# TRANSLATE → ORIGEM (0,0)
+# =========================================
+minx, miny, maxx, maxy = gdf.total_bounds
+
+print("Bounds antes:", minx, miny, maxx, maxy)
+
+gdf["geometry"] = gdf.geometry.apply(
+    lambda g: translate(g, xoff=-minx, yoff=-miny)
+)
+
+# =========================================
+# VALIDATION
+# =========================================
+minx2, miny2, maxx2, maxy2 = gdf.total_bounds
+
+print("Bounds depois:", minx2, miny2, maxx2, maxy2)
+
+# =========================================
+# SAVE
+# =========================================
+gdf.to_file(OUT_PATH, driver="GPKG", engine="pyogrio")
+
+print("========================================")
+print("✅ OUTPUT:", OUT_PATH)
+print("========================================")
+
+
+===== offline/pipeline/05_generate_grid_mask_from_polygon.py =====
+from pathlib import Path
+import pandas as pd
+import geopandas as gpd
+
+BASE = Path(__file__).resolve().parents[2]
+
+GRID_GPKG = BASE / "offline/products/scientific/grid_8x16_enriched.gpkg"
+GRID_CSV = BASE / "offline/products/scientific/grid_metrics_utm.csv"
+
+POLYGON_CANDIDATES = [
+    BASE / "offline/products/scientific/poligono_urbanismo_ipt_outer_real.gpkg",
+    BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg",
+    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg",
+    BASE / "offline/products/scientific/urban_envelope_scientific.gpkg",
+]
+
+OUT_GPKG = BASE / "offline/products/scientific/grid_8x16_enriched_masked.gpkg"
+OUT_CSV = BASE / "offline/products/scientific/grid_metrics_utm_masked.csv"
+
+print("========================================")
+print("05 — GRID MASK FROM POLÍGONO")
+print("========================================")
+
+polygon_path = next((p for p in POLYGON_CANDIDATES if p.exists()), None)
+if polygon_path is None:
+    print("Candidatos não encontrados:")
+    for p in POLYGON_CANDIDATES:
+        print(" -", p)
+    raise FileNotFoundError("Polígono urbanístico não encontrado.")
+
+grid = gpd.read_file(GRID_GPKG)
+poly = gpd.read_file(polygon_path)
+
+if grid.crs != poly.crs:
+    poly = poly.to_crs(grid.crs)
+
+polygon_union = poly.geometry.union_all()
+
+grid["cell_area"] = grid.geometry.area
+grid["intersection_area"] = grid.geometry.intersection(polygon_union).area
+grid["inside_ratio"] = grid["intersection_area"] / grid["cell_area"]
+grid["is_inside_polygon"] = grid["inside_ratio"] >= 0.20
+
+print("POLYGON:", polygon_path)
+print("Total células:", len(grid))
+print("Dentro:", int(grid["is_inside_polygon"].sum()))
+print("Fora:", int((~grid["is_inside_polygon"]).sum()))
+
+grid.to_file(OUT_GPKG, driver="GPKG")
+
+df = pd.read_csv(GRID_CSV)
+mask_cols = grid[["row", "col", "inside_ratio", "is_inside_polygon"]].copy()
+df = df.merge(mask_cols, on=["row", "col"], how="left")
+df["inside_ratio"] = df["inside_ratio"].fillna(0.0)
+df["is_inside_polygon"] = df["is_inside_polygon"].fillna(False)
+
+df.to_csv(OUT_CSV, index=False)
+
+print("OUTPUT_CSV:", OUT_CSV)
+print("OUTPUT_GPKG:", OUT_GPKG)
+print("========================================")
+
+===== offline/pipeline/06_generate_esri_overlay_grid.py =====
+from pathlib import Path
+import requests
+import geopandas as gpd
+from pyproj import Transformer
+
+BASE = Path(__file__).resolve().parents[2]
+
+GRID = BASE / "offline/products/scientific/grid_8x16_enriched.gpkg"
+OUT = BASE / "offline/products/snapshots/ipt_fase2_semantic/esri_overlay_grid.png"
+
+OUT.parent.mkdir(parents=True, exist_ok=True)
+
+gdf = gpd.read_file(GRID)
+
+xmin, ymin, xmax, ymax = gdf.total_bounds
+
+# buffer leve
+dx = xmax - xmin
+dy = ymax - ymin
+xmin -= dx * 0.10
+xmax += dx * 0.10
+ymin -= dy * 0.10
+ymax += dy * 0.10
+
+# =========================================
+# CONVERSÃO UTM → WGS84
+# =========================================
+
+transformer = Transformer.from_crs("EPSG:31983", "EPSG:4326", always_xy=True)
+
+lon_min, lat_min = transformer.transform(xmin, ymin)
+lon_max, lat_max = transformer.transform(xmax, ymax)
+
+# =========================================
+# REQUEST ESRI (WGS84)
+# =========================================
+
+url = "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export"
+
+params = {
+    "bbox": f"{lon_min},{lat_min},{lon_max},{lat_max}",
+    "bboxSR": "4326",
+    "imageSR": "4326",
+    "size": "1600,900",
+    "format": "png",
+    "transparent": "false",
+    "f": "image",
+}
+
+print("========================================")
+print("ESRI DOWNLOAD (WGS84)")
+print("OUT:", OUT)
+print("BBOX:", params["bbox"])
+print("========================================")
+
+r = requests.get(url, params=params, timeout=60)
+r.raise_for_status()
+
+OUT.write_bytes(r.content)
+
+print("OK:", OUT)
+print("bytes:", OUT.stat().st_size)
+
+===== offline/pipeline/06b_esri_to_grid_simple.py =====
+from pathlib import Path
+import numpy as np
+import geopandas as gpd
+import requests
+from PIL import Image
+from io import BytesIO
+from pyproj import Transformer
+
+BASE = Path(__file__).resolve().parents[2]
+
+GRID = BASE / "offline/products/scientific/grid_8x16_enriched.gpkg"
+OUT = BASE / "offline/products/snapshots/ipt_fase2_semantic/esri_overlay_grid.png"
+
+ROWS = 8
+COLS = 16
+
+print("========================================")
+print("ESRI → GRID (VERSÃO FUNCIONAL)")
+print("========================================")
+
+gdf = gpd.read_file(GRID)
+
+# =========================================
+# LIMITES UTM
+# =========================================
+
+xmin, ymin, xmax, ymax = gdf.total_bounds
+
+# buffer
+dx = xmax - xmin
+dy = ymax - ymin
+xmin -= dx * 0.15
+xmax += dx * 0.15
+ymin -= dy * 0.15
+ymax += dy * 0.15
+
+# =========================================
+# UTM → WEB MERCATOR (ESRI)
+# =========================================
+
+transformer = Transformer.from_crs("EPSG:31983", "EPSG:3857", always_xy=True)
+
+mxmin, mymin = transformer.transform(xmin, ymin)
+mxmax, mymax = transformer.transform(xmax, ymax)
+
+# =========================================
+# DOWNLOAD ESRI
+# =========================================
+
+url = "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export"
+
+params = {
+    "bbox": f"{mxmin},{mymin},{mxmax},{mymax}",
+    "bboxSR": "3857",
+    "imageSR": "3857",
+    "size": "2000,1000",
+    "format": "png",
+    "f": "image"
+}
+
+r = requests.get(url, params=params, timeout=60)
+r.raise_for_status()
+
+img = Image.open(BytesIO(r.content)).convert("RGB")
+
+# =========================================
+# REDIMENSIONAR PARA GRID (SIMPLES)
+# =========================================
+
+img_resized = img.resize((COLS * 100, ROWS * 100), Image.BILINEAR)
+
+OUT.parent.mkdir(parents=True, exist_ok=True)
+img_resized.save(OUT)
+
+print("OK:", OUT)
+

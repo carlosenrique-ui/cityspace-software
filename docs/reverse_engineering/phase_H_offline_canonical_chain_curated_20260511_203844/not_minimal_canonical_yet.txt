@@ -1,0 +1,13 @@
+offline/pipeline/01_build_scientific_grid_BACKUP.py
+offline/pipeline/02b_build_grid_metrics_from_recompute.py
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py
+offline/pipeline/03b_generate_contours_clean_UI.py
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py
+offline/pipeline/04b_generate_actuator_geospatial.py
+offline/pipeline/05_apply_rotation_to_contours.py
+offline/pipeline/05_generate_grid_mask_from_polygon.py
+offline/pipeline/06_generate_esri_overlay_grid.py
+offline/pipeline/06b_esri_to_grid_simple.py

@@ -1,0 +1,38 @@
+offline/adapters/scientific_to_semantic_adapter.py:        "source": "scientific_pipeline_utm",
+offline/data/output/maquete/maquete_log.txt:[08:01:38] Iniciando pipeline de geração de BMPs da maquete.
+offline/data/output/maquete/maquete_log.txt:[08:09:31] Iniciando pipeline de geração de BMPs da maquete.
+offline/data/output/maquete/maquete_log.txt:[08:13:04] Iniciando pipeline de geração de BMPs da maquete.
+offline/data/output/maquete/maquete_log.txt:[08:17:58] Iniciando pipeline de geração de BMPs da maquete.
+offline/data/output/maquete/maquete_log.txt:[08:26:09] Iniciando pipeline de geração de BMPs da maquete.
+offline/data/output/maquete/pipeline_maquete.log:Iniciando pipeline da maquete (versão final)
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] Iniciando pipeline da maquete baseado em MÁSCARA.
+offline/data/pipeline_log.txt:[LOG] Inicializando pipeline COMPLETO IPT-CitySpace…
+offline/data/pipeline_log_gpkg.txt:[LOG] Inicializando pipeline COMPLETO IPT-CitySpace (versão GPKG/máscara)…
+offline/data/pipeline_log_gpkg.txt:[LOG] ===== Etapa 9/9: Finalização do pipeline =====
+offline/data/processo_ipcityspace.log:[LOG] Inicializando pipeline IPT-CitySpace…
+offline/ingestion/auto_dataset_ingestion.py:disparar pipeline científico
+offline/ingestion/auto_dataset_ingestion.py:print("\n[8] Iniciando pipeline científico raster...\n")
+offline/ingestion/auto_dataset_ingestion.py:"offline.raster.pipeline.scientific_raster_runner"
+offline/pipeline_dag.py:"script": "offline/pipeline_runner_runtime.py",
+offline/pipeline_runner.py:- executar o pipeline OFFLINE mínimo
+offline/pipeline_runner.py:python -m offline.pipeline_runner
+offline/pipeline_runner.py:def run_offline_pipeline(grid: List[List[float]]):
+offline/pipeline_runner.py:    Executa pipeline OFFLINE mínimo e retorna eventos gerados.
+offline/pipeline_runner.py:            "generated_by": "offline.pipeline_runner",
+offline/pipeline_runner.py:    Entry-point canônico do pipeline OFFLINE.
+offline/pipeline_runner.py:    events, timing, rows, cols = run_offline_pipeline(grid_demo)
+offline/products/snapshots/1cm_rotated/metadata.json:  "source": "IPT-CitySpace OFFLINE pipeline",
+offline/products/snapshots/ipt_fase2_semantic/metadata.json:  "source": "scientific_pipeline_utm",
+offline/raster/validation/validate_rigid_transform.py:        print("✖ Revisar pipeline de transformação\n")
+offline/tools/analyze_pipeline_products.py:a sequência real do pipeline offline.
+offline/tools/build_pipeline_execution_order.py:docs/architecture/pipeline_execution_order.txt
+offline/tools/build_pipeline_execution_order.py:OUTPUT_FILE = OUTPUT_DIR / "pipeline_execution_order.txt"
+offline/tools/build_pipeline_execution_order.py:"offline/raster/pipeline/scientific_raster_runner.py",
+offline/tools/build_pipeline_execution_order.py:"offline/pipeline_runner.py"
+offline/tools/cleanup_project_structure.py:3) preserva pipeline científico
+offline/tools/detect_pipeline_scripts.py:do pipeline científico.
+offline/tools/detect_pipeline_scripts.py:print("Executable pipeline scripts detected:", len(scripts))
+offline/tools/generate_pipeline_dag.py:docs/architecture/pipeline_auto_dag.dot
+offline/tools/generate_pipeline_dag.py:docs/architecture/pipeline_auto_dag_report.txt
+offline/tools/generate_pipeline_dag.py:DOT_FILE = OUTPUT_DIR / "pipeline_auto_dag.dot"
+offline/tools/generate_pipeline_dag.py:REPORT_FILE = OUTPUT_DIR / "pipeline_auto_dag_report.txt"

@@ -1,0 +1,244 @@
+offline/adapters/scientific_to_semantic_adapter.py:    GRID_ROWS,
+offline/adapters/scientific_to_semantic_adapter.py:    GRID_COLS,
+offline/adapters/scientific_to_semantic_adapter.py:    expected_cells = GRID_ROWS * GRID_COLS
+offline/adapters/scientific_to_semantic_adapter.py:    if "z_total_m" not in df.columns:
+offline/adapters/scientific_to_semantic_adapter.py:        raise ValueError("Coluna z_total_m não encontrada no CSV científico")
+offline/adapters/scientific_to_semantic_adapter.py:    z_total = df["z_total_m"].values.reshape(GRID_ROWS, GRID_COLS)
+offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_z_total_m.csv", z_total, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:        "grid_shape": [GRID_ROWS, GRID_COLS],
+offline/config/experiment_config.py:GRID_ROWS = 8
+offline/config/experiment_config.py:GRID_COLS = 16
+offline/config/system_parameters.py:GRID_ROWS = 8
+offline/config/system_parameters.py:GRID_COLS = 16
+offline/config/system_parameters.py:GRID_NAME = f"{GRID_ROWS}x{GRID_COLS}"
+offline/pipeline/01_build_scientific_grid_BACKUP.py:df=pd.DataFrame(data,columns=["row","col","z_terrain_m","z_building_m","z_total_m"])
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:total_path = BASE / "offline/products/grid_z_total_m.csv"
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:            "z_terrain_m": float(terrain[r, c]),
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:            "z_building_m": float(building[r, c]),
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:            "z_total_m": float(total[r, c]),
+offline/pipeline/02_join_grid_metrics_with_geom.py:nulls = gdf_merged["z_total_m"].isna().sum()
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:    df.pivot(index="row", columns="col", values="z_terrain_m")
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:    z = float(r["z_terrain_m"])
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:    ztot = float(r["z_total_m"])
+offline/pipeline/03_generate_contours_clean.py:gdf = gdf[(gdf['z_terrain_m'] > 0) | (gdf['z_building_m'] > 0)]
+offline/pipeline/03_generate_contours_clean.py:    Z[int(r['row']), int(r['col'])] = r['z_terrain_m']
+offline/pipeline/03_generate_contours_clean.py:angle = 0
+offline/pipeline/03_generate_contours_clean.py:contours['geometry'] = contours['geometry'].apply(lambda g: rotate(g, angle, origin='center'))
+offline/pipeline/04b_generate_actuator_geospatial.py:gdf['zone_type'] = gdf['z_total_m'].apply(
+offline/pipeline/04b_generate_actuator_geospatial.py:gdf['actuator_intensity'] = gdf['z_total_m'] / 10
+offline/pipeline/04b_generate_actuator_geospatial.py:gdf['risk_level'] = gdf['z_building_m'].apply(
+offline/pipeline/04_generate_actuator_plan.py:    required = ["row", "col", "x", "y", "z_terrain_m", "z_building_m", "z_total_m"]
+offline/pipeline/04_generate_actuator_plan.py:    z_total = df_out["z_total_m"].astype(float).to_numpy()
+offline/pipeline/04_generate_actuator_plan.py:    z_terrain = df_out["z_terrain_m"].astype(float).to_numpy()
+offline/pipeline/04_generate_actuator_plan.py:    z_building = df_out["z_building_m"].astype(float).to_numpy()
+offline/pipeline/04_generate_actuator_plan.py:        raise ValueError(f"z_total_m inválido para normalização: zmax={zmax}")
+offline/pipeline/04_generate_actuator_plan.py:    print(f"z_total_m max: {float(df_out['z_total_m'].max())}")
+offline/pipeline/06b_esri_to_grid_simple.py:transformer = Transformer.from_crs("EPSG:31983", "EPSG:3857", always_xy=True)
+offline/pipeline/06_generate_esri_overlay_grid.py:transformer = Transformer.from_crs("EPSG:31983", "EPSG:4326", always_xy=True)
+offline/processing/apply_rigid_transform_vector_scientific.py:def apply_transform(geoms, angle, cx, cy, dx, dy):
+offline/processing/apply_rigid_transform_vector_scientific.py:        g = rotate(geom, angle, origin=(cx, cy), use_radians=False)
+offline/processing/apply_rigid_transform_vector_scientific.py:def process_layer(input_path, output_path, angle, cx, cy, dx, dy):
+offline/processing/apply_rigid_transform_vector_scientific.py:    new_geoms = apply_transform(geoms, angle, cx, cy, dx, dy)
+offline/processing/apply_rigid_transform_vector_scientific.py:    angle = params["theta_rotation_deg"]
+offline/processing/apply_rigid_transform_vector_scientific.py:    print(f"Rotação (deg): {angle}")
+offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(BUILDINGS_PATH, OUT_BUILDINGS, angle, cx, cy, dx, dy)
+offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(ENVELOPE_PATH, OUT_ENVELOPE, angle, cx, cy, dx, dy)
+offline/processing/build_official_urban_envelope_rotated.py:CRS = "EPSG:31983"
+offline/processing/build_official_urban_envelope_rotated.py:    angle = params["theta_rotation_deg"]
+offline/processing/build_official_urban_envelope_rotated.py:    envelope_rot = rotate(envelope, angle, origin=(cx, cy), use_radians=False)
+offline/processing/set_crs_scientific.py:CRS_EPSG = "EPSG:31983"
+offline/processing/set_crs_scientific.py:        df.set_crs(CRS_EPSG, inplace=True, allow_override=True)
+offline/raster/core/reproject_rasters_to_utm.py:4326 -> UTM 23S (EPSG:31983)
+offline/raster/core/reproject_rasters_to_utm.py:TARGET_CRS = "EPSG:31983"
+offline/run_offline_pipeline.py:from offline.validation.validate_rotation_pca_grid import run as _rotation_pca_grid_run
+offline/run_offline_pipeline.py:    Gate de alinhamento PCA.
+offline/run_offline_pipeline.py:    report = _rotation_pca_grid_run(base_dir)
+offline/run_offline_pipeline.py:    print("\n================ PCA ALIGNMENT GATE ================")
+offline/run_offline_pipeline.py:            "Gate de alinhamento PCA bloqueou o pipeline: alignment_status != OK"
+offline/scientific_grid_builder.py:GRID_ROWS = 8
+offline/scientific_grid_builder.py:GRID_COLS = 16
+offline/scientific_grid_builder.py:        cell_size = max(width / GRID_COLS, height / GRID_ROWS)
+offline/scientific_grid_builder.py:        grid_width = GRID_COLS * cell_size
+offline/scientific_grid_builder.py:        grid_height = GRID_ROWS * cell_size
+offline/scientific_grid_builder.py:        for r_i in range(GRID_ROWS):
+offline/scientific_grid_builder.py:            for c_i in range(GRID_COLS):
+offline/tools/05_recompute_rotation_from_grid.py:# PCA → DIREÇÃO PRINCIPAL
+offline/tools/05_recompute_rotation_from_grid.py:angle_rad = np.arctan2(direction[1], direction[0])
+offline/tools/05_recompute_rotation_from_grid.py:angle_deg = np.degrees(angle_rad)
+offline/tools/05_recompute_rotation_from_grid.py:print(f"Angle (deg): {angle_deg:.6f}")
+offline/tools/05_recompute_rotation_from_grid.py:angle_norm = angle_deg % 360
+offline/tools/05_recompute_rotation_from_grid.py:print(f"Angle normalized: {angle_norm:.6f}")
+offline/tools/05_recompute_rotation_from_grid.py:    "rotation_detected_deg": float(angle_norm),
+offline/tools/05_recompute_rotation_from_grid.py:    "method": "PCA_on_grid"
+offline/tools/05_recompute_rotation_from_grid.py:out_path = BASE / "rotation_detected.json"
+offline/tools/06_recompute_rotation_true.py:angle = np.degrees(np.arctan2(R[1,0], R[0,0]))
+offline/tools/06_recompute_rotation_true.py:print(f"Angle (deg): {angle:.6f}")
+offline/tools/06_recompute_rotation_true.py:angle_norm = angle % 360
+offline/tools/06_recompute_rotation_true.py:print(f"Angle normalized: {angle_norm:.6f}")
+offline/tools/07_detect_rotation_from_envelope.py:# PCA
+offline/tools/07_detect_rotation_from_envelope.py:angle_rad = np.arctan2(direction[1], direction[0])
+offline/tools/07_detect_rotation_from_envelope.py:angle_deg = np.degrees(angle_rad)
+offline/tools/07_detect_rotation_from_envelope.py:angle_norm = angle_deg % 360
+offline/tools/07_detect_rotation_from_envelope.py:print(f"Angle (deg): {angle_deg:.6f}")
+offline/tools/07_detect_rotation_from_envelope.py:print(f"Angle normalized: {angle_norm:.6f}")
+offline/tools/07_detect_rotation_from_envelope.py:    "rotation_detected_deg": float(angle_norm),
+offline/tools/07_detect_rotation_from_envelope.py:out_path = BASE / "rotation_from_envelope.json"
+offline/tools/apply_rigid_transform_raster_scientific.py:    angle = p["rotation_deg"]
+offline/tools/apply_rigid_transform_raster_scientific.py:    R = Affine.rotation(angle)
+offline/tools/audit_grid_dimensions.py:from offline.config.experiment_config import GRID_ROWS, GRID_COLS
+offline/tools/audit_grid_dimensions.py:    "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+offline/tools/audit_grid_dimensions.py:    expected = GRID_ROWS * GRID_COLS
+offline/tools/audit_scientific_grid.py:if "z_total_m" in df.columns:
+offline/tools/audit_scientific_grid.py:    print("\nEstatísticas de z_total_m\n")
+offline/tools/audit_scientific_grid.py:    print(df["z_total_m"].describe())
+offline/tools/audit_scientific_grid.py:    print("\nColuna z_total_m não encontrada")
+offline/tools/desrotate_urban_envelope.py:    angle = params["theta_rotation_deg"]
+offline/tools/desrotate_urban_envelope.py:    origin_rot = params["midpoint_after_rotation"]
+offline/tools/desrotate_urban_envelope.py:            -angle,
+offline/tools/export_z_total_to_excel.py:Export grid_z_total_m.csv to Excel
+offline/tools/export_z_total_to_excel.py:CSV_PATH = ENGINE_ROOT / "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+offline/tools/export_z_total_to_excel.py:OUT_XLSX = OUT_DIR / "grid_z_total_m.xlsx"
+offline/tools/fix_scientific_raster_transform.py:R1 = Affine.rotation(angle)
+offline/tools/fix_scientific_raster_transform.py:R2 = Affine.rotation(-angle)
+offline/tools/fix_urban_envelope_geometry.py:    angle = params["theta_rotation_deg"]
+offline/tools/fix_urban_envelope_geometry.py:    origin_rot = params["midpoint_after_rotation"]
+offline/tools/fix_urban_envelope_geometry.py:            -angle,
+offline/tools/generate_actuator_plan_from_csv.py:CSV = BASE / "offline/products/grid_z_total_m.csv"
+offline/tools/rebuild_scientific_raster_runner.py:    angle = params["theta_rotation_deg"]
+offline/tools/rebuild_scientific_raster_runner.py:        R  = Affine.rotation(angle)
+offline/tools/rebuild_scientific_raster_runner.py:    print("Ângulo (deg):", params["theta_rotation_deg"])
+offline/tools/recompute_altimetry_ndsm.py:OUT_TOTAL = BASE / "offline/products/grid_z_total_m.csv"
+offline/tools/recompute_altimetry_ndsm.py:GRID_ROWS = 8
+offline/tools/recompute_altimetry_ndsm.py:GRID_COLS = 16
+offline/tools/recompute_altimetry_ndsm.py:    cell_h = height // GRID_ROWS
+offline/tools/recompute_altimetry_ndsm.py:    cell_w = width // GRID_COLS
+offline/tools/recompute_altimetry_ndsm.py:    grid_terrain = np.full((GRID_ROWS, GRID_COLS), np.nan)
+offline/tools/recompute_altimetry_ndsm.py:    grid_building = np.zeros((GRID_ROWS, GRID_COLS))
+offline/tools/recompute_altimetry_ndsm.py:    grid_total = np.full((GRID_ROWS, GRID_COLS), np.nan)
+offline/tools/recompute_altimetry_ndsm.py:    for i in range(GRID_ROWS):
+offline/tools/recompute_altimetry_ndsm.py:        for j in range(GRID_COLS):
+offline/tools/recompute_rigid_transform.py:def compute_rotation(A, B):
+offline/tools/recompute_rigid_transform.py:    angle = np.degrees(np.arctan2(R[1, 0], R[0, 0]))
+offline/tools/recompute_rigid_transform.py:    return angle
+offline/tools/recompute_rigid_transform.py:    angle = compute_rotation(A, B)
+offline/tools/recompute_rigid_transform.py:        "theta_rotation_deg": float(angle),
+offline/tools/recompute_rigid_transform.py:        "midpoint_after_rotation": center_B.tolist(),
+offline/tools/recompute_rigid_transform_utm_to_local.py:    angle = np.degrees(np.arctan2(R[1, 0], R[0, 0]))
+offline/tools/recompute_rigid_transform_utm_to_local.py:    return angle, A_mean, B_mean
+offline/tools/recompute_rigid_transform_utm_to_local.py:    angle, center_A, center_B = compute_rigid(A, B)
+offline/tools/recompute_rigid_transform_utm_to_local.py:        "rotation_deg": float(angle),
+offline/tools/recompute_transform_from_envelope.py:        "rotation_deg": 146.815825,  # seu valor já conhecido
+offline/validation/contract_registry.py:                    "description": "Sistema intermedi\u00e1rio para rota\u00e7\u00f5es, transla\u00e7\u00f5es, PCA e alinhamentos.",
+offline/validation/contract_registry.py:                "z_terrain_m",
+offline/validation/contract_registry.py:                "z_building_m",
+offline/validation/contract_registry.py:                "z_total_m",
+offline/validation/contract_registry.py:                "z_total_m = z_terrain_m + z_building_m",
+offline/validation/contract_registry.py:                "z_cm = f(z_total_m)",
+offline/validation/contract_registry.py:                "rotation_deg_clockwise": 90,
+offline/validation/contract_registry.py:            "rotation_parametric": True,
+offline/validation/contract_registry.py:            "north_tilt_angle_parameterized": True,
+offline/validation/contract_registry.py:            "rotation_traceability_required": True,
+offline/validation/contract_registry.py:                "rotation_may_be_determined_by_pca_vs_grid": True,
+offline/validation/contract_registry.py:                "description": "O PCA \u00e9 entendido como a linha principal cuja interse\u00e7\u00e3o/rela\u00e7\u00e3o com a quadr\u00edcula pode determinar a rota\u00e7\u00e3o, se necess\u00e1rio.",
+offline/validation/contract_registry.py:            "rotation_models": {
+offline/validation/contract_registry.py:                    "angle_deg": 154.63,
+offline/validation/contract_registry.py:                    "angle_deg": 146.82,
+offline/validation/contract_registry.py:            "rotation_state": {
+offline/validation/contract_registry.py:                    "residual_rotation_needed_deg": 0.0,
+offline/validation/contract_registry.py:                        "applied_rotation_deg": -154.63,
+offline/validation/contract_registry.py:                        "applied_rotation_deg": -146.82,
+offline/validation/contract_registry.py:                "DTM -> z_terrain_m",
+offline/validation/contract_registry.py:                "DSM/NDSM -> z_building_m",
+offline/validation/contract_registry.py:                "z_terrain_m + z_building_m -> z_total_m",
+offline/validation/contract_registry.py:                "z_total_m -> z_cm",
+offline/validation/contract_registry_BASE_SAFE.py:            "rotation_parametric": True,
+offline/validation/contract_registry_BASE_SAFE.py:            "rotation_history": [146.815825, 154.0],
+offline/validation/validate_contract_master.py:    if "z_terrain_m" in df.columns and "z_building_m" in df.columns and "z_total_m" in df.columns:
+offline/validation/validate_contract_master.py:        total_expected = df["z_terrain_m"] + df["z_building_m"]
+offline/validation/validate_contract_master.py:        diff = (df["z_total_m"] - total_expected).abs()
+offline/validation/validate_contract_master.py:                "Relação z_total_m inconsistente",
+offline/validation/validate_contract_master.py:                "z_total_m difere de z_terrain_m + z_building_m.",
+offline/validation/validate_contract_master.py:                "Relação z_total_m consistente",
+offline/validation/validate_contract_master.py:                "z_total_m = z_terrain_m + z_building_m.",
+offline/validation/validate_contract_master.py:    rot_hist = contract["geometry"]["rotation_history"]
+offline/validation/validate_contract_master.py:            "PCA como linha principal de orientação",
+offline/validation/validate_contract_master.py:            "O contrato reconhece PCA como linha principal para decisão de rotação/encaixe.",
+offline/validation/validate_contract_master.py:    if contract["geometry"]["north_tilt_angle_parameterized"]:
+offline/validation/validate_contract_master.py:            recommendation="Registrar e validar north_tilt_angle_deg nos metadados.",
+offline/validation/validate_grid_z_total_vs_dxf.py:- offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv
+offline/validation/validate_grid_z_total_vs_dxf.py:    / "grid_z_total_m.csv"
+offline/validation/validate_grid_z_total_vs_dxf.py:GRID_ROWS = 8
+offline/validation/validate_grid_z_total_vs_dxf.py:GRID_COLS = 16
+offline/validation/validate_grid_z_total_vs_dxf.py:    if grid.shape != (GRID_ROWS, GRID_COLS):
+offline/validation/validate_grid_z_total_vs_dxf.py:            f"Grid inválido: esperado {(GRID_ROWS, GRID_COLS)}, obtido {grid.shape}"
+offline/validation/validate_rigid_transform_full.py:    theta = params.get("theta_rotation_deg", None)
+offline/validation/validate_rigid_transform_full.py:    print("theta_rotation_deg:", theta)
+offline/validation/validate_rigid_transform_full.py:        print("❌ theta_rotation_deg ausente.")
+offline/validation/validate_rigid_transform_json.py:def build_rotation_matrix(theta_deg):
+offline/validation/validate_rigid_transform_json.py:        "theta_rotation_deg",
+offline/validation/validate_rigid_transform_json.py:    theta = float(params["theta_rotation_deg"])
+offline/validation/validate_rigid_transform_json.py:    R = build_rotation_matrix(theta)
+offline/validation/validate_rigid_transform_parameters.py:def compute_angle(p1, p2):
+offline/validation/validate_rigid_transform_parameters.py:    angle_orig = compute_angle(p1_orig, p2_orig)
+offline/validation/validate_rigid_transform_parameters.py:    angle_rot  = compute_angle(p1_rot, p2_rot)
+offline/validation/validate_rigid_transform_parameters.py:    angle_aplicado = angle_rot - angle_orig
+offline/validation/validate_rigid_transform_parameters.py:    print(f"Ângulo original bbox : {angle_orig:.6f}°")
+offline/validation/validate_rigid_transform_parameters.py:    print(f"Ângulo rotacionado   : {angle_rot:.6f}°")
+offline/validation/validate_rigid_transform_parameters.py:    print(f"Ângulo estimado      : {angle_aplicado:.6f}°")
+offline/validation/validate_rotation_pca_grid.py:PCA_ALIGNMENT_TOLERANCE_DEG = 0.5
+offline/validation/validate_rotation_pca_grid.py:def normalize_0_180(angle_deg: float) -> float:
+offline/validation/validate_rotation_pca_grid.py:    angle = angle_deg % 180.0
+offline/validation/validate_rotation_pca_grid.py:    if angle < 0:
+offline/validation/validate_rotation_pca_grid.py:        angle += 180.0
+offline/validation/validate_rotation_pca_grid.py:    return angle
+offline/validation/validate_rotation_pca_grid.py:def normalize_signed_180(angle_deg: float) -> float:
+offline/validation/validate_rotation_pca_grid.py:    angle = angle_deg % 360.0
+offline/validation/validate_rotation_pca_grid.py:    if angle > 180.0:
+offline/validation/validate_rotation_pca_grid.py:        angle -= 360.0
+offline/validation/validate_rotation_pca_grid.py:    if angle <= -180.0:
+offline/validation/validate_rotation_pca_grid.py:        angle += 360.0
+offline/validation/validate_rotation_pca_grid.py:    return angle
+offline/validation/validate_rotation_pca_grid.py:def angle_from_vector(vx: float, vy: float) -> float:
+offline/validation/validate_rotation_pca_grid.py:def pca_angle_from_xy(x: np.ndarray, y: np.ndarray) -> float:
+offline/validation/validate_rotation_pca_grid.py:        raise ValueError("Pontos insuficientes para PCA.")
+offline/validation/validate_rotation_pca_grid.py:    return angle_from_vector(vx, vy)
+offline/validation/validate_rotation_pca_grid.py:def compute_grid_fit(pca_angle_deg: float) -> Dict[str, float]:
+offline/validation/validate_rotation_pca_grid.py:    pca = normalize_0_180(pca_angle_deg)
+offline/validation/validate_rotation_pca_grid.py:        best_rotation = rot_to_x
+offline/validation/validate_rotation_pca_grid.py:        best_rotation = rot_to_y
+offline/validation/validate_rotation_pca_grid.py:        "pca_angle_deg": round(pca, 6),
+offline/validation/validate_rotation_pca_grid.py:        "rotation_to_align_x_deg": round(rot_to_x, 6),
+offline/validation/validate_rotation_pca_grid.py:        "rotation_to_align_y_deg": round(rot_to_y, 6),
+offline/validation/validate_rotation_pca_grid.py:        "best_rotation_deg": round(best_rotation, 6),
+offline/validation/validate_rotation_pca_grid.py:def get_rotation_state(contract: Dict[str, Any]) -> Dict[str, Any]:
+offline/validation/validate_rotation_pca_grid.py:    if "rotation_state" not in geometry:
+offline/validation/validate_rotation_pca_grid.py:        raise KeyError("rotation_state não encontrado no contract_registry.py")
+offline/validation/validate_rotation_pca_grid.py:    return geometry["rotation_state"]
+offline/validation/validate_rotation_pca_grid.py:def compare_with_rotation_state(pca_angle_deg: float, rotation_state: Dict[str, Any]) -> Dict[str, Any]:
+offline/validation/validate_rotation_pca_grid.py:    current = rotation_state["current_frame"]
+offline/validation/validate_rotation_pca_grid.py:    hist = rotation_state["historical_models"]
+offline/validation/validate_rotation_pca_grid.py:    contract_delta = float(rotation_state["delta_between_historical_models_deg"])
+offline/validation/validate_rotation_pca_grid.py:                normalize_signed_180(pca_angle_deg - float(current["current_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:                normalize_signed_180(pca_angle_deg - float(geo["target_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:                normalize_signed_180(pca_angle_deg - float(phy["target_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:    current_pca = float(report["pca"]["principal_angle_deg"])
+offline/validation/validate_rotation_pca_grid.py:    if pca_delta > PCA_ALIGNMENT_TOLERANCE_DEG:
+offline/validation/validate_rotation_pca_grid.py:        raise ValueError("Nem x/y nem row/col disponíveis para PCA.")
+offline/validation/validate_rotation_pca_grid.py:    pca_angle_deg = pca_angle_from_xy(x, y)
+offline/validation/validate_rotation_pca_grid.py:    grid_fit = compute_grid_fit(pca_angle_deg)
+offline/validation/validate_rotation_pca_grid.py:    rotation_state = get_rotation_state(contract)
+offline/validation/validate_rotation_pca_grid.py:    contract_cmp = compare_with_rotation_state(pca_angle_deg, rotation_state)
+offline/validation/validate_rotation_pca_grid.py:            "pca_alignment_tolerance_deg": PCA_ALIGNMENT_TOLERANCE_DEG,
+offline/validation/validate_rotation_pca_grid.py:            "principal_angle_deg": round(pca_angle_deg, 6),
+offline/validation/validate_rotation_pca_grid.py:    out_path = out_dir / "rotation_pca_grid_report.json"
+offline/validation/validate_rotation_pca_grid.py:    print("\n================ ROTATION PCA + GRID FIT ================")
+offline/validation/validate_rotation_pca_grid.py:    print("pca principal angle (deg):", report["pca"]["principal_angle_deg"])
+offline/validation/validate_rotation_pca_grid.py:    print("best rotation (deg):", report["grid_fit"]["best_rotation_deg"])
+offline/validation/validate_scientific_grid_metrics.py:GRID_ROWS = 8
+offline/validation/validate_scientific_grid_metrics.py:GRID_COLS = 16
+offline/validation/validate_scientific_grid_metrics.py:    if len(df) != GRID_ROWS * GRID_COLS:
+offline/validation/validate_scientific_grid_metrics.py:    z_total = df["altura_total_m"].values.reshape(GRID_ROWS, GRID_COLS)
+offline/vector/core/apply_rigid_transform_clean.py:(EPSG:31983) para o Sistema Científico Local IPT.
+offline/vector/core/apply_rigid_transform_clean.py:    angle = params["theta_rotation_deg"]
+offline/vector/core/apply_rigid_transform_clean.py:    print(f"Ângulo: {angle}")
+offline/vector/core/apply_rigid_transform_clean.py:                    angle,

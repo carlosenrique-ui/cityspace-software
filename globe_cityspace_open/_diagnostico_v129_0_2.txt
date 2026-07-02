@@ -1,0 +1,83 @@
+=== HTML controles ===
+16:<select id="originMode">
+18:  <option value="latlon">Lat/Lon</option>
+19:  <option value="click">Clique no Globo</option>
+21:<select id="citySelect">
+29:    <button id="openCity">Abrir cidade</button>
+30:<span style="margin-left:12px;">Lat:</span>
+31:<input id="gotoLat" type="number" step="0.000001" value="-23.556794" style="width:110px;">
+32:<span>Lon:</span>
+33:<input id="gotoLon" type="number" step="0.000001" value="-46.737329" style="width:110px;">
+34:<button id="gotoLatLon">Ir para Lat/Lon</button>
+43:    <button id="enablePickPoint">Clique no Globo</button>
+45:    <select id="scaleSelect">
+53:    <button id="createArea">Gerar Área CitySpace</button>
+54:    <button id="clearArea">Limpar Área/Grid</button>
+56:    <button id="exportSpatialProject">Gerar Spatial Project</button>
+57:    <button id="openProjectionMapping">Projeção Mapeada</button>
+89:      Use “Abrir cidade”, navegue e depois clique em “Clique no Globo”.
+93:    <div id="cursorInfo">Lat/Lon: --</div>
+
+=== JS funções críticas ===
+176:function createIptDemoGrid() {
+279:function clearGrid() {
+284:function setMarker(name, lat, lon) {
+327:  activeCityKey = document.getElementById("citySelect").value;
+600:function createScaledArea() {
+759:    const cartesian = viewer.camera.pickEllipsoid(
+789:  Cesium.ScreenSpaceEventType.LEFT_CLICK
+929:    const cartesian = viewer.camera.pickEllipsoid(
+955:function clearAreaAndGrid() {
+1218:document.getElementById("citySelect").addEventListener("change", function () {
+1415:  activeCityKey = document.getElementById("citySelect").value;
+1453:function getOriginMode() {
+1454:  const el = document.getElementById("originMode");
+1458:function updateOriginModeUI() {
+1459:  const mode = getOriginMode();
+1461:  const citySelect = document.getElementById("citySelect");
+1466:  if (citySelect) citySelect.disabled = mode !== "city";
+1489:  if (getOriginMode() !== "city") {
+1498:  if (getOriginMode() !== "latlon") {
+1507:  const mode = getOriginMode();
+1523:  const originMode = document.getElementById("originMode");
+1525:  if (originMode) {
+1526:    originMode.addEventListener("change", updateOriginModeUI);
+1529:  setTimeout(updateOriginModeUI, 500);
+1671:  const mode = typeof getOriginMode === "function" ? getOriginMode() : "city";
+1690:  const mode = document.getElementById("originMode")?.value || "city";
+1692:  const city = document.getElementById("citySelect");
+1740:  const origin = document.getElementById("originMode");
+1746:  Array.from(document.querySelectorAll("#originMode option")).forEach(opt => {
+1787:  const origin = document.getElementById("originMode");
+1830:  function ensureProjectSelectV129() {
+1831:    const citySelect = document.getElementById("citySelect");
+1832:    if (!citySelect) return;
+1834:    citySelect.innerHTML = `
+1842:    let projectSelect = document.getElementById("projectSelect");
+1844:    if (!projectSelect) {
+1849:        <label for="projectSelect">Projeto:</label>
+1850:        <select id="projectSelect">
+1855:      citySelect.insertAdjacentElement("afterend", wrap);
+1862:    const city = document.getElementById("citySelect");
+1863:    const project = document.getElementById("projectSelect");
+1870:    return isIptEdificiosV129() ? "ipt" : document.getElementById("citySelect").value;
+1874:    const city = document.getElementById("citySelect");
+1876:    const project = document.getElementById("projectSelect");
+1946:      const city = document.getElementById("citySelect");
+1977:    ensureProjectSelectV129();
+1979:    const city = document.getElementById("citySelect");
+1980:    const project = document.getElementById("projectSelect");
+
+=== Patches V129 existentes ===
+1811:/* PATCH V129.0.1 — CIDADES, PROJETOS, ESCALA E LIMPEZA */
+1813:  console.log("PATCH V129.0.1 ativo");
+1818:    cities.bertioga = {
+1819:      name: "Bertioga",
+1826:      cities.ipt.name = "IPT-Edifícios";
+1835:      <option value="bertioga">Bertioga</option>
+1852:          <option value="ipt_edificios">IPT-Edifícios</option>
+1897:        <option value="8867" selected>1:8867 — IPT-Edifícios 1×1 cm</option>
+1898:        <option value="4433">1:4433 — IPT-Edifícios 2×2 cm</option>
+1940:        Projeto: IPT-Edifícios<br>
+1941:        Dados de Origem: Pipeline IPT-CitySpace<br>
+1951:        Dados de Origem: Indisponíveis<br>

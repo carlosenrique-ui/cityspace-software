@@ -1,0 +1,44 @@
+# IPT-CitySpace – Project State
+
+## Current Phase
+Offline pipeline stabilization
+
+## Git Branch
+etapa12_runner_integration
+
+## Main Pipelines
+
+### 1. Ingestion
+offline/ingestion/auto_dataset_ingestion.py
+
+### 2. Raster Processing
+offline/raster/core/
+
+- rotate_raster_scientific.py
+- normalize_vertical_reference.py
+- filter_dsm_spikes.py
+- compute_ndsm.py
+
+### 3. Products
+offline/products/
+
+- contours (pending)
+- grid metrics
+- terrain layers
+
+### 4. Runner
+runner/scientific_runner_engine.py
+
+### 5. Architecture
+offline/pipeline_controller.py
+
+## Scientific Reference System
+
+Rotation angle:
+146.815825°
+
+CRS:
+EPSG:31983
+
+DTM reference raster:
+offline/data/processed/dtm/IPT_2018_DTM_ROT.tif

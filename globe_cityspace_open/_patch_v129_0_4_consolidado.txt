@@ -1,0 +1,10 @@
+=== BACKUP ===
+'globe_cityspace_open/frontend/main.js' -> 'globe_cityspace_open/frontend/main.js.bak_v129_0_4_20260618_182511'
+OK: V129.0.4 aplicado e patches antigos removidos.
+=== CONFERÊNCIA ===
+1813:/* PATCH V129.0.4 — CONSOLIDADO UX PROJETO EXPLORATORIO */
+1815:  console.log("PATCH V129.0.4 ativo");
+1818:    "Para evoluir esta área para um Projeto de Gêmeo Digital com Mesa Tangível, " +
+1887:      s.innerHTML = `<option value="8867" selected>Escala validada: 1:8867</option>`;
+1967:        Escala validada: 1:8867<br>
+=== REINICIANDO DOCKER ===

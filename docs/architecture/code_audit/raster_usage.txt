@@ -1,0 +1,108 @@
+offline/loading/load_raster.py:import rasterio
+offline/loading/load_raster.py:    with rasterio.open(path) as src:
+offline/processing/clip_raster.py:import rasterio
+offline/processing/clip_raster.py:from rasterio.mask import mask
+offline/processing/clip_raster.py:    with rasterio.io.MemoryFile() as memfile:
+offline/processing/rasterize_mask.py:from rasterio.features import rasterize
+offline/processing/reproject_raster.py:import rasterio
+offline/processing/reproject_raster.py:from rasterio.warp import calculate_default_transform, reproject, Resampling
+offline/products/generate_contours_matplotlib.py:import rasterio
+offline/products/generate_contours_matplotlib.py:with rasterio.open(DTM_FILE) as src:
+offline/products/generate_contours_methodB.py:import rasterio
+offline/products/generate_contours_simple.py:import rasterio
+offline/products/generate_contours_simple.py:with rasterio.open(DTM_FILE) as src:
+offline/products/generate_contours_simple.py:        xs, ys = rasterio.transform.xy(transform, rows, cols)
+offline/raster/core/clip_raster_by_envelope.py:import rasterio
+offline/raster/core/clip_raster_by_envelope.py:from rasterio.mask import mask
+offline/raster/core/clip_raster_by_envelope.py:    with rasterio.open(raster_path) as src:
+offline/raster/core/clip_raster_by_envelope.py:    with rasterio.open(output_path, "w", **out_meta) as dest:
+offline/raster/core/compute_ndsm.py:import rasterio
+offline/raster/core/compute_ndsm.py:with rasterio.open(DSM) as dsm:
+offline/raster/core/compute_ndsm.py:with rasterio.open(DTM) as dtm:
+offline/raster/core/compute_ndsm.py:with rasterio.open(NDSM,"w",**meta) as dst:
+offline/raster/core/filter_dsm_spikes.py:import rasterio
+offline/raster/core/filter_dsm_spikes.py:with rasterio.open(DSM_IN) as src:
+offline/raster/core/filter_dsm_spikes.py:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_raster_to_scientific_system.py:import rasterio
+offline/raster/core/normalize_raster_to_scientific_system.py:from rasterio.transform import Affine
+offline/raster/core/normalize_raster_to_scientific_system.py:    with rasterio.open(input_path) as src:
+offline/raster/core/normalize_raster_to_scientific_system.py:        with rasterio.open(output_path, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:import rasterio
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_IN) as dtm:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DSM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/reclip_rasters_to_domain.py:import rasterio
+offline/raster/core/reclip_rasters_to_domain.py:from rasterio.mask import mask
+offline/raster/core/reclip_rasters_to_domain.py:    with rasterio.open(input_path) as src:
+offline/raster/core/reclip_rasters_to_domain.py:        with rasterio.open(output_path, "w", **out_meta) as dst:
+offline/raster/core/reproject_rasters_to_utm.py:import rasterio
+offline/raster/core/reproject_rasters_to_utm.py:from rasterio.warp import calculate_default_transform, reproject, Resampling
+offline/raster/core/reproject_rasters_to_utm.py:    with rasterio.open(src_path) as src:
+offline/raster/core/reproject_rasters_to_utm.py:        with rasterio.open(dst_path, "w", **profile) as dst:
+offline/raster/core/reproject_rasters_to_utm.py:                    source=rasterio.band(src, i),
+offline/raster/core/reproject_rasters_to_utm.py:                    destination=rasterio.band(dst, i),
+offline/raster/core/rotate_raster_scientific.py:import rasterio
+offline/raster/core/rotate_raster_scientific.py:from rasterio.warp import reproject, Resampling
+offline/raster/core/rotate_raster_scientific.py:from rasterio.transform import Affine
+offline/raster/core/rotate_raster_scientific.py:with rasterio.open(input_path) as src:
+offline/raster/core/rotate_raster_scientific.py:    left, bottom, right, top = rasterio.transform.array_bounds(
+offline/raster/core/rotate_raster_scientific.py:    with rasterio.open(output_path, "w", **meta) as dst:
+offline/raster/pipeline/scientific_raster_runner.py:import rasterio
+offline/raster/pipeline/scientific_raster_runner.py:from rasterio.mask import mask
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(input_raster) as src:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(output_raster, "w", **profile) as dst:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(DSM_CLIP) as dsm:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(DTM_CLIP) as dtm:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(HEIGHT, "w", **profile) as dst:
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(HEIGHT_TOTAL, "w", **profile) as dst:
+offline/scientific_cell_metrics.py:import rasterio
+offline/scientific_cell_metrics.py:from rasterio.mask import mask
+offline/scientific_cell_metrics.py:    with rasterio.open(raster_path) as src:
+offline/scientific_cell_metrics_utm.py:import rasterio
+offline/scientific_cell_metrics_utm.py:from rasterio.mask import mask
+offline/scientific_cell_metrics_utm.py:    with rasterio.open(raster_path) as src:
+offline/tools/align_raster_to_envelope.py:import rasterio
+offline/tools/align_raster_to_envelope.py:from rasterio.transform import Affine
+offline/tools/align_raster_to_envelope.py:    with rasterio.open(path) as src:
+offline/tools/align_raster_to_envelope.py:    with rasterio.open(path, "w", **profile) as dst:
+offline/tools/buildings_height_model.py:import rasterio
+offline/tools/buildings_height_model.py:from rasterio.mask import mask
+offline/tools/buildings_height_model.py:    with rasterio.open(HEIGHT_RASTER) as src:
+offline/tools/fix_raster_vertical_alignment.py:import rasterio
+offline/tools/fix_raster_vertical_alignment.py:from rasterio.transform import Affine
+offline/tools/fix_raster_vertical_alignment.py:    with rasterio.open(DSM) as src:
+offline/tools/fix_raster_vertical_alignment.py:    with rasterio.open(path) as src:
+offline/tools/fix_raster_vertical_alignment.py:    with rasterio.open(path, "w", **profile) as dst:
+offline/tools/reanchor_raster_to_envelope.py:import rasterio
+offline/tools/reanchor_raster_to_envelope.py:from rasterio.transform import Affine
+offline/tools/reanchor_raster_to_envelope.py:    with rasterio.open(path) as src:
+offline/tools/reanchor_raster_to_envelope.py:    with rasterio.open(path, "w", **profile) as dst:
+offline/tools/rebuild_scientific_raster_runner.py:import rasterio
+offline/tools/rebuild_scientific_raster_runner.py:from rasterio.warp import reproject, Resampling
+offline/tools/rebuild_scientific_raster_runner.py:from rasterio.mask import mask
+offline/tools/rebuild_scientific_raster_runner.py:from rasterio.transform import Affine
+offline/tools/rebuild_scientific_raster_runner.py:    with rasterio.open(src_path) as src:
+offline/tools/rebuild_scientific_raster_runner.py:        with rasterio.open(dst_path, "w", **meta) as dst:
+offline/tools/rebuild_scientific_raster_runner.py:    with rasterio.open(src_path) as src:
+offline/tools/rebuild_scientific_raster_runner.py:        with rasterio.open(dst_path, "w", **meta) as dst:
+offline/tools/shift_raster_to_envelope.py:import rasterio
+offline/tools/shift_raster_to_envelope.py:from rasterio.transform import Affine
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DSM) as src:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DSM, "w", **profile) as dst:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DTM) as src:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DTM, "w", **profile) as dst:
+offline/tools/snap_vector_to_raster_grid.py:import rasterio
+offline/tools/snap_vector_to_raster_grid.py:    with rasterio.open(RASTER) as src:
+offline/validation/audit_altitude_statistics.py:import rasterio
+offline/validation/audit_altitude_statistics.py:with rasterio.open(path) as src:
+offline/validation/audit_raster_alignment.py:import rasterio
+offline/validation/audit_raster_alignment.py:with rasterio.open(DTM_PATH) as dtm:
+offline/validation/audit_raster_alignment.py:with rasterio.open(DSM_PATH) as dsm:
+offline/validation/validate_grid_vs_raster_alignment.py:import rasterio
+offline/validation/validate_grid_vs_raster_alignment.py:    with rasterio.open(DTM_PATH) as src:
+offline/validation/validate_raster_local_offset.py:import rasterio
+offline/validation/validate_raster_local_offset.py:    with rasterio.open(RASTER_PATH) as src:
+offline/validation/validate_rotated_raster_vs_envelope.py:import rasterio
+offline/validation/validate_rotated_raster_vs_envelope.py:with rasterio.open(RASTER_PATH) as src:

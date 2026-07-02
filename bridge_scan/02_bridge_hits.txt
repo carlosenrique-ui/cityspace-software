@@ -1,0 +1,647 @@
+./config/system_paths.py:14:GRID_PATH = os.path.join(BASE_DIR, "offline/products/scientific/grid.npy")
+./config/system_paths.py:18:    "offline/products/scientific/grid_metrics_utm.csv"
+./config/system_paths.py:28:    "products/final/actuator_plan.json"
+./config/system_paths.py:36:BASE_DIR = Path("offline/products/scientific")
+./config/system_paths.py:45:BASE_DIR = Path("offline/products/scientific")
+./config/system_paths.py:47:GRID_METRICS_UTM_CSV = BASE_DIR / "grid_metrics_utm.csv"
+./debug_raster_vs_grid.py:9:gdf = gpd.read_file("offline/products/scientific/grid_8x16_metric.gpkg", engine="pyogrio")
+./fix_grid_path.py:12:BASE_DIR = Path("offline/products/scientific")
+./fix_grid_path_runtime.py:10:    '"offline/products/scientific/grid_8x16_metric.gpkg"'
+./fix_grid_path_v2.py:12:BASE_DIR = Path("offline/products/scientific")
+./fix_grid_path_v2.py:14:GRID_METRICS_UTM_CSV = BASE_DIR / "grid_metrics_utm.csv"
+./fix_scientific_cell_metrics.py:21:        """GRID_PATH = "offline/products/scientific/grid_8x16_metric.gpkg"
+./fix_scientific_cell_metrics_clean.py:11:BASE = Path("offline/products/scientific")
+./fix_scientific_cell_metrics_v2.py:14:        """GRID_PATH = "offline/products/scientific/grid_8x16_metric.gpkg"
+./offline/adapters/scientific_to_semantic_adapter.py:100:    np.savetxt(OUT_DIR / "grid_z_total_m.csv", z_total, delimiter=";", fmt="%.3f")
+./offline/adapters/scientific_to_semantic_adapter.py:26:SCIENTIFIC_DIR = ENGINE_ROOT / "offline/products/scientific"
+./offline/adapters/scientific_to_semantic_adapter.py:31:INPUT_CSV = SCIENTIFIC_DIR / "grid_metrics_utm.csv"
+./offline/adapters/scientific_to_semantic_adapter.py:51:    df = pd.read_csv(INPUT_CSV)
+./offline/adapters/scientific_to_semantic_adapter.py:5:Converte grid_metrics_utm.csv
+./offline/adapters/scientific_to_semantic_adapter.py:66:    if "z_total_m" not in df.columns:
+./offline/adapters/scientific_to_semantic_adapter.py:67:        raise ValueError("Coluna z_total_m não encontrada no CSV científico")
+./offline/adapters/scientific_to_semantic_adapter.py:69:    z_total = df["z_total_m"].values.reshape(GRID_ROWS, GRID_COLS)
+./offline/config/system_paths.py:16:SCIENTIFIC_PRODUCTS = BASE / "offline/products/scientific"
+./offline/config/system_paths.py:24:GRID_METRICS_UTM_CSV = SCIENTIFIC_PRODUCTS / "grid_metrics_utm.csv"
+./offline/config/system_paths.py:46:BUILDINGS_VECTOR = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/config/system_paths.py:47:URBAN_ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/grid_to_pin_height.py:21:            grid[rr][cc] = r["z_cm"]
+./offline/grid_to_pin_height.py:38:    df = pd.read_csv(INPUT)
+./offline/grid_to_pin_height.py:44:    df["z_cm"] = (df["z_total"] / zmax) * MAX_PIN_CM
+./offline/grid_to_pin_height.py:7:INPUT = BASE / "products/final/grid_height.csv"
+./offline/grid_to_pin_height.py:8:OUT_JSON = BASE / "products/final/actuator_plan.json"
+./offline/loading/load_vector.py:11:    Lê um vetor (ex: DXF) e retorna um GeoDataFrame.
+./offline/loading/load_vector.py:30:    gdf = gpd.read_file(path)
+./offline/pipeline/01_build_scientific_grid.py:11:INPUT_GPKG = "offline/products/scientific/grid_8x16_metric.gpkg"
+./offline/pipeline/01_build_scientific_grid.py:12:OUTPUT_DEBUG = "offline/products/scientific/grid_square_debug.txt"
+./offline/pipeline/01_build_scientific_grid.py:15:gdf = gpd.read_file(INPUT_GPKG)
+./offline/pipeline/01_build_scientific_grid_BACKUP.py:19:df=pd.DataFrame(data,columns=["row","col","z_terrain_m","z_building_m","z_total_m"])
+./offline/pipeline/01_build_scientific_grid_BACKUP.py:20:df.to_csv(OUT/"grid_metrics_utm.csv",index=False)
+./offline/pipeline/01_build_scientific_grid_BACKUP.py:8:OUT=Path("offline/products/scientific")
+./offline/pipeline/02_join_grid_metrics_with_geom.py:10:CSV_PATH = BASE / "grid_metrics_utm.csv"
+./offline/pipeline/02_join_grid_metrics_with_geom.py:12:OUT_PATH = BASE / "grid_8x16_enriched.gpkg"
+./offline/pipeline/02_join_grid_metrics_with_geom.py:18:df = pd.read_csv(CSV_PATH)
+./offline/pipeline/02_join_grid_metrics_with_geom.py:21:gdf = gpd.read_file(GPKG_PATH)
+./offline/pipeline/02_join_grid_metrics_with_geom.py:48:nulls = gdf_merged["z_total_m"].isna().sum()
+./offline/pipeline/02_join_grid_metrics_with_geom.py:8:BASE = Path("offline/products/scientific")
+./offline/pipeline/03_generate_contours_clean.py:10:OUT_PATH = BASE / 'grid_contours_clean.gpkg'
+./offline/pipeline/03_generate_contours_clean.py:15:gdf = gpd.read_file(IN_PATH, engine='pyogrio')
+./offline/pipeline/03_generate_contours_clean.py:57:contours = gpd.GeoDataFrame({
+./offline/pipeline/03_generate_contours_clean.py:8:BASE = Path('offline/products/scientific')
+./offline/pipeline/03_generate_contours_clean.py:9:IN_PATH = BASE / 'grid_8x16_enriched.gpkg'
+./offline/pipeline/04_generate_actuator_plan.py:120:    print(f"USING SPATIAL COLS: x, y (derived from cx,cy or geometry)")
+./offline/pipeline/04_generate_actuator_plan.py:125:    print(f"z_total_m max: {float(df_out['z_total_m'].max())}")
+./offline/pipeline/04_generate_actuator_plan.py:126:    print(f"z_cm max: {float(df_out['z_cm'].max())}")
+./offline/pipeline/04_generate_actuator_plan.py:13:INPUT_GPKG = ENGINE_ROOT / "offline/products/scientific/grid_8x16_enriched.gpkg"
+./offline/pipeline/04_generate_actuator_plan.py:14:MASK_GPKG = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/pipeline/04_generate_actuator_plan.py:15:OUTPUT_DIR = ENGINE_ROOT / "offline/products/final"
+./offline/pipeline/04_generate_actuator_plan.py:16:OUTPUT_CSV = OUTPUT_DIR / "grid_height.csv"
+./offline/pipeline/04_generate_actuator_plan.py:21:def load_inputs() -> tuple[pd.DataFrame, gpd.GeoDataFrame]:
+./offline/pipeline/04_generate_actuator_plan.py:28:    gdf = gpd.read_file(INPUT_GPKG)
+./offline/pipeline/04_generate_actuator_plan.py:29:    mask = gpd.read_file(MASK_GPKG)
+./offline/pipeline/04_generate_actuator_plan.py:34:    # o GPKG enriquecido atual traz cx, cy.
+./offline/pipeline/04_generate_actuator_plan.py:35:    if "cx" in df.columns and "cy" in df.columns:
+./offline/pipeline/04_generate_actuator_plan.py:36:        df["x"] = df["cx"].astype(float)
+./offline/pipeline/04_generate_actuator_plan.py:37:        df["y"] = df["cy"].astype(float)
+./offline/pipeline/04_generate_actuator_plan.py:47:    required = ["row", "col", "x", "y", "z_terrain_m", "z_building_m", "z_total_m"]
+./offline/pipeline/04_generate_actuator_plan.py:56:    z_total = df_out["z_total_m"].astype(float).to_numpy()
+./offline/pipeline/04_generate_actuator_plan.py:62:        raise ValueError(f"z_total_m inválido para normalização: zmax={zmax}")
+./offline/pipeline/04_generate_actuator_plan.py:64:    z_cm = (z_total / zmax) * PIN_MAX_CM
+./offline/pipeline/04_generate_actuator_plan.py:79:    df_out["z_cm"] = z_cm
+./offline/pipeline/04_generate_actuator_plan.py:80:    df_out["z_total_cm"] = z_cm.copy()
+./offline/pipeline/04_generate_actuator_plan.py:81:    df_out["z_terrain_cm"] = z_cm * ratio_terrain
+./offline/pipeline/04_generate_actuator_plan.py:82:    df_out["z_building_cm"] = z_cm * ratio_building
+./offline/pipeline/04_generate_actuator_plan.py:87:def apply_mask(df_out: pd.DataFrame, mask: gpd.GeoDataFrame) -> pd.DataFrame:
+./offline/pipeline/04_generate_actuator_plan.py:95:        return 0.0 if not mask_union.contains(p) else float(row["z_cm"])
+./offline/pipeline/04_generate_actuator_plan.py:98:    df_out["z_cm"] = df_out.apply(mask_value, axis=1)
+./offline/pipeline/04_generate_actuator_plan.py:99:    df_out["z_total_cm"] = df_out["z_cm"]
+./offline/pipeline/04b_generate_actuator_geospatial.py:11:gdf = gpd.read_file(IN_PATH, engine='pyogrio')
+./offline/pipeline/04b_generate_actuator_geospatial.py:15:gdf['zone_type'] = gdf['z_total_m'].apply(
+./offline/pipeline/04b_generate_actuator_geospatial.py:19:gdf['actuator_intensity'] = gdf['z_total_m'] / 10
+./offline/pipeline/04b_generate_actuator_geospatial.py:4:BASE = Path('offline/products/scientific')
+./offline/pipeline/04b_generate_actuator_geospatial.py:6:IN_PATH = BASE / 'grid_8x16_enriched.gpkg'
+./offline/pipeline/04b_generate_actuator_geospatial.py:7:OUT_PATH = BASE / 'grid_8x16_actuators.gpkg'
+./offline/pipeline/05_apply_rotation_to_contours.py:10:BASE = Path("offline/products/scientific")
+./offline/pipeline/05_apply_rotation_to_contours.py:12:IN_PATH  = BASE / "grid_contours_clean.gpkg"
+./offline/pipeline/05_apply_rotation_to_contours.py:13:OUT_PATH = BASE / "grid_contours_rotated_scientific.gpkg"
+./offline/pipeline/05_apply_rotation_to_contours.py:20:gdf = gpd.read_file(IN_PATH, engine="pyogrio")
+./offline/pipeline/05_apply_rotation_to_contours.py:28:cx, cy = centroid.x, centroid.y
+./offline/pipeline/05_apply_rotation_to_contours.py:30:print("Centro:", cx, cy)
+./offline/pipeline/05_apply_rotation_to_contours.py:37:    lambda g: rotate(g, ANGLE, origin=(cx, cy), use_radians=False)
+./offline/pipeline_dag.py:103:f"offline/products/scientific/{GRID_METRICS_CSV.name}"
+./offline/pipeline_dag.py:107:"offline/products/runtime/grid_pin_heights.csv"
+./offline/pipeline_dag.py:116:"offline/products/runtime/grid_pin_heights.csv"
+./offline/pipeline_dag.py:120:"offline/products/runtime/scanner_sequence.csv"
+./offline/pipeline_dag.py:129:"offline/products/runtime/scanner_sequence.csv"
+./offline/pipeline_dag.py:81:f"offline/products/scientific/{GRID_GPKG.name}"
+./offline/pipeline_dag.py:90:f"offline/products/scientific/{GRID_GPKG.name}"
+./offline/pipeline_dag.py:94:f"offline/products/scientific/{GRID_METRICS_CSV.name}"
+./offline/pipeline_runner.py:12:BASE = Path("offline/products/runtime")
+./offline/processing/apply_rigid_transform_vector_scientific.py:13:PARAMS_PATH = BASE_DIR / "offline/products/scientific/rigid_transform_params.json"
+./offline/processing/apply_rigid_transform_vector_scientific.py:15:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+./offline/processing/apply_rigid_transform_vector_scientific.py:16:ENVELOPE_PATH  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./offline/processing/apply_rigid_transform_vector_scientific.py:18:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/processing/apply_rigid_transform_vector_scientific.py:19:OUT_ENVELOPE  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/processing/apply_rigid_transform_vector_scientific.py:22:def apply_transform(geoms, angle, cx, cy, dx, dy):
+./offline/processing/apply_rigid_transform_vector_scientific.py:25:        g = rotate(geom, angle, origin=(cx, cy), use_radians=False)
+./offline/processing/apply_rigid_transform_vector_scientific.py:31:def process_layer(input_path, output_path, angle, cx, cy, dx, dy):
+./offline/processing/apply_rigid_transform_vector_scientific.py:36:    new_geoms = apply_transform(geoms, angle, cx, cy, dx, dy)
+./offline/processing/apply_rigid_transform_vector_scientific.py:60:    cx, cy = params["midpoint_original"]
+./offline/processing/apply_rigid_transform_vector_scientific.py:63:    print(f"Centro rotação: ({cx}, {cy})")
+./offline/processing/apply_rigid_transform_vector_scientific.py:67:    process_layer(BUILDINGS_PATH, OUT_BUILDINGS, angle, cx, cy, dx, dy)
+./offline/processing/apply_rigid_transform_vector_scientific.py:70:    process_layer(ENVELOPE_PATH, OUT_ENVELOPE, angle, cx, cy, dx, dy)
+./offline/processing/build_mask_local_grid.py:34:    gdf = gpd.read_file(shapefile_path)
+./offline/processing/build_official_urban_envelope_rotated.py:121:    cx, cy = params["midpoint_original"]
+./offline/processing/build_official_urban_envelope_rotated.py:125:    envelope_rot = rotate(envelope, angle, origin=(cx, cy), use_radians=False)
+./offline/processing/build_official_urban_envelope_rotated.py:129:    # Criar GeoDataFrame com CRS correto
+./offline/processing/build_official_urban_envelope_rotated.py:131:    gdf = gpd.GeoDataFrame(
+./offline/processing/build_official_urban_envelope_rotated.py:18:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/processing/build_official_urban_envelope_rotated.py:20:OUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:18:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:19:OUTPUT_ENVELOPE = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./offline/processing/set_crs_scientific.py:10:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/processing/set_crs_scientific.py:7:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+./offline/processing/set_crs_scientific.py:8:    BASE / "offline/products/scientific/urban_envelope_scientific.gpkg",
+./offline/processing/set_crs_scientific.py:9:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+./offline/raster/core/reclip_rasters_to_domain.py:21:DOMAIN_PATH = BASE / "offline/products/scientific/domain_rect_1x2.gpkg"
+./offline/raster/pipeline/scientific_raster_runner.py:31:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/raster/pipeline/scientific_raster_runner.py:32:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/raster/validation/validate_rigid_transform.py:26:ORIG_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./offline/raster/validation/validate_rigid_transform.py:27:ROT_PATH  = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/render_dxf_ipt_para_mesa_16x8.py:39:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./offline/render_dxf_ipt_para_mesa_16x8.py:46:    cx = (minx + maxx) / 2
+./offline/render_dxf_ipt_para_mesa_16x8.py:47:    cy = (miny + maxy) / 2
+./offline/render_dxf_ipt_para_mesa_16x8.py:53:            origin=(cx, cy),
+./offline/scientific_cell_metrics_utm.py:14:    gdf = gpd.read_file(GRID, engine="pyogrio")
+./offline/scientific_cell_metrics_utm.py:5:GRID = "offline/products/scientific/grid_8x16_metric.gpkg"
+./offline/scientific_cell_metrics_utm.py:8:OUT = "products/final/grid_height.csv"
+./offline/scientific_grid_builder.py:15:OUTPUT = BASE / "offline/products/scientific/grid_8x16_metric.gpkg"
+./offline/scientific_grid_builder.py:67:                        "cx": centroid.x,
+./offline/scientific_grid_builder.py:68:                        "cy": centroid.y,
+./offline/scientific_grid_builder.py:73:        gdf = gpd.GeoDataFrame(cells, crs=r.crs)
+./offline/scientific_runner.py:13:offline/products/scientific/domain_rect_1x2.gpkg
+./offline/scientific_runner.py:27:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/scientific_runner.py:28:OUTPUT_PATH = BASE / "offline/products/scientific/domain_rect_1x2.gpkg"
+./offline/tests/test_geojson_to_grid.py:57:        aggregation_policy="mean",
+./offline/tests/test_scientific_runner_integration.py:11:CSV_PATH = BASE / "offline/products/scientific/{GRID_METRICS_CSV}"
+./offline/tests/test_scientific_runner_integration.py:25:def test_height_consistency():
+./offline/tools/05_recompute_rotation_from_grid.py:12:BASE = Path("offline/products/scientific")
+./offline/tools/05_recompute_rotation_from_grid.py:21:gdf = gpd.read_file(GRID_PATH, engine="pyogrio")
+./offline/tools/05_recompute_rotation_from_grid.py:26:gdf["cx"] = gdf.geometry.centroid.x
+./offline/tools/05_recompute_rotation_from_grid.py:27:gdf["cy"] = gdf.geometry.centroid.y
+./offline/tools/05_recompute_rotation_from_grid.py:31:coords = gdf[["cx","cy"]].values
+./offline/tools/06_recompute_rotation_true.py:20:gdf_A = gpd.read_file(ORIG, engine="pyogrio")
+./offline/tools/06_recompute_rotation_true.py:21:gdf_B = gpd.read_file(ROT, engine="pyogrio")
+./offline/tools/07_detect_rotation_from_envelope.py:16:gdf = gpd.read_file(ENV_PATH, engine="pyogrio")
+./offline/tools/07_detect_rotation_from_envelope.py:9:BASE = Path("offline/products/scientific")
+./offline/tools/08_generate_grid_npy.py:17:gdf = gpd.read_file(GPKG, engine="pyogrio")
+./offline/tools/08_generate_grid_npy.py:9:BASE = Path("offline/products/scientific")
+./offline/tools/align_envelope_to_buildings.py:13:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./offline/tools/align_envelope_to_buildings.py:14:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+./offline/tools/align_envelope_to_buildings.py:16:OUTPUT = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./offline/tools/align_raster_to_envelope.py:14:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/apply_rigid_transform_raster_scientific.py:19:PARAMS = BASE / "offline/products/scientific/rigid_transform_utm_to_local.json"
+./offline/tools/apply_rigid_transform_raster_scientific.py:21:OUT_DTM = BASE / "offline/products/scientific/dtm_local.tif"
+./offline/tools/apply_rigid_transform_raster_scientific.py:22:OUT_DSM = BASE / "offline/products/scientific/dsm_local.tif"
+./offline/tools/apply_rigid_transform_raster_scientific.py:28:    cx = p["cx"]
+./offline/tools/apply_rigid_transform_raster_scientific.py:29:    cy = p["cy"]
+./offline/tools/apply_rigid_transform_raster_scientific.py:33:    T1 = Affine.translation(-cx, -cy)
+./offline/tools/apply_rigid_transform_raster_scientific.py:35:    T2 = Affine.translation(cx + tx, cy + ty)
+./offline/tools/audit_alignment_grid_raster.py:13:GRID_CSV = ENGINE_ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+./offline/tools/audit_alignment_grid_raster.py:34:    df = pd.read_csv(GRID_CSV)
+./offline/tools/audit_altimetry_outputs.py:10:    "offline/products/scientific",
+./offline/tools/audit_coordinate_systems.py:13:VECTOR = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/tools/audit_csv_products.py:15:    ENGINE_ROOT / "offline/products/scientific",
+./offline/tools/audit_csv_products.py:37:        df = pd.read_csv(path, sep=None, engine="python")
+./offline/tools/audit_csv_products.py:41:            df = pd.read_csv(path, delimiter=";")
+./offline/tools/audit_csv_products.py:66:        df1 = pd.read_csv(a, sep=None, engine="python")
+./offline/tools/audit_csv_products.py:67:        df2 = pd.read_csv(b, sep=None, engine="python")
+./offline/tools/audit_csv_products.py:71:            df1 = pd.read_csv(a, delimiter=";")
+./offline/tools/audit_csv_products.py:72:            df2 = pd.read_csv(b, delimiter=";")
+./offline/tools/audit_fix_set_pin.py:44:    "legacy"
+./offline/tools/audit_grid_dimensions.py:14:    "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+./offline/tools/audit_grid_dimensions.py:22:    df = pd.read_csv(GRID_METRICS_UTM_CSV)
+./offline/tools/audit_scientific_grid.py:15:df = pd.read_csv(path)
+./offline/tools/audit_scientific_grid.py:25:if "z_total_m" in df.columns:
+./offline/tools/audit_scientific_grid.py:27:    print("\nEstatísticas de z_total_m\n")
+./offline/tools/audit_scientific_grid.py:28:    print(df["z_total_m"].describe())
+./offline/tools/audit_scientific_grid.py:31:    print("\nColuna z_total_m não encontrada")
+./offline/tools/audit_scientific_grid.py:8:path = ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+./offline/tools/buildings_height_model.py:17:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/tools/buildings_height_model.py:19:OUTPUT = BASE / "offline/products/scientific/buildings_with_height.gpkg"
+./offline/tools/cleanup_project_structure.py:101:print("\nMoving legacy files...\n")
+./offline/tools/cleanup_project_structure.py:103:for rel in legacy_files:
+./offline/tools/cleanup_project_structure.py:138:    msg = f"architecture cleanup – legacy migration {timestamp}"
+./offline/tools/cleanup_project_structure.py:13:1) cria pasta legacy com timestamp
+./offline/tools/cleanup_project_structure.py:32:LEGACY_ROOT = BASE / "legacy"
+./offline/tools/cleanup_project_structure.py:40:print("\nCreating legacy directory:")
+./offline/tools/cleanup_project_structure.py:50:legacy_dirs = [
+./offline/tools/cleanup_project_structure.py:60:legacy_files = [
+./offline/tools/cleanup_project_structure.py:70:print("\nMoving legacy directories...\n")
+./offline/tools/cleanup_project_structure.py:74:for rel in legacy_dirs:
+./offline/tools/cleanup_project_structure.py:9:para a pasta legacy automaticamente.
+./offline/tools/desrotate_urban_envelope.py:14:INPUT = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/tools/desrotate_urban_envelope.py:15:OUTPUT = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./offline/tools/desrotate_urban_envelope.py:17:PARAMS = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/tools/export_z_total_to_excel.py:22:CSV_PATH = ENGINE_ROOT / "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+./offline/tools/export_z_total_to_excel.py:28:OUT_DIR = ENGINE_ROOT / "offline/products/scientific"
+./offline/tools/export_z_total_to_excel.py:31:OUT_XLSX = OUT_DIR / "grid_z_total_m.xlsx"
+./offline/tools/export_z_total_to_excel.py:3:Export grid_z_total_m.csv to Excel
+./offline/tools/fix_raster_rotation_center.py:13:    "cx, cy = params[\"midpoint_original\"]",
+./offline/tools/fix_raster_rotation_center.py:14:    "cx = src.bounds.left + (src.bounds.right - src.bounds.left) / 2\n        cy = src.bounds.bottom + (src.bounds.top - src.bounds.bottom) / 2"
+./offline/tools/fix_raster_rotation_center_safe.py:12:old = 'cx, cy = params["midpoint_original"]'
+./offline/tools/fix_raster_rotation_center_safe.py:15:        cx = src.bounds.left + (src.bounds.right - src.bounds.left) / 2
+./offline/tools/fix_raster_rotation_center_safe.py:16:        cy = src.bounds.bottom + (src.bounds.top - src.bounds.bottom) / 2
+./offline/tools/fix_raster_vertical_alignment.py:11:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/fix_runner_envelope_loader.py:16:gdf = gpd.read_file(
+./offline/tools/fix_runner_envelope_loader_v2.py:14:    'import geopandas as gpd\n    gdf = gpd.read_file(ENVELOPE)'
+./offline/tools/fix_scientific_raster_runner_envelope.py:36:    gdf = gpd.read_file(
+./offline/tools/fix_urban_envelope_geometry.py:14:INPUT = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/tools/fix_urban_envelope_geometry.py:15:OUTPUT = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./offline/tools/fix_urban_envelope_geometry.py:17:PARAMS = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/tools/generate_actuator_plan_from_csv.py:6:CSV = BASE / "offline/products/grid_z_total_m.csv"
+./offline/tools/generate_pipeline_dag.py:146:    f.write("IPT-CitySpace Pipeline Dependency Report\n")
+./offline/tools/generate_pipeline_dag.py:90:print("\nBuilding dependency graph...\n")
+./offline/tools/reanchor_raster_to_envelope.py:12:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/rebuild_scientific_raster_runner.py:24:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/tools/rebuild_scientific_raster_runner.py:35:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/rebuild_scientific_raster_runner.py:67:    cx, cy = params["midpoint_original"]
+./offline/tools/rebuild_scientific_raster_runner.py:80:        T1 = Affine.translation(-cx, -cy)
+./offline/tools/rebuild_scientific_raster_runner.py:82:        T2 = Affine.translation(cx, cy)
+./offline/tools/recompute_altimetry_ndsm.py:29:OUT_TOTAL = BASE / "offline/products/grid_z_total_m.csv"
+./offline/tools/recompute_rigid_transform.py:21:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+./offline/tools/recompute_rigid_transform.py:22:BUILDINGS_ROT = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/tools/recompute_rigid_transform.py:24:OUT = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/tools/recompute_rigid_transform_utm_to_local.py:10:BUILDINGS_LOCAL = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+./offline/tools/recompute_rigid_transform_utm_to_local.py:12:OUT = BASE / "offline/products/scientific/rigid_transform_utm_to_local.json"
+./offline/tools/recompute_rigid_transform_utm_to_local.py:52:        "cx": float(center_A[0]),
+./offline/tools/recompute_rigid_transform_utm_to_local.py:53:        "cy": float(center_A[1]),
+./offline/tools/recompute_transform_from_envelope.py:10:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./offline/tools/recompute_transform_from_envelope.py:12:OUT = BASE / "offline/products/scientific/rigid_transform_utm_to_local.json"
+./offline/tools/recompute_transform_from_envelope.py:33:    cx_r = (xmin_r + xmax_r) / 2
+./offline/tools/recompute_transform_from_envelope.py:34:    cy_r = (ymin_r + ymax_r) / 2
+./offline/tools/recompute_transform_from_envelope.py:36:    cx_e = (xmin_e + xmax_e) / 2
+./offline/tools/recompute_transform_from_envelope.py:37:    cy_e = (ymin_e + ymax_e) / 2
+./offline/tools/recompute_transform_from_envelope.py:39:    dx = cx_e - cx_r
+./offline/tools/recompute_transform_from_envelope.py:40:    dy = cy_e - cy_r
+./offline/tools/recompute_transform_from_envelope.py:44:        "cx": cx_r,
+./offline/tools/recompute_transform_from_envelope.py:45:        "cy": cy_r,
+./offline/tools/run_full_alignment_pipeline.py:13:PRODUCTS = BASE / "offline/products/scientific"
+./offline/tools/shift_raster_to_envelope.py:15:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/tools/snap_vector_to_raster_grid.py:18:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+./offline/tools/snap_vector_to_raster_grid.py:19:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+./offline/validate_dxf_ipt_original_rotated_clean.py:54:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./offline/validate_dxf_ipt_original_rotated_clean.py:60:    cx = (minx + maxx) / 2
+./offline/validate_dxf_ipt_original_rotated_clean.py:61:    cy = (miny + maxy) / 2
+./offline/validate_dxf_ipt_original_rotated_clean.py:63:    log(f"[ROT] Centro global do DXF: ({cx:.3f}, {cy:.3f})")
+./offline/validate_dxf_ipt_original_rotated_clean.py:69:        lambda g: rotate(g, ANGLE_DEG, origin=(cx, cy), use_radians=False)
+./offline/validation/contract_registry.py:205:                "z_terrain_m + z_building_m -> z_total_m",
+./offline/validation/contract_registry.py:206:                "z_total_m -> z_cm",
+./offline/validation/contract_registry.py:207:                "z_cm -> mesa / bmp / grayscale / csv derivado / runtime",
+./offline/validation/contract_registry.py:221:        "validation_policy": {
+./offline/validation/contract_registry.py:31:            "scientific_grid_csv": "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/products/scientific/grid_metrics_utm.csv",
+./offline/validation/contract_registry.py:33:            "official_runtime_dir": "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/products/runtime",
+./offline/validation/contract_registry.py:35:            "legacy_forbidden_as_official_source": [
+./offline/validation/contract_registry.py:36:                "products/final/grid_height.csv",
+./offline/validation/contract_registry.py:69:                "z_total_m",
+./offline/validation/contract_registry.py:72:                "z_cm",
+./offline/validation/contract_registry.py:75:                "z_total_m = z_terrain_m + z_building_m",
+./offline/validation/contract_registry.py:76:                "z_cm = f(z_total_m)",
+./offline/validation/contract_registry.py:99:            "max_z_cm": 10.0,
+./offline/validation/contract_registry_BASE_SAFE.py:18:                engine_root / "offline/products/scientific/grid_metrics_utm.csv"
+./offline/validation/contract_registry_BASE_SAFE.py:39:            "max_z_cm": 10.0,
+./offline/validation/reports/contract_report.json:15:      "evidence": "/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/products/scientific/grid_metrics_utm.csv",
+./offline/validation/reports/contract_report.json:33:          "z_total_m"
+./offline/validation/reports/contract_report.json:43:      "title": "Relação z_total_m consistente",
+./offline/validation/reports/contract_report.json:44:      "description": "z_total_m = z_terrain_m + z_building_m.",
+./offline/validation/reports/contract_report.json:53:      "title": "z_cm ainda não presente no CSV científico base",
+./offline/validation/reports/contract_report.json:54:      "description": "z_cm foi tratado como derivação operacional posterior, não como coluna obrigatória do CSV base atual.",
+./offline/validation/validate_contract_master.py:100:            recommendation="Gerar offline/products/scientific/grid_metrics_utm.csv",
+./offline/validation/validate_contract_master.py:133:    if "z_terrain_m" in df.columns and "z_building_m" in df.columns and "z_total_m" in df.columns:
+./offline/validation/validate_contract_master.py:135:        diff = (df["z_total_m"] - total_expected).abs()
+./offline/validation/validate_contract_master.py:141:                "Relação z_total_m inconsistente",
+./offline/validation/validate_contract_master.py:142:                "z_total_m difere de z_terrain_m + z_building_m.",
+./offline/validation/validate_contract_master.py:150:                "Relação z_total_m consistente",
+./offline/validation/validate_contract_master.py:151:                "z_total_m = z_terrain_m + z_building_m.",
+./offline/validation/validate_contract_master.py:164:            "z_cm ainda não presente no CSV científico base",
+./offline/validation/validate_contract_master.py:165:            "z_cm foi tratado como derivação operacional posterior, não como coluna obrigatória do CSV base atual.",
+./offline/validation/validate_contract_master.py:474:        df = pd.read_csv(csv_path)
+./offline/validation/validate_grid_vs_raster_alignment.py:12:GRID_PATH = BASE / "offline/products/scientific/{GRID_GPKG}"
+./offline/validation/validate_grid_z_total_vs_dxf.py:102:    gdf = gpd.read_file(DXF_IPT)
+./offline/validation/validate_grid_z_total_vs_dxf.py:17:- offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv
+./offline/validation/validate_grid_z_total_vs_dxf.py:47:    / "grid_z_total_m.csv"
+./offline/validation/validate_raster_local_offset.py:37:DOMAIN_PATH = BASE / "offline/products/scientific/domain_rect_1x2.gpkg"
+./offline/validation/validate_rigid_transform_full.py:24:PARAMS_PATH = ENGINE_ROOT / "offline/products/scientific/rigid_transform_params.json"
+./offline/validation/validate_rigid_transform_full.py:25:ROTATED_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/validation/validate_rigid_transform_full.py:43:    cx = params.get("center_x", None)
+./offline/validation/validate_rigid_transform_full.py:44:    cy = params.get("center_y", None)
+./offline/validation/validate_rigid_transform_full.py:48:    print("center_x:", cx)
+./offline/validation/validate_rigid_transform_full.py:49:    print("center_y:", cy)
+./offline/validation/validate_rigid_transform_full.py:62:    gdf = gpd.read_file(ROTATED_PATH)
+./offline/validation/validate_rigid_transform_full.py:78:    if cx is None or cy is None:
+./offline/validation/validate_rigid_transform_full.py:83:        print("Centro (cx, cy) =", (cx, cy))
+./offline/validation/validate_rigid_transform_json.py:20:PARAMS_PATH = ENGINE_ROOT / "offline/products/scientific/rigid_transform_params.json"
+./offline/validation/validate_rigid_transform_json.py:64:    cx = float(params["center_x"])
+./offline/validation/validate_rigid_transform_json.py:65:    cy = float(params["center_y"])
+./offline/validation/validate_rigid_transform_json.py:70:    print(f"Centro: ({cx}, {cy})")
+./offline/validation/validate_rigid_transform_parameters.py:21:ORIGINAL_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_original.gpkg"
+./offline/validation/validate_rigid_transform_parameters.py:22:ROTATED_PATH  = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/validation/validate_rigid_transform_parameters.py:58:    gdf_orig = gpd.read_file(ORIGINAL_PATH, layer=LAYER_ORIGINAL)
+./offline/validation/validate_rigid_transform_parameters.py:59:    gdf_rot  = gpd.read_file(ROTATED_PATH, layer=LAYER_ROTATED)
+./offline/validation/validate_rotated_raster_vs_envelope.py:12:ENVELOPE_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/validation/validate_rotation_pca_grid.py:162:    df = pd.read_csv(csv_path)
+./offline/validation/validate_scientific_grid_metrics.py:21:CSV_PATH = ENGINE_ROOT / "offline/products/scientific/{GRID_METRICS_CSV}"
+./offline/validation/validate_scientific_grid_metrics.py:40:    df = pd.read_csv(CSV_PATH)
+./offline/vector/core/apply_rigid_transform_clean.py:105:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+./offline/vector/core/apply_rigid_transform_clean.py:106:OUTPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/vector/core/apply_rigid_transform_clean.py:107:PARAMS_PATH = BASE / "offline/products/scientific/rigid_transform_params.json"
+./offline/vector/core/apply_rigid_transform_clean.py:126:    cx, cy = params["midpoint_original"]
+./offline/vector/core/apply_rigid_transform_clean.py:129:    print(f"Centro: ({cx}, {cy})")
+./offline/vector/core/apply_rigid_transform_clean.py:158:                    origin=(cx, cy),
+./offline/vector/core/apply_rigid_transform_clean.py:27:1) Rotação em torno de um ponto (cx, cy):
+./offline/vector/core/apply_rigid_transform_clean.py:29:    x' = cx + cos(θ)(x - cx) - sin(θ)(y - cy)
+./offline/vector/core/apply_rigid_transform_clean.py:30:    y' = cy + sin(θ)(x - cx) + cos(θ)(y - cy)
+./offline/vector/core/build_domain_1x2_utm.py:12:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+./offline/vector/core/build_domain_1x2_utm.py:15:OUTPUT_PATH = BASE / "offline/products/scientific/domain_rect_1x2_utm.gpkg"
+./offline/vector/core/build_domain_1x2_utm.py:42:    cx = (minx + maxx) / 2
+./offline/vector/core/build_domain_1x2_utm.py:43:    cy = (miny + maxy) / 2
+./offline/vector/core/build_domain_1x2_utm.py:45:    print(f"Centro X: {cx:.3f}")
+./offline/vector/core/build_domain_1x2_utm.py:46:    print(f"Centro Y: {cy:.3f}")
+./offline/vector/core/build_domain_1x2_utm.py:68:    new_minx = cx - nova_largura / 2
+./offline/vector/core/build_domain_1x2_utm.py:69:    new_maxx = cx + nova_largura / 2
+./offline/vector/core/build_domain_1x2_utm.py:70:    new_miny = cy - nova_altura / 2
+./offline/vector/core/build_domain_1x2_utm.py:71:    new_maxy = cy + nova_altura / 2
+./online/core/modes.py:32:    aggregation_policy: Literal["mean", "sum", "max"]
+./online/core/modes.py:64:        aggregation_policy="mean",
+./online/core/modes.py:77:        aggregation_policy="mean",
+./online/core/modes.py:90:        aggregation_policy="sum",
+./online/core/test_modes.py:16:        print(f"  agregação: {mode.aggregation_policy}")
+./online/data/temporal_layer.py:5:        self.gdf = gpd.read_file(path, layer=layer)
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:7:from matplotlib.patches import FancyArrowPatch, Rectangle
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:95:arrow = FancyArrowPatch(
+./online/renderers/generate_gif_planta_baixa_ipt.py:71:    gdf = gpd.read_file(dxf_path, layer="entities")
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v1.py:30:    / "grid_z_total_m.csv"
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v1.py:74:gdf = gpd.read_file(DXF_PATH)
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v2_gif.py:25:    / "grid_z_total_m.csv"
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v2_gif.py:82:gdf = gpd.read_file(DXF_PATH)
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:31:    / "grid_z_total_m.csv"
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:90:gdf = gpd.read_file(DXF_PATH)
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:31:    / "grid_z_total_m.csv"
+./online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:81:gdf = gpd.read_file(DXF_PATH)
+./online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:109:gdf = gpd.read_file(DXF_PATH)
+./online/renderers/ipt_fase2_semantic/mesa_virtual_semantic_2d.py:51:GRID_PATH = SNAPSHOT_DIR / "grid_z_total_m.csv"
+./online/renderers/layers/layer_dxf_lines.py:65:        gdf = gpd.read_file(self.dxf_path, layer=self.layer_name)
+./online/renderers/render_mesa_ipt_2d25_canonico.py:146:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_2d25_integrada.py:120:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_2d25_integrada.py:141:    cx, cy = COLS - 1.5, 1.5
+./online/renderers/render_mesa_ipt_2d25_integrada.py:144:        FancyArrow(
+./online/renderers/render_mesa_ipt_2d25_integrada.py:145:            cx, cy,
+./online/renderers/render_mesa_ipt_2d25_integrada.py:153:    ax.text(cx, cy - 0.3, "N", color="white", ha="center", va="top")
+./online/renderers/render_mesa_ipt_2d25_integrada.py:29:from matplotlib.patches import Rectangle, FancyArrow
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:152:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:57:    cx, cy = COLS / 2, ROWS / 2
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:58:    d = np.sqrt((col - cx) ** 2 + (row - cy) ** 2)
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:59:    return BASE_TIME + VAR_TIME * d / np.sqrt(cx ** 2 + cy ** 2)
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:72:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:76:    cx = (minx + maxx) / 2
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:77:    cy = (miny + maxy) / 2
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:81:        lambda g: rotate(g, ANGLE_DEG, origin=(cx, cy), use_radians=False)
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:60:gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:109:    gdf = gpd.read_file(dxf_path, layer="entities")
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:79:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:103:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:127:    gdf = gpd.read_file(DXF_PATH)
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:67:    gdf = gpd.read_file(DXF_IPT)
+./online/renderers/render_temporal_gif_v41_2.py:42:GRID_Z_TOTAL = DATA_DIR / "grid_z_total_m.csv"
+./online/renderers/render_temporal_gif_v42_2.py:43:GRID_Z_TOTAL = DATA_DIR / "grid_z_total_m.csv"
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:68:    gdf = gpd.read_file(dxf_path, layer="entities")
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:74:    gdf = gpd.read_file(dxf_path, layer="entities")
+./online/renderers/visualizar_mesa_ipt_alturas.py:72:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/visualizar_mesa_ipt_bmp_dxf_alturas.py:62:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/tests/test_temporal_conductor.py:38:            z_cm = int(grid[y, x])
+./online/tests/test_temporal_conductor.py:44:                z_pin_cm=z_cm,
+./online/tests/test_temporal_conductor.py:45:                z_real_m=z_cm / 100.0,
+./online/tests/test_temporal_conductor_eventbus.py:38:            z_cm = int(grid[y, x])
+./online/tests/test_temporal_conductor_eventbus.py:44:                z_pin_cm=z_cm,
+./online/tests/test_temporal_conductor_eventbus.py:45:                z_real_m=z_cm / 100.0,
+./online/tests/test_temporal_statechart.py:67:            z_cm = int(grid[y, x])
+./online/tests/test_temporal_statechart.py:73:                z_pin_cm=z_cm,
+./online/tests/test_temporal_statechart.py:74:                z_real_m=z_cm / 100.0,
+./online/ui/Dash_v87_image_lock.py:16:CSV_PATH = "offline/products/scientific/grid_metrics_utm.csv"
+./online/ui/Dash_v87_image_lock.py:17:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan_zigzag.json"
+./online/ui/Dash_v87_image_lock.py:23:df = pd.read_csv(CSV_PATH)
+./online/ui/Dash_v87_image_lock.py:24:VALUE_COL = "z_total_m"
+./online/ui/console_player.py:63:            z_cm = int(grid[y, x])
+./online/ui/console_player.py:70:                    z_pin_cm=z_cm,
+./online/ui/console_player.py:71:                    z_real_m=z_cm / 100.0,
+./online/ui/dash_62_final_integrated.py:16:PLAN_PATH = Path("products/final/actuator_plan.json")
+./online/ui/dash_62_final_integrated.py:17:CSV_PATH = Path("products/final/grid_height.csv")
+./online/ui/dash_62_final_integrated.py:37:    df = pd.read_csv(CSV_PATH)
+./online/ui/dash_62_final_integrated.py:40:    GRID = df.pivot(index="row", columns="col", values="z_total_m") \
+./online/ui/dash_temporal_player.py:43:            z_cm = int(grid[y, x])
+./online/ui/dash_temporal_player.py:50:                    z_real_m=z_cm / 100.0,
+./online/ui/dash_temporal_player.py:51:                    z_pin_cm=z_cm,
+./online/ui/dash_v0_base.py:10:CSV_PATH = "offline/products/scientific/grid_metrics_utm.csv"
+./online/ui/dash_v0_base.py:15:df = pd.read_csv(CSV_PATH)
+./online/ui/dash_v0_base.py:18:VALUE_COL = "z_total_m"
+./online/ui/dash_v100_1.py:14:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan_zigzag.json"
+./online/ui/dash_v100_2.py:14:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan_zigzag.json"
+./online/ui/dash_v100_height_anim.py:14:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan_zigzag.json"
+./online/ui/dash_v101_fisico.py:14:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan_zigzag.json"
+./online/ui/dash_v101_fix.py:15:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan_zigzag.json"
+./online/ui/dash_v70_master_final.py:25:PLAN_PATH = Path("products/final/actuator_plan.json")
+./online/ui/dash_v70_master_final.py:26:CSV_PATH = Path("products/final/grid_height.csv")
+./online/ui/dash_v70_master_final.py:27:BG_PATH = Path("products/final/grid_height.bmp")
+./online/ui/dash_v70_master_final.py:49:check(CSV_PATH, "grid_height.csv")
+./online/ui/dash_v70_master_final.py:70:    df = pd.read_csv(CSV_PATH)
+./online/ui/dash_v70_master_final.py:82:    grid_total = df.pivot(index="row", columns="col", values="z_total_m").values
+./online/ui/dash_v70_master_final.py:99:            df["z_total_m"] - (df["z_terrain_m"] + df["z_building_m"])
+./online/ui/dash_v72_cityspace_official.py:10:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v72_cityspace_official.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v72_cityspace_official.py:13:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v73_cityspace_gridfix.py:10:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v73_cityspace_gridfix.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v73_cityspace_gridfix.py:13:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v74_cityspace_centered.py:10:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v74_cityspace_centered.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v74_cityspace_centered.py:13:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v75_2_restored.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v75_2_restored.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v75_2_restored.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v75_3_fixed.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v75_3_fixed.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v75_3_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v75_cityspace_controls.py:10:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v75_cityspace_controls.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v75_cityspace_controls.py:13:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v76_time_continuous.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v76_time_continuous.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v76_time_continuous.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v77_cityspace_physics.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v77_cityspace_physics.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v77_cityspace_physics.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v77_visual_layer.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v77_visual_layer.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v77_visual_layer.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v78_1_zoom_fixed.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v78_1_zoom_fixed.py:122: cx=cols//2
+./online/ui/dash_v78_1_zoom_fixed.py:123: cy=rows//2
+./online/ui/dash_v78_1_zoom_fixed.py:132: x0=cx-span_x
+./online/ui/dash_v78_1_zoom_fixed.py:133: x1=cx+span_x
+./online/ui/dash_v78_1_zoom_fixed.py:134: y0=cy-span_y
+./online/ui/dash_v78_1_zoom_fixed.py:135: y1=cy+span_y
+./online/ui/dash_v78_1_zoom_fixed.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v78_1_zoom_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v78_zoom_centered.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v78_zoom_centered.py:123: cx=cols//2
+./online/ui/dash_v78_zoom_centered.py:124: cy=rows//2
+./online/ui/dash_v78_zoom_centered.py:133: x0=cx-span_x
+./online/ui/dash_v78_zoom_centered.py:134: x1=cx+span_x
+./online/ui/dash_v78_zoom_centered.py:135: y0=cy-span_y
+./online/ui/dash_v78_zoom_centered.py:136: y1=cy+span_y
+./online/ui/dash_v78_zoom_centered.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v78_zoom_centered.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v79_physical_grid_zoom.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v79_physical_grid_zoom.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v79_physical_grid_zoom.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v80_1_scale_fixed.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v80_1_scale_fixed.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v80_1_scale_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v80_true_physical_scale.py:11:with open("products/final/actuator_plan.json") as f:
+./online/ui/dash_v80_true_physical_scale.py:8:df=pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v80_true_physical_scale.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v81_physical_elevation.py:11:with open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json") as f:
+./online/ui/dash_v81_physical_elevation.py:8:df=pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v81_physical_elevation.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v83_grid_border.py:11:with open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json") as f:
+./online/ui/dash_v83_grid_border.py:8:df=pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v83_grid_border.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v84_LOCKED.py:11:with open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json") as f:
+./online/ui/dash_v84_LOCKED.py:8:df=pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v84_LOCKED.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v84_active_pin.py:11:with open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json") as f:
+./online/ui/dash_v84_active_pin.py:8:df=pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v84_active_pin.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v85_LOCKED.py:12:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v85_LOCKED.py:5:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v85_LOCKED.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v85_visual_fit.py:11:with open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json") as f:
+./online/ui/dash_v85_visual_fit.py:8:df=pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v85_visual_fit.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v85_visual_refined.py:13:CSV_PATH=BASE/"products/final/grid_height.csv"
+./online/ui/dash_v85_visual_refined.py:14:PLAN_PATH=BASE/"products/final/actuator_plan.json"
+./online/ui/dash_v85_visual_refined.py:16:df=pd.read_csv(CSV_PATH)
+./online/ui/dash_v85_visual_refined.py:23:    grid[int(r["row"])][int(r["col"])]=r["z_cm"]
+./online/ui/dash_v86_layers_ready.py:11:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v86_layers_ready.py:21:    "/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json"
+./online/ui/dash_v86_visual_clean.py:6:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v86_visual_clean.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v86_visual_clean.py:9:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v87_fix_zigzag.py:11:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v87_fix_zigzag.py:19:    "/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json"
+./online/ui/dash_v88_fix_path_bounds.py:11:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v88_fix_path_bounds.py:19:    "/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json"
+./online/ui/dash_v88_grid_fix.py:6:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v88_grid_fix.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v88_grid_fix.py:9:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v89_final_fit.py:6:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v89_final_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v89_final_fit.py:9:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v89_use_real_path.py:11:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v89_use_real_path.py:19:    "/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json"
+./online/ui/dash_v90_urban_fit.py:6:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v90_urban_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v90_urban_fit.py:9:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v91_altimetric_motion.py:6:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v91_altimetric_motion.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v91_altimetric_motion.py:9:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v91_speed_control.py:18:df = pd.read_csv(f"{BASE}/products/final/grid_height.csv")
+./online/ui/dash_v91_speed_control.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v91_speed_control.py:21:with open(f"{BASE}/products/final/actuator_plan.json") as f:
+./online/ui/dash_v92_real_plan.py:18:df = pd.read_csv(f"{BASE}/products/final/grid_height.csv")
+./online/ui/dash_v92_real_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v92_real_plan.py:21:with open(f"{BASE}/products/final/actuator_plan.json") as f:
+./online/ui/dash_v93_centroid_final.py:5:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v93_centroid_final.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v93_centroid_final.py:8:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v93_robust_plan.py:18:df = pd.read_csv(f"{BASE}/products/final/grid_height.csv")
+./online/ui/dash_v93_robust_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v93_robust_plan.py:21:with open(f"{BASE}/products/final/actuator_plan.json") as f:
+./online/ui/dash_v94_2_normalizado.py:11:grid_m = df.pivot(index="row", columns="col", values="z_total_m").values[:8, :16]
+./online/ui/dash_v94_2_normalizado.py:21:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v94_2_normalizado.py:8:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v94_clean_marker.py:5:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v94_clean_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_clean_marker.py:8:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v94_clean_no_marker.py:5:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v94_clean_no_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_clean_no_marker.py:8:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v94_real_fix.py:17:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan.json"
+./online/ui/dash_v94_real_legend.py:13:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v94_real_legend.py:14:z_m_max  = df["z_total_m"].max()
+./online/ui/dash_v94_real_legend.py:15:scale_m_per_cm = z_m_max / z_cm_max if z_cm_max > 0 else 0
+./online/ui/dash_v94_real_legend.py:20:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v94_real_legend.py:6:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v94_real_legend.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_real_pipeline.py:10:# 🔥 usar diretamente z_cm (já normalizado pelo pipeline)
+./online/ui/dash_v94_real_pipeline.py:11:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_real_pipeline.py:21:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v94_real_pipeline.py:8:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v95_1_real_transparente.py:12:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v95_1_real_transparente.py:13:z_m_max  = df["z_total_m"].max()
+./online/ui/dash_v95_1_real_transparente.py:14:scale_m_per_cm = z_m_max / z_cm_max if z_cm_max > 0 else 0
+./online/ui/dash_v95_1_real_transparente.py:18:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v95_1_real_transparente.py:5:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v95_1_real_transparente.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_2_real_base.py:16:csv_path = "products/final/grid_height.csv"
+./online/ui/dash_v95_2_real_base.py:19:df = pd.read_csv(csv_path)
+./online/ui/dash_v95_2_real_base.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_2_real_base.py:36:plan_path = "products/final/actuator_plan.json"
+./online/ui/dash_v95_2_real_final.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_2_real_final.py:18:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v95_2_real_final.py:19:z_m_max  = df["z_total_m"].max()
+./online/ui/dash_v95_2_real_final.py:20:scale_m_per_cm = z_m_max / z_cm_max if z_cm_max > 0 else 0
+./online/ui/dash_v95_2_real_final.py:27:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v95_2_real_final.py:8:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v95_2d.py:11:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v95_2d.py:5:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v95_2d.py:6:grid = df.pivot(index="row", columns="col", values="z_cm")
+./online/ui/dash_v95_2d_final_corrigido.py:5:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v95_2d_final_corrigido.py:8:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_3_clean_callbacks.py:15:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v95_3_clean_callbacks.py:16:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v95_3_clean_callbacks.py:27:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v95_3_real_hard.py:13:df = pd.read_csv(CSV_PATH)
+./online/ui/dash_v95_3_real_hard.py:18:# 🔥 USA z_cm REAL
+./online/ui/dash_v95_3_real_hard.py:19:grid = df.pivot(index="row", columns="col", values="z_cm")
+./online/ui/dash_v95_3_real_hard.py:33:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v95_3_real_hard.py:34:z_m_max  = df["z_total_m"].max()
+./online/ui/dash_v95_3_real_hard.py:36:scale = z_m_max / z_cm_max if z_cm_max else 0
+./online/ui/dash_v95_3_real_hard.py:8:CSV_PATH = "products/final/grid_height.csv"
+./online/ui/dash_v95_3_real_hard.py:9:PLAN_PATH = "products/final/actuator_plan.json"
+./online/ui/dash_v95_3d_urban.py:5:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v95_3d_urban.py:6:Z = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_4_blindado.py:10:GRID_PATH = f"{BASE}/products/final/grid_height.csv"
+./online/ui/dash_v95_4_blindado.py:11:PLAN_PATH = f"{BASE}/products/final/actuator_plan.json"
+./online/ui/dash_v95_4_blindado.py:18:df = pd.read_csv(GRID_PATH)
+./online/ui/dash_v95_4_blindado.py:20:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v95_4_real_correct.py:12:z_cm_max = df["z_cm"].max()
+./online/ui/dash_v95_4_real_correct.py:13:z_m_max  = df["z_total_m"].max()
+./online/ui/dash_v95_4_real_correct.py:14:scale = z_m_max / z_cm_max if z_cm_max else 0
+./online/ui/dash_v95_4_real_correct.py:16:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v95_4_real_correct.py:5:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v95_4_real_correct.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_5_debug.py:12:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v95_5_debug.py:17:grid = df.pivot(index="row", columns="col", values="z_cm")
+./online/ui/dash_v95_5_debug.py:29:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v95_5_incremental.py:14:GRID_PATH = f"{BASE}/products/final/grid_height.csv"
+./online/ui/dash_v95_5_incremental.py:15:PLAN_PATH = f"{BASE}/products/final/actuator_plan.json"
+./online/ui/dash_v95_5_incremental.py:25:df = pd.read_csv(GRID_PATH)
+./online/ui/dash_v95_5_incremental.py:27:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v95_6_hard_stable.py:11:GRID_PATH = f"{BASE}/products/final/grid_height.csv"
+./online/ui/dash_v95_6_hard_stable.py:12:PLAN_PATH = f"{BASE}/products/final/actuator_plan.json"
+./online/ui/dash_v95_6_hard_stable.py:22:df = pd.read_csv(GRID_PATH)
+./online/ui/dash_v95_6_hard_stable.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v95_6_stable.py:15:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v95_6_stable.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v95_6_stable.py:30:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v95_real_corrigido.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_real_corrigido.py:8:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v96_engine_separado.py:11:GRID_PATH = f"{BASE}/products/final/grid_height.csv"
+./online/ui/dash_v96_engine_separado.py:12:PLAN_PATH = f"{BASE}/products/final/actuator_plan.json"
+./online/ui/dash_v96_engine_separado.py:22:df = pd.read_csv(GRID_PATH)
+./online/ui/dash_v96_engine_separado.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v96_modo_fisico.py:18:raw = json.load(open("products/final/actuator_plan.json"))
+./online/ui/dash_v96_modo_fisico.py:8:df = pd.read_csv("products/final/grid_height.csv")
+./online/ui/dash_v96_modo_fisico.py:9:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v96_rotation_fix.py:18:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan.json"
+./online/ui/dash_v97_2_metodoB.py:11:GRID_PATH = f"{BASE}/products/final/grid_height.csv"
+./online/ui/dash_v97_2_metodoB.py:12:PLAN_PATH = f"{BASE}/products/final/actuator_plan.json"
+./online/ui/dash_v97_2_metodoB.py:21:df = pd.read_csv(GRID_PATH)
+./online/ui/dash_v97_2_metodoB.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v97_2_metodoB_fix.py:11:GRID_PATH = f"{BASE}/products/final/grid_height.csv"
+./online/ui/dash_v97_2_metodoB_fix.py:12:PLAN_PATH = f"{BASE}/products/final/actuator_plan.json"
+./online/ui/dash_v97_2_metodoB_fix.py:21:df = pd.read_csv(GRID_PATH)
+./online/ui/dash_v97_2_metodoB_fix.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v97_final_clean.py:17:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan.json"
+./online/ui/dash_v97_tempo_fisico.py:11:GRID_PATH = f"{BASE}/products/final/grid_height.csv"
+./online/ui/dash_v97_tempo_fisico.py:12:PLAN_PATH = f"{BASE}/products/final/actuator_plan.json"
+./online/ui/dash_v97_tempo_fisico.py:22:df = pd.read_csv(GRID_PATH)
+./online/ui/dash_v97_tempo_fisico.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v99_3d_buildings_zigzag.py:5:df = pd.read_csv("/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv")
+./online/ui/dash_v99_3d_buildings_zigzag.py:6:Z0 = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v99_3d_buildings_zigzag.py:9:    open("/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json")
+./online/ui/dash_v99_zigzag_final.py:15:PLAN_PATH = "ipt_core_clean/products/final/actuator_plan_zigzag.json"
+./online/ui/temporal_player_grid_app.py:65:            z_cm = int(grid[y, x])
+./online/ui/temporal_player_grid_app.py:72:                    z_pin_cm=z_cm,
+./online/ui/temporal_player_grid_app.py:73:                    z_real_m=z_cm / 100.0,
+./online/ui/temporal_player_grid_controls_app.py:48:            z_cm = int(grid[y, x])
+./online/ui/temporal_player_grid_controls_app.py:54:                    z_pin_cm=z_cm,
+./online/ui/temporal_player_grid_controls_app.py:55:                    z_real_m=z_cm / 100.0,
+./scripts/98_autoscan_diagnostics.py:13:PLAN_PATH=BASE/"products/final/actuator_plan.json"
+./scripts/98_autoscan_diagnostics.py:14:CSV_PATH=BASE/"products/final/grid_height.csv"
+./scripts/98_autoscan_diagnostics.py:15:BMP_PATH=BASE/"products/final/grid_height.bmp"
+./scripts/98_autoscan_diagnostics.py:31:ok_csv=check(CSV_PATH,"grid_height.csv")
+./scripts/98_autoscan_diagnostics.py:48:  df=pd.read_csv(CSV_PATH)
+./scripts/98_autoscan_diagnostics.py:60:  grid_total=df.pivot(index="row",columns="col",values="z_total_m").values
+./scripts/98_autoscan_diagnostics.py:70: if all(col in df.columns for col in ["z_total_m","z_terrain_m","z_building_m"]):
+./scripts/98_autoscan_diagnostics.py:71:  diff=np.abs(df["z_total_m"]-(df["z_terrain_m"]+df["z_building_m"])).mean()

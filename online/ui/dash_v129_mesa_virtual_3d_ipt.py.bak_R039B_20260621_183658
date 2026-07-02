@@ -1,0 +1,262 @@
+import json
+import numpy as np
+import pandas as pd
+import dash
+from dash import dcc, html, Input, Output, State, ctx
+import plotly.graph_objects as go
+from pathlib import Path
+
+BASE = Path("/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean")
+DATA = BASE / "globe_cityspace_open/projects/ipt_north_5000"
+PLAN = BASE / "products/final/actuator_plan_zigzag.json"
+
+ROWS, COLS = 8, 16
+
+def load_matrix(name):
+    return pd.read_csv(DATA / name, sep=";", header=None).values.astype(float)
+
+terrain = load_matrix("grid_terrain_m.csv")
+building = load_matrix("grid_building_m.csv")
+z_total = load_matrix("grid_z_total_m.csv")
+pino_cm = load_matrix("grid_pino_cm.csv")
+uint8 = load_matrix("grid_uint8.csv")
+
+def normalize(a, max_out):
+    a = np.nan_to_num(a, nan=0.0)
+    mn, mx = float(np.min(a)), float(np.max(a))
+    if mx <= mn:
+        return np.zeros_like(a)
+    return ((a - mn) / (mx - mn)) * max_out
+
+terrain_vis = normalize(terrain, 2.5)
+building_vis = normalize(building, 7.5)
+urban_vis = terrain_vis + building_vis
+
+raw = json.load(open(PLAN, encoding="utf-8"))
+events = raw.get("events", raw)
+
+path = []
+pos = (0, 0)
+for e in events:
+    if e.get("type") == "move":
+        pos = (int(e["row"]), int(e["col"]))
+    elif e.get("type") == "set_height_cm":
+        r, c = pos
+        if 0 <= r < ROWS and 0 <= c < COLS:
+            path.append((r, c))
+
+if not path:
+    for c in range(COLS):
+        rr = range(ROWS) if c % 2 == 0 else range(ROWS - 1, -1, -1)
+        for r in rr:
+            path.append((r, c))
+
+app = dash.Dash(__name__)
+app.title = "Mesa Virtual 3D IPT"
+
+def cube(x, y, h, base=0.0, s=0.86):
+    x0, x1 = x - s/2, x + s/2
+    y0, y1 = y - s/2, y + s/2
+    z0, z1 = base, base + h
+    X = [x0,x1,x1,x0,x0,x1,x1,x0]
+    Y = [y0,y0,y1,y1,y0,y0,y1,y1]
+    Z = [z0,z0,z0,z0,z1,z1,z1,z1]
+    I = [0,0,0,4,4,5,1,2,3,6,7,6]
+    J = [1,2,3,5,6,6,5,6,7,7,4,5]
+    K = [2,3,1,6,7,7,6,7,4,4,5,4]
+    return X, Y, Z, I, J, K
+
+app.layout = html.Div([
+    html.H2("Mesa Virtual 3D Dinâmica — IPT-CitySpace", style={"marginBottom": "4px"}),
+    html.Div("Terreno + Edifícios + Mesa Física 0–10 cm + BMP 0–255 | percurso ZigZag"),
+    html.Br(),
+
+    html.Div([
+        html.Label("Modo visual: "),
+        dcc.Dropdown(
+            id="mode",
+            value="urban",
+            clearable=False,
+            options=[
+                {"label": "Terreno + Edifícios separados", "value": "urban"},
+                {"label": "Somente terreno", "value": "terrain"},
+                {"label": "Mesa física: pinos 0–10 cm", "value": "pino"},
+                {"label": "BMP: tons de cinza 0–255", "value": "bmp"},
+            ],
+            style={"width": "460px"}
+        ),
+    ], style={"display": "inline-block", "marginRight": "30px"}),
+
+    html.Div([
+        html.Button("<<", id="back"),
+        html.Button("Play", id="play"),
+        html.Button("Pause", id="pause"),
+        html.Button(">>", id="forward"),
+    ], style={"display": "inline-block"}),
+
+    dcc.Graph(id="g3d", style={"height": "76vh"}),
+
+    html.Div(id="info", style={
+        "fontFamily": "monospace",
+        "fontSize": "15px",
+        "padding": "8px",
+        "background": "#111",
+        "color": "#eee"
+    }),
+
+    dcc.Interval(id="timer", interval=120),
+    dcc.Store(id="step", data=0),
+    dcc.Store(id="running", data=False),
+    dcc.Store(id="direction", data=1),
+])
+
+@app.callback(
+    Output("running", "data"),
+    Input("play", "n_clicks"),
+    Input("pause", "n_clicks"),
+    State("running", "data"),
+    prevent_initial_call=True
+)
+def run(play, pause, running):
+    return True if ctx.triggered_id == "play" else False if ctx.triggered_id == "pause" else running
+
+@app.callback(
+    Output("direction", "data"),
+    Input("forward", "n_clicks"),
+    Input("back", "n_clicks"),
+    State("direction", "data"),
+    prevent_initial_call=True
+)
+def change_dir(fwd, back, direction):
+    return 1 if ctx.triggered_id == "forward" else -1 if ctx.triggered_id == "back" else direction
+
+@app.callback(
+    Output("step", "data"),
+    Input("timer", "n_intervals"),
+    State("running", "data"),
+    State("direction", "data"),
+    State("step", "data"),
+)
+def tick(n, running, direction, step):
+    if not running:
+        return step
+    return max(0, min(len(path)-1, int(step) + int(direction)))
+
+@app.callback(
+    Output("g3d", "figure"),
+    Output("info", "children"),
+    Input("mode", "value"),
+    Input("step", "data")
+)
+def draw(mode, step):
+    step = int(step)
+    r_active, c_active = path[step]
+    pin_id = step + 1
+
+    fig = go.Figure()
+
+    if mode == "terrain":
+        zbase = terrain_vis
+        fig.add_trace(go.Surface(
+            z=zbase,
+            colorscale="Greys",
+            opacity=0.95,
+            colorbar=dict(title="Terreno"),
+        ))
+        active_z = zbase[r_active, c_active]
+        title = "Somente terreno"
+
+    elif mode == "urban":
+        fig.add_trace(go.Surface(
+            z=terrain_vis,
+            colorscale="Greys",
+            opacity=0.48,
+            showscale=False,
+            name="Terreno"
+        ))
+
+        for r in range(ROWS):
+            for c in range(COLS):
+                h = building_vis[r, c]
+                if h > 0.05:
+                    X,Y,Z,I,J,K = cube(c, r, h, base=terrain_vis[r,c])
+                    fig.add_trace(go.Mesh3d(
+                        x=X, y=Y, z=Z, i=I, j=J, k=K,
+                        intensity=[building[r,c]] * len(X),
+                        colorscale="Viridis",
+                        cmin=0,
+                        cmax=max(1, float(np.max(building))),
+                        opacity=0.94,
+                        showscale=False,
+                    ))
+        active_z = urban_vis[r_active, c_active]
+        title = "Terreno + Edifícios separados"
+
+    elif mode == "pino":
+        for r in range(ROWS):
+            for c in range(COLS):
+                h = pino_cm[r, c]
+                if h > 0:
+                    X,Y,Z,I,J,K = cube(c, r, h, base=0)
+                    fig.add_trace(go.Mesh3d(
+                        x=X, y=Y, z=Z, i=I, j=J, k=K,
+                        intensity=[h] * len(X),
+                        colorscale="Turbo",
+                        cmin=0, cmax=10,
+                        opacity=1,
+                        showscale=False,
+                    ))
+        active_z = pino_cm[r_active, c_active]
+        title = "Mesa física — pinos 0–10 cm"
+
+    else:
+        z = (uint8 / 255.0) * 10.0
+        fig.add_trace(go.Surface(
+            z=z,
+            surfacecolor=uint8,
+            colorscale="Gray",
+            cmin=0,
+            cmax=255,
+            colorbar=dict(title="BMP 0–255"),
+        ))
+        active_z = z[r_active, c_active]
+        title = "BMP — tons de cinza 0–255"
+
+    fig.add_trace(go.Scatter3d(
+        x=[c_active],
+        y=[r_active],
+        z=[active_z + 0.55],
+        mode="markers+text",
+        marker=dict(size=8, color="red"),
+        text=[f"P{pin_id:03d}"],
+        textposition="top center",
+        name="Pino ativo"
+    ))
+
+    fig.update_layout(
+        title=title,
+        showlegend=False,
+        scene=dict(
+            xaxis=dict(title="Colunas", range=[-1, COLS]),
+            yaxis=dict(title="Linhas", range=[-1, ROWS]),
+            zaxis=dict(title="Altura"),
+            aspectratio=dict(x=2.4, y=1.2, z=0.75),
+            camera=dict(eye=dict(x=1.75, y=-2.2, z=1.35))
+        ),
+        margin=dict(l=0, r=0, t=40, b=0)
+    )
+
+    info = (
+        f"Pino ativo: P{pin_id:03d} | linha={r_active} coluna={c_active} | "
+        f"terreno_m={terrain[r_active,c_active]:.3f} | "
+        f"edificio_m={building[r_active,c_active]:.3f} | "
+        f"z_total_m={z_total[r_active,c_active]:.3f} | "
+        f"pino_cm={pino_cm[r_active,c_active]:.3f} | "
+        f"BMP={int(uint8[r_active,c_active])}"
+    )
+
+    return fig, info
+
+if __name__ == "__main__":
+    print(">>> MESA VIRTUAL 3D IPT - V129 <<<", flush=True)
+    app.run(host="0.0.0.0", port=8060, debug=False)

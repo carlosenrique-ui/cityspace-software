@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+# ==========================================================
+# IPT-CitySpace – Scientific Grid Builder
+# ==========================================================
+
+import pyogrio
+import geopandas as gpd
+from shapely.geometry import box
+from pathlib import Path
+
+from offline.config.system_parameters import *
+
+BASE = Path(__file__).resolve().parents[0]
+
+ENVELOPE = BASE / "products/scientific/urban_envelope_scientific_rotated.gpkg"
+OUTPUT = BASE / "products/scientific/grid_8x16_metric.gpkg"
+
+
+def build_domain():
+
+    df = pyogrio.read_dataframe(ENVELOPE)
+
+    minx, miny, maxx, maxy = df.total_bounds
+
+    width = maxx - minx
+    height = maxy - miny
+
+    cx = minx + width / 2
+    cy = miny + height / 2
+
+    cell_h = height / GRID_ROWS
+
+    division = miny + (GRID_ROWS / 2) * cell_h
+
+    dy = cy - division
+
+    if CENTER_URBAN_ON_GRID:
+        miny += dy
+        maxy += dy
+
+    print("Urban center:", cx, cy)
+    print("Shift applied:", dy)
+
+    return box(minx, miny, maxx, maxy)
+
+
+def build_grid(domain):
+
+    minx, miny, maxx, maxy = domain.bounds
+
+    width = maxx - minx
+    height = maxy - miny
+
+    cell_w = width / GRID_COLS
+    cell_h = height / GRID_ROWS
+
+    cells = []
+
+    for r in range(GRID_ROWS):
+        for c in range(GRID_COLS):
+
+            x1 = minx + c * cell_w
+            x2 = x1 + cell_w
+
+            y2 = maxy - r * cell_h
+            y1 = y2 - cell_h
+
+            cells.append(box(x1, y1, x2, y2))
+
+    return cells
+
+
+def main():
+
+    domain = build_domain()
+
+    cells = build_grid(domain)
+
+    gdf = gpd.GeoDataFrame(
+        {"cell_id": range(len(cells)), "geometry": cells},
+        crs="EPSG:31983"
+    )
+
+    pyogrio.write_dataframe(gdf, OUTPUT)
+
+    print("Grid saved:", OUTPUT)
+
+
+if __name__ == "__main__":
+    main()

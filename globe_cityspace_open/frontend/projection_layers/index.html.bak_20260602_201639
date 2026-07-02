@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Globe-CitySpace — G6.2 Projection Layers Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <strong>Globe-CitySpace</strong>
+  <span>G6.2 — IPT Projection Layers | North-Up | 1:5000</span>
+</header>
+
+<main>
+  <aside>
+    <h2>IPT Projection Mapping</h2>
+
+    <label>Modo físico</label>
+    <select id="cellMode">
+      <option value="1">1 cm x 1 cm</option>
+      <option value="2" selected>2 cm x 2 cm</option>
+    </select>
+
+    <label>Camada</label>
+    <select id="layerMode">
+      <option value="pin">Altura dos pinos (cm)</option>
+      <option value="gray">Gray 0–255</option>
+      <option value="total">Altura total (m)</option>
+      <option value="building">Edificações (m)</option>
+      <option value="terrain">Terreno (m)</option>
+    </select>
+
+    <label class="check"><input type="checkbox" id="showBase" checked> Base/Footprint IPT</label>
+    <label class="check"><input type="checkbox" id="showPins" checked> Pinos extrudados</label>
+
+    <button id="btnTop">Vista topo</button>
+    <button id="btnOblique">Vista oblíqua</button>
+
+    <hr>
+
+    <a href="../" class="link">← Voltar ao Explorer</a>
+    <a href="../../projects/ipt_north_5000/ipt_north_5000_cells.xlsx" class="link">Abrir XLSX</a>
+    <a id="bmpLink" class="link">Abrir BMP</a>
+
+    <div id="info"></div>
+  </aside>
+
+  <section id="viewer">
+    <div id="north">↑ NORTE</div>
+    <div id="legend">
+      <div>10 cm</div>
+      <div class="bar"></div>
+      <div>0 cm</div>
+    </div>
+    <div id="table" class="oblique"></div>
+  </section>
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>

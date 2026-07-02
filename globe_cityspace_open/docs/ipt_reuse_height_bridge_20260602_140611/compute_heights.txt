@@ -1,0 +1,31 @@
+=== compute_heights.py ===
+import numpy as np
+
+def compute_heights(dsm, dtm, mask):
+    """
+    Estado OFF-LINE: ComputeHeights (nDSM)
+    --------------------------------------
+    Calcula nDSM fisico (DSM - DTM) com mascara de edificios.
+
+    Regras:
+    - Valores negativos -> 0
+    - Fora da mascara -> 0
+    - NaN -> 0
+    """
+
+    print("[ComputeHeights] Calculando nDSM")
+
+    dsm = dsm.astype(np.float32)
+    dtm = dtm.astype(np.float32)
+
+    ndsm = dsm - dtm
+
+    ndsm[~np.isfinite(ndsm)] = 0
+    ndsm[ndsm < 0] = 0
+
+    ndsm[mask == 0] = 0
+
+    print(f"[ComputeHeights] Altura maxima: {ndsm.max():.2f} m")
+    print("[ComputeHeights] nDSM calculado com sucesso\n")
+
+    return ndsm

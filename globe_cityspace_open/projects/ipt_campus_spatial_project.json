@@ -1,0 +1,22 @@
+{
+  "contract_type": "spatial_project",
+  "contract_version": "G5.2R",
+  "project_name": "IPT Campus",
+  "center": {
+    "lat": -23.5567944,
+    "lon": -46.7373288
+  },
+  "scale": 5000,
+  "grid": {
+    "rows": 8,
+    "cols": 16,
+    "cell_count": 128,
+    "cell_size_cm": 2
+  },
+  "spatial_layout_file": "contracts/spatial_layout_16x8.json",
+  "integration_policy": {
+    "globe_cityspace_role": "producer_of_spatial_contract",
+    "ipt_cityspace_role": "physical_runtime_consumer",
+    "direct_import_from_legacy_online_offline": false
+  }
+}

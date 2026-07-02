@@ -1,0 +1,39 @@
+./legacy/auto_20260211_133921/offline/scanners/__init__.py:from .zigzag_column_scanner import ZigZagColumnScanner
+./legacy/auto_20260211_133921/offline/scanners/__init__.py:    "ZigZagColumnScanner",
+./offline/scanners/zigzag_column_scanner.py:ZigZagColumnScanner
+./offline/scanners/zigzag_column_scanner.py:class ZigZagColumnScanner:
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:from offline.scanners import ZigZagColumnScanner
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:from offline.scanners import ZigZagColumnScanner
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:from offline.scanners import ZigZagColumnScanner
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./visualization/render_temporal_gif.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./visualization/render_temporal_gif_v1.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v1.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./visualization/render_temporal_gif_v10.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v10.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./visualization/render_temporal_gif_v11.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v11.py:    trajetoria_base = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./visualization/render_temporal_gif_v12.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v12.py:    traj = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./visualization/render_temporal_gif_v13.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v13.py:    traj = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./visualization/render_temporal_gif_v14.py:• NÃO usa ZigZagColumnScanner
+./visualization/render_temporal_gif_v2.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v2.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./visualization/render_temporal_gif_v3.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v3.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./visualization/render_temporal_gif_v4.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v4.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./visualization/render_temporal_gif_v5.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v5.py:    scanner = ZigZagColumnScanner(rows=rows, cols=cols)
+./visualization/render_temporal_gif_v6.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v6.py:    scanner_dados = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./visualization/render_temporal_gif_v7.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v7.py:    trajetoria_dados = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./visualization/render_temporal_gif_v8.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v8.py:    trajetoria_original = list(ZigZagColumnScanner(rows=rows, cols=cols))
+./visualization/render_temporal_gif_v9.py:from offline.scanners import ZigZagColumnScanner
+./visualization/render_temporal_gif_v9.py:    traj = list(ZigZagColumnScanner(rows=rows, cols=cols))

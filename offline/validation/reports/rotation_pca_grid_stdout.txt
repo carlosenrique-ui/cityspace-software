@@ -1,0 +1,10 @@
+
+================ ROTATION PCA + GRID FIT ================
+coordinate_source: scientific_xy
+pca principal angle (deg): 0.0
+best axis: x
+best rotation (deg): 0.0
+best residual (deg): 0.0
+contract comparison: {'pca_vs_geospatial_deg': -154.63, 'pca_vs_physical_deg': -146.82, 'geospatial_vs_physical_deg': 7.81}
+status: {'grid_fit_status': 'OK', 'contract_rotation_status': 'CONTRACT-ADDITIVE-REQUIRED'}
+[OK] Report written to: /mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/validation/reports/rotation_pca_grid_report.json

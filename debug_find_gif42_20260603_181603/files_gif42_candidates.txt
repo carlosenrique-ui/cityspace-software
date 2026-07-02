@@ -1,0 +1,11 @@
+./debug_find_gif42_20260603_181603
+./debug_find_gif42_20260603_181603/files_gif42_candidates.txt
+./debug_orientation_grid_height_20260603_175542
+./online/app_v42_player.py
+./online/outputs/mesa_virtual_debug_v2.gif
+./online/outputs/mesa_virtual_debug_v3.gif
+./online/outputs/mesa_virtual_debug_v4.gif
+./online/outputs/mesa_virtual_semantica_ipt.gif
+./online/renderers/render_temporal_gif_v42_2.py
+./online/ui/dash_virtual_table_player_v42.py
+./scan07042026.txt

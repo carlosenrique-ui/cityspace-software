@@ -1,0 +1,30 @@
+offline/adapters/scientific_to_semantic_adapter.py:    building = df["altura_edificio_m"].values.reshape(GRID_ROWS, GRID_COLS)
+offline/adapters/scientific_to_semantic_adapter.py:    np.savetxt(OUT_DIR / "grid_building_m.csv", building, delimiter=";", fmt="%.3f")
+offline/processing/apply_rigid_transform_vector_scientific.py:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    buildings = geometries_sorted[1:]
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    print("Total edifícios:", len(buildings))
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    save_gpkg(buildings, OUTPUT_BUILDINGS, "buildings")
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+offline/processing/set_crs_scientific.py:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+offline/products/scientific/grid_metrics_8x16_utm.csv:cell_id,mean_dtm_m,mean_dsm_m,altura_edificio_m,altura_total_m,percent_building,percent_terrain
+offline/scientific_cell_metrics.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics.py:        buildings = [shape(f["geometry"]) for f in bld]
+offline/scientific_cell_metrics.py:    print(f"Total edifícios: {len(buildings)}")
+offline/scientific_cell_metrics.py:        for b in buildings:
+offline/scientific_cell_metrics.py:            "percent_building",
+offline/scientific_cell_metrics_utm.py:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics_utm.py:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics_utm.py:        buildings = [shape(f["geometry"]) for f in bld]
+offline/scientific_cell_metrics_utm.py:    print(f"Total edifícios: {len(buildings)}")
+offline/scientific_cell_metrics_utm.py:        for b in buildings:
+offline/scientific_cell_metrics_utm.py:            "percent_building",
+offline/tools/buildings_height_model.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/buildings_height_model.py:OUTPUT = BASE / "offline/products/scientific/buildings_with_height.gpkg"
+offline/tools/buildings_height_model.py:def compute_building_heights():
+offline/tools/buildings_height_model.py:    compute_building_heights()
+offline/tools/recompute_rigid_transform.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+offline/tools/recompute_rigid_transform.py:BUILDINGS_ROT = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/snap_vector_to_raster_grid.py:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"

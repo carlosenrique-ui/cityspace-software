@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-05-11T22:53:11.764132",
+  "phases_found": {
+    "A": "docs/reverse_engineering/phase_A_online_20260507_164119",
+    "B": "docs/reverse_engineering/phase_B_online_contract_20260507_165403",
+    "C": null,
+    "D": "docs/reverse_engineering/phase_D_offline_20260511_170241",
+    "E": "docs/reverse_engineering/phase_E_offline_contract_20260511_194745",
+    "F": "docs/reverse_engineering/phase_F_offline_script_classification_20260511_201700",
+    "G": "docs/reverse_engineering/phase_G_offline_canonical_chain_20260511_202702",
+    "H": "docs/reverse_engineering/phase_H_offline_canonical_chain_curated_20260511_203844",
+    "I": "docs/reverse_engineering/phase_I_offline_canonical_manifest_20260511_205309",
+    "J": "docs/reverse_engineering/phase_J_offline_manifest_validation_20260511_205935",
+    "K": "docs/reverse_engineering/phase_K_offline_manifest_io_inspection_20260511_210322",
+    "K2": "docs/reverse_engineering/phase_K2_offline_manifest_io_inspection_20260511_210803",
+    "L": "docs/reverse_engineering/phase_L_offline_dependency_matrix_20260511_222636",
+    "M": "docs/reverse_engineering/phase_M_offline_wrapper_inspection_20260511_224020",
+    "M2": "docs/reverse_engineering/phase_M2_offline_delegated_modules_20260511_224803"
+  },
+  "final_report": "docs/reverse_engineering/phase_N_offline_consolidated_A_M2_20260511_225311/OFFLINE_REVERSE_ENGINEERING_CONSOLIDATED_A_M2.md"
+}

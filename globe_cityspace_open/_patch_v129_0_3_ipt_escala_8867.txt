@@ -1,0 +1,21 @@
+=== BACKUP ===
+'globe_cityspace_open/frontend/main.js' -> 'globe_cityspace_open/frontend/main.js.bak_v129_0_3_ipt_escala_8867_20260618_181632'
+OK: patch V129.0.3 aplicado.
+=== CONFERÊNCIA ===
+116:      <option value="8867" selected>1:8867 — IPT 1×1 cm</option>
+134:  if (scale === "8867") return "1×1 cm";
+147:  if (scale === 8867) {
+149:      scale: 8867,
+1897:        <option value="8867" selected>1:8867 — IPT-Edifícios 1×1 cm</option>
+2074:        <option value="8867" selected>1:8867 — IPT-Edifícios 1×1 cm</option>
+2286:/* PATCH V129.0.3 — IPT EDIFICIOS ESCALA UNICA 8867 */
+2288:  console.log("PATCH V129.0.3 ativo — IPT-Edifícios escala única 1:8867");
+2302:  function forceIptScale8867V12903() {
+2308:        <option value="8867" selected>Escala validada: 1:8867</option>
+2310:      scale.value = "8867";
+2312:      scale.title = "Escala validada para o projeto IPT-Edifícios";
+2320:      forceIptScale8867V12903();
+2333:      setTimeout(forceIptScale8867V12903, 80);
+2337:      setTimeout(forceIptScale8867V12903, 80);
+2340:    setInterval(forceIptScale8867V12903, 500);
+=== REINICIANDO DOCKER ===

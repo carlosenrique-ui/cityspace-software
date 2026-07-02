@@ -1,0 +1,47 @@
+========================================
+1) PATHS
+========================================
+POLIGONO: offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg
+GRID CSV: offline/products/scientific/grid_metrics_utm.csv
+CURVAS:   offline/products/scientific/curvas_dtm_true_2m.gpkg
+
+========================================
+2) DIAGNOSTICO
+========================================
+=== POLIGONO IPT ===
+rows: 1
+crs: EPSG:31983
+bounds: [4599.52161329 1102.52094393 6765.86038996 1900.47137084]
+area: 664611.7874326898
+
+=== CURVAS DTM TRUE ===
+rows: 164
+crs: EPSG:31983
+bounds: [4637.24463306 1339.15150489 5384.67065636 1459.72637214]
+elev min/max: 2.0 10.0
+
+=== CURVAS CLIPADAS PELO POLIGONO ===
+rows: 96
+bounds: [4637.24463306 1346.95690628 5131.41329403 1453.70506249]
+elev min/max: 2.0 10.0
+
+=== GRID CSV ===
+rows: 128
+cols: ['row', 'col', 'z_terrain_m', 'z_building_m', 'z_total_m']
+row min/max: 0 7
+col min/max: 0 15
+
+=== GRID NUMERIC CANDIDATES ===
+row: 0 -> 7
+col: 0 -> 15
+z_terrain_m: 0.1360474941252143 -> 29.956373729532547
+z_building_m: 0.0 -> 19.834094096423318
+z_total_m: 0.1360474941252143 -> 44.11353847086197
+
+=== SOBREPOSICAO ===
+poly bounds: [4599.52161329 1102.52094393 6765.86038996 1900.47137084]
+curves bounds: [4637.24463306 1339.15150489 5384.67065636 1459.72637214]
+curves_clip bounds: [4637.24463306 1346.95690628 5131.41329403 1453.70506249]
+
+=== GRID POINTS VS POLIGONO ===
+Não encontrei colunas x/y explícitas no CSV.

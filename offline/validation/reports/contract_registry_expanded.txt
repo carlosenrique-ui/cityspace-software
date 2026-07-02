@@ -1,0 +1,260 @@
+from __future__ import annotations
+from pathlib import Path
+from typing import Dict, Any
+
+
+def build_contract(base_dir: Path) -> Dict[str, Any]:
+    engine_root = base_dir.resolve()
+
+    return {
+        "meta": {
+            "system_name": "IPT-CitySpace",
+            "version": "3.1-expanded-safe",
+            "contract_mode": "evolutionary",
+            "critical_system": True,
+            "development_environment": {
+                "platform": "WSL Ubuntu",
+                "python_env": "geo_env_2018",
+                "toolchain": [
+                    "Python",
+                    "Rasterio",
+                    "GDAL",
+                    "Shapely",
+                    "NumPy",
+                    "Pandas",
+                    "GeoPandas"
+                ],
+                "purpose": "scientific_geospatial_software_and_commercial_python"
+            }
+        },
+
+        "paths": {
+            "scientific_grid_csv": str(
+                engine_root / "offline/products/scientific/grid_metrics_utm.csv"
+            ),
+            "official_products_dir": str(
+                engine_root / "offline/products"
+            ),
+            "official_runtime_dir": str(
+                engine_root / "offline/products/runtime"
+            ),
+            "report_dir": str(
+                engine_root / "offline/validation/reports"
+            ),
+            "legacy_forbidden_as_official_source": [
+                "products/final/grid_height.csv"
+            ]
+        },
+
+        "reference_systems": {
+            "mandatory": [
+                {
+                    "id": "SR-1",
+                    "name": "utm",
+                    "description": "Sistema geoespacial territorial real."
+                },
+                {
+                    "id": "SR-2",
+                    "name": "cartesian_trigonometric",
+                    "description": "Sistema intermediário para rotações, translações, PCA e alinhamentos."
+                },
+                {
+                    "id": "SR-3",
+                    "name": "physical_table",
+                    "description": "Sistema final da mesa tangível."
+                }
+            ],
+            "transformation_chain": [
+                "UTM -> Cartesian Trigonometric -> Physical Table"
+            ]
+        },
+
+        "data_schema": {
+            "base_scientific_columns": [
+                "row",
+                "col",
+                "x",
+                "y",
+                "z_terrain_m",
+                "z_building_m",
+                "z_total_m"
+            ],
+            "derived_operational_columns": [
+                "z_cm"
+            ],
+            "relationships": [
+                "z_total_m = z_terrain_m + z_building_m",
+                "z_cm = f(z_total_m)"
+            ]
+        },
+
+        "grid": {
+            "cells_are_square": True,
+            "urban_centered": True,
+            "best_square_grid_required": True,
+            "quadrícula_is_not_bounding_box": True,
+            "bounding_box_without_envelope_is_not_valid_domain": True,
+            "outside_value": "NaN",
+            "nan_meaning": "no_drone_survey",
+            "survey_year": 2018
+        },
+
+        "table": {
+            "prototype_shape": {
+                "rows": 8,
+                "cols": 16,
+                "pins": 128
+            },
+            "cell_cm": [1, 2],
+            "max_z_cm": 10.0,
+            "future_mode": "MxN",
+            "actuation": {
+                "point": "centroid",
+                "cells_are_square": True
+            },
+            "scan": {
+                "mode": "zigzag",
+                "sequence_example": [
+                    "(0,0)", "(0,7)", "(1,7)", "(1,0)", "...", "(7,0)"
+                ]
+            },
+            "transform": {
+                "origin_translation": "bottom_left_to_top_right",
+                "rotation_deg_clockwise": 90,
+                "mapping": {
+                    "x_prime": "y_rotated",
+                    "y_prime": "x_rotated",
+                    "z_prime": "z"
+                }
+            }
+        },
+
+        "geometry": {
+            "rotation_parametric": True,
+            "horizontal_scale_parameterized": True,
+            "vertical_scale_parameterized": True,
+            "north_tilt_angle_parameterized": True,
+            "rotation_traceability_required": True,
+            "pca_fit": {
+                "pca_is_principal_orientation_line": True,
+                "rotation_may_be_determined_by_pca_vs_grid": True,
+                "description": (
+                    "O PCA é entendido como a linha principal cuja interseção/relação "
+                    "com a quadrícula pode determinar a rotação, se necessário."
+                )
+            },
+            "rotation_history": [
+                146.815825,
+                154.0
+            ]
+        },
+
+        "temporal": {
+            "x_axis_can_be_temporal": True,
+            "time_start_year": 1940,
+            "time_end_year": 2020,
+            "time_step_years": 5,
+            "year_bands_define_ipt_phases": True,
+            "description": (
+                "A rotação pode ser útil porque o eixo x passa a representar o tempo."
+            )
+        },
+
+        "domain": {
+            "official_domain_source": "urban_envelope",
+            "outside_valid_domain_should_be_nan": True,
+            "nan_means_no_drone_photogrammetric_survey": True,
+            "drone_surface_survey_reference_year": 2018,
+            "urbanization_must_be_centered_in_grid": True
+        },
+
+        "contours": {
+            "source": "DTM",
+            "scope": "inside_urbanism_envelope",
+            "cota_zero_definition": "minimum_DTM_within_urbanism_area",
+            "derived_from_cota_zero": True
+        },
+
+        "dxf": {
+            "is_input": True,
+            "can_be_reference_layer": True,
+            "can_be_watermark": True,
+            "used_for_validation": True,
+            "can_validate_height_building_coherence": True
+        },
+
+        "derivation": {
+            "chain": [
+                "DTM -> z_terrain_m",
+                "DSM/NDSM -> z_building_m",
+                "z_terrain_m + z_building_m -> z_total_m",
+                "z_total_m -> z_cm",
+                "z_cm -> mesa / bmp / grayscale / csv derivado / runtime"
+            ]
+        },
+
+        "runtime": {
+            "mesa_real_on_implies_immediate_sync": True,
+            "virtual_table_and_physical_table_must_be_in_sync": True
+        },
+
+        "strategic_scope": {
+            "project_role": "critical_pilot",
+            "future_target": "Twin City",
+            "deployment_context": "Operations and Control Center",
+            "future_multivariable_support": True,
+            "future_carbon_related_variables": True
+        },
+
+        "validation_policy": {
+            "block_on_error": True,
+            "block_on_contract_additive_required": False,
+            "emit_warning": True,
+            "emit_todo_contract": True,
+            "emit_contract_additive_required": True
+        },
+
+        "pending_formalization": [
+            {
+                "rule_id": "FORM-001",
+                "title": "Mapeamento matemático completo entre UTM, cartesiano e mesa",
+                "description": "Falta consolidar em especificação única as fórmulas e parâmetros entre os três sistemas."
+            },
+            {
+                "rule_id": "FORM-002",
+                "title": "Validação geométrica explícita de NaN fora do envelope",
+                "description": "A regra existe, mas o validador ainda precisa cruzar grid científico com máscara/envelope oficial."
+            },
+            {
+                "rule_id": "FORM-003",
+                "title": "Escolha algorítmica da melhor quadrícula quadrada",
+                "description": "A regra está definida conceitualmente, mas ainda precisa de formalização algorítmica centralizada."
+            },
+            {
+                "rule_id": "FORM-004",
+                "title": "Contrato temporal completo da construção do IPT",
+                "description": "A camada temporal está presente no sistema, mas ainda não foi fundida em especificação única."
+            }
+        ],
+
+        "contract_additives_watchlist": [
+            {
+                "rule_id": "ADD-001",
+                "title": "Rotação parametrizada por fase e melhor encaixe",
+                "impact": "CRÍTICO",
+                "description": "O histórico mostra coexistência de rotações ~146 e ~154 em fases distintas.",
+                "proposed_contract_additive": "O ângulo de rotação deve ser tratado como parâmetro versionado por fase e por critério de melhor encaixe com a quadrícula."
+            },
+            {
+                "rule_id": "ADD-002",
+                "title": "Envelope versus bounding-box",
+                "impact": "ALTO",
+                "description": "Bounding-box não pode ser tratada como domínio válido sem envelope.",
+                "proposed_contract_additive": "O envelope urbano define o domínio efetivo do sistema."
+            },
+            {
+                "rule_id": "ADD-003",
+                "title": "Escalas e inclinação do norte como parâmetros explícitos",
+                "impact": "ALTO",
+                "description": "O sistema deve registrar escala horizontal, escala vertical, ângulo de rotação e inclinação do norte.",
+                "proposed_contract_additive": "As transformações geométricas devem registrar escala horizontal, escala vertical, ângulo de rotação e inclinação do norte."

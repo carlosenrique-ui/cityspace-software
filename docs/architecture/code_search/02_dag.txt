@@ -1,0 +1,4 @@
+offline/tools/generate_pipeline_dag.py:docs/architecture/pipeline_auto_dag.dot
+offline/tools/generate_pipeline_dag.py:docs/architecture/pipeline_auto_dag_report.txt
+offline/tools/generate_pipeline_dag.py:DOT_FILE = OUTPUT_DIR / "pipeline_auto_dag.dot"
+offline/tools/generate_pipeline_dag.py:REPORT_FILE = OUTPUT_DIR / "pipeline_auto_dag_report.txt"

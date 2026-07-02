@@ -1,0 +1,7 @@
+=== BACKUP ===
+'globe_cityspace_open/frontend/main.js' -> 'globe_cityspace_open/frontend/main.js.bak_v129_0_8_zigzag_20260618_190243'
+OK: numeração zigzag aplicada.
+=== CONFERÊNCIA ===
+2271:          cellNumber = c * TABLE_ROWS + r + 1;
+2273:          cellNumber = c * TABLE_ROWS + (TABLE_ROWS - r);
+=== REINICIANDO DOCKER ===

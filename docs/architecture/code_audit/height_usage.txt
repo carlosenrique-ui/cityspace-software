@@ -1,0 +1,97 @@
+offline/data/output/Plano_Atuador.csv:step,row,col,height_8bit,height_mm,lift_time_s,t_start_s
+offline/pipeline_dag.py:"name": "normalize_height",
+offline/pipeline_dag.py:"name": "generate_pin_heights",
+offline/pipeline_dag.py:"script": "offline/processing/compute_heights.py",
+offline/pipeline_dag.py:"offline/products/runtime/grid_pin_heights.csv"
+offline/pipeline_dag.py:"offline/products/runtime/grid_pin_heights.csv"
+offline/processing/build_mask_local_grid.py:    mesa_height = n_rows * cell_size   # 8 cm
+offline/processing/build_mask_local_grid.py:    print(f"[MaskLocal] Mesa física: {mesa_width} x {mesa_height} cm")
+offline/processing/build_mask_local_grid.py:    scale_y = mesa_height / maxy
+offline/processing/clip_raster.py:        "height": out_image.shape[1],
+offline/processing/compute_heights.py:def compute_heights(dsm, dtm, mask):
+offline/processing/fit_raster_to_vector.py:    height, width = raster_array.shape
+offline/processing/fit_raster_to_vector.py:    py = (maxy - miny) / height
+offline/processing/rasterize_mask.py:    height = raster_meta["height"]
+offline/processing/rasterize_mask.py:    print(f"[Rasterize] Raster shape: ({height}, {width})")
+offline/processing/rasterize_mask.py:        out_shape=(height, width),
+offline/processing/reproject_raster.py:    transform, width, height = calculate_default_transform(
+offline/processing/reproject_raster.py:        src_meta["height"],
+offline/processing/reproject_raster.py:    dst_array = np.zeros((height, width), dtype=src_array.dtype)
+offline/processing/reproject_raster.py:        "height": height
+offline/raster/core/clip_raster_by_envelope.py:            "height": out_image.shape[1],
+offline/raster/core/reclip_rasters_to_domain.py:            "height": out_image.shape[1],
+offline/raster/core/reproject_rasters_to_utm.py:        transform, width, height = calculate_default_transform(
+offline/raster/core/reproject_rasters_to_utm.py:            src.height,
+offline/raster/core/reproject_rasters_to_utm.py:            height=height
+offline/raster/core/rotate_raster_scientific.py:    height, width = data.shape
+offline/raster/core/rotate_raster_scientific.py:        height,
+offline/raster/core/rotate_raster_scientific.py:    new_height = int((new_top - new_bottom) / res_y)
+offline/raster/core/rotate_raster_scientific.py:        (new_height, new_width),
+offline/raster/core/rotate_raster_scientific.py:        "height": new_height,
+offline/raster/pipeline/scientific_raster_runner.py:HEIGHT = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/raster/pipeline/scientific_raster_runner.py:HEIGHT_TOTAL = BASE / "offline/data/processed/height/HEIGHT_TOTAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:        height=out_image.shape[1],
+offline/raster/pipeline/scientific_raster_runner.py:def compute_height_models():
+offline/raster/pipeline/scientific_raster_runner.py:    height = dsm_data - dtm_data
+offline/raster/pipeline/scientific_raster_runner.py:    height[height < 0] = 0
+offline/raster/pipeline/scientific_raster_runner.py:    height[height > 100] = 0
+offline/raster/pipeline/scientific_raster_runner.py:    height_total = dtm_data + height
+offline/raster/pipeline/scientific_raster_runner.py:        dst.write(height.astype("float32"), 1)
+offline/raster/pipeline/scientific_raster_runner.py:        dst.write(height_total.astype("float32"), 1)
+offline/raster/pipeline/scientific_raster_runner.py:    print("Height min:", np.nanmin(height))
+offline/raster/pipeline/scientific_raster_runner.py:    print("Height max:", np.nanmax(height))
+offline/raster/pipeline/scientific_raster_runner.py:    compute_height_models()
+offline/scientific_grid_builder.py:    cell_height = altura_total / ROWS
+offline/scientific_grid_builder.py:    print(f"Cell height : {cell_height:.3f} m")
+offline/scientific_grid_builder.py:                ymax = maxy - row * cell_height
+offline/scientific_grid_builder.py:                ymin = ymax - cell_height
+offline/scientific_grid_builder.py:                            "cell_h": cell_height,
+offline/scientific_runner.py:    height = maxy - miny
+offline/scientific_runner.py:    print(f"Altura atual : {height:.3f} m\n")
+offline/scientific_runner.py:    current_ratio = width / height
+offline/scientific_runner.py:        new_height = width / target_ratio
+offline/scientific_runner.py:        new_height = height
+offline/scientific_runner.py:        new_width = height * target_ratio
+offline/scientific_runner.py:    half_h = new_height / 2
+offline/scientific_runner.py:    print(f"Nova altura : {new_height:.3f} m\n")
+offline/tests/test_generate_contours_topografico.py:    height_cm = nrows * CELL_SIZE_CM
+offline/tests/test_generate_contours_topografico.py:        figsize=(width_cm / 2.54, height_cm / 2.54)
+offline/tests/test_generate_contours_topografico.py:    ax.set_ylim(height_cm, 0)
+offline/tests/test_grid_to_pin_height.py:# tests/test_grid_to_pin_height.py
+offline/tests/test_grid_to_pin_height.py:from offline.geo.grid_to_pin_height import grid_to_pin_height
+offline/tests/test_grid_to_pin_height.py:def test_pin_height_basic():
+offline/tests/test_grid_to_pin_height.py:    heights = grid_to_pin_height(grid_norm, min_cm=0.0, max_cm=10.0)
+offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 0)] == 0.0
+offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 1)] == 5.0
+offline/tests/test_grid_to_pin_height.py:    assert heights[(1, 0)] == 10.0
+offline/tests/test_grid_to_pin_height.py:def test_pin_height_custom_range():
+offline/tests/test_grid_to_pin_height.py:    heights = grid_to_pin_height(grid_norm, min_cm=2.0, max_cm=6.0)
+offline/tests/test_grid_to_pin_height.py:    assert heights[(0, 0)] == 4.0
+offline/tests/test_grid_to_pin_height.py:        grid_to_pin_height(grid_norm)
+offline/tests/test_grid_to_pin_height.py:        grid_to_pin_height(grid_norm, min_cm=10.0, max_cm=5.0)
+offline/tests/test_grid_to_temporal_sequence.py:    pin_heights = {
+offline/tests/test_grid_to_temporal_sequence.py:        pin_heights,
+offline/tests/test_scientific_runner_integration.py:def test_height_consistency():
+offline/tools/audit_fix_set_pin.py:    set_height_cm  -> set_height_cm
+offline/tools/audit_fix_set_pin.py:        if "set_height_cm" in text:
+offline/tools/audit_fix_set_pin.py:        "set_height_cm",
+offline/tools/audit_fix_set_pin.py:    print("IPT CitySpace – set_height_cm AUDIT")
+offline/tools/audit_fix_set_pin.py:    print(f"Files containing set_height_cm: {len(found)}")
+offline/tools/buildings_height_model.py:HEIGHT_RASTER = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/tools/buildings_height_model.py:OUTPUT = BASE / "offline/products/scientific/buildings_with_height.gpkg"
+offline/tools/buildings_height_model.py:def compute_building_heights():
+offline/tools/buildings_height_model.py:    heights_mean = []
+offline/tools/buildings_height_model.py:    heights_p90 = []
+offline/tools/buildings_height_model.py:                heights_mean.append(0)
+offline/tools/buildings_height_model.py:                heights_p90.append(0)
+offline/tools/buildings_height_model.py:            heights_mean.append(h_mean)
+offline/tools/buildings_height_model.py:            heights_p90.append(h_p90)
+offline/tools/buildings_height_model.py:    gdf["height_mean"] = heights_mean
+offline/tools/buildings_height_model.py:    gdf["height_p90"] = heights_p90
+offline/tools/buildings_height_model.py:    print("Mean max:", max(heights_mean))
+offline/tools/buildings_height_model.py:    print("P90 max:", max(heights_p90))
+offline/tools/buildings_height_model.py:    compute_building_heights()
+offline/tools/build_pipeline_execution_order.py:"offline/products/generate_height_products.py",
+offline/tools/rebuild_scientific_raster_runner.py:            "height": out_image.shape[1],
+offline/validation/audit_raster_alignment.py:    print("height:", dtm.height)
+offline/validation/audit_raster_alignment.py:    print("height:", dsm.height)

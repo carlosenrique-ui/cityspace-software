@@ -1,0 +1,26 @@
+=== BACKUP ===
+'globe_cityspace_open/frontend/main.js' -> 'globe_cityspace_open/frontend/main.js.bak_v129_0_1_20260618_162739'
+'globe_cityspace_open/frontend/index.html' -> 'globe_cityspace_open/frontend/index.html.bak_v129_0_1_20260618_162739'
+OK: patch V129.0.1 aplicado em main.js
+=== CONFERÊNCIA SEM ESTOURAR TERMINAL ===
+1811:/* PATCH V129.0.1 — CIDADES, PROJETOS, ESCALA E LIMPEZA */
+1813:  console.log("PATCH V129.0.1 ativo");
+1818:    cities.bertioga = {
+1819:      name: "Bertioga",
+1826:      cities.ipt.name = "IPT-Edifícios";
+1830:  function ensureProjectSelectV129() {
+1835:      <option value="bertioga">Bertioga</option>
+1842:    let projectSelect = document.getElementById("projectSelect");
+1844:    if (!projectSelect) {
+1849:        <label for="projectSelect">Projeto:</label>
+1850:        <select id="projectSelect">
+1852:          <option value="ipt_edificios">IPT-Edifícios</option>
+1863:    const project = document.getElementById("projectSelect");
+1876:    const project = document.getElementById("projectSelect");
+1897:        <option value="8867" selected>1:8867 — IPT-Edifícios 1×1 cm</option>
+1898:        <option value="4433">1:4433 — IPT-Edifícios 2×2 cm</option>
+1940:        Projeto: IPT-Edifícios<br>
+1941:        Dados de Origem: Pipeline IPT-CitySpace<br>
+1951:        Dados de Origem: Indisponíveis<br>
+1977:    ensureProjectSelectV129();
+1980:    const project = document.getElementById("projectSelect");

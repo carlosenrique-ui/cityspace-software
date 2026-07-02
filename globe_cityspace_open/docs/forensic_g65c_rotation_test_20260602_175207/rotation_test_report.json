@@ -1,0 +1,14 @@
+{
+  "source": "globe_cityspace_open/projects/ipt_north_5000/grid_pino_cm.csv",
+  "tested": [
+    "north_up",
+    "flipud",
+    "fliplr",
+    "rot180",
+    "rot_visual_146_815825",
+    "rot_visual_154_63",
+    "rot_visual_minus_146_815825",
+    "rot_visual_minus_154_63"
+  ],
+  "purpose": "Visual forensic comparison between Globe North-Up grid and IPT-CitySpace temporal orientation."
+}

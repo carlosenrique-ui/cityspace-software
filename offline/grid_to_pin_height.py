@@ -1,0 +1,64 @@
+import pandas as pd
+import numpy as np
+from pathlib import Path
+import json
+
+BASE = Path(__file__).resolve().parents[1]
+INPUT = BASE / "products/final/grid_height.csv"
+OUT_JSON = BASE / "products/final/actuator_plan.json"
+
+MAX_PIN_CM = 10.0
+ROWS = 8
+COLS = 16
+
+
+def build_grid(df):
+    grid = np.zeros((ROWS, COLS))
+    for _, r in df.iterrows():
+        rr = int(r["row"])
+        cc = int(r["col"])
+        if 0 <= rr < ROWS and 0 <= cc < COLS:
+            grid[rr][cc] = r["z_cm"]
+    return grid
+
+
+def build_actuator_plan(grid):
+    events = []
+    for r in range(ROWS):
+        for c in range(COLS):
+            events.append({"type": "move", "row": int(r), "col": int(c)})
+            events.append({"type": "set_height_cm", "value_cm": float(grid[r][c])})
+    return events
+
+
+def main():
+    print("GRID → PIN HEIGHT EXPORT (FINAL)")
+    if not INPUT.exists():
+        raise Exception(f"CSV não encontrado: {INPUT}")
+    df = pd.read_csv(INPUT)
+    if len(df) == 0:
+        raise Exception("CSV vazio")
+    zmax = df["z_total"].max()
+    if zmax == 0:
+        raise Exception("z_total máximo é 0")
+    df["z_cm"] = (df["z_total"] / zmax) * MAX_PIN_CM
+    print("Z max (m):", zmax)
+    print("Z max (cm):", MAX_PIN_CM)
+    grid = build_grid(df)
+    events = build_actuator_plan(grid)
+    plan = {
+        "meta": {"rows": ROWS, "cols": COLS, "pin_max_cm": MAX_PIN_CM},
+        "events": events,
+    }
+    OUTPUT_DIR = OUT_JSON.parent
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    df.to_csv(INPUT, index=False)
+    with open(OUT_JSON, "w") as f:
+        json.dump(plan, f, indent=2)
+    print("CSV atualizado:", INPUT)
+    print("Actuator plan:", OUT_JSON)
+    print("Total events:", len(events))
+
+
+if __name__ == "__main__":
+    main()

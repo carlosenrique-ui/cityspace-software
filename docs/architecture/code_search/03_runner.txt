@@ -1,0 +1,14 @@
+offline/ingestion/auto_dataset_ingestion.py:"offline.raster.pipeline.scientific_raster_runner"
+offline/pipeline_dag.py:"script": "offline/pipeline_runner_runtime.py",
+offline/pipeline_runner.py:python -m offline.pipeline_runner
+offline/pipeline_runner.py:from runner.runner_engine import RunnerEngine
+offline/pipeline_runner.py:from runner.virtual_actuator import VirtualActuator
+offline/pipeline_runner.py:from runner.path import zigzag_scan
+offline/pipeline_runner.py:            "generated_by": "offline.pipeline_runner",
+offline/tests/test_generate_contours_layer.py:sem rodar o runner OFFLINE completo.
+offline/tests/test_scientific_runner_integration.py:# Ajustar path para importar runner
+offline/tests/test_scientific_runner_integration.py:from runner.scientific_runner_engine import build_sequence_from_csv
+offline/tests/test_scientific_runner_integration.py:def test_runner_sequence_generation():
+offline/tools/build_pipeline_execution_order.py:"offline/raster/pipeline/scientific_raster_runner.py",
+offline/tools/build_pipeline_execution_order.py:"offline/scientific_runner.py",
+offline/tools/build_pipeline_execution_order.py:"offline/pipeline_runner.py"

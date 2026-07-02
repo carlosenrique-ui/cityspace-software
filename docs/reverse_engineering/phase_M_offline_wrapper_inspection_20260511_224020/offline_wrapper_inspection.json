@@ -1,0 +1,57 @@
+{
+  "offline/pipeline/02_compute_cell_metrics.py": {
+    "file": "offline/pipeline/02_compute_cell_metrics.py",
+    "exists": true,
+    "imports": [
+      "from offline.scientific_cell_metrics_utm import main"
+    ],
+    "local_import_candidates": [
+      "offline.scientific_cell_metrics_utm"
+    ],
+    "subprocess_calls": [],
+    "runpy_calls": [],
+    "os_system_calls": [],
+    "functions": [],
+    "main_guard": true
+  },
+  "offline/pipeline/03_scientific_to_semantic.py": {
+    "file": "offline/pipeline/03_scientific_to_semantic.py",
+    "exists": true,
+    "imports": [
+      "from offline.adapters.scientific_to_semantic_adapter import main"
+    ],
+    "local_import_candidates": [
+      "offline.adapters.scientific_to_semantic_adapter"
+    ],
+    "subprocess_calls": [],
+    "runpy_calls": [],
+    "os_system_calls": [],
+    "functions": [],
+    "main_guard": true
+  },
+  "offline/run_offline_pipeline.py": {
+    "file": "offline/run_offline_pipeline.py",
+    "exists": true,
+    "imports": [
+      "subprocess",
+      "from pathlib import Path",
+      "from offline.validation.validate_rotation_pca_grid import run"
+    ],
+    "local_import_candidates": [
+      "offline.validation.validate_rotation_pca_grid"
+    ],
+    "subprocess_calls": [
+      {
+        "kind": "run",
+        "snippet": "[\"python\", \"-m\", module], check=True"
+      }
+    ],
+    "runpy_calls": [],
+    "os_system_calls": [],
+    "functions": [
+      "_run_pca_alignment_gate",
+      "main"
+    ],
+    "main_guard": true
+  }
+}

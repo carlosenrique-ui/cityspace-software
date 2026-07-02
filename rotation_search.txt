@@ -1,0 +1,119 @@
+offline/config/system_parameters.py:63:# ROTATION (FIXED)
+offline/config/system_parameters.py:64:ROTATION_DEG = 154.63
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:25:# ROTATION PARAM
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:28:ROTATION_DEG = 154.63
+offline/pipeline/03d_apply_scientific_transform_to_dtm_contours.py:41:    lambda g: rotate(g, ROTATION_DEG, origin=(cx, cy))
+offline/pipeline/05_apply_rotation_to_contours.PRE_IMPORT_FIX.bak:1:from ipt_core_clean.offline.config.system_parameters import ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.PRE_IMPORT_FIX.bak:7:print("STEP 05 – APPLY SCIENTIFIC ROTATION")
+offline/pipeline/05_apply_rotation_to_contours.PRE_IMPORT_FIX.bak:15:ANGLE = ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.PRE_IMPORT_FIX.bak:34:# ROTATION
+offline/pipeline/05_apply_rotation_to_contours.PRE_RENAME.bak:1:from offline.config.system_parameters import ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.PRE_RENAME.bak:7:print("STEP 05 – APPLY SCIENTIFIC ROTATION")
+offline/pipeline/05_apply_rotation_to_contours.PRE_RENAME.bak:15:ANGLE = ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.PRE_RENAME.bak:34:# ROTATION
+offline/pipeline/05_apply_rotation_to_contours.py:1:from offline.config.system_parameters import ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.py:7:print("STEP 05 – APPLY SCIENTIFIC ROTATION")
+offline/pipeline/05_apply_rotation_to_contours.py:15:ANGLE = ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.py:34:# ROTATION
+offline/processing/apply_rigid_transform_vector_scientific.py:57:    angle = params["theta_rotation_deg"]
+offline/processing/build_official_urban_envelope_rotated.py:118:    angle = params["theta_rotation_deg"]
+offline/products/scientific/rigid_transform_params.json:2:  "theta_rotation_deg": 146.815825,
+offline/products/scientific/rigid_transform_params.json:7:  "midpoint_after_rotation": [
+offline/products/scientific/rotation_detected.json:2:  "rotation_detected_deg": 0.0,
+offline/run_offline_pipeline.py:8:from offline.validation.validate_rotation_pca_grid import run as _rotation_pca_grid_run
+offline/run_offline_pipeline.py:21:    report = _rotation_pca_grid_run(base_dir)
+offline/tools/05_recompute_rotation_from_grid.py:6:print("RECOMPUTE ROTATION (GRID vs GRID)")
+offline/tools/05_recompute_rotation_from_grid.py:64:    "rotation_detected_deg": float(angle_norm),
+offline/tools/05_recompute_rotation_from_grid.py:68:out_path = BASE / "rotation_detected.json"
+offline/tools/06_recompute_rotation_true.py:6:print("RECOMPUTE TRUE ROTATION (ORIG vs ROT)")
+offline/tools/06_recompute_rotation_true.py:48:print("📐 ROTATION DETECTED")
+offline/tools/07_detect_rotation_from_envelope.py:6:print("DETECT ROTATION FROM ENVELOPE")
+offline/tools/07_detect_rotation_from_envelope.py:47:    "rotation_detected_deg": float(angle_norm),
+offline/tools/07_detect_rotation_from_envelope.py:51:out_path = BASE / "rotation_from_envelope.json"
+offline/tools/apply_rigid_transform_raster_scientific.py:27:    angle = p["rotation_deg"]
+offline/tools/apply_rigid_transform_raster_scientific.py:34:    R = Affine.rotation(angle)
+offline/tools/desrotate_urban_envelope.py:29:    angle = params["theta_rotation_deg"]
+offline/tools/desrotate_urban_envelope.py:30:    origin_rot = params["midpoint_after_rotation"]
+offline/tools/fix_raster_rotation_center.py:4:print("FIX RASTER ROTATION CENTER")
+offline/tools/fix_raster_rotation_center_safe.py:4:print("FIX RASTER ROTATION CENTER (SAFE)")
+offline/tools/fix_scientific_raster_transform.py:12:R1 = Affine.rotation(angle)
+offline/tools/fix_scientific_raster_transform.py:14:R2 = Affine.rotation(-angle)
+offline/tools/fix_urban_envelope_geometry.py:29:    angle = params["theta_rotation_deg"]
+offline/tools/fix_urban_envelope_geometry.py:30:    origin_rot = params["midpoint_after_rotation"]
+offline/tools/rebuild_scientific_raster_runner.py:66:    angle = params["theta_rotation_deg"]
+offline/tools/rebuild_scientific_raster_runner.py:81:        R  = Affine.rotation(angle)
+offline/tools/rebuild_scientific_raster_runner.py:154:    print("Ângulo (deg):", params["theta_rotation_deg"])
+offline/tools/recompute_rigid_transform.py:48:def compute_rotation(A, B):
+offline/tools/recompute_rigid_transform.py:77:    angle = compute_rotation(A, B)
+offline/tools/recompute_rigid_transform.py:87:        "theta_rotation_deg": float(angle),
+offline/tools/recompute_rigid_transform.py:91:        "midpoint_after_rotation": center_B.tolist(),
+offline/tools/recompute_rigid_transform_utm_to_local.py:51:        "rotation_deg": float(angle),
+offline/tools/recompute_transform_from_envelope.py:43:        "rotation_deg": 146.815825,  # seu valor já conhecido
+offline/validation/contract_registry.py:118:                "rotation_deg_clockwise": 90,
+offline/validation/contract_registry.py:127:            "rotation_parametric": True,
+offline/validation/contract_registry.py:131:            "rotation_traceability_required": True,
+offline/validation/contract_registry.py:134:                "rotation_may_be_determined_by_pca_vs_grid": True,
+offline/validation/contract_registry.py:137:            "rotation_models": {
+offline/validation/contract_registry.py:149:            "rotation_state": {
+offline/validation/contract_registry.py:153:                    "residual_rotation_needed_deg": 0.0,
+offline/validation/contract_registry.py:159:                        "applied_rotation_deg": -154.63,
+offline/validation/contract_registry.py:165:                        "applied_rotation_deg": -146.82,
+offline/validation/contract_registry_BASE_SAFE.py:45:            "rotation_parametric": True,
+offline/validation/contract_registry_BASE_SAFE.py:47:            "rotation_history": [146.815825, 154.0],
+offline/validation/reports/contract_registry_expanded.txt:123:                "rotation_deg_clockwise": 90,
+offline/validation/reports/contract_registry_expanded.txt:133:            "rotation_parametric": True,
+offline/validation/reports/contract_registry_expanded.txt:137:            "rotation_traceability_required": True,
+offline/validation/reports/contract_registry_expanded.txt:140:                "rotation_may_be_determined_by_pca_vs_grid": True,
+offline/validation/reports/contract_registry_expanded.txt:146:            "rotation_history": [
+offline/validation/reports/rotation_pca_grid_report.json:12:    "rotation_to_align_x_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_report.json:13:    "rotation_to_align_y_deg": 90.0,
+offline/validation/reports/rotation_pca_grid_report.json:15:    "best_rotation_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_report.json:22:      "residual_rotation_needed_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_report.json:36:        "applied_rotation_deg": -154.63,
+offline/validation/reports/rotation_pca_grid_report.json:42:        "applied_rotation_deg": -146.82,
+offline/validation/reports/rotation_pca_grid_stdout.txt:2:================ ROTATION PCA + GRID FIT ================
+offline/validation/reports/rotation_pca_grid_stdout.txt:6:best rotation (deg): 0.0
+offline/validation/reports/rotation_pca_grid_stdout.txt:9:status: {'grid_fit_status': 'OK', 'contract_rotation_status': 'CONTRACT-ADDITIVE-REQUIRED'}
+offline/validation/reports/rotation_pca_grid_stdout.txt:10:[OK] Report written to: /mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/validation/reports/rotation_pca_grid_report.json
+offline/validation/reports/rotation_pca_grid_stdout_v2.txt:2:================ ROTATION PCA + GRID FIT ================
+offline/validation/reports/rotation_pca_grid_stdout_v2.txt:6:best rotation (deg): 0.0
+offline/validation/reports/rotation_pca_grid_stdout_v2.txt:10:[OK] Report written to: /mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/validation/reports/rotation_pca_grid_report.json
+offline/validation/validate_contract_master.py:282:    rot_hist = contract["geometry"]["rotation_history"]
+offline/validation/validate_rigid_transform_full.py:42:    theta = params.get("theta_rotation_deg", None)
+offline/validation/validate_rigid_transform_full.py:47:    print("theta_rotation_deg:", theta)
+offline/validation/validate_rigid_transform_full.py:52:        print("❌ theta_rotation_deg ausente.")
+offline/validation/validate_rigid_transform_json.py:23:def build_rotation_matrix(theta_deg):
+offline/validation/validate_rigid_transform_json.py:51:        "theta_rotation_deg",
+offline/validation/validate_rigid_transform_json.py:63:    theta = float(params["theta_rotation_deg"])
+offline/validation/validate_rigid_transform_json.py:74:    R = build_rotation_matrix(theta)
+offline/validation/validate_rotation_pca_grid.py:67:        best_rotation = rot_to_x
+offline/validation/validate_rotation_pca_grid.py:71:        best_rotation = rot_to_y
+offline/validation/validate_rotation_pca_grid.py:76:        "rotation_to_align_x_deg": round(rot_to_x, 6),
+offline/validation/validate_rotation_pca_grid.py:77:        "rotation_to_align_y_deg": round(rot_to_y, 6),
+offline/validation/validate_rotation_pca_grid.py:79:        "best_rotation_deg": round(best_rotation, 6),
+offline/validation/validate_rotation_pca_grid.py:84:def get_rotation_state(contract: Dict[str, Any]) -> Dict[str, Any]:
+offline/validation/validate_rotation_pca_grid.py:86:    if "rotation_state" not in geometry:
+offline/validation/validate_rotation_pca_grid.py:87:        raise KeyError("rotation_state não encontrado no contract_registry.py")
+offline/validation/validate_rotation_pca_grid.py:88:    return geometry["rotation_state"]
+offline/validation/validate_rotation_pca_grid.py:91:def compare_with_rotation_state(pca_angle_deg: float, rotation_state: Dict[str, Any]) -> Dict[str, Any]:
+offline/validation/validate_rotation_pca_grid.py:92:    current = rotation_state["current_frame"]
+offline/validation/validate_rotation_pca_grid.py:93:    hist = rotation_state["historical_models"]
+offline/validation/validate_rotation_pca_grid.py:102:    contract_delta = float(rotation_state["delta_between_historical_models_deg"])
+offline/validation/validate_rotation_pca_grid.py:178:    rotation_state = get_rotation_state(contract)
+offline/validation/validate_rotation_pca_grid.py:179:    contract_cmp = compare_with_rotation_state(pca_angle_deg, rotation_state)
+offline/validation/validate_rotation_pca_grid.py:204:    out_path = out_dir / "rotation_pca_grid_report.json"
+offline/validation/validate_rotation_pca_grid.py:207:    print("\n================ ROTATION PCA + GRID FIT ================")
+offline/validation/validate_rotation_pca_grid.py:211:    print("best rotation (deg):", report["grid_fit"]["best_rotation_deg"])
+offline/vector/core/apply_rigid_transform_clean.py:123:    angle = params["theta_rotation_deg"]
+online/renderers/fase3/FASE_3_3_layout_mesa.py:8:#   ROTATION_DEG = 154.63
+online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:15:ROTATION_DEG = 154.63  # rotação real do IPT (referência)
+online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:117:    f"Norte geográfico (ref.)\nMesa rotacionada +{ROTATION_DEG:.2f}°",
+online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:47:IPT_ROTATION_DEG = -28.0  # exemplo: alinhamento com Av. Escola Politécnica
+online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:86:        lambda g: rotate(g, IPT_ROTATION_DEG, origin="center", use_radians=False)
+online/tests/test_offline_product_loader.py:58:    assert "rotation_angle_deg" in metadata, "rotation_angle_deg ausente no metadata"
+online/ui/dash_v96_rotation_fix.py:2:# IPT-CitySpace – DASH V96 (ROTATION 90° CLOCKWISE CORRETA)
+online/ui/dash_v96_watermark_fix_cut.py:122:    print(">>> FIX CUT + ROTATION <<<")
+online/ui/dash_v97_watermark_fit.py:20:ROTATION_DEG = -7.20  # ajuste fino
+online/ui/dash_v97_watermark_fit.py:58:img = img.rotate(ROTATION_DEG, expand=True)
+online/ui/dash_v98_contours_overlay.py:25:ROTATION_DEG = -7.20
+online/ui/dash_v98_contours_overlay.py:66:img = img.rotate(ROTATION_DEG, expand=True)

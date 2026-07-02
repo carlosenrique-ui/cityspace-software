@@ -1,0 +1,28 @@
+
+====================================
+offline/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_final.png
+exists: False
+
+====================================
+globe_cityspace_open/projects/ipt_north_5000/ipt_base_overlay.png
+exists: True
+size: (1600, 800)
+mode: RGB
+
+====================================
+online/assets/ipt_mask_rotated_grid_aligned.png
+exists: True
+size: (4800, 2400)
+mode: RGBA
+
+====================================
+online/assets/ipt_mask_rotated_grid_aligned_v2.png
+exists: True
+size: (4800, 2400)
+mode: RGBA
+
+====================================
+assets/ipt_mask_rotated_simple.png
+exists: True
+size: (3030, 1131)
+mode: RGBA

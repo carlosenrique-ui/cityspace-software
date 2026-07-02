@@ -1,0 +1,127 @@
+offline/data/output/logs/pipeline_20251216_165155.log:Lendo DSM, DTM e máscara...
+offline/data/output/maquete/pipeline_maquete.log:Lendo DTM: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/output/maquete/pipeline_maquete.log:DSM, DTM carregados com sucesso.
+offline/data/output/maquete/pipeline_maquete.log:Calculando nDSM (DSM - DTM)...
+offline/data/output/maquete_final/maquete_log.txt:[1] Lendo DSM, DTM e MÁSCARA...
+offline/data/output/maquete_final/maquete_log.txt:DTM shape:  (4771, 6894)
+offline/data/output/maquete_final/maquete_log.txt:[3] Calculando nDSM (DSM - DTM)...
+offline/data/output/maquete_final/pipeline.log:[1] Lendo DSM e DTM...
+offline/data/output/maquete_final/pipeline.log:[7] Calculando altura absoluta (DTM + edifício)...
+offline/data/output/maquete_final/pipeline.log:[1] DSM e DTM carregados.
+offline/data/output/maquete_final/pipeline.log:[1] DSM e DTM carregados.
+offline/data/output/maquete_final/pipeline.log:[5] Alturas absolutas calculadas (DTM + edifícios).
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:38] OK: DTM encontrado em /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/output/maquete_mask/maquete_from_mask.log:Lendo rasters (DSM, DTM, MASK)...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] DTM shape:  (4771, 6894)
+offline/data/output/maquete_mask/maquete_from_mask.log:Corrigindo valores negativos de DSM/DTM...
+offline/data/output/maquete_mask/maquete_from_mask.log:[15:17:40] Menor valor encontrado (DSM/DTM): -32767.000
+offline/data/output/maquete_mask/maquete_from_mask.log:Calculando nDSM = DSM - DTM (alturas relativas)...
+offline/data/output/maquete_mask/maquete_from_mask.log:Calculando Z_total = DTM + nDSM_masked (somente onde há prédio)...
+offline/data/pipeline_log.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/pipeline_log.txt:[LOG] ===== Etapa 4/10: Calcular nDSM (DSM - DTM) =====
+offline/data/pipeline_log.txt:[LOG] Calculando nDSM (DSM - DTM)…
+offline/data/pipeline_log_gpkg.txt:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/pipeline_log_gpkg.txt:[LOG] ===== Etapa 3/9: Calcular nDSM (DSM - DTM) =====
+offline/data/pipeline_log_gpkg.txt:[LOG] Calculando nDSM (DSM - DTM)…
+offline/data/processo_ipcityspace.log:[LOG] Raster resolvido automaticamente: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif
+offline/data/processo_ipcityspace.log:[LOG] Carregando DSM e DTM e calculando nDSM…
+offline/data/processo_ipcityspace.log:[LOG] ===== Etapa 7/11: Rotação do DSM e DTM =====
+offline/data/processo_ipcityspace.log:[LOG] Rotação do DSM e DTM: [############--------] 63%
+offline/data/processo_ipcityspace.log:[LOG] Rotacionando raster: /mnt/c/IPT-CitySpace-2018/data/dtm/IPT-2018-DTM_UTM23S.tif (ângulo 0.000°)
+offline/data/processo_ipcityspace.log:[LOG] Raster rotacionado salvo em: /mnt/c/IPT-CitySpace-2018/data/DTM_rot.tif
+offline/ingestion/auto_dataset_ingestion.py:detectar DSM / DTM
+offline/ingestion/auto_dataset_ingestion.py:print("\n[4] Procurando rasters DSM / DTM...\n")
+offline/ingestion/auto_dataset_ingestion.py:DTM = None
+offline/ingestion/auto_dataset_ingestion.py:        DTM = f
+offline/ingestion/auto_dataset_ingestion.py:        print("DTM detectado:", DTM)
+offline/ingestion/auto_dataset_ingestion.py:    if DSM is None or DTM is None:
+offline/ingestion/auto_dataset_ingestion.py:        print("\nERRO: DSM ou DTM não identificados.")
+offline/ingestion/auto_dataset_ingestion.py:DTM_TARGET = RAW / "IPT-2018-DTM.tif"
+offline/ingestion/auto_dataset_ingestion.py:print("Destino DTM:", DTM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:shutil.copy(DTM, DTM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:print("✔ DTM copiado")
+offline/loading/load_raster.py:    Lê um raster (DSM ou DTM) e retorna:
+offline/processing/compute_heights.py:    Calcula nDSM fisico (DSM - DTM) com mascara de edificios.
+offline/processing/normalize.py:    Define a cota zero local baseada na menor cota do DTM.
+offline/processing/normalize.py:    - DTM
+offline/processing/normalize.py:    ZERO LOCAL = min(DTM)
+offline/processing/normalize.py:    print("DTM min (new):", np.nanmin(dtm_local))
+offline/processing/normalize.py:    print("DTM max (new):", np.nanmax(dtm_local))
+offline/products/generate_contours_cartographic.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_cartographic.py:        str(DTM),
+offline/products/generate_contours_cartographic_v2.py:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_cartographic_v2.py:        str(DTM),
+offline/products/generate_contours_cartographic_v3.py:DTM = ENGINE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_cartographic_v3.py:        str(DTM),
+offline/products/generate_contours_from_dtm.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_from_dtm.py:        str(DTM_PATH),
+offline/products/generate_contours_matplotlib.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_matplotlib.py:    str(DTM_FILE),
+offline/products/generate_contours_matplotlib.py:with rasterio.open(DTM_FILE) as src:
+offline/products/generate_contours_methodB.py:# 1) ler DTM
+offline/products/generate_contours_methodB.py:DTM_PATH = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_methodB.py:        str(DTM_PATH),
+offline/products/generate_contours_simple.py:# IPT-CitySpace – Curvas de Nível (DTM simples)
+offline/products/generate_contours_simple.py:# ✔ usa apenas DTM
+offline/products/generate_contours_simple.py:print("IPT-CitySpace – Contours from DTM")
+offline/products/generate_contours_simple.py:DTM_FILE = PROJECT_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/products/generate_contours_simple.py:# Load DTM
+offline/products/generate_contours_simple.py:print("\nLoading DTM")
+offline/products/generate_contours_simple.py:print(DTM_FILE)
+offline/products/generate_contours_simple.py:with rasterio.open(DTM_FILE) as src:
+offline/products/generate_contours_simple.py:print("DTM shape:", dtm.shape)
+offline/raster/core/compute_ndsm.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/compute_ndsm.py:with rasterio.open(DTM) as dtm:
+offline/raster/core/normalize_raster_to_scientific_system.py:DTM_UTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:    shift_raster(DTM_UTM, DTM_LOCAL)
+offline/raster/core/normalize_vertical_reference.py:Sincroniza DSM e DTM no mesmo zero
+offline/raster/core/normalize_vertical_reference.py:DTM_IN = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/normalize_vertical_reference.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_IN) as dtm:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:with rasterio.open(DTM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:print("✔ DSM e DTM sincronizados\n")
+offline/raster/core/reclip_rasters_to_domain.py:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/reclip_rasters_to_domain.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_DOMAIN.tif"
+offline/raster/core/reclip_rasters_to_domain.py:    for p in [DTM_ROT, DSM_ROT, DOMAIN_PATH]:
+offline/raster/core/reclip_rasters_to_domain.py:    clip_raster(DTM_ROT, DTM_OUT, domain_geom)
+offline/raster/core/reproject_rasters_to_utm.py:DTM_IN = BASE / "offline/data/raw/IPT-2018-DTM.tif"
+offline/raster/core/reproject_rasters_to_utm.py:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/core/reproject_rasters_to_utm.py:reproject_raster(DTM_IN, DTM_OUT)
+offline/raster/pipeline/scientific_raster_runner.py:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/raster/pipeline/scientific_raster_runner.py:    with rasterio.open(DTM_CLIP) as dtm:
+offline/raster/pipeline/scientific_raster_runner.py:    print("Computing DSM − DTM")
+offline/raster/pipeline/scientific_raster_runner.py:    clip_raster(DTM_LOCAL, DTM_CLIP, geom)
+offline/scientific_cell_metrics.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/scientific_cell_metrics.py:        mean_dtm = mean_raster_in_geom(DTM_PATH, geom)
+offline/scientific_cell_metrics_utm.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/scientific_cell_metrics_utm.py:        mean_dtm = mean_raster_in_geom(DTM_PATH, geom)
+offline/tools/align_raster_to_envelope.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/align_raster_to_envelope.py:shift_raster(DTM)
+offline/tools/fix_raster_vertical_alignment.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/fix_raster_vertical_alignment.py:    shift_raster(DTM, dy)
+offline/tools/reanchor_raster_to_envelope.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/reanchor_raster_to_envelope.py:reanchor(DTM)
+offline/tools/rebuild_scientific_raster_runner.py:DTM_INPUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/rebuild_scientific_raster_runner.py:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/tools/rebuild_scientific_raster_runner.py:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/tools/rebuild_scientific_raster_runner.py:    rotate_raster(DTM_INPUT, DTM_ROT, params)
+offline/tools/rebuild_scientific_raster_runner.py:    clip_raster(DTM_ROT, DTM_CLIP)
+offline/tools/shift_raster_to_envelope.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DTM) as src:
+offline/tools/shift_raster_to_envelope.py:with rasterio.open(DTM, "w", **profile) as dst:
+offline/validation/audit_altitude_statistics.py:Analisa valores DSM e DTM
+offline/validation/audit_altitude_statistics.py:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/validation/audit_altitude_statistics.py:stats("DTM", DTM)
+offline/validation/audit_raster_alignment.py:Verifica alinhamento entre DTM e DSM
+offline/validation/audit_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/validation/audit_raster_alignment.py:print("DTM:", DTM_PATH)
+offline/validation/audit_raster_alignment.py:print("\n--- DTM ---")
+offline/validation/audit_raster_alignment.py:with rasterio.open(DTM_PATH) as dtm:
+offline/validation/validate_grid_vs_raster_alignment.py:GRID 8x16 (UTM) vs Raster DTM/DSM
+offline/validation/validate_grid_vs_raster_alignment.py:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_grid_vs_raster_alignment.py:    with rasterio.open(DTM_PATH) as src:
+offline/validation/validate_raster_local_offset.py:RASTER_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/vector/core/apply_rigid_transform_clean.py:    Base científica para DTM, DSM, curvas de nível.

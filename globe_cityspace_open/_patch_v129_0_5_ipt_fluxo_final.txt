@@ -1,0 +1,14 @@
+=== BACKUP ===
+'globe_cityspace_open/frontend/main.js' -> 'globe_cityspace_open/frontend/main.js.bak_v129_0_5_20260618_183024'
+=== CONFERÊNCIA ===
+1887:      s.innerHTML = `<option value="8867" selected>Escala validada: 1:8867</option>`;
+1967:        Escala validada: 1:8867<br>
+2079:/* PATCH V129.0.5 — FLUXO FINAL SAO PAULO / IPT-EDIFICIOS */
+2081:  console.log("PATCH V129.0.5 ativo");
+2100:    scale.innerHTML = `<option value="8867" selected>Escala validada: 1:8867</option>`;
+2117:  function showOnlyIptButtons() {
+2143:  function activateIptEdificios() {
+2151:    showOnlyIptButtons();
+2172:          activateIptEdificios();
+2181:        if (isSaoPauloIpt()) activateIptEdificios();
+=== REINICIANDO DOCKER ===

@@ -1,0 +1,21 @@
+0a785c0 (etapa12_runner_integration) Backup completo do sistema online legado (V42, renderers, temporal)
+2923256 feat: step04 runtime generation (grid + actuator + metadata)
+664ca8e (tag: v0.12_scientific_pipeline) etapa12: scientific grid + alignment tools + pipeline cleanup
+457e0f4 etapa12: refactor scientific grid pipeline + remove legacy zigzag scanner
+b24eacf V42: mask-only watermark (squashed) + viridis + simple rotation pipeline
+64f97bb ALTIMETRY v4 (STABLE BASE)
+997e130 CitySpace: add analysis tools, altitude audit scripts, and mesa renderer output
+9657497 (tag: cityspace_renderer_analysis_checkpoint, tag: cityspace_offline_pipeline_stable_v1) CitySpace: stabilize offline pipeline, add DAG runtime, auditing tools, and mesa renderer integration
+d204002 Reorganize architecture context system and add automated project snapshot tools
+41fc062 CitySpace scientific pipeline stabilized and grid integration working
+310a06f CitySpace – pipeline documentation update
+066c317 update context
+a39cd8f Subsystem context and architecture scanner updates
+5d2fcf6 Architecture scanner improvements
+092782e Architecture scanner update
+7e61a46 Architecture pipeline instrumentation and project context improvements
+42e0dcb (tag: v11_scientific_pipeline_stable, etapa11_scientific_raster_pipeline) ETAPA 11: Pipeline científico estabilizado 100% UTM, domínio 1:2 oficial, grid 8x16 métrico e FASE 3 validada
+88f840e (tag: v_scientific_vectors_complete, etapa10_contours_ui_sprint) SCIENTIFIC VECTORS: Robust DXF→HATCH conversion, topology correction (make_valid+buffer0), morphological closing, external envelope extraction, rigid transformation (theta=146.815825deg), CRS fixed EPSG:31983
+4e28da3 CORE: temporal update
+a9e5f06 Documentação: fechamento do teste temporal v41 e estado estável do player.
+da3ff12 Mesa Virtual v41: Player interativo estável com controles funcionais (Play, Pause, Backward, Reset). Estrutura preparada para integração futura com timeline física e mesa real.

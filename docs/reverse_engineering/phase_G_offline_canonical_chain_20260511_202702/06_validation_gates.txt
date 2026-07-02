@@ -1,0 +1,108 @@
+offline/run_offline_pipeline.py:from offline.validation.validate_rotation_pca_grid import run as _rotation_pca_grid_run
+offline/run_offline_pipeline.py:def _run_pca_alignment_gate() -> None:
+offline/run_offline_pipeline.py:    Gate de alinhamento PCA.
+offline/run_offline_pipeline.py:            "Gate de alinhamento PCA bloqueou o pipeline: alignment_status != OK"
+offline/run_offline_pipeline.py:    _run_pca_alignment_gate()
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:        raise ValueError(f"Shape inválido em {path}: {arr.shape}, esperado {(ROWS, COLS)}")
+offline/pipeline/04_generate_actuator_plan.py:def validate_columns(df: pd.DataFrame) -> None:
+offline/pipeline/04_generate_actuator_plan.py:        raise ValueError(f"Colunas obrigatórias ausentes no GPKG enriquecido: {missing}")
+offline/pipeline/04_generate_actuator_plan.py:        raise ValueError(f"z_total_m inválido para normalização: zmax={zmax}")
+offline/pipeline/04_generate_actuator_plan.py:    validate_columns(df)
+offline/validation/contract_registry.py:def build_contract(base_dir: Path) -> Dict[str, Any]:
+offline/validation/contract_registry.py:            "contract_mode": "evolutionary",
+offline/validation/contract_registry.py:            "can_validate_height_building_coherence": True,
+offline/validation/contract_registry.py:            "block_on_contract_additive_required": False,
+offline/validation/contract_registry.py:            "emit_todo_contract": True,
+offline/validation/contract_registry.py:            "emit_contract_additive_required": True,
+offline/validation/contract_registry.py:        "contract_additives_watchlist": [
+offline/validation/contract_registry.py:                "proposed_contract_additive": "O \u00e2ngulo de rota\u00e7\u00e3o deve ser tratado como par\u00e2metro versionado por fase e por crit\u00e9rio de melhor encaixe com a quadr\u00edcula.",
+offline/validation/contract_registry.py:                "proposed_contract_additive": "O envelope urbano define o dom\u00ednio efetivo do sistema.",
+offline/validation/contract_registry.py:                "proposed_contract_additive": "As transforma\u00e7\u00f5es geom\u00e9tricas devem registrar escala horizontal, escala vertical, \u00e2ngulo de rota\u00e7\u00e3o e inclina\u00e7\u00e3o do norte.",
+offline/validation/contract_registry.py:                "proposed_contract_additive": "Valores NaN fora da \u00e1rea v\u00e1lida indicam aus\u00eancia de levantamento aerofotogram\u00e9trico por drone e n\u00e3o devem ser tratados como zero.",
+offline/validation/contract_registry.py:                "proposed_contract_additive": "O DXF de refer\u00eancia em CAD \u00e9 entrada oficial do sistema e pode atuar como layer, marca d'\u00e1gua e valida\u00e7\u00e3o geom\u00e9trica/sem\u00e2ntica.",
+offline/validation/contract_registry_BASE_SAFE.py:def build_contract(base_dir: Path) -> Dict[str, Any]:
+offline/validation/contract_registry_BASE_SAFE.py:            "contract_mode": "evolutionary",
+offline/validation/fix_validation_scripts.py:TARGET_FILE = BASE / "offline/validation/validate_rotated_raster_vs_envelope.py"
+offline/validation/models/validation_result.py:    proposed_contract_additive: Optional[str] = None
+offline/validation/validate_contract_master.py:from offline.validation.contract_registry import build_contract
+offline/validation/validate_contract_master.py:def additive(rule_id, title, description, impact, recommendation, proposed_contract_additive, evidence=None):
+offline/validation/validate_contract_master.py:        proposed_contract_additive=proposed_contract_additive,
+offline/validation/validate_contract_master.py:def validate_csv_presence(contract):
+offline/validation/validate_contract_master.py:    csv_path = Path(contract["paths"]["scientific_grid_csv"])
+offline/validation/validate_contract_master.py:def validate_data_schema(df, contract):
+offline/validation/validate_contract_master.py:    base_columns = contract["data_schema"]["base_scientific_columns"]
+offline/validation/validate_contract_master.py:    derived_columns = contract["data_schema"]["derived_operational_columns"]
+offline/validation/validate_contract_master.py:def validate_grid_and_table(df, contract):
+offline/validation/validate_contract_master.py:    proto = contract["table"]["prototype_shape"]
+offline/validation/validate_contract_master.py:            proposed_contract_additive="A mesa deve suportar generalização MxN mantendo a malha atual apenas como default histórico.",
+offline/validation/validate_contract_master.py:    if contract["grid"]["cells_are_square"]:
+offline/validation/validate_contract_master.py:    scan_mode = contract["table"]["scan"]["mode"]
+offline/validation/validate_contract_master.py:    if contract["table"]["actuation"]["point"] == "centroid":
+offline/validation/validate_contract_master.py:def validate_geometry(contract):
+offline/validation/validate_contract_master.py:    ref_names = [x["name"] for x in contract["reference_systems"]["mandatory"]]
+offline/validation/validate_contract_master.py:            recommendation="Corrigir a definição dos sistemas de referência no contract_registry.py",
+offline/validation/validate_contract_master.py:    rot_hist = contract["geometry"]["rotation_history"]
+offline/validation/validate_contract_master.py:        proposed_contract_additive="Ângulos de rotação devem ser tratados como parâmetros versionados e auditáveis, não constantes cegas.",
+offline/validation/validate_contract_master.py:    if contract["geometry"]["pca_fit"]["pca_is_principal_orientation_line"]:
+offline/validation/validate_contract_master.py:    if contract["geometry"]["horizontal_scale_parameterized"] and contract["geometry"]["vertical_scale_parameterized"]:
+offline/validation/validate_contract_master.py:            proposed_contract_additive="As transformações geométricas devem registrar escala horizontal e vertical como parâmetros auditáveis.",
+offline/validation/validate_contract_master.py:    if contract["geometry"]["north_tilt_angle_parameterized"]:
+offline/validation/validate_contract_master.py:            proposed_contract_additive="As transformações geométricas devem registrar inclinação do norte como parâmetro auditável.",
+offline/validation/validate_contract_master.py:def validate_domain_and_contours(contract):
+offline/validation/validate_contract_master.py:    if contract["domain"]["official_domain_source"] == "urban_envelope":
+offline/validation/validate_contract_master.py:            proposed_contract_additive="Bounding-box não é domínio válido sem envelope; o envelope urbano define o domínio efetivo do sistema.",
+offline/validation/validate_contract_master.py:    if contract["domain"]["outside_valid_domain_should_be_nan"]:
+offline/validation/validate_contract_master.py:    if contract["domain"]["nan_means_no_drone_photogrammetric_survey"]:
+offline/validation/validate_contract_master.py:            proposed_contract_additive="Valores NaN fora da área válida indicam ausência de levantamento aerofotogramétrico por drone e não devem ser tratados como zero.",
+offline/validation/validate_contract_master.py:            evidence={"survey_year": contract["domain"]["drone_surface_survey_reference_year"]},
+offline/validation/validate_contract_master.py:    if contract["contours"]["source"] == "DTM":
+offline/validation/validate_contract_master.py:    if contract["contours"]["derived_from_cota_zero"]:
+offline/validation/validate_contract_master.py:            proposed_contract_additive="A cota zero dos contours deve ser definida pela menor cota do DTM dentro do urbanismo.",
+offline/validation/validate_contract_master.py:def validate_temporal_and_runtime(contract):
+offline/validation/validate_contract_master.py:    temporal = contract["temporal"]
+offline/validation/validate_contract_master.py:    if contract["runtime"]["mesa_real_on_implies_immediate_sync"]:
+offline/validation/validate_contract_master.py:def validate_dxf(contract):
+offline/validation/validate_contract_master.py:    if contract["dxf"]["is_input"]:
+offline/validation/validate_contract_master.py:    if contract["dxf"]["can_validate_height_building_coherence"]:
+offline/validation/validate_contract_master.py:            proposed_contract_additive="O DXF de referência pode atuar como validação geométrica e semântica entre altura e edificação.",
+offline/validation/validate_contract_master.py:def validate_watchlists(contract):
+offline/validation/validate_contract_master.py:    for item in contract.get("pending_formalization", []):
+offline/validation/validate_contract_master.py:    for item in contract.get("contract_additives_watchlist", []):
+offline/validation/validate_contract_master.py:            proposed_contract_additive=item["proposed_contract_additive"],
+offline/validation/validate_contract_master.py:    out_path = out_dir / "contract_report.json"
+offline/validation/validate_contract_master.py:def validate(base_dir: Path):
+offline/validation/validate_contract_master.py:    contract = build_contract(base_dir)
+offline/validation/validate_contract_master.py:    results.extend(validate_csv_presence(contract))
+offline/validation/validate_contract_master.py:    csv_path = Path(contract["paths"]["scientific_grid_csv"])
+offline/validation/validate_contract_master.py:        results.extend(validate_data_schema(df, contract))
+offline/validation/validate_contract_master.py:        results.extend(validate_grid_and_table(df, contract))
+offline/validation/validate_contract_master.py:    results.extend(validate_geometry(contract))
+offline/validation/validate_contract_master.py:    results.extend(validate_domain_and_contours(contract))
+offline/validation/validate_contract_master.py:    results.extend(validate_temporal_and_runtime(contract))
+offline/validation/validate_contract_master.py:    results.extend(validate_dxf(contract))
+offline/validation/validate_contract_master.py:    results.extend(validate_watchlists(contract))
+offline/validation/validate_contract_master.py:    return results, contract
+offline/validation/validate_contract_master.py:    results, _contract = validate(base_dir)
+offline/validation/validate_grid_z_total_vs_dxf.py:        raise ValueError(
+offline/validation/validate_grid_z_total_vs_dxf.py:        raise ValueError("DXF carregado mas vazio")
+offline/validation/validate_rotation_pca_grid.py:from offline.validation.contract_registry import build_contract
+offline/validation/validate_rotation_pca_grid.py:        raise ValueError("Pontos insuficientes para PCA.")
+offline/validation/validate_rotation_pca_grid.py:def get_rotation_state(contract: Dict[str, Any]) -> Dict[str, Any]:
+offline/validation/validate_rotation_pca_grid.py:    geometry = contract.get("geometry", {})
+offline/validation/validate_rotation_pca_grid.py:        raise KeyError("rotation_state não encontrado no contract_registry.py")
+offline/validation/validate_rotation_pca_grid.py:    contract_delta = float(rotation_state["delta_between_historical_models_deg"])
+offline/validation/validate_rotation_pca_grid.py:            "pca_vs_current_contract_deg": round(
+offline/validation/validate_rotation_pca_grid.py:            "contract_historical_delta_deg": contract_delta,
+offline/validation/validate_rotation_pca_grid.py:    current_contract = float(report["contract_comparison"]["current_frame"]["current_pca_deg"])
+offline/validation/validate_rotation_pca_grid.py:    pca_delta = abs(current_pca - current_contract)
+offline/validation/validate_rotation_pca_grid.py:    computed_delta = float(report["contract_comparison"]["comparisons"]["computed_historical_delta_deg"])
+offline/validation/validate_rotation_pca_grid.py:    contract_delta = float(report["contract_comparison"]["comparisons"]["contract_historical_delta_deg"])
+offline/validation/validate_rotation_pca_grid.py:    delta_diff = abs(computed_delta - contract_delta)
+offline/validation/validate_rotation_pca_grid.py:    contract = build_contract(base_dir)
+offline/validation/validate_rotation_pca_grid.py:    csv_path = Path(contract["paths"]["scientific_grid_csv"])
+offline/validation/validate_rotation_pca_grid.py:        raise ValueError("Nem x/y nem row/col disponíveis para PCA.")
+offline/validation/validate_rotation_pca_grid.py:    rotation_state = get_rotation_state(contract)
+offline/validation/validate_rotation_pca_grid.py:    contract_cmp = compare_with_rotation_state(pca_angle_deg, rotation_state)
+offline/validation/validate_rotation_pca_grid.py:        "contract_comparison": contract_cmp,
+offline/validation/validate_rotation_pca_grid.py:    print("contract comparison:", report["contract_comparison"]["comparisons"])
+offline/validation/validate_scientific_grid_metrics.py:        raise ValueError("Quantidade de células inválida.")

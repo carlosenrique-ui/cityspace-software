@@ -1,0 +1,935 @@
+offline/adapters/scientific_to_semantic_adapter.py:66:    if "z_total_m" not in df.columns:
+offline/adapters/scientific_to_semantic_adapter.py:67:        raise ValueError("Coluna z_total_m não encontrada no CSV científico")
+offline/adapters/scientific_to_semantic_adapter.py:69:    z_total = df["z_total_m"].values.reshape(GRID_ROWS, GRID_COLS)
+offline/adapters/scientific_to_semantic_adapter.py:71:    # terreno e building não estão no pipeline atual
+offline/adapters/scientific_to_semantic_adapter.py:72:    terrain = np.zeros_like(z_total)
+offline/adapters/scientific_to_semantic_adapter.py:73:    building = np.zeros_like(z_total)
+offline/adapters/scientific_to_semantic_adapter.py:79:    z_max = np.nanmax(z_total)
+offline/adapters/scientific_to_semantic_adapter.py:83:        pino_cm = np.zeros_like(z_total)
+offline/adapters/scientific_to_semantic_adapter.py:85:        pino_cm = (z_total / z_max) * PIN_MAX_CM
+offline/adapters/scientific_to_semantic_adapter.py:99:    np.savetxt(OUT_DIR / "grid_building_m.csv", building, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py:100:    np.savetxt(OUT_DIR / "grid_z_total_m.csv", z_total, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py.bak:61:    z_total = df["altura_total_m"].values.reshape(GRID_ROWS, GRID_COLS)
+offline/adapters/scientific_to_semantic_adapter.py.bak:63:    building = df["altura_edificio_m"].values.reshape(GRID_ROWS, GRID_COLS)
+offline/adapters/scientific_to_semantic_adapter.py.bak:69:    z_max = np.nanmax(z_total)
+offline/adapters/scientific_to_semantic_adapter.py.bak:73:        pino_cm = np.zeros_like(z_total)
+offline/adapters/scientific_to_semantic_adapter.py.bak:75:        pino_cm = (z_total / z_max) * PIN_MAX_CM
+offline/adapters/scientific_to_semantic_adapter.py.bak:89:    np.savetxt(OUT_DIR / "grid_building_m.csv", building, delimiter=";", fmt="%.3f")
+offline/adapters/scientific_to_semantic_adapter.py.bak:90:    np.savetxt(OUT_DIR / "grid_z_total_m.csv", z_total, delimiter=";", fmt="%.3f")
+offline/analysis/time_estimator.py:36:        heights = []
+offline/analysis/time_estimator.py:44:            elif e["type"] == "set_height_cm":
+offline/analysis/time_estimator.py:47:                heights.append(h)
+offline/analysis/time_estimator.py:56:        heights = np.array(heights)
+offline/analysis/time_estimator.py:64:            "altura_media_m": float(heights.mean()),
+offline/analysis/time_estimator.py:65:            "altura_max_m": float(heights.max()),
+offline/analysis/time_estimator.py:66:            "altura_min_m": float(heights.min()),
+offline/config/experiment_config.py:19:PIN_MAX_CM = 10  # altura máxima física do pino
+offline/config/system_paths.py:26:# building heights
+offline/config/system_paths.py:27:PIN_HEIGHTS_CSV = SCIENTIFIC_PRODUCTS / "pin_heights.csv"
+offline/config/system_paths.py:33:DSM_LOCAL = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/config/system_paths.py:34:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/config/system_paths.py:36:DSM_CLIP = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+offline/config/system_paths.py:37:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/config/system_paths.py:39:HEIGHT = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/config/system_paths.py:40:HEIGHT_TOTAL = BASE / "offline/data/processed/height/HEIGHT_TOTAL.tif"
+offline/config/system_paths.py:46:BUILDINGS_VECTOR = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/config/system_paths.py:47:URBAN_ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/grid_to_pin_height.py:7:INPUT = BASE / "products/final/grid_height.csv"
+offline/grid_to_pin_height.py:30:            events.append({"type": "set_height_cm", "value_cm": float(grid[r][c])})
+offline/grid_to_pin_height.py:41:    zmax = df["z_total"].max()
+offline/grid_to_pin_height.py:43:        raise Exception("z_total máximo é 0")
+offline/grid_to_pin_height.py:44:    df["z_cm"] = (df["z_total"] / zmax) * MAX_PIN_CM
+offline/ingestion/auto_dataset_ingestion.py:11:detectar DSM / DTM
+offline/ingestion/auto_dataset_ingestion.py:68:print("\n[4] Procurando rasters DSM / DTM...\n")
+offline/ingestion/auto_dataset_ingestion.py:72:DSM = None
+offline/ingestion/auto_dataset_ingestion.py:73:DTM = None
+offline/ingestion/auto_dataset_ingestion.py:80:        DTM = f
+offline/ingestion/auto_dataset_ingestion.py:83:        DSM = f
+offline/ingestion/auto_dataset_ingestion.py:85:        print("DSM detectado:", DSM)
+offline/ingestion/auto_dataset_ingestion.py:86:        print("DTM detectado:", DTM)
+offline/ingestion/auto_dataset_ingestion.py:88:    if DSM is None or DTM is None:
+offline/ingestion/auto_dataset_ingestion.py:89:        print("\nERRO: DSM ou DTM não identificados.")
+offline/ingestion/auto_dataset_ingestion.py:99:DSM_TARGET = RAW / "IPT-2018-DSM.tif"
+offline/ingestion/auto_dataset_ingestion.py:100:DTM_TARGET = RAW / "IPT-2018-DTM.tif"
+offline/ingestion/auto_dataset_ingestion.py:102:print("Destino DSM:", DSM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:103:print("Destino DTM:", DTM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:107:shutil.copy(DSM, DSM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:108:shutil.copy(DTM, DTM_TARGET)
+offline/ingestion/auto_dataset_ingestion.py:110:print("✔ DSM copiado")
+offline/ingestion/auto_dataset_ingestion.py:111:print("✔ DTM copiado")
+offline/loading/load_raster.py:11:    Lê um raster (DSM ou DTM) e retorna:
+offline/pipeline/01_build_scientific_grid.py:90:print(">>> PRONTO PARA AMOSTRAGEM DSM/DTM")
+offline/pipeline/01_build_scientific_grid_BACKUP.py:19:df=pd.DataFrame(data,columns=["row","col","z_terrain_m","z_building_m","z_total_m"])
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:8:building_path = BASE / "offline/products/grid_building_m.csv"
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:9:total_path = BASE / "offline/products/grid_z_total_m.csv"
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:23:    print("shape:", arr.shape, "min:", np.nanmin(arr), "max:", np.nanmax(arr))
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:29:building = load_matrix(building_path)
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:39:            "z_building_m": float(building[r, c]),
+offline/pipeline/02b_build_grid_metrics_from_recompute.py:40:            "z_total_m": float(total[r, c]),
+offline/pipeline/02d_generate_poligono_urbanismo_ipt_outer.py:8:INPUT = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/pipeline/02_join_grid_metrics_with_geom.py:48:nulls = gdf_merged["z_total_m"].isna().sum()
+offline/pipeline/03b_generate_contours_clean_UI.py:2:# IPT-CITYSPACE — CURVAS DTM LIMPAS PARA UI
+offline/pipeline/03b_generate_contours_clean_UI.py:15:INPUT = PROJECT / "offline/products/terrain/curvas_nivel_terreno_suavizadas_UI.geojson"
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:2:# IPT-CITYSPACE — CONTOURS DIRETO DO DTM REAL
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:15:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:23:if not DTM.exists():
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:24:    raise FileNotFoundError(f"DTM não encontrado: {DTM}")
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:26:print("DTM:", DTM)
+offline/pipeline/03c_generate_contours_from_DTM_TRUE.py:36:    str(DTM),
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:13:POLYGON_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:15:OUT_GEOJSON = BASE / "offline/products/scientific/curvas_grid_terrain_2m_nan_polygon.geojson"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:16:OUT_MASK_NPY = BASE / "offline/products/scientific/grid_terrain_nan_polygon.npy"
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:44:mask = np.zeros((ROWS, COLS), dtype=bool)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:50:        mask[r, c] = poly.contains(Point(x, y))
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:52:print("Dentro polígono:", mask.sum(), "/", ROWS * COLS)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:67:mask_fine = np.zeros((ny, nx), dtype=bool)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:77:        mask_fine[rr, cc] = poly.contains(Point(xw, yw))
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:79:# aplicar NaN depois
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:80:fine[~mask_fine] = np.nan
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:93:zmin = np.nanmin(fine)
+offline/pipeline/03e_generate_grid_terrain_contours_nan_polygon.py:94:zmax = np.nanmax(fine)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:14:POLY_SRC = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:60:    ztot = float(r["z_total_m"])
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:90:mask = np.zeros((NY, NX), dtype=bool)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:93:        mask[rr, cc] = geom.contains(Point(X[rr, cc], Y[rr, cc]))
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:95:Z_masked = Z.copy()
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:96:Z_masked[~mask] = np.nan
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:98:np.savez_compressed(OUT_SURFACE, x=x, y=y, z=Z_masked)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:100:zmin = np.nanmin(Z_masked)
+offline/pipeline/03f_generate_rbf_terrain_contours_polygon.py:101:zmax = np.nanmax(Z_masked)
+offline/pipeline/03_generate_contours_clean.py:18:gdf = gdf[(gdf['z_terrain_m'] > 0) | (gdf['z_building_m'] > 0)]
+offline/pipeline/03_generate_contours_clean.py:27:Z = np.full((rows, cols), np.nan)
+offline/pipeline/03_generate_contours_clean.py:32:print('Z min/max:', np.nanmin(Z), np.nanmax(Z))
+offline/pipeline/03_generate_contours_clean.py:41:levels = np.linspace(np.nanmin(Z), np.nanmax(Z), 10)
+offline/pipeline/03_generate_contours_clean.py:63:mask = gdf.geometry.union_all()
+offline/pipeline/03_generate_contours_clean.py:64:contours = contours[contours.intersects(mask)]
+offline/pipeline/04b_generate_actuator_geospatial.py:15:gdf['zone_type'] = gdf['z_total_m'].apply(
+offline/pipeline/04b_generate_actuator_geospatial.py:19:gdf['actuator_intensity'] = gdf['z_total_m'] / 10
+offline/pipeline/04b_generate_actuator_geospatial.py:21:gdf['risk_level'] = gdf['z_building_m'].apply(
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:14:MASK_GPKG = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:16:OUTPUT_CSV = OUTPUT_DIR / "grid_height.csv"
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:26:        raise FileNotFoundError(f"Máscara/envelope não encontrado: {MASK_GPKG}")
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:29:    mask = gpd.read_file(MASK_GPKG)
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:30:    return df, mask
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:34:    required = ["row", "col", "x", "y", "z_terrain_m", "z_building_m", "z_total_m"]
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:43:    z_total = df_out["z_total_m"].astype(float).to_numpy()
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:45:    z_building = df_out["z_building_m"].astype(float).to_numpy()
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:47:    zmax = float(np.nanmax(z_total))
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:49:        raise ValueError(f"z_total_m inválido para normalização: zmax={zmax}")
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:51:    z_cm = (z_total / zmax) * PIN_MAX_CM
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:55:        z_total,
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:56:        out=np.zeros_like(z_total, dtype=float),
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:57:        where=z_total != 0,
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:59:    ratio_building = np.divide(
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:60:        z_building,
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:61:        z_total,
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:62:        out=np.zeros_like(z_total, dtype=float),
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:63:        where=z_total != 0,
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:67:    z_building_cm = z_cm * ratio_building
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:68:    z_total_cm = z_cm.copy()
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:71:    df_out["z_total_cm"] = z_total_cm
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:73:    df_out["z_building_cm"] = z_building_cm
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:78:def apply_mask(df_out: pd.DataFrame, mask: gpd.GeoDataFrame) -> pd.DataFrame:
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:80:        mask_union = mask.union_all()
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:82:        mask_union = mask.unary_union
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:84:    def mask_value(row: pd.Series) -> float:
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:86:        return 0.0 if not mask_union.contains(p) else float(row["z_cm"])
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:89:    df_out["z_cm"] = df_out.apply(mask_value, axis=1)
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:90:    df_out["z_total_cm"] = df_out["z_cm"]
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:105:    df, mask = load_inputs()
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:113:    df_out = apply_mask(df_out, mask)
+offline/pipeline/04_generate_actuator_plan.PRE_GPKG_SWITCH.bak:115:    print(f"z_total_m max: {float(df_out['z_total_m'].max())}")
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:35:        grid[int(r["row"]), int(r["col"])] = r["z_total_m"]
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:39:    print("[2/4] Gerando grid_height.csv...")
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:44:    z_total = df["z_total_m"]
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:46:    z_building = df["z_building_m"]
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:51:    z_norm = (z_total - z_total.min()) / (z_total.max() - z_total.min() + 1e-9)
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:55:    z_total_cm = z_cm  # total em cm (igual ao pino)
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:60:    ratio_terrain = z_terrain / (z_total + 1e-9)
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:61:    ratio_building = z_building / (z_total + 1e-9)
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:64:    z_building_cm = z_cm * ratio_building
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:75:    df_out["z_total_cm"] = z_total_cm
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:87:mask = gpd.read_file("offline/products/scientific/urban_envelope_scientific_rotated.gpkg")
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:88:mask_union = mask.unary_union
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:90:def apply_mask(row):
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:92:    return 0.0 if not mask_union.contains(p) else row["z_cm"]
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:94:df_out["z_cm"] = df_out.apply(apply_mask, axis=1)
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:96:# manter coerência entre total em cm e saída final mascarada
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:97:df_out["z_total_cm"] = df_out["z_cm"]
+offline/pipeline/04_generate_actuator_plan.PRE_REWRITE.bak:106:df_out.to_csv("offline/products/final/grid_height.csv", index=False)
+offline/pipeline/04_generate_actuator_plan.py:14:MASK_GPKG = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/pipeline/04_generate_actuator_plan.py:16:OUTPUT_CSV = OUTPUT_DIR / "grid_height.csv"
+offline/pipeline/04_generate_actuator_plan.py:26:        raise FileNotFoundError(f"Máscara/envelope não encontrado: {MASK_GPKG}")
+offline/pipeline/04_generate_actuator_plan.py:29:    mask = gpd.read_file(MASK_GPKG)
+offline/pipeline/04_generate_actuator_plan.py:43:    return df, mask
+offline/pipeline/04_generate_actuator_plan.py:47:    required = ["row", "col", "x", "y", "z_terrain_m", "z_building_m", "z_total_m"]
+offline/pipeline/04_generate_actuator_plan.py:56:    z_total = df_out["z_total_m"].astype(float).to_numpy()
+offline/pipeline/04_generate_actuator_plan.py:58:    z_building = df_out["z_building_m"].astype(float).to_numpy()
+offline/pipeline/04_generate_actuator_plan.py:60:    zmax = float(np.nanmax(z_total))
+offline/pipeline/04_generate_actuator_plan.py:62:        raise ValueError(f"z_total_m inválido para normalização: zmax={zmax}")
+offline/pipeline/04_generate_actuator_plan.py:64:    z_cm = (z_total / zmax) * PIN_MAX_CM
+offline/pipeline/04_generate_actuator_plan.py:68:        z_total,
+offline/pipeline/04_generate_actuator_plan.py:69:        out=np.zeros_like(z_total, dtype=float),
+offline/pipeline/04_generate_actuator_plan.py:70:        where=z_total != 0,
+offline/pipeline/04_generate_actuator_plan.py:72:    ratio_building = np.divide(
+offline/pipeline/04_generate_actuator_plan.py:73:        z_building,
+offline/pipeline/04_generate_actuator_plan.py:74:        z_total,
+offline/pipeline/04_generate_actuator_plan.py:75:        out=np.zeros_like(z_total, dtype=float),
+offline/pipeline/04_generate_actuator_plan.py:76:        where=z_total != 0,
+offline/pipeline/04_generate_actuator_plan.py:80:    df_out["z_total_cm"] = z_cm.copy()
+offline/pipeline/04_generate_actuator_plan.py:82:    df_out["z_building_cm"] = z_cm * ratio_building
+offline/pipeline/04_generate_actuator_plan.py:87:def apply_mask(df_out: pd.DataFrame, mask: gpd.GeoDataFrame) -> pd.DataFrame:
+offline/pipeline/04_generate_actuator_plan.py:89:        mask_union = mask.union_all()
+offline/pipeline/04_generate_actuator_plan.py:91:        mask_union = mask.unary_union
+offline/pipeline/04_generate_actuator_plan.py:93:    def mask_value(row: pd.Series) -> float:
+offline/pipeline/04_generate_actuator_plan.py:95:        return 0.0 if not mask_union.contains(p) else float(row["z_cm"])
+offline/pipeline/04_generate_actuator_plan.py:98:    df_out["z_cm"] = df_out.apply(mask_value, axis=1)
+offline/pipeline/04_generate_actuator_plan.py:99:    df_out["z_total_cm"] = df_out["z_cm"]
+offline/pipeline/04_generate_actuator_plan.py:114:    df, mask = load_inputs()
+offline/pipeline/04_generate_actuator_plan.py:123:    df_out = apply_mask(df_out, mask)
+offline/pipeline/04_generate_actuator_plan.py:125:    print(f"z_total_m max: {float(df_out['z_total_m'].max())}")
+offline/pipeline/05_generate_grid_mask_from_polygon.py:12:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg",
+offline/pipeline/05_generate_grid_mask_from_polygon.py:13:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg",
+offline/pipeline/05_generate_grid_mask_from_polygon.py:14:    BASE / "offline/products/scientific/urban_envelope_scientific.gpkg",
+offline/pipeline/05_generate_grid_mask_from_polygon.py:17:OUT_GPKG = BASE / "offline/products/scientific/grid_8x16_enriched_masked.gpkg"
+offline/pipeline/05_generate_grid_mask_from_polygon.py:18:OUT_CSV = BASE / "offline/products/scientific/grid_metrics_utm_masked.csv"
+offline/pipeline/05_generate_grid_mask_from_polygon.py:52:mask_cols = grid[["row", "col", "inside_ratio", "is_inside_polygon"]].copy()
+offline/pipeline/05_generate_grid_mask_from_polygon.py:53:df = df.merge(mask_cols, on=["row", "col"], how="left")
+offline/pipeline/_99_export_final_mesa.DISABLED.bak:6:from offline.geo.grid_to_pin_height import grid_to_pin_height
+offline/pipeline/_99_export_final_mesa.DISABLED.bak:30:z_max = np.nanmax(grid_total)
+offline/pipeline/_99_export_final_mesa.DISABLED.bak:40:pin_heights = grid_to_pin_height(
+offline/pipeline/_99_export_final_mesa.DISABLED.bak:50:for (i, j), h in pin_heights.items():
+offline/pipeline_dag.py:60:"name": "normalize_height",
+offline/pipeline_dag.py:68:"offline/data/stage4_normalize/Z_total.tif"
+offline/pipeline_dag.py:77:"offline/data/stage4_normalize/Z_total.tif"
+offline/pipeline_dag.py:99:"name": "generate_pin_heights",
+offline/pipeline_dag.py:100:"script": "offline/processing/compute_heights.py",
+offline/pipeline_dag.py:107:"offline/products/runtime/grid_pin_heights.csv"
+offline/pipeline_dag.py:116:"offline/products/runtime/grid_pin_heights.csv"
+offline/pipeline_dag.py.bak:47:"name": "normalize_height",
+offline/pipeline_dag.py.bak:55:"offline/data/stage4_normalize/Z_total.tif"
+offline/pipeline_dag.py.bak:64:"offline/data/stage4_normalize/Z_total.tif"
+offline/pipeline_dag.py.bak:86:"name": "generate_pin_heights",
+offline/pipeline_dag.py.bak:87:"script": "offline/processing/compute_heights.py",
+offline/pipeline_dag.py.bak:94:"offline/products/runtime/grid_pin_heights.csv"
+offline/pipeline_dag.py.bak:103:"offline/products/runtime/grid_pin_heights.csv"
+offline/processing/apply_rigid_transform_vector_scientific.py:15:BUILDINGS_PATH = BASE_DIR / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:16:ENVELOPE_PATH  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:18:OUT_BUILDINGS = BASE_DIR / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:19:OUT_ENVELOPE  = BASE_DIR / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/processing/apply_rigid_transform_vector_scientific.py:69:    print("Processando envelope urbano...")
+offline/processing/build_mask_local_grid.py:6:def build_mask_local_grid(grid_meta, shapefile_path):
+offline/processing/build_mask_local_grid.py:27:    mesa_height = n_rows * cell_size   # 8 cm
+offline/processing/build_mask_local_grid.py:29:    print(f"[MaskLocal] Mesa física: {mesa_width} x {mesa_height} cm")
+offline/processing/build_mask_local_grid.py:56:    scale_y = mesa_height / maxy
+offline/processing/build_mask_local_grid.py:72:    mask = np.zeros((n_rows, n_cols), dtype=np.uint8)
+offline/processing/build_mask_local_grid.py:85:                    mask[r, c] = 1
+offline/processing/build_mask_local_grid.py:88:    pixels = int(mask.sum())
+offline/processing/build_mask_local_grid.py:92:    return mask
+offline/processing/build_official_urban_envelope_rotated.py:20:OUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/processing/build_official_urban_envelope_rotated.py:108:    envelope = Polygon(largest.exterior)
+offline/processing/build_official_urban_envelope_rotated.py:110:    print("Área do envelope externo:", envelope.area)
+offline/processing/build_official_urban_envelope_rotated.py:125:    envelope_rot = rotate(envelope, angle, origin=(cx, cy), use_radians=False)
+offline/processing/build_official_urban_envelope_rotated.py:126:    envelope_rot = translate(envelope_rot, xoff=dx, yoff=dy)
+offline/processing/build_official_urban_envelope_rotated.py:133:        geometry=[envelope_rot],
+offline/processing/build_official_urban_envelope_rotated.py:143:        layer="urban_envelope_scientific_rotated",
+offline/processing/clip_raster.py:2:from rasterio.mask import mask
+offline/processing/clip_raster.py:22:            out_image, out_transform = mask(
+offline/processing/clip_raster.py:32:        "height": out_image.shape[1],
+offline/processing/compute_heights.py:3:def compute_heights(dsm, dtm, mask):
+offline/processing/compute_heights.py:5:    Estado OFF-LINE: ComputeHeights (nDSM)
+offline/processing/compute_heights.py:7:    Calcula nDSM fisico (DSM - DTM) com mascara de edificios.
+offline/processing/compute_heights.py:11:    - Fora da mascara -> 0
+offline/processing/compute_heights.py:12:    - NaN -> 0
+offline/processing/compute_heights.py:15:    print("[ComputeHeights] Calculando nDSM")
+offline/processing/compute_heights.py:20:    ndsm = dsm - dtm
+offline/processing/compute_heights.py:22:    ndsm[~np.isfinite(ndsm)] = 0
+offline/processing/compute_heights.py:23:    ndsm[ndsm < 0] = 0
+offline/processing/compute_heights.py:25:    ndsm[mask == 0] = 0
+offline/processing/compute_heights.py:27:    print(f"[ComputeHeights] Altura maxima: {ndsm.max():.2f} m")
+offline/processing/compute_heights.py:28:    print("[ComputeHeights] nDSM calculado com sucesso\n")
+offline/processing/compute_heights.py:30:    return ndsm
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:18:OUTPUT_BUILDINGS = ENGINE_ROOT / "offline/products/scientific/buildings_scientific.gpkg"
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:19:OUTPUT_ENVELOPE = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:103:    envelope = geometries_sorted[0]
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:104:    buildings = geometries_sorted[1:]
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:106:    print("Área envelope:", envelope.area)
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:107:    print("Total edifícios:", len(buildings))
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:109:    print("Salvando envelope científico...")
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:110:    save_gpkg([envelope], OUTPUT_ENVELOPE, "urban_envelope")
+offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:113:    save_gpkg(buildings, OUTPUT_BUILDINGS, "buildings")
+offline/processing/fit_raster_to_vector.py:14:    height, width = raster_array.shape
+offline/processing/fit_raster_to_vector.py:17:    py = (maxy - miny) / height
+offline/processing/normalize.py:4:def normalize_ndsm(ndsm):
+offline/processing/normalize.py:7:    Normaliza nDSM (metros) para uint8 (0–255).
+offline/processing/normalize.py:10:    print("[Normalize] Normalizando nDSM (2–98%)")
+offline/processing/normalize.py:12:    valid = ndsm[ndsm > 0]
+offline/processing/normalize.py:16:        return np.zeros_like(ndsm, dtype=np.uint8)
+offline/processing/normalize.py:21:    norm = (ndsm - p2) / (p98 - p2)
+offline/processing/normalize.py:25:    gray[ndsm == 0] = 0
+offline/processing/normalize.py:37:    Define a cota zero local baseada na menor cota do DTM.
+offline/processing/normalize.py:40:    - DTM
+offline/processing/normalize.py:41:    - DSM
+offline/processing/normalize.py:42:    - nDSM
+offline/processing/normalize.py:47:    ZERO LOCAL = min(DTM)
+offline/processing/normalize.py:56:        dtm = np.where(dtm == nodata, np.nan, dtm)
+offline/processing/normalize.py:58:    zero_local = np.nanmin(dtm)
+offline/processing/normalize.py:64:    print("DTM min (new):", np.nanmin(dtm_local))
+offline/processing/normalize.py:65:    print("DTM max (new):", np.nanmax(dtm_local))
+offline/processing/rasterize_mask.py:4:def rasterize_mask(vector_gdf, raster_meta):
+offline/processing/rasterize_mask.py:12:    print("[Rasterize] Iniciando rasterizacao da mascara")
+offline/processing/rasterize_mask.py:14:    height = raster_meta["height"]
+offline/processing/rasterize_mask.py:18:    print(f"[Rasterize] Raster shape: ({height}, {width})")
+offline/processing/rasterize_mask.py:25:    mask = rasterize(
+offline/processing/rasterize_mask.py:27:        out_shape=(height, width),
+offline/processing/rasterize_mask.py:34:    pixels = int(mask.sum())
+offline/processing/rasterize_mask.py:35:    print(f"[Rasterize] Pixels de edificio: {pixels}")
+offline/processing/rasterize_mask.py:38:    return mask
+offline/processing/reproject_raster.py:13:    transform, width, height = calculate_default_transform(
+offline/processing/reproject_raster.py:17:        src_meta["height"],
+offline/processing/reproject_raster.py:21:    dst_array = np.zeros((height, width), dtype=src_array.dtype)
+offline/processing/reproject_raster.py:38:        "height": height
+offline/processing/set_crs_scientific.py:7:    BASE / "offline/products/scientific/buildings_scientific.gpkg",
+offline/processing/set_crs_scientific.py:8:    BASE / "offline/products/scientific/urban_envelope_scientific.gpkg",
+offline/processing/set_crs_scientific.py:9:    BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg",
+offline/processing/set_crs_scientific.py:10:    BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/products/final/grid_height.csv:1:row,col,cx,cy,z_terrain_m,z_building_m,z_total_m,x,y,z_cm,z_total_cm,z_terrain_cm,z_building_cm
+offline/products/runtime/actuator_plan.json:25:      "type": "set_height_cm",
+offline/products/runtime/actuator_plan.json:34:      "type": "set_height_cm",
+offline/products/runtime/actuator_plan.json:43:      "type": "set_height_cm",
+offline/products/runtime/actuator_plan.json:52:      "type": "set_height_cm",
+offline/products/runtime/actuator_plan.json:61:      "type": "set_height_cm",
+offline/products/runtime/actuator_plan.json:70:      "type": "set_height_cm",
+offline/products/scientific/grid_metrics_8x16_utm.csv:1:cell_id,mean_dtm_m,mean_dsm_m,altura_edificio_m,altura_total_m,percent_building,percent_terrain
+offline/products/scientific/grid_metrics_utm.csv:1:row,col,z_terrain_m,z_building_m,z_total_m
+offline/products/scientific/grid_metrics_utm_masked.csv:1:row,col,z_terrain_m,z_building_m,z_total_m,inside_ratio,is_inside_polygon
+offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:25:      "type": "set_height_cm",
+offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:34:      "type": "set_height_cm",
+offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:43:      "type": "set_height_cm",
+offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:52:      "type": "set_height_cm",
+offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:61:      "type": "set_height_cm",
+offline/products/snapshots/final_freeze_20260408_1121/runtime/actuator_plan.json:70:      "type": "set_height_cm",
+offline/raster/core/clip_raster_by_envelope.py:2:from rasterio.mask import mask
+offline/raster/core/clip_raster_by_envelope.py:7:def clip_raster_by_envelope(raster_path, envelope_path, output_path):
+offline/raster/core/clip_raster_by_envelope.py:10:    print("Envelope:", envelope_path)
+offline/raster/core/clip_raster_by_envelope.py:12:    # carregar envelope com pyogrio
+offline/raster/core/clip_raster_by_envelope.py:13:    gdf = pyogrio.read_dataframe(envelope_path)
+offline/raster/core/clip_raster_by_envelope.py:22:        out_image, out_transform = mask(
+offline/raster/core/clip_raster_by_envelope.py:32:            "height": out_image.shape[1],
+offline/raster/core/compute_ndsm.py:3:CÁLCULO NDSM
+offline/raster/core/compute_ndsm.py:12:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLEAN.tif"
+offline/raster/core/compute_ndsm.py:13:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/compute_ndsm.py:15:NDSM = BASE / "offline/data/processed/dsm/IPT_2018_NDSM.tif"
+offline/raster/core/compute_ndsm.py:18:print("CÁLCULO NDSM")
+offline/raster/core/compute_ndsm.py:21:with rasterio.open(DSM) as dsm:
+offline/raster/core/compute_ndsm.py:25:with rasterio.open(DTM) as dtm:
+offline/raster/core/compute_ndsm.py:28:ndsm = d - t
+offline/raster/core/compute_ndsm.py:29:ndsm[ndsm < 0] = 0
+offline/raster/core/compute_ndsm.py:31:with rasterio.open(NDSM,"w",**meta) as dst:
+offline/raster/core/compute_ndsm.py:32:dst.write(ndsm,1)
+offline/raster/core/compute_ndsm.py:34:print("✔ NDSM gerado\n")
+offline/raster/core/filter_dsm_spikes.py:3:LIMPEZA DSM
+offline/raster/core/filter_dsm_spikes.py:14:DSM_IN = BASE / "offline/data/processed/dsm/IPT_2018_DSM_Z.tif"
+offline/raster/core/filter_dsm_spikes.py:15:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLEAN.tif"
+offline/raster/core/filter_dsm_spikes.py:18:print("LIMPEZA DSM")
+offline/raster/core/filter_dsm_spikes.py:21:with rasterio.open(DSM_IN) as src:
+offline/raster/core/filter_dsm_spikes.py:31:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/filter_dsm_spikes.py:35:print("✔ DSM limpo\n")
+offline/raster/core/normalize_raster_to_scientific_system.py:35:DTM_UTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:36:DSM_UTM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:38:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:39:DSM_LOCAL = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/raster/core/normalize_raster_to_scientific_system.py:84:    shift_raster(DTM_UTM, DTM_LOCAL)
+offline/raster/core/normalize_raster_to_scientific_system.py:85:    shift_raster(DSM_UTM, DSM_LOCAL)
+offline/raster/core/normalize_vertical_reference.py:4:Sincroniza DSM e DTM no mesmo zero
+offline/raster/core/normalize_vertical_reference.py:13:DSM_IN = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/raster/core/normalize_vertical_reference.py:14:DTM_IN = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/normalize_vertical_reference.py:16:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_Z.tif"
+offline/raster/core/normalize_vertical_reference.py:17:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_Z.tif"
+offline/raster/core/normalize_vertical_reference.py:23:with rasterio.open(DTM_IN) as dtm:
+offline/raster/core/normalize_vertical_reference.py:35:with rasterio.open(DTM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:41:with rasterio.open(DTM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:45:with rasterio.open(DSM_IN) as src:
+offline/raster/core/normalize_vertical_reference.py:51:with rasterio.open(DSM_OUT, "w", **meta) as dst:
+offline/raster/core/normalize_vertical_reference.py:55:print("✔ DSM e DTM sincronizados\n")
+offline/raster/core/reclip_rasters_to_domain.py:2:from rasterio.mask import mask
+offline/raster/core/reclip_rasters_to_domain.py:17:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/raster/core/reclip_rasters_to_domain.py:18:DSM_ROT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/raster/core/reclip_rasters_to_domain.py:25:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_DOMAIN.tif"
+offline/raster/core/reclip_rasters_to_domain.py:26:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_DOMAIN.tif"
+offline/raster/core/reclip_rasters_to_domain.py:35:        out_image, out_transform = mask(
+offline/raster/core/reclip_rasters_to_domain.py:43:            "height": out_image.shape[1],
+offline/raster/core/reclip_rasters_to_domain.py:62:    for p in [DTM_ROT, DSM_ROT, DOMAIN_PATH]:
+offline/raster/core/reclip_rasters_to_domain.py:77:    clip_raster(DTM_ROT, DTM_OUT, domain_geom)
+offline/raster/core/reclip_rasters_to_domain.py:78:    clip_raster(DSM_ROT, DSM_OUT, domain_geom)
+offline/raster/core/reproject_rasters_to_utm.py:17:DSM_IN = BASE / "offline/data/raw/IPT-2018-DSM.tif"
+offline/raster/core/reproject_rasters_to_utm.py:18:DTM_IN = BASE / "offline/data/raw/IPT-2018-DTM.tif"
+offline/raster/core/reproject_rasters_to_utm.py:20:DSM_OUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/raster/core/reproject_rasters_to_utm.py:21:DTM_OUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/raster/core/reproject_rasters_to_utm.py:32:        transform, width, height = calculate_default_transform(
+offline/raster/core/reproject_rasters_to_utm.py:36:            src.height,
+offline/raster/core/reproject_rasters_to_utm.py:46:            height=height
+offline/raster/core/reproject_rasters_to_utm.py:66:reproject_raster(DSM_IN, DSM_OUT)
+offline/raster/core/reproject_rasters_to_utm.py:67:reproject_raster(DTM_IN, DTM_OUT)
+offline/raster/core/rotate_raster_scientific.py:19:    height, width = data.shape
+offline/raster/core/rotate_raster_scientific.py:29:        height,
+offline/raster/core/rotate_raster_scientific.py:61:    new_height = int((new_top - new_bottom) / res_y)
+offline/raster/core/rotate_raster_scientific.py:77:        (new_height, new_width),
+offline/raster/core/rotate_raster_scientific.py:96:        "height": new_height,
+offline/raster/pipeline/scientific_raster_runner.py:13:from rasterio.mask import mask
+offline/raster/pipeline/scientific_raster_runner.py:22:DSM_LOCAL = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:23:DTM_LOCAL = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:25:DSM_CLIP = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+offline/raster/pipeline/scientific_raster_runner.py:26:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/raster/pipeline/scientific_raster_runner.py:28:HEIGHT = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/raster/pipeline/scientific_raster_runner.py:29:HEIGHT_TOTAL = BASE / "offline/data/processed/height/HEIGHT_TOTAL.tif"
+offline/raster/pipeline/scientific_raster_runner.py:31:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/raster/pipeline/scientific_raster_runner.py:32:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/raster/pipeline/scientific_raster_runner.py:39:def load_envelope():
+offline/raster/pipeline/scientific_raster_runner.py:68:        out_image, out_transform = mask(src, geom, crop=True)
+offline/raster/pipeline/scientific_raster_runner.py:73:            height=out_image.shape[1],
+offline/raster/pipeline/scientific_raster_runner.py:89:def build_building_mask(reference_raster):
+offline/raster/pipeline/scientific_raster_runner.py:91:    print("\nBuilding mask from vector")
+offline/raster/pipeline/scientific_raster_runner.py:99:        mask_raster = rasterize(
+offline/raster/pipeline/scientific_raster_runner.py:101:            out_shape=(src.height, src.width),
+offline/raster/pipeline/scientific_raster_runner.py:107:    print("Building pixels:", np.sum(mask_raster))
+offline/raster/pipeline/scientific_raster_runner.py:109:    return mask_raster
+offline/raster/pipeline/scientific_raster_runner.py:116:def compute_height_models():
+offline/raster/pipeline/scientific_raster_runner.py:122:    with rasterio.open(DSM_CLIP) as dsm:
+offline/raster/pipeline/scientific_raster_runner.py:126:    with rasterio.open(DTM_CLIP) as dtm:
+offline/raster/pipeline/scientific_raster_runner.py:130:    # nDSM
+offline/raster/pipeline/scientific_raster_runner.py:133:    ndsm = dsm_data - dtm_data
+offline/raster/pipeline/scientific_raster_runner.py:135:    ndsm[ndsm < 0] = 0
+offline/raster/pipeline/scientific_raster_runner.py:136:    ndsm[ndsm > 120] = 0
+offline/raster/pipeline/scientific_raster_runner.py:139:    # building mask
+offline/raster/pipeline/scientific_raster_runner.py:142:    building_mask = build_building_mask(DSM_CLIP)
+offline/raster/pipeline/scientific_raster_runner.py:144:    ndsm_buildings = ndsm.copy()
+offline/raster/pipeline/scientific_raster_runner.py:145:    ndsm_buildings[building_mask == 0] = np.nan
+offline/raster/pipeline/scientific_raster_runner.py:147:    valid = ndsm_buildings[~np.isnan(ndsm_buildings)]
+offline/raster/pipeline/scientific_raster_runner.py:154:    print("Robust building height p90:", p90)
+offline/raster/pipeline/scientific_raster_runner.py:160:    height = ndsm.copy()
+offline/raster/pipeline/scientific_raster_runner.py:162:    height[building_mask == 0] = 0
+offline/raster/pipeline/scientific_raster_runner.py:164:    height_total = dtm_data + height
+offline/raster/pipeline/scientific_raster_runner.py:169:        dst.write(height.astype("float32"), 1)
+offline/raster/pipeline/scientific_raster_runner.py:172:        dst.write(height_total.astype("float32"), 1)
+offline/raster/pipeline/scientific_raster_runner.py:177:    print("Height min:", np.nanmin(height))
+offline/raster/pipeline/scientific_raster_runner.py:178:    print("Height max:", np.nanmax(height))
+offline/raster/pipeline/scientific_raster_runner.py:214:    geom = load_envelope()
+offline/raster/pipeline/scientific_raster_runner.py:216:    clip_raster(DSM_LOCAL, DSM_CLIP, geom)
+offline/raster/pipeline/scientific_raster_runner.py:217:    clip_raster(DTM_LOCAL, DTM_CLIP, geom)
+offline/raster/pipeline/scientific_raster_runner.py:219:    compute_height_models()
+offline/raster/validation/validate_rigid_transform.py:26:ORIG_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/raster/validation/validate_rigid_transform.py:27:ROT_PATH  = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/raster/validation/validate_rigid_transform.py:29:LAYER_ORIG = "urban_envelope_scientific"
+offline/raster/validation/validate_rigid_transform.py:30:LAYER_ROT = "urban_envelope_scientific_rotated_clean"
+offline/scientific_cell_metrics.py.bak:6:from rasterio.mask import mask
+offline/scientific_cell_metrics.py.bak:18:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/scientific_cell_metrics.py.bak:19:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/scientific_cell_metrics.py.bak:21:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics.py.bak:22:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics.py.bak:32:            out_image, _ = mask(src, [geom], crop=True)
+offline/scientific_cell_metrics.py.bak:64:        buildings = [shape(f["geometry"]) for f in bld]
+offline/scientific_cell_metrics.py.bak:66:    print(f"Total edifícios: {len(buildings)}")
+offline/scientific_cell_metrics.py.bak:79:        mean_dtm = mean_raster_in_geom(DTM_PATH, geom)
+offline/scientific_cell_metrics.py.bak:80:        mean_dsm = mean_raster_in_geom(DSM_PATH, geom)
+offline/scientific_cell_metrics.py.bak:82:        altura_edificio = max(0.0, mean_dsm - mean_dtm)
+offline/scientific_cell_metrics.py.bak:83:        altura_total = mean_dsm
+offline/scientific_cell_metrics.py.bak:86:        for b in buildings:
+offline/scientific_cell_metrics.py.bak:97:            altura_edificio,
+offline/scientific_cell_metrics.py.bak:98:            altura_total,
+offline/scientific_cell_metrics.py.bak:111:            "altura_edificio_m",
+offline/scientific_cell_metrics.py.bak:112:            "altura_total_m",
+offline/scientific_cell_metrics.py.bak:113:            "percent_building",
+offline/scientific_cell_metrics_utm.py:2:from rasterio.mask import mask
+offline/scientific_cell_metrics_utm.py:6:DSM = "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+offline/scientific_cell_metrics_utm.py:7:DTM = "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/scientific_cell_metrics_utm.py:8:OUT = "products/final/grid_height.csv"
+offline/scientific_cell_metrics_utm.py:15:    dsm = rasterio.open(DSM)
+offline/scientific_cell_metrics_utm.py:16:    dtm = rasterio.open(DTM)
+offline/scientific_cell_metrics_utm.py:27:            dsm_img, _ = mask(dsm, geom, crop=True)
+offline/scientific_cell_metrics_utm.py:28:            dtm_img, _ = mask(dtm, geom, crop=True)
+offline/scientific_cell_metrics_utm.py:44:        z_building = np.max(dsm_vals - dtm_vals)
+offline/scientific_cell_metrics_utm.py:45:        z_total = z_terrain + z_building
+offline/scientific_cell_metrics_utm.py:52:                "z_building": float(z_building),
+offline/scientific_cell_metrics_utm.py:53:                "z_total": float(z_total),
+offline/scientific_cell_metrics_utm.py:59:    shift = -df["z_total"].min()
+offline/scientific_cell_metrics_utm.py:60:    df["z_total"] += shift
+offline/scientific_cell_metrics_utm.py:68:    print("Z max:", df["z_total"].max())
+offline/scientific_cell_metrics_utm.py.bak:6:from rasterio.mask import mask
+offline/scientific_cell_metrics_utm.py.bak:18:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/scientific_cell_metrics_utm.py.bak:19:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/scientific_cell_metrics_utm.py.bak:21:BUILDINGS_PATH = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/scientific_cell_metrics_utm.py.bak:22:BUILDINGS_LAYER = "buildings_scientific_rotated"
+offline/scientific_cell_metrics_utm.py.bak:32:            out_image, _ = mask(src, [geom], crop=True)
+offline/scientific_cell_metrics_utm.py.bak:63:        buildings = [shape(f["geometry"]) for f in bld]
+offline/scientific_cell_metrics_utm.py.bak:65:    print(f"Total edifícios: {len(buildings)}")
+offline/scientific_cell_metrics_utm.py.bak:78:        mean_dtm = mean_raster_in_geom(DTM_PATH, geom)
+offline/scientific_cell_metrics_utm.py.bak:79:        mean_dsm = mean_raster_in_geom(DSM_PATH, geom)
+offline/scientific_cell_metrics_utm.py.bak:81:        altura_edificio = max(0.0, mean_dsm - mean_dtm)
+offline/scientific_cell_metrics_utm.py.bak:82:        altura_total = mean_dsm
+offline/scientific_cell_metrics_utm.py.bak:85:        for b in buildings:
+offline/scientific_cell_metrics_utm.py.bak:96:            altura_edificio,
+offline/scientific_cell_metrics_utm.py.bak:97:            altura_total,
+offline/scientific_cell_metrics_utm.py.bak:110:            "altura_edificio_m",
+offline/scientific_cell_metrics_utm.py.bak:111:            "altura_total_m",
+offline/scientific_cell_metrics_utm.py.bak:112:            "percent_building",
+offline/scientific_grid_builder.py:14:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/scientific_grid_builder.py:23:    with rasterio.open(DTM_PATH) as r:
+offline/scientific_grid_builder.py:28:        height = ymax - ymin
+offline/scientific_grid_builder.py:30:        cell_size = max(width / GRID_COLS, height / GRID_ROWS)
+offline/scientific_grid_builder.py:33:        grid_height = GRID_ROWS * cell_size
+offline/scientific_grid_builder.py:36:        center_y = ymin + height / 2
+offline/scientific_grid_builder.py:39:        ymin = center_y - grid_height / 2
+offline/scientific_grid_builder.py:45:        print("Grid size:", grid_width, grid_height)
+offline/scientific_grid_builder.py.bak:15:ENVELOPE = BASE / "products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/scientific_grid_builder.py.bak:26:    height = maxy - miny
+offline/scientific_grid_builder.py.bak:29:    cy = miny + height / 2
+offline/scientific_grid_builder.py.bak:31:    cell_h = height / GRID_ROWS
+offline/scientific_grid_builder.py.bak:52:    height = maxy - miny
+offline/scientific_grid_builder.py.bak:55:    cell_h = height / GRID_ROWS
+offline/scientific_runner.py:8:Cria o retângulo fixo 1:2 centrado no envelope científico rotacionado.
+offline/scientific_runner.py:27:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/scientific_runner.py:30:LAYER_INPUT = "urban_envelope_scientific_rotated_clean"
+offline/scientific_runner.py:49:    print("[2/6] Lendo envelope científico rotacionado...")
+offline/scientific_runner.py:66:    height = maxy - miny
+offline/scientific_runner.py:73:    print(f"Altura atual : {height:.3f} m\n")
+offline/scientific_runner.py:85:    target_ratio = 1 / 2  # largura / altura
+offline/scientific_runner.py:87:    current_ratio = width / height
+offline/scientific_runner.py:90:        # Muito largo → aumentar altura
+offline/scientific_runner.py:92:        new_height = width / target_ratio
+offline/scientific_runner.py:93:        print("Envelope muito largo → aumentando altura")
+offline/scientific_runner.py:96:        new_height = height
+offline/scientific_runner.py:97:        new_width = height * target_ratio
+offline/scientific_runner.py:101:    half_h = new_height / 2
+offline/scientific_runner.py:111:    print(f"Nova altura : {new_height:.3f} m\n")
+offline/tests/test_generate_contours_topografico.py:6:- referenciadas ao terreno (0.00 m)
+offline/tests/test_generate_contours_topografico.py:78:        f"✔ Referência ao terreno | "
+offline/tests/test_generate_contours_topografico.py:108:    height_cm = nrows * CELL_SIZE_CM
+offline/tests/test_generate_contours_topografico.py:111:        figsize=(width_cm / 2.54, height_cm / 2.54)
+offline/tests/test_generate_contours_topografico.py:135:    ax.set_ylim(height_cm, 0)
+offline/tests/test_grid_to_pin_height.py:1:# tests/test_grid_to_pin_height.py
+offline/tests/test_grid_to_pin_height.py:4:from offline.geo.grid_to_pin_height import grid_to_pin_height
+offline/tests/test_grid_to_pin_height.py:7:def test_pin_height_basic():
+offline/tests/test_grid_to_pin_height.py:14:    heights = grid_to_pin_height(grid_norm, min_cm=0.0, max_cm=10.0)
+offline/tests/test_grid_to_pin_height.py:16:    assert heights[(0, 0)] == 0.0
+offline/tests/test_grid_to_pin_height.py:17:    assert heights[(0, 1)] == 5.0
+offline/tests/test_grid_to_pin_height.py:18:    assert heights[(1, 0)] == 10.0
+offline/tests/test_grid_to_pin_height.py:21:def test_pin_height_custom_range():
+offline/tests/test_grid_to_pin_height.py:24:    heights = grid_to_pin_height(grid_norm, min_cm=2.0, max_cm=6.0)
+offline/tests/test_grid_to_pin_height.py:26:    assert heights[(0, 0)] == 4.0
+offline/tests/test_grid_to_pin_height.py:33:        grid_to_pin_height(grid_norm)
+offline/tests/test_grid_to_pin_height.py:40:        grid_to_pin_height(grid_norm, min_cm=10.0, max_cm=5.0)
+offline/tests/test_grid_to_temporal_sequence.py:4:    pin_heights = {
+offline/tests/test_grid_to_temporal_sequence.py:14:        pin_heights,
+offline/tests/test_scientific_runner_integration.py:25:def test_height_consistency():
+offline/tests/test_scientific_runner_integration.py:29:        assert state["altura_total_m"] >= state["altura_terreno_m"]
+offline/tests/test_scientific_runner_integration.py:30:        assert state["altura_edificio_m"] >= 0
+offline/tests/test_scientific_runner_integration.py.bak:25:def test_height_consistency():
+offline/tests/test_scientific_runner_integration.py.bak:29:        assert state["altura_total_m"] >= state["altura_terreno_m"]
+offline/tests/test_scientific_runner_integration.py.bak:30:        assert state["altura_edificio_m"] >= 0
+offline/tools/06_recompute_rotation_true.py:11:ORIG = BASE / "data/raw/buildings_original.gpkg"
+offline/tools/06_recompute_rotation_true.py:12:ROT  = BASE / "products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/07_detect_rotation_from_envelope.py:11:ENV_PATH = BASE / "urban_envelope_scientific_rotated.gpkg"
+offline/tools/07_detect_rotation_from_envelope.py:48:    "source": "envelope_pca"
+offline/tools/07_detect_rotation_from_envelope.py:51:out_path = BASE / "rotation_from_envelope.json"
+offline/tools/align_envelope_to_buildings.py:3:Align urban envelope to buildings (centroid-based correction)
+offline/tools/align_envelope_to_buildings.py:13:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/tools/align_envelope_to_buildings.py:14:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+offline/tools/align_envelope_to_buildings.py:16:OUTPUT = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/tools/align_envelope_to_buildings.py:64:    print("\nSaved corrected envelope.")
+offline/tools/align_raster_to_envelope.py:12:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/align_raster_to_envelope.py:13:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/align_raster_to_envelope.py:14:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/align_raster_to_envelope.py:16:# carregar envelope
+offline/tools/align_raster_to_envelope.py:52:shift_raster(DSM)
+offline/tools/align_raster_to_envelope.py:53:shift_raster(DTM)
+offline/tools/apply_rigid_transform_raster_scientific.py:16:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/tools/apply_rigid_transform_raster_scientific.py:17:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_UTM23S.tif"
+offline/tools/apply_rigid_transform_raster_scientific.py:21:OUT_DTM = BASE / "offline/products/scientific/dtm_local.tif"
+offline/tools/apply_rigid_transform_raster_scientific.py:22:OUT_DSM = BASE / "offline/products/scientific/dsm_local.tif"
+offline/tools/apply_rigid_transform_raster_scientific.py:65:            height=src.height,
+offline/tools/apply_rigid_transform_raster_scientific.py:87:    print("Transforming DTM...")
+offline/tools/apply_rigid_transform_raster_scientific.py:88:    transform_raster(DTM, OUT_DTM, affine)
+offline/tools/apply_rigid_transform_raster_scientific.py:90:    print("Transforming DSM...")
+offline/tools/apply_rigid_transform_raster_scientific.py:91:    transform_raster(DSM, OUT_DSM, affine)
+offline/tools/audit_alignment_grid_raster.py:15:RASTER = ENGINE_ROOT / "offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif"
+offline/tools/audit_altimetry_rasters.py:10:"offline/products/snapshots/ipt_fase0/z_building_real.tif",
+offline/tools/audit_altimetry_rasters.py:11:"offline/products/snapshots/ipt_fase0/z_total_real.tif",
+offline/tools/audit_altimetry_rasters.py:12:"offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif",
+offline/tools/audit_coordinate_systems.py:13:VECTOR = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/tools/audit_coordinate_systems.py:15:RASTER = BASE / "offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif"
+offline/tools/audit_csv_products.py:80:        return np.allclose(df1.values, df2.values, equal_nan=True)
+offline/tools/audit_fix_envelope_pipeline.py:10:urban_envelope_scientific_rotated_clean.gpkg
+offline/tools/audit_fix_envelope_pipeline.py:14:urban_envelope_scientific_rotated_clean.gpkg
+offline/tools/audit_fix_envelope_pipeline.py:16:Somente nos módulos que CONSOMEM o envelope.
+offline/tools/audit_fix_envelope_pipeline.py:20:docs/architecture/code_audit/envelope_audit_found.txt
+offline/tools/audit_fix_envelope_pipeline.py:21:docs/architecture/code_audit/envelope_audit_fixed.txt
+offline/tools/audit_fix_envelope_pipeline.py:31:REPORT_FOUND = REPORT_DIR / "envelope_audit_found.txt"
+offline/tools/audit_fix_envelope_pipeline.py:32:REPORT_FIXED = REPORT_DIR / "envelope_audit_fixed.txt"
+offline/tools/audit_fix_envelope_pipeline.py:34:OLD = "urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/audit_fix_envelope_pipeline.py:35:NEW = "urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/audit_fix_envelope_pipeline.py:38:    "build_official_urban_envelope_rotated.py",
+offline/tools/audit_fix_envelope_pipeline.py:92:    print("Files referencing rotated envelope:", len(files))
+offline/tools/audit_fix_set_pin.py:10:    set_height_cm  -> set_height_cm
+offline/tools/audit_fix_set_pin.py:79:        if "set_height_cm" in text:
+offline/tools/audit_fix_set_pin.py:94:        "set_height_cm",
+offline/tools/audit_fix_set_pin.py:116:    print("IPT CitySpace – set_height_cm AUDIT")
+offline/tools/audit_fix_set_pin.py:125:    print(f"Files containing set_height_cm: {len(found)}")
+offline/tools/audit_grid_dimensions.py:14:    "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+offline/tools/audit_grid_raster_crs_alignment.py:14:RASTER = ENGINE_ROOT / "offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif"
+offline/tools/audit_lowest_points_dtm_dsm.py:3:Audit Lowest Points of DTM and DSM
+offline/tools/audit_lowest_points_dtm_dsm.py:7:• ponto mais baixo do terreno
+offline/tools/audit_lowest_points_dtm_dsm.py:30:DTM = ENGINE_ROOT / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/audit_lowest_points_dtm_dsm.py:31:DSM = ENGINE_ROOT / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/audit_lowest_points_dtm_dsm.py:45:        mask = data != src.nodata
+offline/tools/audit_lowest_points_dtm_dsm.py:47:        valid = data[mask]
+offline/tools/audit_lowest_points_dtm_dsm.py:73:    dtm_val, dtm_r, dtm_c, dtm_x, dtm_y = find_lowest(DTM)
+offline/tools/audit_lowest_points_dtm_dsm.py:74:    dsm_val, dsm_r, dsm_c, dsm_x, dsm_y = find_lowest(DSM)
+offline/tools/audit_lowest_points_dtm_dsm.py:76:    print("DTM lowest point")
+offline/tools/audit_lowest_points_dtm_dsm.py:84:    print("\nDSM lowest point")
+offline/tools/audit_raster_minmax.py:14:    "offline/products/snapshots/ipt_fase0/z_building_real.tif",
+offline/tools/audit_raster_minmax.py:15:    "offline/products/snapshots/ipt_fase0/z_total_real.tif",
+offline/tools/audit_raster_minmax.py:17:    "offline/products/snapshots/ipt_fase1_1cm/z_total_rotated.tif"
+offline/tools/audit_raster_minmax.py:43:        print("min:", float(np.nanmin(data)))
+offline/tools/audit_raster_minmax.py:44:        print("max:", float(np.nanmax(data)))
+offline/tools/audit_scientific_grid.py:25:if "z_total_m" in df.columns:
+offline/tools/audit_scientific_grid.py:27:    print("\nEstatísticas de z_total_m\n")
+offline/tools/audit_scientific_grid.py:28:    print(df["z_total_m"].describe())
+offline/tools/audit_scientific_grid.py:31:    print("\nColuna z_total_m não encontrada")
+offline/tools/buildings_height_model.py:3:Extrai altura de edifícios usando máscaras
+offline/tools/buildings_height_model.py:9:from rasterio.mask import mask
+offline/tools/buildings_height_model.py:15:HEIGHT_RASTER = BASE / "offline/data/processed/height/HEIGHT.tif"
+offline/tools/buildings_height_model.py:17:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/buildings_height_model.py:19:OUTPUT = BASE / "offline/products/scientific/buildings_with_height.gpkg"
+offline/tools/buildings_height_model.py:22:def compute_building_heights():
+offline/tools/buildings_height_model.py:31:    heights_mean = []
+offline/tools/buildings_height_model.py:32:    heights_p90 = []
+offline/tools/buildings_height_model.py:38:            out_image, _ = mask(src, [geom], crop=True)
+offline/tools/buildings_height_model.py:46:                heights_mean.append(0)
+offline/tools/buildings_height_model.py:47:                heights_p90.append(0)
+offline/tools/buildings_height_model.py:54:            heights_mean.append(h_mean)
+offline/tools/buildings_height_model.py:55:            heights_p90.append(h_p90)
+offline/tools/buildings_height_model.py:57:    gdf["height_mean"] = heights_mean
+offline/tools/buildings_height_model.py:58:    gdf["height_p90"] = heights_p90
+offline/tools/buildings_height_model.py:72:    print("Mean max:", max(heights_mean))
+offline/tools/buildings_height_model.py:73:    print("P90 max:", max(heights_p90))
+offline/tools/buildings_height_model.py:78:    compute_building_heights()
+offline/tools/build_pipeline_execution_order.py:48:"offline/processing/build_official_urban_envelope_rotated.py",
+offline/tools/build_pipeline_execution_order.py:57:"offline/products/generate_height_products.py",
+offline/tools/desrotate_urban_envelope.py:3:Desrotate envelope WITHOUT altering geometry
+offline/tools/desrotate_urban_envelope.py:14:INPUT = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/tools/desrotate_urban_envelope.py:15:OUTPUT = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/tools/export_z_total_to_excel.py:3:Export grid_z_total_m.csv to Excel
+offline/tools/export_z_total_to_excel.py:5:Gera planilha Excel com as alturas totais da mesa.
+offline/tools/export_z_total_to_excel.py:22:CSV_PATH = ENGINE_ROOT / "offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv"
+offline/tools/export_z_total_to_excel.py:31:OUT_XLSX = OUT_DIR / "grid_z_total_m.xlsx"
+offline/tools/fix_raster_vertical_alignment.py:8:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/fix_raster_vertical_alignment.py:9:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/fix_raster_vertical_alignment.py:11:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/fix_raster_vertical_alignment.py:22:    with rasterio.open(DSM) as src:
+offline/tools/fix_raster_vertical_alignment.py:57:    shift_raster(DSM, dy)
+offline/tools/fix_raster_vertical_alignment.py:58:    shift_raster(DTM, dy)
+offline/tools/fix_runner_envelope_loader.py:18:    layer="urban_envelope_scientific_rotated_clean"
+offline/tools/fix_runner_envelope_loader.py:28:print("Runner envelope loader corrigido")
+offline/tools/fix_runner_envelope_loader_v2.py:11:# substituir leitura do envelope
+offline/tools/fix_scientific_raster_runner_envelope.py:11:geom = load_envelope_geometry()
+offline/tools/fix_scientific_raster_runner_envelope.py:13:e adiciona a função load_envelope_geometry()
+offline/tools/fix_scientific_raster_runner_envelope.py:25:REPORT = ROOT / "docs/architecture/code_audit/raster_runner_envelope_fix.txt"
+offline/tools/fix_scientific_raster_runner_envelope.py:30:def load_envelope_geometry():
+offline/tools/fix_scientific_raster_runner_envelope.py:34:    print("\\n[ENVELOPE] carregando envelope científico rotacionado clean")
+offline/tools/fix_scientific_raster_runner_envelope.py:38:        layer="urban_envelope_scientific_rotated_clean"
+offline/tools/fix_scientific_raster_runner_envelope.py:69:            "geom = load_envelope_geometry()"
+offline/tools/fix_scientific_raster_runner_envelope.py:74:    if "def load_envelope_geometry" not in text:
+offline/tools/fix_urban_envelope_geometry.py:3:Desrotate envelope WITHOUT altering geometry
+offline/tools/fix_urban_envelope_geometry.py:14:INPUT = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/tools/fix_urban_envelope_geometry.py:15:OUTPUT = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/tools/generate_actuator_plan_from_csv.py:6:CSV = BASE / "offline/products/grid_z_total_m.csv"
+offline/tools/generate_grid_aligned_watermark.py:16:OUTPUT_PNG = ONLINE_ASSETS_DIR / "ipt_mask_rotated_grid_aligned.png"
+offline/tools/generate_grid_aligned_watermark.py:35:        SCIENTIFIC_DIR / "urban_envelope_scientific_rotated_clean.gpkg",
+offline/tools/generate_grid_aligned_watermark.py:36:        SCIENTIFIC_DIR / "urban_envelope_scientific_rotated.gpkg",
+offline/tools/generate_grid_aligned_watermark.py:37:        SCIENTIFIC_DIR / "urban_envelope_scientific.gpkg",
+offline/tools/generate_grid_aligned_watermark.py:38:        SCIENTIFIC_DIR / "urban_envelope_concave.gpkg",
+offline/tools/generate_grid_aligned_watermark.py:41:        SCIENTIFIC_DIR / "buildings_mask.gpkg",
+offline/tools/generate_grid_aligned_watermark_v2.py:15:OUTPUT_PNG = ONLINE_ASSETS_DIR / "ipt_mask_rotated_grid_aligned_v2.png"
+offline/tools/generate_grid_aligned_watermark_v2.py:36:        SCIENTIFIC_DIR / "buildings_scientific_rotated.gpkg",
+offline/tools/generate_grid_aligned_watermark_v2.py:37:        SCIENTIFIC_DIR / "buildings_scientific.gpkg",
+offline/tools/generate_grid_aligned_watermark_v2.py:38:        SCIENTIFIC_DIR / "urban_envelope_scientific_rotated_clean.gpkg",
+offline/tools/generate_grid_aligned_watermark_v2.py:39:        SCIENTIFIC_DIR / "urban_envelope_scientific_rotated.gpkg",
+offline/tools/generate_grid_aligned_watermark_v2.py:40:        SCIENTIFIC_DIR / "urban_envelope_scientific.gpkg",
+offline/tools/list_rasters.py:3:List all raster files (DTM / DSM)
+offline/tools/list_rasters.py:15:    print("Searching for DTM / DSM rasters")
+offline/tools/reanchor_raster_to_envelope.py:10:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/reanchor_raster_to_envelope.py:11:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/reanchor_raster_to_envelope.py:12:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/reanchor_raster_to_envelope.py:34:reanchor(DSM)
+offline/tools/reanchor_raster_to_envelope.py:35:reanchor(DTM)
+offline/tools/rebuild_scientific_raster_runner.py:16:from rasterio.mask import mask
+offline/tools/rebuild_scientific_raster_runner.py:26:DSM_INPUT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/rebuild_scientific_raster_runner.py:27:DTM_INPUT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/rebuild_scientific_raster_runner.py:29:DSM_ROT = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/tools/rebuild_scientific_raster_runner.py:30:DTM_ROT = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/tools/rebuild_scientific_raster_runner.py:32:DSM_CLIP = BASE / "offline/data/processed/dsm/IPT_2018_DSM_CLIP.tif"
+offline/tools/rebuild_scientific_raster_runner.py:33:DTM_CLIP = BASE / "offline/data/processed/dtm/IPT_2018_DTM_CLIP.tif"
+offline/tools/rebuild_scientific_raster_runner.py:35:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/rebuild_scientific_raster_runner.py:43:def load_envelope():
+offline/tools/rebuild_scientific_raster_runner.py:45:    print("\\n[ENVELOPE] carregando envelope científico")
+offline/tools/rebuild_scientific_raster_runner.py:49:        layer="urban_envelope_scientific_rotated_clean"
+offline/tools/rebuild_scientific_raster_runner.py:114:    geom = load_envelope()
+offline/tools/rebuild_scientific_raster_runner.py:122:            out_image, out_transform = mask(src, [geom], crop=True)
+offline/tools/rebuild_scientific_raster_runner.py:134:            "height": out_image.shape[1],
+offline/tools/rebuild_scientific_raster_runner.py:159:    rotate_raster(DSM_INPUT, DSM_ROT, params)
+offline/tools/rebuild_scientific_raster_runner.py:160:    rotate_raster(DTM_INPUT, DTM_ROT, params)
+offline/tools/rebuild_scientific_raster_runner.py:162:    clip_raster(DSM_ROT, DSM_CLIP)
+offline/tools/rebuild_scientific_raster_runner.py:163:    clip_raster(DTM_ROT, DTM_CLIP)
+offline/tools/recompute_altimetry_ndsm.py:4:✔ separa terreno / building / total
+offline/tools/recompute_altimetry_ndsm.py:24:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/recompute_altimetry_ndsm.py:25:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/recompute_altimetry_ndsm.py:28:OUT_BUILDING = BASE / "offline/products/grid_building_m.csv"
+offline/tools/recompute_altimetry_ndsm.py:29:OUT_TOTAL = BASE / "offline/products/grid_z_total_m.csv"
+offline/tools/recompute_altimetry_ndsm.py:34:NDSM_THRESHOLD = 2.0
+offline/tools/recompute_altimetry_ndsm.py:56:    with rasterio.open(DTM_PATH) as dtm_ds:
+offline/tools/recompute_altimetry_ndsm.py:59:    with rasterio.open(DSM_PATH) as dsm_ds:
+offline/tools/recompute_altimetry_ndsm.py:62:    print("✔ DTM shape:", dtm.shape)
+offline/tools/recompute_altimetry_ndsm.py:63:    print("✔ DSM shape:", dsm.shape)
+offline/tools/recompute_altimetry_ndsm.py:65:    ndsm = dsm - dtm
+offline/tools/recompute_altimetry_ndsm.py:67:    height, width = dtm.shape
+offline/tools/recompute_altimetry_ndsm.py:68:    cell_h = height // GRID_ROWS
+offline/tools/recompute_altimetry_ndsm.py:75:    grid_terrain = np.full((GRID_ROWS, GRID_COLS), np.nan)
+offline/tools/recompute_altimetry_ndsm.py:76:    grid_building = np.zeros((GRID_ROWS, GRID_COLS))
+offline/tools/recompute_altimetry_ndsm.py:77:    grid_total = np.full((GRID_ROWS, GRID_COLS), np.nan)
+offline/tools/recompute_altimetry_ndsm.py:90:            ndsm_cell = ndsm[y0:y1, x0:x1]
+offline/tools/recompute_altimetry_ndsm.py:92:            valid_mask = dtm_cell > NODATA_LIMIT
+offline/tools/recompute_altimetry_ndsm.py:94:            if not np.any(valid_mask):
+offline/tools/recompute_altimetry_ndsm.py:98:            dtm_valid = dtm_cell[valid_mask]
+offline/tools/recompute_altimetry_ndsm.py:99:            ndsm_valid = ndsm_cell[valid_mask]
+offline/tools/recompute_altimetry_ndsm.py:111:            building_mask = ndsm_valid > NDSM_THRESHOLD
+offline/tools/recompute_altimetry_ndsm.py:113:            if np.any(building_mask):
+offline/tools/recompute_altimetry_ndsm.py:114:                z_building = float(
+offline/tools/recompute_altimetry_ndsm.py:115:                    np.percentile(ndsm_valid[building_mask], PERCENTILE)
+offline/tools/recompute_altimetry_ndsm.py:119:                z_building = 0.0
+offline/tools/recompute_altimetry_ndsm.py:122:            z_total = z_terrain + z_building
+offline/tools/recompute_altimetry_ndsm.py:125:            grid_building[i, j] = z_building
+offline/tools/recompute_altimetry_ndsm.py:126:            grid_total[i, j] = z_total
+offline/tools/recompute_altimetry_ndsm.py:131:                f"B={z_building:6.2f} "
+offline/tools/recompute_altimetry_ndsm.py:132:                f"Z={z_total:6.2f}"
+offline/tools/recompute_altimetry_ndsm.py:141:    min_terrain = np.nanmin(grid_terrain)
+offline/tools/recompute_altimetry_ndsm.py:151:    grid_terrain = np.nan_to_num(grid_terrain, nan=0.0)
+offline/tools/recompute_altimetry_ndsm.py:152:    grid_total = np.nan_to_num(grid_total, nan=0.0)
+offline/tools/recompute_altimetry_ndsm.py:161:    np.savetxt(OUT_BUILDING, grid_building, fmt="%.3f", delimiter=";")
+offline/tools/recompute_rigid_transform.py:21:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+offline/tools/recompute_rigid_transform.py:22:BUILDINGS_ROT = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/recompute_rigid_transform_utm_to_local.py:9:BUILDINGS_UTM = BASE / "offline/data/raw/buildings_original.gpkg"
+offline/tools/recompute_rigid_transform_utm_to_local.py:10:BUILDINGS_LOCAL = BASE / "offline/products/scientific/buildings_scientific.gpkg"
+offline/tools/recompute_transform_from_envelope.py:9:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/tools/recompute_transform_from_envelope.py:10:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/tools/recompute_transform_from_envelope.py:17:    print("\n=== Compute UTM → LOCAL from envelope ===")
+offline/tools/recompute_transform_from_envelope.py:19:    # --- DTM bounds (UTM)
+offline/tools/recompute_transform_from_envelope.py:20:    with rasterio.open(DTM) as src:
+offline/tools/recompute_transform_from_envelope.py:26:        layer="urban_envelope_scientific"
+offline/tools/recompute_transform_from_envelope.py:48:        "transform_type": "utm_to_local_from_envelope"
+offline/tools/run_full_alignment_pipeline.py:58:    run("python -m offline.tools.desrotate_urban_envelope")
+offline/tools/run_full_alignment_pipeline.py:71:    print("- urban_envelope_scientific.gpkg")
+offline/tools/run_full_alignment_pipeline.py:72:    print("- buildings_scientific.gpkg")
+offline/tools/shift_raster_to_envelope.py:13:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/shift_raster_to_envelope.py:14:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/tools/shift_raster_to_envelope.py:15:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/tools/shift_raster_to_envelope.py:23:with rasterio.open(DSM) as src:
+offline/tools/shift_raster_to_envelope.py:40:with rasterio.open(DSM, "w", **profile) as dst:
+offline/tools/shift_raster_to_envelope.py:43:with rasterio.open(DTM) as src:
+offline/tools/shift_raster_to_envelope.py:52:with rasterio.open(DTM, "w", **profile) as dst:
+offline/tools/snap_vector_to_raster_grid.py:16:RASTER = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/tools/snap_vector_to_raster_grid.py:18:BUILDINGS = BASE / "offline/products/scientific/buildings_scientific_rotated.gpkg"
+offline/tools/snap_vector_to_raster_grid.py:19:ENVELOPE = BASE / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+offline/validate_dxf_ipt_original_rotated_clean.py:7:#   - Origem = centro do envelope do DXF
+offline/validate_dxf_ipt_original_rotated_clean.py:76:    edificios = gdf[gdf.geom_type.isin(["Polygon", "MultiPolygon"])]
+offline/validate_dxf_ipt_original_rotated_clean.py:97:    if len(edificios) > 0:
+offline/validate_dxf_ipt_original_rotated_clean.py:98:        edificios.plot(
+offline/validation/audit_altitude_statistics.py:4:Analisa valores DSM e DTM
+offline/validation/audit_altitude_statistics.py:13:DSM = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/validation/audit_altitude_statistics.py:14:DTM = BASE / "offline/data/processed/dtm/IPT_2018_DTM_ROT.tif"
+offline/validation/audit_altitude_statistics.py:36:stats("DSM", DSM)
+offline/validation/audit_altitude_statistics.py:37:stats("DTM", DTM)
+offline/validation/audit_raster_alignment.py:5:Verifica alinhamento entre DTM e DSM
+offline/validation/audit_raster_alignment.py:17:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_LOCAL.tif"
+offline/validation/audit_raster_alignment.py:18:DSM_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_LOCAL.tif"
+offline/validation/audit_raster_alignment.py:20:print("DTM:", DTM_PATH)
+offline/validation/audit_raster_alignment.py:21:print("DSM:", DSM_PATH)
+offline/validation/audit_raster_alignment.py:23:print("\n--- DTM ---")
+offline/validation/audit_raster_alignment.py:25:with rasterio.open(DTM_PATH) as dtm:
+offline/validation/audit_raster_alignment.py:29:    print("height:", dtm.height)
+offline/validation/audit_raster_alignment.py:34:print("\n--- DSM ---")
+offline/validation/audit_raster_alignment.py:36:with rasterio.open(DSM_PATH) as dsm:
+offline/validation/audit_raster_alignment.py:41:    print("height:", dsm.height)
+offline/validation/contract_registry.py:36:                "products/final/grid_height.csv",
+offline/validation/contract_registry.py:68:                "z_building_m",
+offline/validation/contract_registry.py:69:                "z_total_m",
+offline/validation/contract_registry.py:75:                "z_total_m = z_terrain_m + z_building_m",
+offline/validation/contract_registry.py:76:                "z_cm = f(z_total_m)",
+offline/validation/contract_registry.py:84:            "bounding_box_without_envelope_is_not_valid_domain": True,
+offline/validation/contract_registry.py:85:            "outside_value": "NaN",
+offline/validation/contract_registry.py:86:            "nan_meaning": "no_drone_survey",
+offline/validation/contract_registry.py:182:            "official_domain_source": "urban_envelope",
+offline/validation/contract_registry.py:183:            "outside_valid_domain_should_be_nan": True,
+offline/validation/contract_registry.py:184:            "nan_means_no_drone_photogrammetric_survey": True,
+offline/validation/contract_registry.py:189:            "source": "DTM",
+offline/validation/contract_registry.py:190:            "scope": "inside_urbanism_envelope",
+offline/validation/contract_registry.py:191:            "cota_zero_definition": "minimum_DTM_within_urbanism_area",
+offline/validation/contract_registry.py:199:            "can_validate_height_building_coherence": True,
+offline/validation/contract_registry.py:203:                "DTM -> z_terrain_m",
+offline/validation/contract_registry.py:204:                "DSM/NDSM -> z_building_m",
+offline/validation/contract_registry.py:205:                "z_terrain_m + z_building_m -> z_total_m",
+offline/validation/contract_registry.py:206:                "z_total_m -> z_cm",
+offline/validation/contract_registry.py:236:                "title": "Valida\u00e7\u00e3o geom\u00e9trica expl\u00edcita de NaN fora do envelope",
+offline/validation/contract_registry.py:237:                "description": "A regra existe, mas o validador ainda precisa cruzar grid cient\u00edfico com m\u00e1scara/envelope oficial.",
+offline/validation/contract_registry.py:262:                "description": "Bounding-box n\u00e3o pode ser tratada como dom\u00ednio v\u00e1lido sem envelope.",
+offline/validation/contract_registry.py:263:                "proposed_contract_additive": "O envelope urbano define o dom\u00ednio efetivo do sistema.",
+offline/validation/contract_registry.py:274:                "title": "Sem\u00e2ntica formal de NaN fora do dom\u00ednio",
+offline/validation/contract_registry.py:276:                "description": "NaN fora da \u00e1rea v\u00e1lida significa aus\u00eancia de levantamento aerofotogram\u00e9trico por drone.",
+offline/validation/contract_registry.py:277:                "proposed_contract_additive": "Valores NaN fora da \u00e1rea v\u00e1lida indicam aus\u00eancia de levantamento aerofotogram\u00e9trico por drone e n\u00e3o devem ser tratados como zero.",
+offline/validation/contract_registry.py:283:                "description": "O DXF \u00e9 entrada oficial e pode validar coer\u00eancia entre altura e edifica\u00e7\u00e3o.",
+offline/validation/contract_registry_BASE_SAFE.py:31:            "outside_value": "NaN",
+offline/validation/contract_registry_BASE_SAFE.py:32:            "nan_meaning": "no_drone_survey",
+offline/validation/fix_validation_scripts.py:9:TARGET_FILE = BASE / "offline/validation/validate_rotated_raster_vs_envelope.py"
+offline/validation/reports/contract_registry_expanded.txt:45:                "products/final/grid_height.csv"
+offline/validation/reports/contract_registry_expanded.txt:79:                "z_building_m",
+offline/validation/reports/contract_registry_expanded.txt:80:                "z_total_m"
+offline/validation/reports/contract_registry_expanded.txt:86:                "z_total_m = z_terrain_m + z_building_m",
+offline/validation/reports/contract_registry_expanded.txt:87:                "z_cm = f(z_total_m)"
+offline/validation/reports/contract_registry_expanded.txt:96:            "bounding_box_without_envelope_is_not_valid_domain": True,
+offline/validation/reports/contract_registry_expanded.txt:97:            "outside_value": "NaN",
+offline/validation/reports/contract_registry_expanded.txt:98:            "nan_meaning": "no_drone_survey",
+offline/validation/reports/contract_registry_expanded.txt:164:            "official_domain_source": "urban_envelope",
+offline/validation/reports/contract_registry_expanded.txt:165:            "outside_valid_domain_should_be_nan": True,
+offline/validation/reports/contract_registry_expanded.txt:166:            "nan_means_no_drone_photogrammetric_survey": True,
+offline/validation/reports/contract_registry_expanded.txt:172:            "source": "DTM",
+offline/validation/reports/contract_registry_expanded.txt:173:            "scope": "inside_urbanism_envelope",
+offline/validation/reports/contract_registry_expanded.txt:174:            "cota_zero_definition": "minimum_DTM_within_urbanism_area",
+offline/validation/reports/contract_registry_expanded.txt:183:            "can_validate_height_building_coherence": True
+offline/validation/reports/contract_registry_expanded.txt:188:                "DTM -> z_terrain_m",
+offline/validation/reports/contract_registry_expanded.txt:189:                "DSM/NDSM -> z_building_m",
+offline/validation/reports/contract_registry_expanded.txt:190:                "z_terrain_m + z_building_m -> z_total_m",
+offline/validation/reports/contract_registry_expanded.txt:191:                "z_total_m -> z_cm",
+offline/validation/reports/contract_registry_expanded.txt:225:                "title": "Validação geométrica explícita de NaN fora do envelope",
+offline/validation/reports/contract_registry_expanded.txt:226:                "description": "A regra existe, mas o validador ainda precisa cruzar grid científico com máscara/envelope oficial."
+offline/validation/reports/contract_registry_expanded.txt:252:                "description": "Bounding-box não pode ser tratada como domínio válido sem envelope.",
+offline/validation/reports/contract_registry_expanded.txt:253:                "proposed_contract_additive": "O envelope urbano define o domínio efetivo do sistema."
+offline/validation/reports/contract_report.json:32:          "z_building_m",
+offline/validation/reports/contract_report.json:33:          "z_total_m"
+offline/validation/reports/contract_report.json:43:      "title": "Relação z_total_m consistente",
+offline/validation/reports/contract_report.json:44:      "description": "z_total_m = z_terrain_m + z_building_m.",
+offline/validation/reports/contract_report.json:191:      "description": "O domínio válido deve ser envelope urbano, não bounding-box puro.",
+offline/validation/reports/contract_report.json:195:      "proposed_contract_additive": "Bounding-box não é domínio válido sem envelope; o envelope urbano define o domínio efetivo do sistema."
+offline/validation/reports/contract_report.json:200:      "title": "NaN fora do domínio",
+offline/validation/reports/contract_report.json:201:      "description": "A regra existe, mas a validação geométrica explícita contra envelope ainda não foi ligada.",
+offline/validation/reports/contract_report.json:210:      "title": "Semântica formal de NaN",
+offline/validation/reports/contract_report.json:211:      "description": "NaN fora da área válida significa ausência de levantamento aerofotogramétrico por drone.",
+offline/validation/reports/contract_report.json:217:      "proposed_contract_additive": "Valores NaN fora da área válida indicam ausência de levantamento aerofotogramétrico por drone e não devem ser tratados como zero."
+offline/validation/reports/contract_report.json:222:      "title": "Contours derivados do DTM",
+offline/validation/reports/contract_report.json:223:      "description": "O contrato define que contours derivam do DTM.",
+offline/validation/reports/contract_report.json:233:      "description": "Contours derivam da menor cota do DTM dentro do urbanismo.",
+offline/validation/reports/contract_report.json:237:      "proposed_contract_additive": "A cota zero dos contours deve ser definida pela menor cota do DTM dentro do urbanismo."
+offline/validation/reports/contract_report.json:286:      "title": "DXF como validador de coerência altura ↔ edificação",
+offline/validation/reports/contract_report.json:287:      "description": "O DXF pode validar coerência entre altura e presença de prédio.",
+offline/validation/reports/contract_report.json:290:      "recommendation": "Conectar checagem DXF ↔ alturas ao pipeline.",
+offline/validation/reports/contract_report.json:291:      "proposed_contract_additive": "O DXF de referência pode atuar como validação geométrica e semântica entre altura e edificação."
+offline/validation/reports/contract_report.json:306:      "title": "Validação geométrica explícita de NaN fora do envelope",
+offline/validation/reports/contract_report.json:307:      "description": "A regra existe, mas o validador ainda precisa cruzar grid científico com máscara/envelope oficial.",
+offline/validation/reports/contract_report.json:347:      "description": "Bounding-box não pode ser tratada como domínio válido sem envelope.",
+offline/validation/reports/contract_report.json:351:      "proposed_contract_additive": "O envelope urbano define o domínio efetivo do sistema."
+offline/validation/reports/contract_report.json:366:      "title": "Semântica formal de NaN fora do domínio",
+offline/validation/reports/contract_report.json:367:      "description": "NaN fora da área válida significa ausência de levantamento aerofotogramétrico por drone.",
+offline/validation/reports/contract_report.json:371:      "proposed_contract_additive": "Valores NaN fora da área válida indicam ausência de levantamento aerofotogramétrico por drone e não devem ser tratados como zero."
+offline/validation/reports/contract_report.json:377:      "description": "O DXF é entrada oficial e pode validar coerência entre altura e edificação.",
+offline/validation/validate_contract_master.py:133:    if "z_terrain_m" in df.columns and "z_building_m" in df.columns and "z_total_m" in df.columns:
+offline/validation/validate_contract_master.py:134:        total_expected = df["z_terrain_m"] + df["z_building_m"]
+offline/validation/validate_contract_master.py:135:        diff = (df["z_total_m"] - total_expected).abs()
+offline/validation/validate_contract_master.py:141:                "Relação z_total_m inconsistente",
+offline/validation/validate_contract_master.py:142:                "z_total_m difere de z_terrain_m + z_building_m.",
+offline/validation/validate_contract_master.py:145:                recommendation="Corrigir a derivação da altura total.",
+offline/validation/validate_contract_master.py:150:                "Relação z_total_m consistente",
+offline/validation/validate_contract_master.py:151:                "z_total_m = z_terrain_m + z_building_m.",
+offline/validation/validate_contract_master.py:326:    if contract["domain"]["official_domain_source"] == "urban_envelope":
+offline/validation/validate_contract_master.py:330:            "O domínio válido deve ser envelope urbano, não bounding-box puro.",
+offline/validation/validate_contract_master.py:333:            proposed_contract_additive="Bounding-box não é domínio válido sem envelope; o envelope urbano define o domínio efetivo do sistema.",
+offline/validation/validate_contract_master.py:336:    if contract["domain"]["outside_valid_domain_should_be_nan"]:
+offline/validation/validate_contract_master.py:339:            "NaN fora do domínio",
+offline/validation/validate_contract_master.py:340:            "A regra existe, mas a validação geométrica explícita contra envelope ainda não foi ligada.",
+offline/validation/validate_contract_master.py:343:    if contract["domain"]["nan_means_no_drone_photogrammetric_survey"]:
+offline/validation/validate_contract_master.py:346:            "Semântica formal de NaN",
+offline/validation/validate_contract_master.py:347:            "NaN fora da área válida significa ausência de levantamento aerofotogramétrico por drone.",
+offline/validation/validate_contract_master.py:350:            proposed_contract_additive="Valores NaN fora da área válida indicam ausência de levantamento aerofotogramétrico por drone e não devem ser tratados como zero.",
+offline/validation/validate_contract_master.py:354:    if contract["contours"]["source"] == "DTM":
+offline/validation/validate_contract_master.py:357:            "Contours derivados do DTM",
+offline/validation/validate_contract_master.py:358:            "O contrato define que contours derivam do DTM.",
+offline/validation/validate_contract_master.py:365:            "Contours derivam da menor cota do DTM dentro do urbanismo.",
+offline/validation/validate_contract_master.py:368:            proposed_contract_additive="A cota zero dos contours deve ser definida pela menor cota do DTM dentro do urbanismo.",
+offline/validation/validate_contract_master.py:416:    if contract["dxf"]["can_validate_height_building_coherence"]:
+offline/validation/validate_contract_master.py:419:            "DXF como validador de coerência altura ↔ edificação",
+offline/validation/validate_contract_master.py:420:            "O DXF pode validar coerência entre altura e presença de prédio.",
+offline/validation/validate_contract_master.py:422:            recommendation="Conectar checagem DXF ↔ alturas ao pipeline.",
+offline/validation/validate_contract_master.py:423:            proposed_contract_additive="O DXF de referência pode atuar como validação geométrica e semântica entre altura e edificação.",
+offline/validation/validate_grid_vs_raster_alignment.py:3:GRID 8x16 (UTM) vs Raster DTM/DSM
+offline/validation/validate_grid_vs_raster_alignment.py:15:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_grid_vs_raster_alignment.py:24:    with rasterio.open(DTM_PATH) as src:
+offline/validation/validate_grid_vs_raster_alignment.py.bak:3:GRID 8x16 (UTM) vs Raster DTM/DSM
+offline/validation/validate_grid_vs_raster_alignment.py.bak:15:DTM_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_grid_vs_raster_alignment.py.bak:24:    with rasterio.open(DTM_PATH) as src:
+offline/validation/validate_grid_z_total_vs_dxf.py:13:  • com valores físicos plausíveis (terreno + edifício)
+offline/validation/validate_grid_z_total_vs_dxf.py:17:- offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv
+offline/validation/validate_grid_z_total_vs_dxf.py:22:- visualization/validation/validacao_grid_z_total_vs_dxf.png
+offline/validation/validate_grid_z_total_vs_dxf.py:47:    / "grid_z_total_m.csv"
+offline/validation/validate_grid_z_total_vs_dxf.py:63:OUT_IMG = OUT_DIR / "validacao_grid_z_total_vs_dxf.png"
+offline/validation/validate_grid_z_total_vs_dxf.py:140:        "Grid Z_TOTAL (terreno + edifícios) × DXF IPT"
+offline/validation/validate_raster_local_offset.py:35:RASTER_PATH = BASE / "offline/data/processed/dtm/IPT_2018_DTM_UTM23S.tif"
+offline/validation/validate_rigid_transform_full.py:10:- Verificar coerência com envelope rotacionado
+offline/validation/validate_rigid_transform_full.py:25:ROTATED_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/validation/validate_rigid_transform_full.py:56:    # 2) Ler envelope rotacionado
+offline/validation/validate_rigid_transform_json.py:10:- Verifica determinante
+offline/validation/validate_rigid_transform_json.py:93:    print("\n[4] Verificando determinante...")
+offline/validation/validate_rigid_transform_json.py:95:    print(f"Determinante: {det:.12f}")
+offline/validation/validate_rigid_transform_json.py:98:        print("✔ Determinante = 1 (transformação rígida pura)")
+offline/validation/validate_rigid_transform_json.py:100:        print("⚠ Determinante diferente de 1")
+offline/validation/validate_rigid_transform_parameters.py:21:ORIGINAL_PATH = ENGINE_ROOT / "offline/products/scientific/urban_envelope_original.gpkg"
+offline/validation/validate_rigid_transform_parameters.py:22:ROTATED_PATH  = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/validation/validate_rigid_transform_parameters.py:24:LAYER_ORIGINAL = "urban_envelope_original"
+offline/validation/validate_rigid_transform_parameters.py:25:LAYER_ROTATED  = "urban_envelope_scientific_rotated_clean"
+offline/validation/validate_rotated_raster_vs_envelope.py:11:RASTER_PATH = BASE / "offline/data/processed/dsm/IPT_2018_DSM_ROT.tif"
+offline/validation/validate_rotated_raster_vs_envelope.py:12:ENVELOPE_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/validation/validate_rotated_raster_vs_envelope.py:40:print("\n[2/2] Lendo envelope rotacionado...")
+offline/validation/validate_rotated_raster_vs_envelope.py:66:print("\nΔX (envelope - raster):", dx)
+offline/validation/validate_rotated_raster_vs_envelope.py:67:print("ΔY (envelope - raster):", dy)
+offline/validation/validate_scientific_grid_metrics.py:7:- Detectar NaNs
+offline/validation/validate_scientific_grid_metrics.py:47:    z_total = df["altura_total_m"].values.reshape(GRID_ROWS, GRID_COLS)
+offline/validation/validate_scientific_grid_metrics.py:49:    log(f"z_min  : {np.nanmin(z_total)}")
+offline/validation/validate_scientific_grid_metrics.py:50:    log(f"z_max  : {np.nanmax(z_total)}")
+offline/validation/validate_scientific_grid_metrics.py:51:    log(f"z_mean : {np.nanmean(z_total)}")
+offline/validation/validate_scientific_grid_metrics.py:53:    log(f"Contém NaN? {np.isnan(z_total).any()}")
+offline/validation/validate_scientific_grid_metrics.py:54:    log(f"Todos zero? {np.all(z_total == 0)}")
+offline/validation/validate_scientific_grid_metrics.py.bak:7:- Detectar NaNs
+offline/validation/validate_scientific_grid_metrics.py.bak:47:    z_total = df["altura_total_m"].values.reshape(GRID_ROWS, GRID_COLS)
+offline/validation/validate_scientific_grid_metrics.py.bak:49:    log(f"z_min  : {np.nanmin(z_total)}")
+offline/validation/validate_scientific_grid_metrics.py.bak:50:    log(f"z_max  : {np.nanmax(z_total)}")
+offline/validation/validate_scientific_grid_metrics.py.bak:51:    log(f"z_mean : {np.nanmean(z_total)}")
+offline/validation/validate_scientific_grid_metrics.py.bak:53:    log(f"Contém NaN? {np.isnan(z_total).any()}")
+offline/validation/validate_scientific_grid_metrics.py.bak:54:    log(f"Todos zero? {np.all(z_total == 0)}")
+offline/vector/core/apply_rigid_transform_clean.py:58:    Base científica para DTM, DSM, curvas de nível.
+offline/vector/core/apply_rigid_transform_clean.py:105:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific.gpkg"
+offline/vector/core/apply_rigid_transform_clean.py:106:OUTPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/vector/core/apply_rigid_transform_clean.py:109:LAYER_INPUT = "urban_envelope_scientific"
+offline/vector/core/apply_rigid_transform_clean.py:110:LAYER_OUTPUT = "urban_envelope_scientific_rotated_clean"
+offline/vector/core/apply_rigid_transform_clean.py:132:    print("\n[2/5] Abrindo envelope original...")
+offline/vector/core/build_domain_1x2_utm.py:12:INPUT_PATH = BASE / "offline/products/scientific/urban_envelope_scientific_rotated_clean.gpkg"
+offline/vector/core/build_domain_1x2_utm.py:13:INPUT_LAYER = "urban_envelope_scientific_rotated_clean"
+offline/vector/core/build_domain_1x2_utm.py:25:    print("[1/5] Lendo envelope rotacionado (UTM)...")
+offline/vector/core/build_domain_1x2_utm.py:35:    altura  = maxy - miny
+offline/vector/core/build_domain_1x2_utm.py:37:    print(f"Largura envelope : {largura:.3f} m")
+offline/vector/core/build_domain_1x2_utm.py:38:    print(f"Altura envelope  : {altura:.3f} m")
+offline/vector/core/build_domain_1x2_utm.py:50:    proporcao_atual = altura / largura
+offline/vector/core/build_domain_1x2_utm.py:53:        # aumentar altura
+offline/vector/core/build_domain_1x2_utm.py:54:        nova_altura = largura * 2
+offline/vector/core/build_domain_1x2_utm.py:56:        print("Envelope muito largo → aumentando altura")
+offline/vector/core/build_domain_1x2_utm.py:59:        nova_largura = altura / 2
+offline/vector/core/build_domain_1x2_utm.py:60:        nova_altura = altura
+offline/vector/core/build_domain_1x2_utm.py:64:    print(f"Nova altura  : {nova_altura:.3f} m")
+offline/vector/core/build_domain_1x2_utm.py:70:    new_miny = cy - nova_altura / 2
+offline/vector/core/build_domain_1x2_utm.py:71:    new_maxy = cy + nova_altura / 2

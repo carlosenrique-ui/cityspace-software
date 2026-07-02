@@ -1,0 +1,131 @@
+345-
+346-    for i in range(step + 1):
+347-        r, c = ZIGZAG_PATH[i]
+348-        val = Z_PINO_CM[r, c]
+349-        if np.isfinite(val) and val > 0:
+350-            z[r, c] = val
+351-
+352-    return z
+353-
+354-
+355:def make_fig(layers, step, cell_mode, projector_mode):
+356-    fig = go.Figure()
+357-
+358-    if "base" in layers:
+359-        add_watermark(fig)
+360-
+361-    z_display = current_grid(step)
+362-
+363-    if "pinos" in layers:
+364-        fig.add_trace(go.Heatmap(
+365-            z=z_display,
+366-            customdata=Z_TOTAL_M,
+367-            colorscale=[
+368-                [0.00, "black"],
+369-                [0.001, "black"],
+370-                [0.02, "#440154"],
+371-                [0.25, "#31688e"],
+372-                [0.50, "#35b779"],
+373-                [0.75, "#fde725"],
+374-                [1.00, "#fde725"],
+375-            ],
+376-            showscale=True,
+377-            colorbar=dict(
+378-                title="Pino(cm)<br>Teto(m)",
+379-                tickmode="array",
+380-                tickvals=[0, 2.5, 5, 7.5, 10],
+381-                ticktext=["0 / 0", "2.5 / 10", "5 / 20", "7.5 / 30", "10 / 40"],
+382-                x=1.02,
+383-            ),
+384-            opacity=GRID_OPACITY,
+385-            zmin=0,
+386-            zmax=PINO_MAX_CM,
+387-            xgap=0,
+388-            ygap=0,
+389-            hovertemplate=(
+390-                "col=%{x}<br>row=%{y}<br>"
+391-                "pino=%{z:.2f} cm<br>"
+392-                "teto=%{customdata:.2f} m<extra></extra>"
+393-            ),
+394-            name="PINO_Z_TOTAL_CM",
+395-        ))
+396-
+397-    if "contour_terrain" in layers:
+398-        add_contours(fig, TERRAIN_CONTOURS, "TERRENO", "black", "solid", "cota_terrain" in layers)
+399-
+400-    if "contour_total" in layers:
+401-        add_contours(fig, TOTAL_CONTOURS, "TETO", "white", "dash", "cota_total" in layers)
+402-
+403-    if "grid" in layers:
+404-        add_grid_lines(fig)
+405-
+406-    step = max(0, min(int(step or 0), TOTAL_STEPS - 1))
+407-    row, col = ZIGZAG_PATH[step]
+408-    fig.update_layout(shapes=[active_cell_shape(row, col)])
+409-
+410-    add_annotations(fig, cell_mode)
+411-    add_north_scale(fig)
+412-
+413-    x_range = [-0.5, GRID_COLS - 0.5]
+414-    y_range = [GRID_ROWS - 0.5, -0.5]
+415-
+416-    if projector_mode == "invertido":
+417-        x_range = [GRID_COLS - 0.5, -0.5]
+418-        y_range = [-0.5, GRID_ROWS - 0.5]
+419-
+420-    fig.update_layout(
+421-        margin=dict(l=95, r=90, t=70, b=260),
+422-        xaxis=dict(visible=False, range=x_range, constrain="domain"),
+423-        yaxis=dict(visible=False, range=y_range, scaleanchor="x", scaleratio=1),
+424-        plot_bgcolor="white",
+425-        paper_bgcolor="white",
+426-        autosize=True,
+427-        uirevision="v128_7_19",
+428-    )
+429-
+430-    return fig
+431-
+432-
+433-def send_to_real_table(row, col, value_cm, mesa_on):
+434-    if not mesa_on:
+435-        return "Mesa Real OFF"
+436-
+437-    if not np.isfinite(value_cm) or value_cm <= 0:
+438-        value_cm = 0.0
+439-
+440-    return f"MODO REAL SIMULADO row={row} col={col} z_cm={value_cm:.2f}"
+441-
+442-
+443-# =========================================
+444-# DATA LOAD
+445-# =========================================
+446-
+447-PNG_PATH = first_existing(PNG_CANDIDATES)
+448-NORTH_PATH = first_existing(NORTH_CANDIDATES, required=False)
+449-
+450-DF = pd.read_csv(CSV_PATH)
+451-
+452-Z_TERRAIN_M, Z_TOTAL_M, Z_PINO_CM = build_grids(DF)
+453-
+454-# Remover ruído: 3 células do canto superior direito
+455-Z_TERRAIN_M[0, GRID_COLS-3:GRID_COLS] = np.nan
+456-Z_TOTAL_M[0, GRID_COLS-3:GRID_COLS] = np.nan
+457-Z_PINO_CM[0, GRID_COLS-3:GRID_COLS] = np.nan
+458-
+459-PNG_URI = image_to_data_uri(PNG_PATH)
+460-NORTH_URI = image_to_data_uri(NORTH_PATH) if NORTH_PATH is not None else None
+461-
+462-TERRAIN_CONTOURS = contour_segments(Z_TERRAIN_M, interval_m=2.0)
+463-TOTAL_CONTOURS = contour_segments(Z_TOTAL_M, interval_m=5.0)
+464-
+465-ZIGZAG_PATH = build_zigzag_path()
+466-TOTAL_STEPS = len(ZIGZAG_PATH)
+467-
+468-
+469-# =========================================
+470-# DASH
+471-# =========================================
+472-
+473-app = dash.Dash(__name__)
+474-
+475-app.layout = html.Div([

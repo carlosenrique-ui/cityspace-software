@@ -1,0 +1,30 @@
+a1d50cd (HEAD -> ui_v84_stable, tag: v0.1-urban-prototype) feat: refine 2D visualization, IPT alignment and initial 3D urban prototype
+0a785c0 (etapa12_runner_integration) Backup completo do sistema online legado (V42, renderers, temporal)
+8a15007 Nova arquitetura limpa (ipt_core_clean) + UI V84 + autoscan
+9fbc17f CORE: arquitetura offline/online + evolução UI v42→v50
+bc540c7 feat: virtual table UI v42
+9d2927e feat: visualization updates and debug alignment
+2923256 feat: step04 runtime generation (grid + actuator + metadata)
+664ca8e (tag: v0.12_scientific_pipeline) etapa12: scientific grid + alignment tools + pipeline cleanup
+457e0f4 etapa12: refactor scientific grid pipeline + remove legacy zigzag scanner
+13154af chore: ignore heavy outputs and temp files
+b24eacf V42: mask-only watermark (squashed) + viridis + simple rotation pipeline
+64f97bb ALTIMETRY v4 (STABLE BASE)
+997e130 CitySpace: add analysis tools, altitude audit scripts, and mesa renderer output
+9657497 (tag: cityspace_renderer_analysis_checkpoint, tag: cityspace_offline_pipeline_stable_v1) CitySpace: stabilize offline pipeline, add DAG runtime, auditing tools, and mesa renderer integration
+d204002 Reorganize architecture context system and add automated project snapshot tools
+41fc062 CitySpace scientific pipeline stabilized and grid integration working
+4dc8922 CitySpace: runner refactor, audit tools and raster debugging session
+2e16b35 Refactor runner: replace set_pin with set_height_cm, introduce ScientificRunnerEngine and explicit unit conversion (m->cm)
+310a06f CitySpace – pipeline documentation update
+066c317 update context
+a39cd8f Subsystem context and architecture scanner updates
+5d2fcf6 Architecture scanner improvements
+092782e Architecture scanner update
+7e61a46 Architecture pipeline instrumentation and project context improvements
+8acdf19 architecture scanner working
+7f4cf0c architecture scanner: preserve comments + add developer workflow + toolchain sections
+85a6d3b architecture scanner update
+6ec4b71 (tag: checkpoint_pipeline_architecture_v1) architecture: pipeline mapping, controller foundation and documentation
+6b731f1 architecture cleanup – legacy migration 20260305_164029
+ec5bc71 (tag: etapa12_pipeline_checkpoint) Etapa12: scientific raster pipeline stabilization, validation suite, DSM/DTM alignment audit, environment tools and runner integration

@@ -1,0 +1,246 @@
+import json
+import base64
+from io import BytesIO
+
+import numpy as np
+import dash
+from dash import dcc, html, Input, Output, State, ctx
+import plotly.graph_objects as go
+from PIL import Image
+
+GRID_CSV = "/mnt/c/workspace/ipt-cityspace-engine/products/final/grid_height.csv"
+PLAN_JSON = "/mnt/c/workspace/ipt-cityspace-engine/products/final/actuator_plan.json"
+WATERMARK = "/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_v3.png"
+
+# ============================================================
+# WATERMARK TRANSFORM — somente watermark
+# ============================================================
+SCALE_X = 0.66
+SCALE_Y = 0.58
+OFFSET_X = -0.050
+OFFSET_Y = 0.005
+ROTATE_DEG = -10.5
+WATERMARK_OPACITY = 0.28
+
+X = (1.0 - SCALE_X) / 2.0 + OFFSET_X
+Y = 1.0 - (1.0 - SCALE_Y) / 2.0 + OFFSET_Y
+
+img = Image.open(WATERMARK).convert("RGBA")
+img = img.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+img = img.rotate(
+    ROTATE_DEG,
+    resample=Image.Resampling.BICUBIC,
+    expand=True,
+    fillcolor=(255, 255, 255, 0),
+)
+
+buf = BytesIO()
+img.save(buf, format="PNG")
+IMG = "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
+
+# ============================================================
+# LOAD ACTUATOR PLAN
+# ============================================================
+with open(PLAN_JSON, "r", encoding="utf-8") as f:
+    raw = json.load(f)
+
+events = raw.get("events", raw)
+
+positions = []
+heights = []
+current_pos = (0, 0)
+
+for event in events:
+    if event["type"] == "move":
+        current_pos = (event["row"], event["col"])
+    elif event["type"] == "set_height_cm":
+        r, c = current_pos
+        positions.append((min(r, 7), min(c, 15)))
+        heights.append(event["value_cm"])
+
+# ============================================================
+# 3 CLOCKS
+# ============================================================
+# 1) plan_step: índice lógico do actuator_plan
+# 2) ui_time: tempo de animação da UI
+# 3) physical_time: tempo físico estimado dos atuadores
+# ============================================================
+
+plan_timeline = [0.0]
+
+for i in range(1, len(positions)):
+    prev = positions[i - 1]
+    curr = positions[i]
+    manhattan_distance = abs(prev[0] - curr[0]) + abs(prev[1] - curr[1])
+    height_delta = abs(heights[i])
+    physical_dt = 0.2 * manhattan_distance + 0.12 * height_delta
+    plan_timeline.append(plan_timeline[-1] + physical_dt)
+
+TMAX = plan_timeline[-1] if plan_timeline else 0.0
+
+nx, ny = 16, 8
+
+app = dash.Dash(__name__)
+
+app.layout = html.Div(
+    [
+        dcc.Graph(
+            id="graph",
+            config={"displayModeBar": False},
+            style={"width": "100%", "height": "85vh"},
+        ),
+        html.Div(
+            [
+                html.Button("<<", id="back"),
+                html.Button("Play", id="play"),
+                html.Button("Pause", id="pause"),
+                html.Button(">>", id="fwd"),
+            ],
+            style={"textAlign": "center"},
+        ),
+        dcc.Interval(id="ui_interval", interval=60),
+        # relógio 1: UI
+        dcc.Store(id="ui_time", data=0.0),
+        # relógio 2: plano lógico
+        dcc.Store(id="plan_step", data=0),
+        # relógio 3: físico estimado
+        dcc.Store(id="physical_time", data=0.0),
+        dcc.Store(id="is_running", data=False),
+        dcc.Store(id="direction", data=1),
+    ]
+)
+
+
+@app.callback(
+    Output("is_running", "data"),
+    Input("play", "n_clicks"),
+    Input("pause", "n_clicks"),
+    State("is_running", "data"),
+    prevent_initial_call=True,
+)
+def cb_running(play_clicks, pause_clicks, is_running):
+    if ctx.triggered_id == "play":
+        return True
+    if ctx.triggered_id == "pause":
+        return False
+    return is_running
+
+
+@app.callback(
+    Output("direction", "data"),
+    Input("fwd", "n_clicks"),
+    Input("back", "n_clicks"),
+    State("direction", "data"),
+    prevent_initial_call=True,
+)
+def cb_direction(fwd_clicks, back_clicks, direction):
+    if ctx.triggered_id == "back":
+        return -1
+    if ctx.triggered_id == "fwd":
+        return 1
+    return direction
+
+
+def get_plan_step(t):
+    for i, x in enumerate(plan_timeline):
+        if x >= t:
+            return i
+    return len(plan_timeline) - 1
+
+
+@app.callback(
+    Output("ui_time", "data"),
+    Output("plan_step", "data"),
+    Output("physical_time", "data"),
+    Input("ui_interval", "n_intervals"),
+    State("is_running", "data"),
+    State("direction", "data"),
+    State("ui_time", "data"),
+)
+def cb_clocks(n_intervals, is_running, direction, ui_time):
+    if not is_running:
+        step = get_plan_step(ui_time)
+        return ui_time, step, ui_time
+
+    next_ui_time = max(0.0, min(TMAX, ui_time + direction * 0.05))
+    next_plan_step = get_plan_step(next_ui_time)
+    next_physical_time = next_ui_time
+
+    return next_ui_time, next_plan_step, next_physical_time
+
+
+@app.callback(
+    Output("graph", "figure"),
+    Input("plan_step", "data"),
+)
+def render_graph(step):
+    z = np.zeros((ny, nx), dtype=float)
+
+    for i, (r, c) in enumerate(positions):
+        if i <= step:
+            z[r, c] = heights[i]
+
+    fig = go.Figure()
+
+    fig.update_layout(
+        images=[
+            dict(
+                source=IMG,
+                xref="paper",
+                yref="paper",
+                x=X,
+                y=Y,
+                sizex=SCALE_X,
+                sizey=SCALE_Y,
+                sizing="stretch",
+                opacity=WATERMARK_OPACITY,
+                layer="above",
+            )
+        ]
+    )
+
+    fig.add_trace(
+        go.Heatmap(
+            z=z,
+            colorscale="Jet",
+            zmin=0,
+            zmax=10,
+            xgap=1,
+            ygap=1,
+            opacity=0.65,
+            showscale=False,
+        )
+    )
+
+    if positions and step < len(positions):
+        r, c = positions[step]
+        fig.add_shape(
+            type="rect",
+            x0=c - 0.5,
+            y0=r - 0.5,
+            x1=c + 0.5,
+            y1=r + 0.5,
+            line=dict(color="white", width=2),
+            fillcolor="rgba(255,255,255,0.25)",
+        )
+
+    fig.update_layout(
+        margin=dict(l=0, r=0, t=0, b=0),
+        xaxis=dict(range=[-0.5, nx - 0.5], visible=False),
+        yaxis=dict(range=[ny - 0.5, -0.5], visible=False, scaleanchor="x"),
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+    )
+
+    return fig
+
+
+if __name__ == "__main__":
+    print(">>> DASH V96 | 3 CLOCKS | WATERMARK TEST <<<", flush=True)
+    print(f"SCALE_X={SCALE_X}", flush=True)
+    print(f"SCALE_Y={SCALE_Y}", flush=True)
+    print(f"OFFSET_X={OFFSET_X}", flush=True)
+    print(f"OFFSET_Y={OFFSET_Y}", flush=True)
+    print(f"ROTATE_DEG={ROTATE_DEG}", flush=True)
+    print(f"TMAX={TMAX}", flush=True)
+    app.run(host="0.0.0.0", port=8050, debug=False)

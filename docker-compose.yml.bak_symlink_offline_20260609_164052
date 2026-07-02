@@ -1,0 +1,11 @@
+services:
+  globe-ipt-cityspace:
+    build: .
+    container_name: globe_ipt_cityspace
+    ports:
+      - "8050:8050"
+      - "8088:8088"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1

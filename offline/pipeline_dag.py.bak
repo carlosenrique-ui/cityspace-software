@@ -1,0 +1,124 @@
+PIPELINE = [
+
+{
+"name": "reproject_rasters",
+"script": "offline/processing/reproject_raster.py",
+
+"inputs": [
+"offline/data/raw/dtm/*.tif",
+"offline/data/raw/dsm/*.tif"
+],
+
+"outputs": [
+"offline/data/stage1_reproject/dtm/*.tif",
+"offline/data/stage1_reproject/dsm/*.tif"
+]
+},
+
+{
+"name": "rotate_rasters",
+"script": "offline/raster/core/rotate_raster_scientific.py",
+
+"inputs": [
+"offline/data/stage1_reproject/dtm/*.tif",
+"offline/data/stage1_reproject/dsm/*.tif"
+],
+
+"outputs": [
+"offline/data/stage2_rotate/dtm/*.tif",
+"offline/data/stage2_rotate/dsm/*.tif"
+]
+},
+
+{
+"name": "clip_domain",
+"script": "offline/processing/clip_raster.py",
+
+"inputs": [
+"offline/data/stage2_rotate/dtm/*.tif"
+],
+
+"outputs": [
+"offline/data/stage3_clip/dtm/*.tif"
+]
+},
+
+{
+"name": "normalize_height",
+"script": "offline/processing/normalize.py",
+
+"inputs": [
+"offline/data/stage3_clip/dtm/*.tif"
+],
+
+"outputs": [
+"offline/data/stage4_normalize/Z_total.tif"
+]
+},
+
+{
+"name": "build_scientific_grid",
+"script": "offline/scientific_grid_builder.py",
+
+"inputs": [
+"offline/data/stage4_normalize/Z_total.tif"
+],
+
+"outputs": [
+"offline/products/scientific/grid_8x16_metric.gpkg"
+]
+},
+
+{
+"name": "compute_cell_metrics",
+"script": "offline/scientific_cell_metrics_utm.py",
+
+"inputs": [
+"offline/products/scientific/grid_8x16_metric.gpkg"
+],
+
+"outputs": [
+"offline/products/scientific/grid_metrics_8x16_utm.csv"
+]
+},
+
+{
+"name": "generate_pin_heights",
+"script": "offline/processing/compute_heights.py",
+
+"inputs": [
+"offline/products/scientific/grid_metrics_8x16_utm.csv"
+],
+
+"outputs": [
+"offline/products/runtime/grid_pin_heights.csv"
+]
+},
+
+{
+"name": "scanner_path",
+"script": "offline/scanners/zigzag_column_scanner.py",
+
+"inputs": [
+"offline/products/runtime/grid_pin_heights.csv"
+],
+
+"outputs": [
+"offline/products/runtime/scanner_sequence.csv"
+]
+},
+
+{
+"name": "export_runtime_frames",
+"script": "offline/pipeline_runner_runtime.py",
+
+"inputs": [
+"offline/products/runtime/scanner_sequence.csv"
+],
+
+"outputs": [
+"data/csv_frames/frame_000.csv"
+]
+}
+
+]

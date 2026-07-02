@@ -1,0 +1,122 @@
+from __future__ import annotations
+
+import os
+from pathlib import Path
+
+import geopandas as gpd
+import numpy as np
+import pandas as pd
+from shapely.geometry import Point
+
+
+ENGINE_ROOT = Path(".")
+INPUT_CSV = ENGINE_ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+MASK_GPKG = ENGINE_ROOT / "offline/products/scientific/urban_envelope_scientific_rotated.gpkg"
+OUTPUT_DIR = ENGINE_ROOT / "offline/products/final"
+OUTPUT_CSV = OUTPUT_DIR / "grid_height.csv"
+
+PIN_MAX_CM = 10.0
+
+
+def load_inputs() -> tuple[pd.DataFrame, gpd.GeoDataFrame]:
+    if not INPUT_CSV.exists():
+        raise FileNotFoundError(f"CSV científico não encontrado: {INPUT_CSV}")
+
+    if not MASK_GPKG.exists():
+        raise FileNotFoundError(f"Máscara/envelope não encontrado: {MASK_GPKG}")
+
+    df = pd.read_csv(INPUT_CSV)
+    mask = gpd.read_file(MASK_GPKG)
+    return df, mask
+
+
+def validate_columns(df: pd.DataFrame) -> None:
+    required = ["row", "col", "x", "y", "z_terrain_m", "z_building_m", "z_total_m"]
+    missing = [c for c in required if c not in df.columns]
+    if missing:
+        raise ValueError(f"Colunas obrigatórias ausentes no CSV científico: {missing}")
+
+
+def build_actuator_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    df_out = df.copy()
+
+    z_total = df_out["z_total_m"].astype(float).to_numpy()
+    z_terrain = df_out["z_terrain_m"].astype(float).to_numpy()
+    z_building = df_out["z_building_m"].astype(float).to_numpy()
+
+    zmax = float(np.nanmax(z_total))
+    if zmax <= 0:
+        raise ValueError(f"z_total_m inválido para normalização: zmax={zmax}")
+
+    z_cm = (z_total / zmax) * PIN_MAX_CM
+
+    ratio_terrain = np.divide(
+        z_terrain,
+        z_total,
+        out=np.zeros_like(z_total, dtype=float),
+        where=z_total != 0,
+    )
+    ratio_building = np.divide(
+        z_building,
+        z_total,
+        out=np.zeros_like(z_total, dtype=float),
+        where=z_total != 0,
+    )
+
+    z_terrain_cm = z_cm * ratio_terrain
+    z_building_cm = z_cm * ratio_building
+    z_total_cm = z_cm.copy()
+
+    df_out["z_cm"] = z_cm
+    df_out["z_total_cm"] = z_total_cm
+    df_out["z_terrain_cm"] = z_terrain_cm
+    df_out["z_building_cm"] = z_building_cm
+
+    return df_out
+
+
+def apply_mask(df_out: pd.DataFrame, mask: gpd.GeoDataFrame) -> pd.DataFrame:
+    try:
+        mask_union = mask.union_all()
+    except Exception:
+        mask_union = mask.unary_union
+
+    def mask_value(row: pd.Series) -> float:
+        p = Point(float(row["x"]), float(row["y"]))
+        return 0.0 if not mask_union.contains(p) else float(row["z_cm"])
+
+    df_out = df_out.copy()
+    df_out["z_cm"] = df_out.apply(mask_value, axis=1)
+    df_out["z_total_cm"] = df_out["z_cm"]
+
+    return df_out
+
+
+def save_output(df_out: pd.DataFrame) -> None:
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    df_out.to_csv(OUTPUT_CSV, index=False)
+    print(">>> FINAL CSV GERADO")
+    print(f">>> OUTPUT: {OUTPUT_CSV}")
+
+
+def main() -> None:
+    print("\nSTEP 04 – GENERATE ACTUATOR PLAN\n")
+
+    df, mask = load_inputs()
+    validate_columns(df)
+
+    print(f"INPUT CSV: {INPUT_CSV}")
+    print(f"MASK GPKG: {MASK_GPKG}")
+    print(f"ROWS: {len(df)}")
+
+    df_out = build_actuator_dataframe(df)
+    df_out = apply_mask(df_out, mask)
+
+    print(f"z_total_m max: {float(df_out['z_total_m'].max())}")
+    print(f"z_cm max: {float(df_out['z_cm'].max())}")
+
+    save_output(df_out)
+
+
+if __name__ == "__main__":
+    main()

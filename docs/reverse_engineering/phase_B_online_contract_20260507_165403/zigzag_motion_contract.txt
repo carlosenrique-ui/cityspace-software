@@ -1,0 +1,202 @@
+92-
+93-        if terrain > 0:
+94-            z_terrain_m[row, col] = terrain
+95-
+96-        if total > 0:
+97-            z_total_m[row, col] = total
+98-
+99-    z_terrain_m = fix_like_v42(z_terrain_m)
+100-    z_total_m = fix_like_v42(z_total_m)
+101-
+102-    z_pino_cm = (z_total_m / TETO_MAX_M) * PINO_MAX_CM
+103-    z_pino_cm = np.clip(z_pino_cm, 0, PINO_MAX_CM)
+104-
+105-    return z_terrain_m, z_total_m, z_pino_cm
+106-
+107-
+108-# =========================================
+109-# ZIGZAG — COLUNA / CANTO SUPERIOR ESQUERDO
+110-# =========================================
+111-
+112:def build_zigzag_path():
+113-    path = []
+114-
+115-    for c in range(0, GRID_COLS):
+116-        if c % 2 == 0:
+117-            rows = range(0, GRID_ROWS)
+118-        else:
+119-            rows = range(GRID_ROWS - 1, -1, -1)
+120-
+121-        for r in rows:
+122-            path.append((r, c))
+123-
+124-    return path
+125-
+126-
+127-# =========================================
+128-# CONTOURS
+129-# =========================================
+130-
+131-def contour_segments(Z, interval_m):
+132-    if np.all(np.isnan(Z)):
+133-        return []
+134-
+135-    upscale = 35
+136-    smooth_sigma = 1.10
+137-
+138-    Z_fill = Z.copy()
+139-    Z_fill[np.isnan(Z_fill)] = np.nanmean(Z_fill)
+140-
+141-    Z_hi = zoom(Z_fill, upscale, order=3)
+142-    Z_hi = gaussian_filter(Z_hi, sigma=smooth_sigma)
+143-
+144-    mask_hi = zoom((~np.isnan(Z)).astype(float), upscale, order=0) > 0.5
+145-    Z_hi[~mask_hi] = np.nan
+146-
+147-    ny, nx = Z_hi.shape
+148-    x = np.linspace(0, GRID_COLS - 1, nx)
+149-    y = np.linspace(0, GRID_ROWS - 1, ny)
+150-    X, Y = np.meshgrid(x, y)
+151-
+152-    zmin = np.nanmin(Z_hi)
+153-    zmax = np.nanmax(Z_hi)
+154-    start = max(interval_m, np.ceil(zmin / interval_m) * interval_m)
+155-    levels = np.arange(start, zmax + interval_m, interval_m)
+156-
+157-    if len(levels) == 0:
+158-        return []
+159-
+160-    fig_tmp, ax = plt.subplots()
+161-    cs = ax.contour(X, Y, Z_hi, levels=levels)
+162-    plt.close(fig_tmp)
+163-
+164-    out = []
+165-    for level, segs in zip(cs.levels, cs.allsegs):
+166-        for coords in segs:
+167-            if len(coords) >= 6:
+168-                out.append((float(level), coords))
+169-
+170-    return out
+171-
+172-
+173-# =========================================
+174-# DRAW HELPERS
+175-# =========================================
+176-
+177-def add_watermark(fig):
+178-    x_left = -0.5 + OFFSET_X
+179-    x_right = GRID_COLS - 0.5 + OFFSET_X
+180-    y_top = -0.5 + OFFSET_Y
+181-    y_bottom = GRID_ROWS - 0.5 + OFFSET_Y
+182-
+183-    cx = (x_left + x_right) / 2
+184-    cy = (y_top + y_bottom) / 2
+185-
+186-    width = (x_right - x_left) * PNG_SCALE_X
+187-    height = (y_bottom - y_top) * PNG_SCALE_Y
+188-
+189-    x_left = cx - width / 2
+190-    y_top = cy - height / 2
+191-
+192-    fig.add_layout_image(
+636-# =========================================
+637-# CALLBACK — CONTROLES
+638-# =========================================
+639-
+640-@app.callback(
+641-    Output("step-store", "data"),
+642-    Output("playing-store", "data"),
+643-    Output("direction-store", "data"),
+644-    Output("clock", "disabled"),
+645-    Output("clock", "interval"),
+646-    Input("btn-forward", "n_clicks"),
+647-    Input("btn-back", "n_clicks"),
+648-    Input("btn-pause", "n_clicks"),
+649-    Input("btn-reset", "n_clicks"),
+650-    Input("clock", "n_intervals"),
+651-    State("step-store", "data"),
+652-    State("playing-store", "data"),
+653-    State("direction-store", "data"),
+654-    State("mesa-real", "value"),
+655-)
+656:def control_loop(nf, nb, npause, nr, tick, step, playing, direction, mesa_real):
+657-    trigger = ctx.triggered_id
+658-
+659-    step = int(step or 0)
+660-    playing = bool(playing)
+661-    direction = int(direction or 1)
+662-
+663-    if trigger == "btn-reset":
+664-        step = 0
+665-        playing = False
+666-        direction = 1
+667-
+668-    elif trigger == "btn-forward":
+669-        direction = 1
+670-        step = min(step + 1, TOTAL_STEPS - 1)
+671-        playing = True
+672-
+673-    elif trigger == "btn-back":
+674-        direction = -1
+675-        step = max(step - 1, 0)
+676-        playing = True
+677-
+678-    elif trigger == "btn-pause":
+679-        playing = False
+680-
+681-    elif trigger == "clock" and playing:
+682-        step = step + direction
+683-
+684-        if step >= TOTAL_STEPS:
+685-            step = TOTAL_STEPS - 1
+686-            playing = False
+687-
+688-        if step < 0:
+689-            step = 0
+690-            playing = False
+691-
+692-    interval = REAL_INTERVAL_MS if mesa_real == "on" else VIRTUAL_INTERVAL_MS
+693-
+694-    return step, playing, direction, not playing, interval
+695-
+696-
+697-# =========================================
+698-# CALLBACK — RENDER
+699-# =========================================
+700-
+701-@app.callback(
+702-    Output("cityspace-v128719", "figure"),
+703-    Output("status", "children"),
+704-    Output("graph-wrap", "style"),
+705-    Input("layers", "value"),
+706-    Input("step-store", "data"),
+707-    Input("cell-mode", "value"),
+708-    Input("mesa-real", "value"),
+709-)
+710-def update_ui(layers, step, cell_mode, mesa_real):
+711-    projector_mode = "normal"
+712-    step = int(step or 0)
+713-    step = max(0, min(step, TOTAL_STEPS - 1))
+714-
+715-    row, col = ZIGZAG_PATH[step]
+716-    val = Z_PINO_CM[row, col]
+717-
+718-    mesa_on = mesa_real == "on"
+719-    hw_msg = send_to_real_table(row, col, val, mesa_on)
+720-
+721-    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+722-
+723-    status = (
+724-        f"step: {step + 1}/{TOTAL_STEPS}\\n"
+725-        f"zigzag: coluna, topo-esquerda\\n"
+726-        f"row={row} col={col}\\n"
+727-        f"pino_cm={0.0 if not np.isfinite(val) else val:.2f}\\n"
+728-        f"teto_m={0.0 if not np.isfinite(Z_TOTAL_M[row, col]) else Z_TOTAL_M[row, col]:.2f}\\n"
+729-        f"escala_visual={cell_mode}\\n"
+730-        f"mesa_real={'ON' if mesa_on else 'OFF'}\\n"
+731-        f"clock={'REAL lento' if mesa_on else 'VIRTUAL acelerado'}\\n"
+732-        f"projector={projector_mode}\\n"
+733-        f"{hw_msg}"
+734-    )
+735-
+736-    if cell_mode == "1x1 cm":

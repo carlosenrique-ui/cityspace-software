@@ -1,0 +1,25 @@
+58:def first_existing(paths, required=True):
+67:def image_to_data_uri(path):
+75:def fix_like_v42(grid):
+82:def build_grids(df):
+112:def build_zigzag_path():
+131:def contour_segments(Z, interval_m):
+177:def add_watermark(fig):
+210:def add_north_scale(fig):
+239:def add_grid_lines(fig):
+263:def add_contours(fig, segments, name, color, dash, show_labels):
+294:def active_cell_shape(row, col):
+307:def add_annotations(fig, cell_mode):
+340:def current_grid(step):
+355:def make_fig(layers, step, cell_mode, projector_mode):
+433:def send_to_real_table(row, col, value_cm, mesa_on):
+473:app = dash.Dash(__name__)
+475:app.layout = html.Div([
+593:@app.callback(
+597:def update_cartographic_scale(cell_mode):
+607:@app.callback(
+612:def toggle_menu(n_clicks):
+640:@app.callback(
+656:def control_loop(nf, nb, npause, nr, tick, step, playing, direction, mesa_real):
+701:@app.callback(
+710:def update_ui(layers, step, cell_mode, mesa_real):

@@ -1,0 +1,24 @@
+./online/actuators/virtual_actuator.py:    def set_pin(self, value: float):
+./online/actuators/virtual_actuator.py:            "type": "set_pin",
+./online/core/state_manager.py:    def set_pin(self, value: float):
+./online/runtime/plan_player_adapter.py:        elif etype == "set_pin":
+./online/runtime/plan_player_adapter.py:            self.actuator.set_pin(event["value"])
+./online/tests/test_plan_execution_runner.py:        {"type": "set_pin", "value": 5.0},
+./online/tests/test_plan_execution_runner.py:        assert e3.name == "set_pin"
+./online/tests/test_plan_player.py:        {"type": "set_pin", "value": 1.0},
+./online/tests/test_plan_player.py:        {"type": "set_pin", "value": 2.0},
+./online/tests/test_plan_player.py:    assert actuator.events[2]["type"] == "set_pin"
+./online/tests/test_plan_player.py:    assert actuator.events[4]["type"] == "set_pin"
+./runner/base_actuator.py:    def set_pin_height(self, row: int, col: int, height_cm: float):
+./runner/runner_engine.py:            self.actuator.set_pin(height)
+./runner/virtual_actuator.py:    def set_pin(self, value: float):
+./runner/virtual_actuator.py:            "type": "set_pin",
+./tests/test_plan_player_adapter.py:        {"type": "set_pin", "value": 5.0},
+./tests/test_plan_player_adapter.py:        bus.subscribe("set_pin", handler)
+./tests/test_plan_player_adapter.py:        assert e3.event_type == "set_pin"
+./tests/test_plan_player_adapter.py:        assert received[2].event_type == "set_pin"
+./tests/test_runner_engine.py:    - aciona move + set_pin
+./tests/test_runner_engine.py:    pin_events = [e for e in events if e["type"] == "set_pin"]
+./tests/test_runner_engine.py:    pin_events = [e for e in actuator.events if e["type"] == "set_pin"]
+./tests/test_virtual_actuator_legacy.py:    act.set_pin(5.0)
+./tests/test_virtual_actuator_legacy.py:    assert act.events[2]["type"] == "set_pin"

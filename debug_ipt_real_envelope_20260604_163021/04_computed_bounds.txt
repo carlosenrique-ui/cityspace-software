@@ -1,0 +1,9 @@
+
+====================================
+offline/products/scientific/grid_metrics_utm.csv
+columns: ['row', 'col', 'z_terrain_m', 'z_building_m', 'z_total_m']
+
+====================================
+globe_cityspace_open/projects/ipt_north_5000/ipt_north_5000_cells.csv
+columns: ['cell_id', 'pin_id', 'row', 'col', 'terrain_height_m', 'building_height_m', 'total_height_m', 'pin_height_cm', 'gray_value', 'rotation_deg', 'north_up', 'source_policy']
+gray_value min= 0 max= 255 mean= 72.5

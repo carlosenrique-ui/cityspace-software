@@ -1,0 +1,182 @@
+588-    "background": "white",
+589-})
+590-
+591-
+592-
+593:@app.callback(
+594-    Output("cartographic-scale", "children"),
+595-    Input("cell-mode", "value"),
+596-)
+597-def update_cartographic_scale(cell_mode):
+598-    if cell_mode == "2x2 cm":
+599-        return "Escala Cartográfica: 1:4433"
+600-    return "Escala Cartográfica: 1:8867"
+601-
+602-
+603-# =========================================
+604-# CALLBACK — MENU
+605-# =========================================
+606-
+607:@app.callback(
+608-    Output("menu-body", "style"),
+609-    Output("menu-panel", "style"),
+610-    Input("btn-menu", "n_clicks"),
+611-)
+612-def toggle_menu(n_clicks):
+613-    open_menu = (n_clicks or 0) % 2 == 1
+614-
+615-    panel_style = {
+616-        "position": "fixed",
+617-        "left": "8px",
+618-        "top": "8px",
+619-        "zIndex": 10,
+620-        "background": "rgba(255,255,255,0.90)",
+621-        "padding": "10px",
+622-        "border": "1px solid #ccc",
+623-        "borderRadius": "8px",
+624-        "fontFamily": "Arial",
+625-        "fontSize": "13px",
+626-    }
+627-
+628-    if open_menu:
+629-        panel_style["width"] = "350px"
+630-        return {"display": "block"}, panel_style
+631-
+632-    panel_style["width"] = "95px"
+633-    return {"display": "none"}, panel_style
+634-
+635-
+636-# =========================================
+637-# CALLBACK — CONTROLES
+638-# =========================================
+639-
+640:@app.callback(
+641-    Output("step-store", "data"),
+642-    Output("playing-store", "data"),
+643-    Output("direction-store", "data"),
+644-    Output("clock", "disabled"),
+645-    Output("clock", "interval"),
+646-    Input("btn-forward", "n_clicks"),
+647-    Input("btn-back", "n_clicks"),
+648-    Input("btn-pause", "n_clicks"),
+649-    Input("btn-reset", "n_clicks"),
+650-    Input("clock", "n_intervals"),
+651-    State("step-store", "data"),
+652-    State("playing-store", "data"),
+653-    State("direction-store", "data"),
+654-    State("mesa-real", "value"),
+655-)
+656-def control_loop(nf, nb, npause, nr, tick, step, playing, direction, mesa_real):
+657-    trigger = ctx.triggered_id
+658-
+659-    step = int(step or 0)
+660-    playing = bool(playing)
+661-    direction = int(direction or 1)
+662-
+663-    if trigger == "btn-reset":
+664-        step = 0
+665-        playing = False
+666-        direction = 1
+667-
+668-    elif trigger == "btn-forward":
+669-        direction = 1
+670-        step = min(step + 1, TOTAL_STEPS - 1)
+671-        playing = True
+672-
+673-    elif trigger == "btn-back":
+674-        direction = -1
+675-        step = max(step - 1, 0)
+676-        playing = True
+677-
+678-    elif trigger == "btn-pause":
+679-        playing = False
+680-
+681-    elif trigger == "clock" and playing:
+682-        step = step + direction
+683-
+684-        if step >= TOTAL_STEPS:
+685-            step = TOTAL_STEPS - 1
+686-            playing = False
+687-
+688-        if step < 0:
+689-            step = 0
+690-            playing = False
+691-
+692-    interval = REAL_INTERVAL_MS if mesa_real == "on" else VIRTUAL_INTERVAL_MS
+693-
+694-    return step, playing, direction, not playing, interval
+695-
+696-
+697-# =========================================
+698-# CALLBACK — RENDER
+699-# =========================================
+700-
+701:@app.callback(
+702-    Output("cityspace-v128719", "figure"),
+703-    Output("status", "children"),
+704-    Output("graph-wrap", "style"),
+705-    Input("layers", "value"),
+706-    Input("step-store", "data"),
+707-    Input("cell-mode", "value"),
+708-    Input("mesa-real", "value"),
+709-)
+710-def update_ui(layers, step, cell_mode, mesa_real):
+711-    projector_mode = "normal"
+712-    step = int(step or 0)
+713-    step = max(0, min(step, TOTAL_STEPS - 1))
+714-
+715-    row, col = ZIGZAG_PATH[step]
+716-    val = Z_PINO_CM[row, col]
+717-
+718-    mesa_on = mesa_real == "on"
+719-    hw_msg = send_to_real_table(row, col, val, mesa_on)
+720-
+721-    fig = make_fig(layers or [], step, cell_mode, projector_mode)
+722-
+723-    status = (
+724-        f"step: {step + 1}/{TOTAL_STEPS}\\n"
+725-        f"zigzag: coluna, topo-esquerda\\n"
+726-        f"row={row} col={col}\\n"
+727-        f"pino_cm={0.0 if not np.isfinite(val) else val:.2f}\\n"
+728-        f"teto_m={0.0 if not np.isfinite(Z_TOTAL_M[row, col]) else Z_TOTAL_M[row, col]:.2f}\\n"
+729-        f"escala_visual={cell_mode}\\n"
+730-        f"mesa_real={'ON' if mesa_on else 'OFF'}\\n"
+731-        f"clock={'REAL lento' if mesa_on else 'VIRTUAL acelerado'}\\n"
+732-        f"projector={projector_mode}\\n"
+733-        f"{hw_msg}"
+734-    )
+735-
+736-    if cell_mode == "1x1 cm":
+737-        width = "32cm"
+738-        height = "16cm"
+739-    else:
+740-        width = "64cm"
+741-        height = "32cm"
+742-
+743-    style = {
+744-        "width": width,
+745-        "height": height,
+746-        "margin": "24px auto 0 auto",
+747-        "display": "block",
+748-    }
+749-
+750-    return fig, status, style
+751-
+752-
+753-if __name__ == "__main__":
+754-    print("========================================")
+755-    print("V128.7.19 — NORTH LEFT FINAL")
+756-    print("========================================")
+757-    print("CSV:", CSV_PATH)
+758-    print("PNG:", PNG_PATH)
+759-    print("NORTH:", NORTH_PATH)
+760-    print("Total cells:", TOTAL_STEPS)
+761-    print("Zigzag starts:", ZIGZAG_PATH[0])
+762-    print("Virtual interval ms:", VIRTUAL_INTERVAL_MS)
+763-    print("Real interval ms:", REAL_INTERVAL_MS)
+764-    print("Pino cm min/max:", float(np.nanmin(Z_PINO_CM)), float(np.nanmax(Z_PINO_CM)))
+765-    print("Teto m min/max:", float(np.nanmin(Z_TOTAL_M)), float(np.nanmax(Z_TOTAL_M)))
+766-    print("Contours terreno:", len(TERRAIN_CONTOURS))
+767-    print("Contours teto:", len(TOTAL_CONTOURS))
+768-    print("========================================")
+769-    app.run(debug=True)

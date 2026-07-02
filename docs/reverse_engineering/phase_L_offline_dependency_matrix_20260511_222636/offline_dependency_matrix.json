@@ -1,0 +1,150 @@
+{
+    "status": "dependency-matrix-only",
+    "does_execute_pipeline": false,
+    "does_modify_code": false,
+    "does_modify_runner": false,
+    "source": "docs/reverse_engineering/phase_K2_offline_manifest_io_inspection_20260511_210803/manifest_io_inspection_report.json",
+    "rows": [
+        {
+            "script": "offline/pipeline/01_build_scientific_grid.py",
+            "exists": true,
+            "imports": [
+                "geopandas",
+                "numpy"
+            ],
+            "reads": [
+                "L15: gdf = gpd.read_file(INPUT_GPKG)",
+                "L85: with open(OUTPUT_DEBUG, \"w\") as f:"
+            ],
+            "writes": [],
+            "product_paths": [
+                "L11: INPUT_GPKG = \"offline/products/scientific/grid_8x16_metric.gpkg\"",
+                "L12: OUTPUT_DEBUG = \"offline/products/scientific/grid_square_debug.txt\""
+            ],
+            "execution_risks": [],
+            "risk_level": "LOW"
+        },
+        {
+            "script": "offline/pipeline/02_compute_cell_metrics.py",
+            "exists": true,
+            "imports": [
+                "offline.scientific_cell_metrics_utm"
+            ],
+            "reads": [],
+            "writes": [],
+            "product_paths": [],
+            "execution_risks": [],
+            "risk_level": "LOW"
+        },
+        {
+            "script": "offline/pipeline/02_join_grid_metrics_with_geom.py",
+            "exists": true,
+            "imports": [
+                "geopandas",
+                "pandas",
+                "pathlib"
+            ],
+            "reads": [
+                "L18: df = pd.read_csv(CSV_PATH)",
+                "L21: gdf = gpd.read_file(GPKG_PATH)"
+            ],
+            "writes": [
+                "L59: gdf_merged.to_file(OUT_PATH, driver=\"GPKG\")"
+            ],
+            "product_paths": [
+                "L8: BASE = Path(\"offline/products/scientific\")"
+            ],
+            "execution_risks": [],
+            "risk_level": "LOW"
+        },
+        {
+            "script": "offline/pipeline/03_scientific_to_semantic.py",
+            "exists": true,
+            "imports": [
+                "offline.adapters.scientific_to_semantic_adapter"
+            ],
+            "reads": [],
+            "writes": [],
+            "product_paths": [],
+            "execution_risks": [],
+            "risk_level": "LOW"
+        },
+        {
+            "script": "offline/pipeline/04_generate_actuator_plan.py",
+            "exists": true,
+            "imports": [
+                "__future__",
+                "geopandas",
+                "numpy",
+                "os",
+                "pandas",
+                "pathlib",
+                "shapely.geometry"
+            ],
+            "reads": [
+                "L28: gdf = gpd.read_file(INPUT_GPKG)",
+                "L29: mask = gpd.read_file(MASK_GPKG)"
+            ],
+            "writes": [
+                "L106: df_out.to_csv(OUTPUT_CSV, index=False)"
+            ],
+            "product_paths": [
+                "L13: INPUT_GPKG = ENGINE_ROOT / \"offline/products/scientific/grid_8x16_enriched.gpkg\"",
+                "L14: MASK_GPKG = ENGINE_ROOT / \"offline/products/scientific/urban_envelope_scientific_rotated.gpkg\""
+            ],
+            "execution_risks": [],
+            "risk_level": "LOW"
+        },
+        {
+            "script": "offline/run_offline_pipeline.py",
+            "exists": true,
+            "imports": [
+                "offline.validation.validate_rotation_pca_grid",
+                "pathlib",
+                "subprocess"
+            ],
+            "reads": [],
+            "writes": [],
+            "product_paths": [],
+            "execution_risks": [
+                "L58: subprocess.run("
+            ],
+            "risk_level": "CONTROLLED_RISK"
+        },
+        {
+            "script": "offline/validation/validate_rotation_pca_grid.py",
+            "exists": true,
+            "imports": [
+                "__future__",
+                "json",
+                "math",
+                "numpy",
+                "offline.validation.contract_registry",
+                "pandas",
+                "pathlib",
+                "typing"
+            ],
+            "reads": [
+                "L162: df = pd.read_csv(csv_path)"
+            ],
+            "writes": [
+                "L203: out_dir.mkdir(parents=True, exist_ok=True)",
+                "L205: out_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding=\"utf-8\")"
+            ],
+            "product_paths": [],
+            "execution_risks": [],
+            "risk_level": "LOW"
+        }
+    ],
+    "summary": {
+        "total_scripts": 7,
+        "controlled_risk_scripts": [
+            "offline/run_offline_pipeline.py"
+        ],
+        "wrapper_or_delegated_scripts": [
+            "offline/pipeline/02_compute_cell_metrics.py",
+            "offline/pipeline/03_scientific_to_semantic.py",
+            "offline/run_offline_pipeline.py"
+        ]
+    }
+}

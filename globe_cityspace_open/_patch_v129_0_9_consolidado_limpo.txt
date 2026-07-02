@@ -1,0 +1,23 @@
+=== BACKUP ===
+'globe_cityspace_open/frontend/main.js' -> 'globe_cityspace_open/frontend/main.js.bak_v129_0_9_20260620_125048'
+'globe_cityspace_open/frontend/index.html' -> 'globe_cityspace_open/frontend/index.html.bak_v129_0_9_20260620_125048'
+OK: V129.0.9 aplicado.
+=== CONFERÊNCIA ===
+861:      numbering_mode: "ipt_column_zigzag",
+1817:/* PATCH V129.0.9 — CONSOLIDADO LIMPO UX + GRID */
+1819:  console.log("PATCH V129.0.9 ativo");
+1822:    "Para evoluir esta área para um Projeto de Gêmeo Digital com Mesa Tangível, " +
+1922:    s.innerHTML = `<option value="8867" selected>Escala validada: 1:8867</option>`;
+1966:      Escala validada: 1:8867<br>
+2134:      numbering_mode: "column_zigzag"
+2146:      Rotação do Grid: ${angle.toFixed(1)}°<br>
+2147:      Numeração: ZigZag por colunas<br>
+=== REINICIANDO DOCKER ===
+
+The command 'docker' could not be found in this WSL 2 distro.
+We recommend to activate the WSL integration in Docker Desktop settings.
+
+For details about using Docker Desktop with WSL 2, visit:
+
+https://docs.docker.com/go/wsl2/
+

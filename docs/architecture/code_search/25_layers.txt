@@ -1,0 +1,236 @@
+./engine.py:    Executa a mesa virtual usando Dash + TemporalPlayer.
+./engine.py:        from online.ui.dash_temporal_player import app
+./legacy/cleanup_20260305_164029/geo/contours/csv_to_contours.py:    Gera uma layer PNG transparente de curvas de nível
+./legacy_auto/tools/organize_legacy.py:    ROOT / "online" / "runtime" / "plan_player.py",
+./offline/processing/apply_rigid_transform_vector_scientific.py:def process_layer(input_path, output_path, angle, cx, cy, dx, dy):
+./offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(BUILDINGS_PATH, OUT_BUILDINGS, angle, cx, cy, dx, dy)
+./offline/processing/apply_rigid_transform_vector_scientific.py:    process_layer(ENVELOPE_PATH, OUT_ENVELOPE, angle, cx, cy, dx, dy)
+./offline/processing/build_official_urban_envelope_rotated.py:        layer="urban_envelope_scientific_rotated",
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:def save_gpkg(geoms, output_path, layer_name):
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    layer = ds.CreateLayer(layer_name, None, ogr.wkbPolygon)
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:    feature_def = layer.GetLayerDefn()
+./offline/processing/dxf_hatch_to_scientific_gpkg_spline.py:        layer.CreateFeature(feature)
+./offline/processing/set_crs_scientific.py:    layers = pyogrio.list_layers(f)
+./offline/processing/set_crs_scientific.py:    for layer_name, geom_type in layers:
+./offline/processing/set_crs_scientific.py:        print(f"  Fixando CRS na layer: {layer_name}")
+./offline/processing/set_crs_scientific.py:        df = pyogrio.read_dataframe(f, layer=layer_name)
+./offline/processing/set_crs_scientific.py:            layer=layer_name,
+./offline/processing/set_crs_scientific.py:print("\n✔ CRS aplicado em TODAS as layers.")
+./offline/products/generate_contours_cartographic_v3.py:def save_layers(lines, elevs, label_pts):
+./offline/products/generate_contours_cartographic_v3.py:    print("\nSTEP 7 — Saving layers")
+./offline/products/generate_contours_cartographic_v3.py:        layer="curvas",
+./offline/products/generate_contours_cartographic_v3.py:        layer="cotas",
+./offline/products/generate_contours_cartographic_v3.py:    save_layers(lines, elevs, label_pts)
+./offline/products/generate_contours_from_dtm.py:        layer="contours_minor",
+./offline/products/generate_contours_from_dtm.py:        layer="contours_major",
+./offline/products/generate_contours_from_dtm.py:        layer="contour_labels",
+./offline/products/generate_contours_from_dtm.py:        layer="urban_mask",
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_dxf_inspect.py:    layer_name = "entities"
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_dxf_inspect.py:    print("Layer:", layer_name)
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_dxf_inspect.py:    gdf = gpd.read_file(dxf_path, layer=layer_name)
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_dxf_plot.py:# - Visualizar o DXF corrigido como layer de fundo
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_dxf_plot.py:    layer_name = "entities"
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_dxf_plot.py:    print("Layer:", layer_name)
+./offline/products/snapshots/ipt_fase2_semantic/tests/test_dxf_plot.py:    gdf = gpd.read_file(dxf_path, layer=layer_name)
+./offline/raster/core/reclip_rasters_to_domain.py:    with fiona.open(DOMAIN_PATH, layer=DOMAIN_LAYER) as src:
+./offline/raster/validation/validate_rigid_transform.py:def read_area(path, layer):
+./offline/raster/validation/validate_rigid_transform.py:    with fiona.open(path, layer=layer) as src:
+./offline/render_dxf_ipt_para_mesa_16x8.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./offline/scanners/zigzag_column_scanner.py:- ONLINE (Timeline → Player)
+./offline/scientific_cell_metrics.py:    with fiona.open(GRID_PATH, layer=GRID_LAYER) as grid:
+./offline/scientific_cell_metrics.py:    with fiona.open(BUILDINGS_PATH, layer=BUILDINGS_LAYER) as bld:
+./offline/scientific_cell_metrics_utm.py:    with fiona.open(GRID_PATH, layer=GRID_LAYER) as grid:
+./offline/scientific_cell_metrics_utm.py:    with fiona.open(BUILDINGS_PATH, layer=BUILDINGS_LAYER) as bld:
+./offline/scientific_grid_builder.py:    with fiona.open(INPUT_PATH, layer=LAYER_INPUT) as src:
+./offline/scientific_grid_builder.py:        layer=LAYER_OUTPUT,
+./offline/scientific_runner.py:    with fiona.open(INPUT_PATH, layer=LAYER_INPUT) as src:
+./offline/scientific_runner.py:        layer=LAYER_OUTPUT
+./offline/tests/test_generate_contours_layer.py:Teste isolado da geração da layer de curvas de nível (PNG),
+./offline/tests/test_generate_contours_layer.py:OUTPUT_PNG = SNAPSHOT_DIR / "layer_curvas_TESTE.png"
+./offline/tests/test_generate_contours_layer.py:    # Gera SOMENTE a layer de curvas
+./offline/tests/test_generate_contours_layer.py:        raise RuntimeError("❌ Falha na geração da layer PNG")
+./offline/tests/test_generate_contours_topografico.py:Gera uma layer de curvas de nível:
+./offline/tests/test_generate_contours_topografico.py:OUTPUT_PNG = SNAPSHOT_DIR / "layer_curvas_TOPOGRAFICO.png"
+./offline/validate_dxf_ipt_original_rotated_clean.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./offline/validation/validate_grid_vs_raster_alignment.py:    with fiona.open(GRID_PATH, layer=GRID_LAYER) as grid:
+./offline/validation/validate_raster_local_offset.py:    with fiona.open(DOMAIN_PATH, layer=DOMAIN_LAYER) as src:
+./offline/validation/validate_rigid_transform_parameters.py:    gdf_orig = gpd.read_file(ORIGINAL_PATH, layer=LAYER_ORIGINAL)
+./offline/validation/validate_rigid_transform_parameters.py:    gdf_rot  = gpd.read_file(ROTATED_PATH, layer=LAYER_ROTATED)
+./offline/vector/core/apply_rigid_transform_clean.py:    with fiona.open(INPUT_PATH, layer=LAYER_INPUT) as src:
+./offline/vector/core/apply_rigid_transform_clean.py:            layer=LAYER_OUTPUT
+./offline/vector/core/build_domain_1x2_utm.py:    with fiona.open(INPUT_PATH, layer=INPUT_LAYER) as src:
+./offline/vector/core/build_domain_1x2_utm.py:        layer=OUTPUT_LAYER,
+./online/actuators/virtual_actuator.py:    Usado por mesa virtual e pelo PlanPlayer.
+./online/contracts/actuator_commands.py:    layer: str = "default"
+./online/controllers/test_temporal_controller.py:from online.core.temporal_player import TemporalPlayer
+./online/controllers/test_temporal_controller.py:    player = TemporalPlayer(conductor)
+./online/controllers/test_temporal_controller.py:    player.step_forward()
+./online/controllers/test_temporal_controller.py:    player.step_forward()
+./online/controllers/test_temporal_controller.py:    player.step_forward()
+./online/core/temporal_conductor.py:Scheduler / Player temporal.
+./online/core/temporal_conductor.py:class PlayerMode(Enum):
+./online/core/temporal_conductor.py:    Scheduler / Player temporal.
+./online/core/temporal_conductor.py:        self.mode = PlayerMode.STOPPED
+./online/core/temporal_conductor.py:        self.mode = PlayerMode.STOPPED
+./online/core/temporal_conductor.py:        self.mode = PlayerMode.PLAYING
+./online/core/temporal_conductor.py:        self.mode = PlayerMode.PAUSED
+./online/core/temporal_conductor.py:        self.mode = PlayerMode.STOPPED
+./online/core/temporal_conductor.py:        while self._running and self.mode == PlayerMode.PLAYING:
+./online/core/temporal_player.py:TemporalPlayer
+./online/core/temporal_player.py:class TemporalPlayer:
+./online/core/test_temporal_conductor_player.py:Scheduler / Player temporal síncrono.
+./online/core/test_temporal_conductor_player.py:class PlayerMode(Enum):
+./online/core/test_temporal_conductor_player.py:        self.mode: PlayerMode = PlayerMode.STOPPED
+./online/core/test_temporal_conductor_player.py:        self.mode = PlayerMode.STOPPED
+./online/core/test_temporal_conductor_player.py:        self.mode = PlayerMode.PLAY
+./online/core/test_temporal_conductor_player.py:        self.mode = PlayerMode.STOPPED
+./online/core/test_temporal_conductor_player.py:        self.mode = PlayerMode.REVERSE
+./online/core/test_temporal_conductor_player.py:        self.mode = PlayerMode.STOPPED
+./online/core/test_temporal_conductor_player.py:        self.mode = PlayerMode.PAUSED
+./online/core/test_temporal_conductor_player.py:        self.mode = PlayerMode.STOPPED
+./online/core/test_temporal_player.py:Teste unitário — TemporalPlayer
+./online/core/test_temporal_player.py:from online.core.temporal_player import TemporalPlayer
+./online/core/test_temporal_player.py:    player = TemporalPlayer(conductor)
+./online/core/test_temporal_player.py:    player.step_forward()
+./online/core/test_temporal_player.py:    player.step_backward()
+./online/core/test_temporal_player.py:    player.play()
+./online/core/test_temporal_player.py:    player.pause()
+./online/core/test_temporal_player.py:    player.stop()
+./online/core/test_temporal_player.py:    print("✅ TemporalPlayer OK\n")
+./online/data/temporal_layer.py:    def __init__(self, path, layer):
+./online/data/temporal_layer.py:        self.gdf = gpd.read_file(path, layer=layer)
+./online/legacy/time_event_driven/temporal_conductor_event_driven.py:    Player Temporal orientado a eventos.
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:print("\n[FASE C.2] Player temporal estático (prova de eixo X como tempo)\n")
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:ax.set_title("FASE C.2 — Player temporal (coluna = tempo)")
+./online/renderers/faseC/FASE_C_2_player_temporal_estatico.py:print("\n[FASE C.2] Player temporal estático finalizado com sucesso\n")
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:print("\n[FASE C.3] Player temporal com valores reais\n")
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:print("\n[FASE C.3] Player temporal com valores finalizado\n")
+./online/renderers/generate_gif_planta_baixa_ipt.py:    gdf = gpd.read_file(dxf_path, layer="entities")
+./online/renderers/layer2d.py:# online/renderers/layer2d.py
+./online/renderers/layer2d.py:    Compatível com Renderer2D (multilayer + timeline).
+./online/renderers/layers/layer_dxf_lines.py:# Esta layer respeita o contrato completo de Layer2D.
+./online/renderers/layers/layer_dxf_lines.py:from online.renderers.layer2d import Layer2D
+./online/renderers/layers/layer_dxf_lines.py:        layer_name="entities",
+./online/renderers/layers/layer_dxf_lines.py:        self.layer_name = layer_name
+./online/renderers/layers/layer_dxf_lines.py:        gdf = gpd.read_file(self.dxf_path, layer=self.layer_name)
+./online/renderers/renderer2d.py:    - NÃO conhece player
+./online/renderers/render_mesa_ipt_2d25_canonico.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_2d25_integrada.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:    gdf = gpd.read_file(dxf_path, layer="entities")
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:# - Uma única layer (grid)
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    gdf = gpd.read_file(dxf_path, layer="entities")
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    print("Planta Baixa IPT validada (single layer)")
+./online/renderers/tests/test_renderer2d_multilayer.py:# online/renderers/test_renderer2d_multilayer.py
+./online/renderers/tests/test_renderer2d_multilayer.py:from online.renderers.layer2d import Layer2D
+./online/renderers/tests/test_renderer2d_multilayer.py:    layer_terrain = Layer2D(
+./online/renderers/tests/test_renderer2d_multilayer.py:    layer_buildings = Layer2D(
+./online/renderers/tests/test_renderer2d_multilayer.py:    renderer.add_layer(layer_terrain)
+./online/renderers/tests/test_renderer2d_multilayer.py:    renderer.add_layer(layer_buildings)
+./online/renderers/tests/test_renderer2d_multilayer.py:        title="Renderer2D Multilayer",
+./online/renderers/tests/test_renderer2d_multilayer.py:        save_path="visualization/debug/renderer2d_multilayer.png",
+./online/renderers/tests/test_renderer2d_multilayer.py:    print("✔ Renderer2D multilayer OK")
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:# - Uma única layer
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:from online.renderers.layer2d import Layer2D
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    print("TESTE: Renderer2D Multilayer — Planta Baixa IPT")
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    # Grid vazio (layer puramente visual)
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    layer_planta = Layer2D(
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    renderer.add_layer(layer_planta)
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:        subtitle="DXF como referência visual (1 layer)",
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    gdf = gpd.read_file(dxf_path, layer="entities")
+./online/renderers/tests/test_renderer2d_with_dxf.py:# - layers são fornecidas no construtor
+./online/renderers/tests/test_renderer2d_with_dxf.py:# - não existe add_layer()
+./online/renderers/tests/test_renderer2d_with_dxf.py:# - DXF entra como layer de fundo
+./online/renderers/tests/test_renderer2d_with_dxf.py:from online.renderers.layers.layer_dxf_lines import LayerDXFLines
+./online/renderers/tests/test_renderer2d_with_dxf.py:    layer_dxf = LayerDXFLines(
+./online/renderers/tests/test_renderer2d_with_dxf.py:        layers=[layer_dxf]
+./online/renderers/tests/test_renderer2d_with_dxf.py:        "Renderer2D + DXF (layer de fundo)\n"
+./online/renderers/tests/test_renderer2d_with_dxf.py:    print("DXF herdado corretamente como layer de fundo")
+./online/renderers/tests/test_timeline_renderer2d.py:from online.renderers.layer2d import Layer2D
+./online/renderers/tests/test_timeline_renderer2d.py:    terrain_layer = Layer2D(
+./online/renderers/tests/test_timeline_renderer2d.py:    renderer.add_layer(terrain_layer)
+./online/renderers/tests/test_timeline_renderer2d.py:        terrain_layer.update(state["grid"])
+./online/renderers/visualizar_mesa_ipt_alturas.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/renderers/visualizar_mesa_ipt_bmp_dxf_alturas.py:    gdf = gpd.read_file(DXF_PATH, layer="entities")
+./online/runtime/plan_execution_runner.py:from online.runtime.plan_player_adapter import PlanPlayerAdapter
+./online/runtime/plan_execution_runner.py:        # Player do plano
+./online/runtime/plan_execution_runner.py:        self.adapter = PlanPlayerAdapter(
+./online/runtime/plan_player.py:from online.runtime.plan_player_adapter import PlanPlayerAdapter
+./online/runtime/plan_player.py:class PlanPlayer:
+./online/runtime/plan_player.py:    Player temporal simples.
+./online/runtime/plan_player.py:        self.adapter = PlanPlayerAdapter(plan_path, bus)
+./online/runtime/plan_player_adapter.py:class PlanPlayerAdapter:
+./online/tests/dash_virtual_table_player_ui_clean.py:# GIF (mesmo mecanismo do player original)
+./online/tests/test_plan_player.py:from online.runtime.plan_player import PlanPlayer
+./online/tests/test_plan_player.py:def test_plan_player_executes_plan_correctly():
+./online/tests/test_plan_player.py:    player = PlanPlayer(plan, actuator, realtime=False)
+./online/tests/test_plan_player.py:    player.play()
+./online/tests/test_plan_player.py:def test_plan_player_invalid_plan_type():
+./online/tests/test_plan_player.py:        PlanPlayer({"a": 1}, actuator)
+./online/ui/console_player.py:Console Player — UI Temporal Observadora
+./online/ui/dash_temporal_player.py:Dash — Observador com TemporalPlayer (Opção C)
+./online/ui/dash_temporal_player.py:- UI chama TemporalPlayer
+./online/ui/dash_temporal_player.py:- TemporalPlayer roda em thread
+./online/ui/dash_temporal_player.py:from online.core.temporal_player import TemporalPlayer
+./online/ui/dash_temporal_player.py:player = TemporalPlayer(conductor)
+./online/ui/dash_temporal_player.py:        html.H2("IPT-CitySpace — Dash + TemporalPlayer"),
+./online/ui/dash_temporal_player.py:            id="player-status",
+./online/ui/dash_temporal_player.py:        player.play()
+./online/ui/dash_temporal_player.py:        player.pause()
+./online/ui/dash_temporal_player.py:        player.stop()
+./online/ui/dash_temporal_player.py:        player.step_forward()
+./online/ui/dash_temporal_player.py:    player.get_tick()  # heartbeat observacional
+./online/ui/dash_temporal_player.py:    Output("player-status", "children"),
+./online/ui/dash_temporal_player.py:def update_player_status(_):
+./online/ui/dash_temporal_player.py:    tick = player.get_tick()
+./online/ui/dash_temporal_player.py:        player._thread is not None
+./online/ui/dash_temporal_player.py:        and player._thread.is_alive()
+./online/ui/dash_temporal_player.py:        "TemporalPlayer STATUS\n"
+./online/ui/dash_temporal_player.py:        player._thread is not None
+./online/ui/dash_temporal_player.py:        and player._thread.is_alive()
+./online/ui/layers.py:# online/ui/layers.py
+./online/ui/layers.py:                "properties": {"name": "Rua Principal", "layer": "ruas"},
+./online/ui/layers.py:                "properties": {"name": "Edifício A", "layer": "edificios"},
+./online/ui/legacy/app.py:                dl.LayerGroup(id="pins-layer"),
+./online/ui/legacy/app.py:    Output("pins-layer", "children"),
+./online/ui/legacy/app.py:def control_player(play, pause, stop, current):
+./online/ui/legacy/player2d_app.py:        html.H2("IPT CitySpace — Player 2D (Virtual)"),
+./online/ui/legacy/player2d_app.py:        # Interval (player automático)
+./online/ui/legacy/player2d_app.py:            id="player-interval",
+./online/ui/legacy/player2d_app.py:        # Estado central do player
+./online/ui/legacy/player2d_app.py:            id="player-state",
+./online/ui/legacy/player2d_app.py:# Callback ÚNICO de controle do player
+./online/ui/legacy/player2d_app.py:    Output("player-state", "data"),
+./online/ui/legacy/player2d_app.py:    Output("player-interval", "disabled"),
+./online/ui/legacy/player2d_app.py:    Input("player-interval", "n_intervals"),
+./online/ui/legacy/player2d_app.py:    State("player-state", "data"),
+./online/ui/legacy/player2d_app.py:def control_player(
+./online/ui/legacy/player2d_app.py:    elif trigger == "player-interval" and mode == "PLAY":
+./online/ui/legacy/temporal_player_app.py:# online/ui/temporal_player_app.py
+./online/ui/legacy/temporal_player_app.py:# EventBus → Player
+./online/ui/legacy/temporal_player_app.py:app.title = "IPT-CitySpace — Player Temporal (Demo)"
+./online/ui/legacy/temporal_player_app.py:        html.H2("IPT-CitySpace — Player Temporal (Demonstração)"),
+./online/ui/temporal_player_grid_app.py:Temporal Player — Grid 2D ASCII (UI Observadora)
+./runner/virtual_actuator.py:        Alias semântico usado por testes e players.
+./tests/test_plan_player_adapter.py:from online.runtime.plan_player_adapter import PlanPlayerAdapter
+./tests/test_plan_player_adapter.py:def test_plan_player_adapter_emits_events():
+./tests/test_plan_player_adapter.py:        adapter = PlanPlayerAdapter(plan_path, bus)
+./visualization/mesa_virtual_2d.py:layer_1cm = axes[0].imshow(
+./visualization/mesa_virtual_2d.py:layer_2cm = axes[1].imshow(
+./visualization/mesa_virtual_2d.py:    layer_1cm.set_data(frames_1cm[frame_idx])
+./visualization/mesa_virtual_2d.py:    layer_2cm.set_data(frames_2cm[frame_idx])
+./visualization/mesa_virtual_2d_layers.py:com controle de camadas (layers ON/OFF).
+./visualization/mesa_virtual_2d_layers.py:layer_1cm = axes[0].imshow(
+./visualization/mesa_virtual_2d_layers.py:layer_2cm = axes[1].imshow(
+./visualization/mesa_virtual_2d_layers.py:    layer_1cm.set_data(frames_1cm[frame_idx])
+./visualization/mesa_virtual_2d_layers.py:    layer_2cm.set_data(frames_2cm[frame_idx])
+./visualization/mesa_virtual_2d_layers.py:    layer_1cm.set_visible(show_values)
+./visualization/mesa_virtual_2d_layers.py:    layer_2cm.set_visible(show_values)
+./visualization/mesa_virtual_2d_layers.py:ax_layers = plt.axes([0.65, 0.10, 0.30, 0.15])
+./visualization/mesa_virtual_2d_layers.py:    ax_layers,
+./visualization/mesa_virtual_2d_layers.py:def toggle_layers(label):
+./visualization/mesa_virtual_2d_layers.py:check.on_clicked(toggle_layers)

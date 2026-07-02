@@ -1,0 +1,70 @@
+./online/ui/dash_62_final_integrated.py:40:    GRID = df.pivot(index="row", columns="col", values="z_total_m") \
+./online/ui/dash_v0_base.py:20:grid = df.pivot(index="row", columns="col", values=VALUE_COL)
+./online/ui/dash_v70_master_final.py:82:    grid_total = df.pivot(index="row", columns="col", values="z_total_m").values
+./online/ui/dash_v70_master_final.py:83:    grid_terrain = df.pivot(index="row", columns="col", values="z_terrain_m").values
+./online/ui/dash_v70_master_final.py:84:    grid_building = df.pivot(index="row", columns="col", values="z_building_m").values
+./online/ui/dash_v72_cityspace_official.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v73_cityspace_gridfix.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v74_cityspace_centered.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v75_2_restored.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v75_3_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v75_cityspace_controls.py:11:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v76_time_continuous.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v77_cityspace_physics.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v77_visual_layer.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v78_1_zoom_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v78_zoom_centered.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v79_physical_grid_zoom.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v80_1_scale_fixed.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v80_true_physical_scale.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v81_physical_elevation.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v83_grid_border.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v84_active_pin.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v84_LOCKED.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v85_LOCKED.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v85_visual_fit.py:9:grid=df.pivot(index="row",columns="col",values="z_cm").values
+./online/ui/dash_v86_layers_ready.py:13:grid_total = df.pivot(index="row", columns="col", values="z_total_cm").values
+./online/ui/dash_v86_visual_clean.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v87_fix_zigzag.py:13:grid = df.pivot(index="row", columns="col", values="z_total_cm").values
+./online/ui/Dash_v87_image_lock.py:26:grid_base = df.pivot(index="row", columns="col", values=VALUE_COL)
+./online/ui/dash_v88_fix_path_bounds.py:13:grid = df.pivot(index="row", columns="col", values="z_total_cm").values
+./online/ui/dash_v88_grid_fix.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v89_final_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v89_use_real_path.py:13:grid = df.pivot(index="row", columns="col", values="z_total_cm").values
+./online/ui/dash_v90_urban_fit.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v91_altimetric_motion.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v91_speed_control.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v92_real_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v93_centroid_final.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v93_robust_plan.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v94_2_normalizado.py:11:grid_m = df.pivot(index="row", columns="col", values="z_total_m").values[:8, :16]
+./online/ui/dash_v94_clean_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_clean_no_marker.py:6:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_real_legend.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v94_real_pipeline.py:11:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_1_real_transparente.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_2d.py:6:grid = df.pivot(index="row", columns="col", values="z_cm")
+./online/ui/dash_v95_2d.py:9:df_full = df.pivot(index="row", columns="col", values="z_total")
+./online/ui/dash_v95_2d_final_corrigido.py:7:# pivot + CORREÇÃO DE ORIENTAÇÃO
+./online/ui/dash_v95_2d_final_corrigido.py:8:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_2_real_base.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_2_real_final.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_3d_urban.py:6:Z = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_3_clean_callbacks.py:16:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v95_3_real_hard.py:19:grid = df.pivot(index="row", columns="col", values="z_cm")
+./online/ui/dash_v95_4_blindado.py:20:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v95_4_real_correct.py:7:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v95_5_debug.py:17:grid = df.pivot(index="row", columns="col", values="z_cm")
+./online/ui/dash_v95_5_incremental.py:27:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v95_6_hard_stable.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v95_6_stable.py:19:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v95_real_corrigido.py:10:grid = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./online/ui/dash_v96_engine_separado.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v96_modo_fisico.py:9:grid = df.pivot(index="row", columns="col", values="z_cm").values
+./online/ui/dash_v97_2_metodoB.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v97_2_metodoB_fix.py:22:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v97_tempo_fisico.py:23:grid = df.pivot(index="row", columns="col", values="z_cm").values[:ROWS, :COLS]
+./online/ui/dash_v99_3d_buildings_zigzag.py:6:Z0 = df.pivot(index="row", columns="col", values="z_cm").values[:8, :16]
+./scripts/98_autoscan_diagnostics.py:60:  grid_total=df.pivot(index="row",columns="col",values="z_total_m").values
+./scripts/98_autoscan_diagnostics.py:61:  grid_terrain=df.pivot(index="row",columns="col",values="z_terrain_m").values
+./scripts/98_autoscan_diagnostics.py:62:  grid_building=df.pivot(index="row",columns="col",values="z_building_m").values

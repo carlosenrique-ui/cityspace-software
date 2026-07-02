@@ -1,0 +1,52 @@
+{
+  "coordinate_source": "scientific_xy",
+  "tolerances": {
+    "pca_alignment_tolerance_deg": 0.5,
+    "historical_delta_tolerance_deg": 0.01
+  },
+  "pca": {
+    "principal_angle_deg": 0.0
+  },
+  "grid_fit": {
+    "pca_angle_deg": 0.0,
+    "rotation_to_align_x_deg": 0.0,
+    "rotation_to_align_y_deg": 90.0,
+    "best_axis": "x",
+    "best_rotation_deg": 0.0,
+    "best_residual_deg": 0.0
+  },
+  "contract_comparison": {
+    "current_frame": {
+      "name": "scientific_xy",
+      "current_pca_deg": 0.0,
+      "residual_rotation_needed_deg": 0.0,
+      "already_aligned": true
+    },
+    "comparisons": {
+      "pca_vs_current_contract_deg": 0.0,
+      "pca_vs_geospatial_deg": 0.0,
+      "pca_vs_physical_deg": 0.0,
+      "geospatial_vs_physical_deg": 7.81,
+      "computed_historical_delta_deg": 7.81,
+      "contract_historical_delta_deg": 7.81
+    },
+    "historical_models": {
+      "geospatial_alignment": {
+        "source_orientation_deg": 154.63,
+        "applied_rotation_deg": -154.63,
+        "target_pca_deg": 0.0,
+        "source": "utm_alignment"
+      },
+      "physical_table_fit": {
+        "source_orientation_deg": 146.82,
+        "applied_rotation_deg": -146.82,
+        "target_pca_deg": 0.0,
+        "source": "grid_fit"
+      }
+    }
+  },
+  "status": {
+    "alignment_status": "OK",
+    "historical_delta_status": "OK"
+  }
+}

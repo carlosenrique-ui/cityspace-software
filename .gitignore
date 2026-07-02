@@ -1,0 +1,36 @@
+
+# =========================
+# Dados científicos
+# =========================
+offline/data/
+offline/products/
+products/
+
+# =========================
+# Diagnósticos e releases
+# =========================
+_diagnosticos/
+_diagnosticos_*
+_releases/
+
+# =========================
+# Produtos gerados
+# =========================
+*.tif
+*.tiff
+*.bmp
+*.gif
+*.mp4
+*.csv
+*.npy
+*.npz
+*.pkl
+*.zip
+*.7z
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo

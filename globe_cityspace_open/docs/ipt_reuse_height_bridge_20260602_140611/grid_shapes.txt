@@ -1,0 +1,57 @@
+=== SHAPES / DIMENSIONS ===
+
+----- offline/products/snapshots/ipt_fase2_semantic/grid_pino_cm.csv -----
+np shape: (8, 16)
+min: 0.031 max: 10.0
+first row: [5.133 4.087 1.939 5.109 6.452 5.751 1.818 0.913 2.295 4.735 4.185 0.031
+ 3.852 4.51  9.012 7.237]
+
+----- offline/products/snapshots/ipt_fase2_semantic/grid_uint8.csv -----
+np shape: (8, 16)
+min: 0.0 max: 255.0
+first row: [130. 104.  49. 130. 164. 146.  46.  23.  58. 120. 106.   0.  98. 114.
+ 229. 184.]
+
+----- offline/products/snapshots/ipt_fase2_semantic/grid_z_total_m.csv -----
+np shape: (8, 16)
+min: 0.136 max: 44.114
+first row: [22.644 18.027  8.553 22.538 28.463 25.368  8.021  4.027 10.126 20.888
+ 18.462  0.136 16.991 19.893 39.757 31.925]
+
+----- offline/products/snapshots/ipt_fase2_semantic/grid_terrain_m.csv -----
+np shape: (8, 16)
+min: 0.0 max: 0.0
+first row: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+
+----- offline/products/snapshots/ipt_fase2_semantic/grid_building_m.csv -----
+np shape: (8, 16)
+min: 0.0 max: 0.0
+first row: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+
+----- offline/products/final/grid_height.csv -----
+np load failed: could not convert string 'row,col,cx,cy,z_terrain_m,z_building_m,z_total_m,x,y,z_cm,z_total_cm,z_terrain_cm,z_building_cm' to float64 at row 0, column 1.
+df shape: (128, 1)
+  row,col,cx,cy,z_terrain_m,z_building_m,z_total_m,x,y,z_cm,z_total_cm,z_terrain_cm,z_building_cm
+0  0,0,4447.009645341945,1235.479048518467,5.1367...                                             
+1  0,1,4535.675288318596,1235.479048518467,18.027...                                             
+2  0,2,4624.340931295247,1235.479048518467,8.5525...                                             
+3  0,3,4713.006574271899,1235.479048518467,22.538...                                             
+4  0,4,4801.67221724855,1235.479048518467,19.7352...                                             
+
+----- offline/products/grid_z_total_m.csv -----
+np shape: (8, 16)
+min: 0.0 max: 42.492
+first row: [ 0.     0.     0.     0.     0.     0.     0.     0.     0.     0.
+  0.     0.     0.    11.973 19.505 14.312]
+
+----- offline/products/grid_terrain_m.csv -----
+np shape: (8, 16)
+min: 0.0 max: 24.514
+first row: [0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.718 0.234 0.   ]
+
+----- offline/products/grid_building_m.csv -----
+np shape: (8, 16)
+min: 0.0 max: 34.302
+first row: [ 0.     0.     0.     0.     0.     0.     0.     0.     0.     0.
+  0.     0.     0.    11.255 19.271 14.312]

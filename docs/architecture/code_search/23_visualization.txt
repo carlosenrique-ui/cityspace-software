@@ -1,0 +1,234 @@
+./docs/architecture/generate_project_context.py:Runtime simulation and visualization.
+./engine.py:def run_visualization(script_name: str):
+./engine.py:    Executa um script da pasta visualization/.
+./engine.py:    script_path = PROJECT_ROOT / "visualization" / script_name
+./engine.py:        fatal(f"Script de visualização não encontrado: {script_path}")
+./engine.py:    info(f"Executando visualização: {script_name}")
+./engine.py:        fatal(f"Erro ao executar visualização '{script_name}': {e}")
+./engine.py:        choices=["dash", "visualization"],
+./engine.py:        help="Forma de visualização"
+./engine.py:        help="Script específico da pasta visualization/ (quando view=visualization)"
+./engine.py:        elif args.view == "visualization":
+./engine.py:                fatal("Use --viz-script para rodar visualization/")
+./engine.py:            run_visualization(args.viz_script)
+./legacy/auto_20260211_133921/online/actuators/test_visual_actuator.py:# online/actuators/test_visual_actuator_multi.py
+./legacy/auto_20260211_133921/online/actuators/test_visual_actuator.py:from online.actuators.visual_actuator import VisualActuator
+./legacy/auto_20260211_133921/online/actuators/test_visual_actuator.py:    visual = VisualActuator(bus)
+./legacy/auto_20260211_133921/online/actuators/test_visual_actuator.py:    state = visual.snapshot()
+./legacy/auto_20260211_133921/online/actuators/test_visual_actuator_multi.py:# online/actuators/test_visual_actuator_multi.py
+./legacy/auto_20260211_133921/online/actuators/test_visual_actuator_multi.py:from online.actuators.visual_actuator import VisualActuator
+./legacy/auto_20260211_133921/online/actuators/test_visual_actuator_multi.py:    visual = VisualActuator(bus)
+./legacy/auto_20260211_133921/online/actuators/test_visual_actuator_multi.py:    # Snapshot do estado visual
+./legacy/auto_20260211_133921/online/actuators/test_visual_actuator_multi.py:    state = visual.snapshot()
+./legacy/auto_20260211_133921/online/actuators/visual_actuator.py:# online/actuators/visual_actuator.py
+./legacy/auto_20260211_133921/online/actuators/visual_actuator.py:    Actuator visual (mock).
+./legacy/cleanup_20260305_164029/geo/build_z_total_real.py:    Escala arr_meters (m) para 0-255 uint8 e grava BMP para conferência visual.
+./legacy_auto/tools/organize_legacy.py:    "visual_actuator",
+./legacy_auto/visualization/render_temporal_gif_v18.py:• Mantém 100% da lógica física, temporal e visual do V16
+./legacy_auto/visualization/render_temporal_gif_v18.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./legacy_auto/visualization/render_temporal_gif_v19.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./legacy_auto/visualization/render_temporal_gif_v20.py:Esta versão é IDÊNTICA à V20 em comportamento visual e físico.
+./legacy_auto/visualization/render_temporal_gif_v20.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./offline/render_dxf_ipt_para_mesa_16x8.py:OUT_PNG = "visualization/debug/ipt_dxf_mesa_16x8.png"
+./offline/render_dxf_ipt_para_mesa_16x8.py:    os.makedirs("visualization/debug", exist_ok=True)
+./offline/tests/test_generate_contours_topografico.py:É apenas produto visual / informativo.
+./offline/validate_dxf_ipt_original_rotated_clean.py:# Esta versão é a base visual oficial do IPT rotacionado
+./offline/validate_dxf_ipt_original_rotated_clean.py:OUT_DIR = "visualization/debug"
+./offline/validation/validate_grid_z_total_vs_dxf.py:- visualization/validation/validacao_grid_z_total_vs_dxf.png
+./offline/validation/validate_grid_z_total_vs_dxf.py:    / "visualization"
+./offline/validation/validate_grid_z_total_vs_dxf.py:    log("Gerando visualização de validação")
+./online/controllers/temporal_controller.py:    def __init__(self, visual_actuator, renderer):
+./online/controllers/temporal_controller.py:        self.visual_actuator = visual_actuator
+./online/controllers/temporal_controller.py:        snapshot = self.visual_actuator.snapshot()
+./online/controllers/test_temporal_controller.py:from online.actuators.visual_actuator import VisualActuator
+./online/controllers/test_temporal_controller.py:    visual_actuator = VisualActuator(bus)
+./online/controllers/test_temporal_controller.py:        visual_actuator=visual_actuator,
+./online/core/modes.py:    visual_scale: float
+./online/core/modes.py:        visual_scale=1.0,
+./online/core/modes.py:        visual_scale=0.6,
+./online/core/modes.py:        visual_scale=0.8,
+./online/core/physical_motion_profile.py:        Duração visual de cada frame
+./online/renderers/extract_timeline_from_gif.py:GIF_PATH = Path("visualization/mesa_virtual_v41.gif")
+./online/renderers/extract_timeline_from_gif.py:OUT_PATH = Path("visualization/mesa_virtual_v41_timeline.json")
+./online/renderers/fase3/FASE_3_4_mesa_legenda.py:# grid visual
+./online/renderers/faseC/FASE_C_3_player_temporal_valores.py:# normaliza para visualização
+./online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:cbar.set_label("Altura normalizada do pino (referência visual)")
+./online/renderers/generate_gif_planta_baixa_ipt.py:    output_dir = "visualization/gif"
+./online/renderers/generate_gif_planta_baixa_ipt.py:    # Renderer (visual apenas)
+./online/renderers/renderer2d.py:    - Mesa virtual (visualização)
+./online/renderers/renderer2d.py:        :param actuator: Atuador (virtual ou físico). Pode ser None para render visual.
+./online/renderers/renderer_factory.py:        "gif": Path("visualization/mesa_virtual_v41.gif"),
+./online/renderers/renderer_factory.py:        "timeline": Path("visualization/mesa_virtual_v41_timeline.json"),
+./online/renderers/render_mesa_ipt_2d25_canonico.py:OUTPUT_DIR = "visualization/gif"
+./online/renderers/render_mesa_ipt_2d25_integrada.py:OUT_DIR = "visualization/gif"
+./online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:OUTPUT_DIR = "visualization/gif"
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:# - O DXF NÃO é modificado visualmente (apenas rotacionado)
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:OUT_GIF = "visualization/gif/mesa_ipt_zigzag_temporal.gif"
+./online/renderers/render_mesa_ipt_animacao_zigzag.py:    os.makedirs("visualization/gif", exist_ok=True)
+./online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:OUT_GIF = "visualization/gif/mesa_ipt_animacao_zigzag_iptdxf_colorido.gif"
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:#   - Validar visualmente o encaixe do IPT no grid 8x16
+./online/renderers/render_mesa_ipt_validacao_geometrica.py:OUT_BASE = "visualization/gif"
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:OUT_DIR  = "visualization/gif"
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:OUT_DIR  = "visualization/gif"
+./online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:    log("[INFO] Carregando DXF do IPT (base visual)")
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:#   - DXF branco como base visual
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:OUT_DIR  = f"{BASE_PATH}/visualization/gif"
+./online/renderers/render_mesa_ipt_zigzag_canonico.py:    log("Carregando DXF do IPT (base visual)")
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:#   - DXF do IPT já rotacionado (base visual)
+./online/renderers/render_mesa_ipt_zigzag_integrada_final.py:OUT_DIR = "/mnt/c/IPT-CitySpace-2018/ipt-cityspace-engine/visualization/gif"
+./online/renderers/tests/test_generate_gif_planta_baixa_ipt.py:# - Testar visualização humana e para projeção
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:# - DXF como overlay visual
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    save_path = "visualization/debug/planta_baixa_ipt.png"
+./online/renderers/tests/test_planta_baixa_ipt_single_layer.py:    # Aplicar DXF como overlay visual
+./online/renderers/tests/test_renderer2d.py:        save_path="visualization/debug/test_renderer2d.png",
+./online/renderers/tests/test_renderer2d.py:    print("✔ test_renderer2d OK — PNG gerado em visualization/debug")
+./online/renderers/tests/test_renderer2d_multilayer.py:        save_path="visualization/debug/renderer2d_multilayer.png",
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:# - Renderer2D visual (actuator=None)
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    # Grid vazio (layer puramente visual)
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:    save_path = "visualization/debug/planta_baixa_ipt_base.png"
+./online/renderers/tests/test_renderer2d_planta_baixa_ipt.py:        subtitle="DXF como referência visual (1 layer)",
+./online/renderers/timeline_export_adapter.py:    output_path = Path(f"visualization/mesa_virtual_{version}_timeline.json")
+./online/renderers/visualizar_mesa_ipt_alturas.py:OUT_PNG = "visualization/debug/mesa_ipt_validacao_alturas_sem_rotacao.png"
+./online/renderers/visualizar_mesa_ipt_alturas.py:    os.makedirs("visualization/debug", exist_ok=True)
+./online/renderers/visualizar_mesa_ipt_bmp_dxf_alturas.py:OUT_PNG = "visualization/debug/mesa_ipt_validacao_alturas.png"
+./online/renderers/visualizar_mesa_ipt_bmp_dxf_alturas.py:    os.makedirs("visualization/debug", exist_ok=True)
+./online/renderers/visual_snapshot_adapter.py:# online/renderers/visual_snapshot_adapter.py
+./online/ui/dash_temporal_directional_app.py:FRAMES_DIR = Path("visualization/debug")
+./online/ui/dash_temporal_directional_app.py:    raise RuntimeError("Nenhum frame PNG encontrado em visualization/debug")
+./online/ui/legacy/app.py:from online.actuators.visual_actuator import VisualActuator
+./online/ui/legacy/app.py:from online.ui.visual_adapter import VisualAdapter
+./online/ui/legacy/app.py:visual = VisualActuator(bus)
+./online/ui/legacy/app.py:adapter = VisualAdapter(visual)
+./online/ui/legacy/app.py:    cell_deg = 0.0002  # escala visual (ajustável depois)
+./online/ui/test_visual_adapter.py:# online/ui/test_visual_adapter.py
+./online/ui/test_visual_adapter.py:from online.actuators.visual_actuator import VisualActuator
+./online/ui/test_visual_adapter.py:from online.ui.visual_adapter import VisualAdapter
+./online/ui/test_visual_adapter.py:    visual = VisualActuator(bus)
+./online/ui/test_visual_adapter.py:    adapter = VisualAdapter(visual)
+./online/ui/visual_adapter.py:# online/ui/visual_adapter.py
+./online/ui/visual_adapter.py:    def __init__(self, visual_actuator):
+./online/ui/visual_adapter.py:        self.visual = visual_actuator
+./online/ui/visual_adapter.py:        snapshot = self.visual.snapshot()
+./scripts/04b_build_z_total_masked.py:OUTPUT_PATH = "../data/output/Z_total_masked_visual.tif"
+./scripts/04b_build_z_total_masked.py:print("\n✔ Z_total_masked_visual saved to:")
+./scripts/05_rotate_z_total.py:Z_TOTAL_PATH = "../data/output/Z_total_masked_visual.tif"
+./tools/calibration/affine_adjust_visual_v52.py:- preview visual
+./tools/calibration/affine_adjust_visual_v52.py:PREVIEW = ENGINE_ROOT / "visualization/calibration_preview_v52.png"
+./tools/calibration/align_ipt_raster_test.py:PREVIEW_OUT = ENGINE_ROOT / "visualization/calibration_preview.png"
+./tools/calibration/align_ipt_raster_v42.py:Ajuste visual do raster IPT para encaixe na malha 8x16.
+./tools/calibration/align_ipt_raster_v42.py:PREVIEW_OUT = ENGINE_ROOT / "visualization/calibration_preview_v42.png"
+./tools/calibration/align_ipt_raster_v43.py:PREVIEW_OUT = ENGINE_ROOT / "visualization/calibration_preview_v43.png"
+./tools/calibration/align_ipt_raster_v44.py:PREVIEW_OUT = ENGINE_ROOT / "visualization/calibration_preview_v44.png"
+./tools/calibration/align_ipt_raster_v45.py:PREVIEW_OUT = ENGINE_ROOT / "visualization/calibration_preview_v45.png"
+./tools/calibration/align_ipt_raster_v46.py:PREVIEW_OUT = ENGINE_ROOT / "visualization/calibration_preview_v46.png"
+./tools/calibration/align_ipt_raster_v47.py:PREVIEW_OUT = ENGINE_ROOT / "visualization/calibration_preview_v47.png"
+./tools/calibration/align_ipt_raster_v49_manual_lines.py:(definidas visualmente pelo usuário).
+./tools/calibration/fine_rotate_v50_v51.py:- ajuste fino visual
+./tools/calibration/make_raster_angle_compare_v55.py:Gera duas versões para avaliação visual:
+./tools/calibration/make_raster_angle_compare_v55.py:    print("\nArquivos gerados para comparação visual.")
+./tools/calibration/make_raster_geo_aligned.py:PREVIEW = ENGINE_ROOT / "visualization/calibration_preview_geo.png"
+./tools/calibration/make_raster_v3_for_v41.py:visualization/
+./tools/calibration/make_raster_v3_for_v41.py:PREVIEW_PATH = ENGINE_ROOT / "visualization/calibration_preview_v3.png"
+./tools/calibration/make_raster_v5_semantic.py:PREVIEW = ENGINE_ROOT / "visualization/calibration_preview_v5.png"
+./tools/calibration/rotate_manual_two_angles.py:- Gerar 2 versões para avaliação visual
+./tools/calibration/rotate_visual_B_vertical.py:- ajuste visual manual
+./tools/calibration/rotate_visual_B_vertical.py:PREVIEW_OUT = ENGINE_ROOT / "visualization/calibration_preview_vertical.png"
+./visualization/mesa_virtual_2d.py:Validação visual e temporal do grid da mesa física
+./visualization/mesa_virtual_2d_layers.py:Validação visual do grid físico (1cm e 2cm)
+./visualization/mesa_virtual_3d_temporal_real_gif.py:OUT = ENGINE_ROOT / "visualization/debug"
+./visualization/mesa_virtual_pinos.py:Saída: imagem PNG (validação visual).
+./visualization/mesa_virtual_pinos.py:OUT_DIR = ENGINE_ROOT / "visualization" / "debug"
+./visualization/mesa_virtual_pinos_anim.py:OUT_DIR = ENGINE_ROOT / "visualization" / "debug"
+./visualization/mesa_virtual_pinos_temporal_gif.py:- Edifícios pequenos com ganho visual
+./visualization/mesa_virtual_pinos_temporal_gif.py:- Altura visual: metros
+./visualization/mesa_virtual_pinos_temporal_real_gif.py:OUT_DIR = ENGINE_ROOT / "visualization/debug"
+./visualization/mesa_virtual_pinos_temporal_semantico.py:- Altura visual: metros reais
+./visualization/mesa_virtual_pinos_temporal_semantico.py:- Edifícios com ganho visual
+./visualization/mesa_virtual_pinos_temporal_semantico.py:EDIFICIO_GANHO = 2.5       # ganho visual APENAS para edifícios
+./visualization/mesa_virtual_pinos_temporal_semantico.py:# Edifício (pequeno, mas com ganho visual)
+./visualization/mesa_virtual_pinos_temporal_semantico.py:# Altura visual em metros
+./visualization/mesa_virtual_pinos_temporal_semantico.py:z_visual_m = (z_terreno_cm + z_edificio_cm) * METROS_POR_CM
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif.py:OUT_DIR = ENGINE_ROOT / "visualization/debug"
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d.py:OUT_DIR = ENGINE_ROOT / "visualization/debug"
+./visualization/mesa_virtual_pinos_trajetoria_temporal_gif_2d_fisico.py:OUT_DIR = ENGINE_ROOT / "visualization/output"
+./visualization/render_temporal_gif.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_canonico.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_canonico.py:estado_visual = np.zeros_like(z_total_m)
+./visualization/render_temporal_gif_canonico.py:    # Y cresce para baixo — ajuste visual
+./visualization/render_temporal_gif_canonico.py:    estado_visual[y_draw, c] = z_total_m[y_draw, c]
+./visualization/render_temporal_gif_canonico.py:        estado_visual,
+./visualization/render_temporal_gif_v1.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v10.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v10.py:            # posição visual (INALTERADA)
+./visualization/render_temporal_gif_v11.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v11.py:                # visualmente o pino desce, mas o estado acumulado NÃO muda
+./visualization/render_temporal_gif_v12.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v12.py:    inicio_visual = (0, rows - 1)
+./visualization/render_temporal_gif_v12.py:    idx_inicio = traj.index(inicio_visual)
+./visualization/render_temporal_gif_v13.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v13.py:DURACAO_FRAME = 0.10       # resolução visual do GIF
+./visualization/render_temporal_gif_v13.py:    inicio_visual = (0, rows - 1)
+./visualization/render_temporal_gif_v13.py:    idx_inicio = traj.index(inicio_visual)
+./visualization/render_temporal_gif_v14.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v14.py:            # y_draw: topo visual = 0
+./visualization/render_temporal_gif_v15.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v15.py:            # y_draw = y (topo visual = 0)
+./visualization/render_temporal_gif_v16.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v16.py:            # coordenada visual
+./visualization/render_temporal_gif_v17.py:• Lógica física, tempos, trajetórias e visualização
+./visualization/render_temporal_gif_v17.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v17.py:            # coordenada visual (inalterada)
+./visualization/render_temporal_gif_v2.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v21.py:• Raster é APENAS visual:
+./visualization/render_temporal_gif_v21.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v22.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v23.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v24.py:• Comunicação visual focada na leitura arquitetônica
+./visualization/render_temporal_gif_v24.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v25.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v26.py:• Raster NÃO interfere em dados, apenas contexto visual
+./visualization/render_temporal_gif_v26.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v27.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v27.py:                # Fixar sistema visual (ESSENCIAL)
+./visualization/render_temporal_gif_v28.py:• Contraste e hierarquia visual corretos (GIS-style)
+./visualization/render_temporal_gif_v28.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v28.py:    para visualização como base cartográfica
+./visualization/render_temporal_gif_v29.py:• Logs explícitos para auditoria visual
+./visualization/render_temporal_gif_v29.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v3.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v31.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v32.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v33.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v34.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v35.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v36.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v37.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v38.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v39.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v4.py:  - (0,0) visual = (0,0) físico da mesa
+./visualization/render_temporal_gif_v4.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v40.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v41.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v42.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v43_25d.py:• visual em maquete 2.5D
+./visualization/render_temporal_gif_v43_25d.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v43_terrain_building.py:OUT_DIR = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v5.py:  - passa a iniciar no novo (0,0) visual
+./visualization/render_temporal_gif_v5.py:  - percorre a coluna de cima para baixo (visual)
+./visualization/render_temporal_gif_v5.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v5.py:            # >>> CURSOR: iniciar no novo (0,0) visual <<<
+./visualization/render_temporal_gif_v5.py:                # CURSOR no novo (0,0) visual
+./visualization/render_temporal_gif_v6.py:• Percurso da BOLINHA (cursor visual)
+./visualization/render_temporal_gif_v6.py:  - Começa no (0,0) visual
+./visualization/render_temporal_gif_v6.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v6.py:    # Cursor visual (independente)
+./visualization/render_temporal_gif_v7.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v8.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v8.py:            # posição visual (INALTERADA)
+./visualization/render_temporal_gif_v9.py:OUT_DIR  = ENGINE_ROOT / "visualization"
+./visualization/render_temporal_gif_v9.py:    # visualmente: (x=0, y_draw=0) → y = rows-1
+./visualization/render_temporal_gif_v9.py:    inicio_visual = (0, rows - 1)
+./visualization/render_temporal_gif_v9.py:    idx_inicio = traj.index(inicio_visual)
+./visualization/render_temporal_gif_v9.py:    print(f"[INFO] Início temporal ajustado para {inicio_visual}")
+./visualization/render_temporal_gif_v9.py:            # posição visual (INALTERADA)
+./visualization/tools/scan_funcoes_mesa_virtual.py:    "visualization",

@@ -1,0 +1,108 @@
+# ==========================================================
+# STEP 04 – RUNTIME FINAL (+ TOTAL + TERRENO + EDIFÍCIO)
+# ==========================================================
+
+import json
+import shutil
+import numpy as np
+import pandas as pd
+from pathlib import Path
+
+
+def main():
+
+    print("\nSTEP 04 – RUNTIME FINAL\n")
+
+    csv_path = Path("offline/products/scientific/grid_metrics_utm.csv")
+    actuator_src = Path("products/latest/actuator_plan.json")
+
+    runtime = Path("offline/products/runtime")
+    runtime.mkdir(parents=True, exist_ok=True)
+
+    final_dir = Path("products/final")
+    final_dir.mkdir(parents=True, exist_ok=True)
+
+    print("[1/4] Gerando grid.npy...")
+
+    df = pd.read_csv(csv_path)
+
+    rows = int(df["row"].max() + 1)
+    cols = int(df["col"].max() + 1)
+
+    grid = np.zeros((rows, cols))
+
+    for _, r in df.iterrows():
+        grid[int(r["row"]), int(r["col"])] = r["z_total_m"]
+
+    np.save(runtime / "grid.npy", grid)
+
+    print("[2/4] Gerando grid_height.csv...")
+
+    # ===============================
+    # BASE CIENTÍFICA
+    # ===============================
+    z_total = df["z_total_m"]
+    z_terrain = df["z_terrain_m"]
+    z_building = df["z_building_m"]
+
+    # ===============================
+    # NORMALIZAÇÃO → CM
+    # ===============================
+    z_norm = (z_total - z_total.min()) / (z_total.max() - z_total.min() + 1e-9)
+
+    PIN_MAX = 10.0
+    z_cm = z_norm * PIN_MAX
+    z_total_cm = z_cm  # total em cm (igual ao pino)
+
+    # ===============================
+    # SEPARAÇÃO PROPORCIONAL
+    # ===============================
+    ratio_terrain = z_terrain / (z_total + 1e-9)
+    ratio_building = z_building / (z_total + 1e-9)
+
+    z_terrain_cm = z_cm * ratio_terrain
+    z_building_cm = z_cm * ratio_building
+
+    # ===============================
+    # OUTPUT FINAL
+    # ===============================
+    df_out = df[["row", "col"]].copy()
+
+    # compatibilidade UI / mesa
+    df_out["z_cm"] = z_cm
+
+    # totais
+    df_out["z_total_cm"] = z_total_cm
+
+
+df_out = df.copy()
+
+# =========================================
+# APPLY MASK (FINAL STAGE)
+# =========================================
+
+import geopandas as gpd
+from shapely.geometry import Point
+
+mask = gpd.read_file("offline/products/scientific/urban_envelope_scientific_rotated.gpkg")
+mask_union = mask.unary_union
+
+def apply_mask(row):
+    p = Point(row["x"], row["y"])
+    return 0.0 if not mask_union.contains(p) else row["z_cm"]
+
+df_out["z_cm"] = df_out.apply(apply_mask, axis=1)
+
+# manter coerência entre total em cm e saída final mascarada
+df_out["z_total_cm"] = df_out["z_cm"]
+
+# =========================================
+# SAVE FINAL OUTPUT
+# =========================================
+
+import os
+os.makedirs("offline/products/final", exist_ok=True)
+
+df_out.to_csv("offline/products/final/grid_height.csv", index=False)
+
+print(">>> FINAL CSV GERADO")

@@ -1,0 +1,9 @@
+23:CSV_PATH = CORE_ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+26:    CORE_ROOT / "offline/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_final.png",
+27:    PROJECT_ROOT / "offline/products/snapshots/ipt_fase2_semantic/ipt_base_raster_aligned_final.png",
+31:    CORE_ROOT / "online/assets/north_arrow_scale.png",
+32:    PROJECT_ROOT / "online/assets/north_arrow_scale.png",
+33:    CORE_ROOT / "assets/north_arrow_scale.png",
+34:    PROJECT_ROOT / "assets/north_arrow_scale.png",
+72:    return f"data:image/png;base64,{b64}"
+450:DF = pd.read_csv(CSV_PATH)

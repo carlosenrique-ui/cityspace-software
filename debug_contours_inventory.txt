@@ -1,0 +1,288 @@
+========================================
+1) TODOS OS ARQUIVOS CONTOUR
+========================================
+/mnt/c/workspace/ipt-cityspace-engine/.git/logs/refs/heads/etapa10_contours_dtm_finetuning
+/mnt/c/workspace/ipt-cityspace-engine/.git/logs/refs/heads/etapa10_contours_ui_sprint
+/mnt/c/workspace/ipt-cityspace-engine/.git/refs/heads/etapa10_contours_dtm_finetuning
+/mnt/c/workspace/ipt-cityspace-engine/.git/refs/heads/etapa10_contours_ui_sprint
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/generate_contours_cartographic.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/generate_contours_cartographic_v2.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/generate_contours_cartographic_v3.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/generate_contours_from_dtm.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/generate_contours_matplotlib.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/generate_contours_methodB.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/generate_contours_simple.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/generate_contours_tiles.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/generate_terrain_contours.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/snapshots/1cm_rotated/layer_curvas_TESTE.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/snapshots/1cm_rotated/layer_curvas_TOPOGRAFICO.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/contours
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/contours/terrain_contours_audit.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/contours/tmp_contours.geojson
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/contours/tmp_contours.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_cartograficas.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_cartograficas_v2.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_cartograficas_v3.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_2m.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_clean.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_dtm_simple.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_final.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_mesa_space.geojson
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_methodB.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_overlay.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_pixel_v41.geojson
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_terreno_1m_5m.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_terreno_clean.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_terreno_overlay_transparente.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_terreno_suavizadas_UI.geojson
+/mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/tmp_contours.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/data/output/maquete_final/curvas_nivel_auto_mask_relativo.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/data/output/maquete_final/curvas_nivel_offset_v42.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/data/output/maquete_final/curvas_nivel_profissional_v1.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/data/output/maquete_final/curvas_nivel_relativo_v42.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/data/output/maquete_final/curvas_nivel_vector_masked.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/generate_contours_cartographic.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/generate_contours_cartographic_v2.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/generate_contours_cartographic_v3.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/generate_contours_from_dtm.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/generate_contours_matplotlib.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/generate_contours_methodB.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/generate_contours_simple.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/generate_contours_tiles.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/generate_terrain_contours.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/snapshots/1cm_rotated/layer_curvas_TESTE.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/snapshots/1cm_rotated/layer_curvas_TOPOGRAFICO.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/contours
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/contours/terrain_contours_audit.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/contours/tmp_contours.geojson
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/contours/tmp_contours.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_cartograficas.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_cartograficas_v2.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_cartograficas_v3.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_2m.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_clean.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_dtm_simple.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_final.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_mesa_space.geojson
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_methodB.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_overlay.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_pixel_v41.geojson
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_terreno_1m_5m.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_terreno_clean.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_terreno_overlay_transparente.png
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_terreno_suavizadas_UI.geojson
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/tmp_contours.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/tests/test_generate_contours_layer.py
+/mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/tests/test_generate_contours_topografico.py
+/mnt/c/workspace/ipt-cityspace-engine/data/outputs/ui_layers/contours
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/debug_contours_inventory.txt
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/debug_dash_v97_for_contours.txt
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/pipeline/03_generate_contours_clean.py
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/pipeline/05_apply_rotation_to_contours.PRE_IMPORT_FIX.bak
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/pipeline/05_apply_rotation_to_contours.PRE_RENAME.bak
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/pipeline/05_apply_rotation_to_contours.py
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/pipeline/__pycache__/03_generate_contours_clean.cpython-312.pyc
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/pipeline/__pycache__/05_apply_rotation_to_contours.cpython-312.pyc
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/products/snapshots/final_freeze_20260408_1121/scientific/grid_contours_rotated_146.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/tests/test_generate_contours_layer.py
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/tests/test_generate_contours_topografico.py
+/mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/online/ui/dash_v98_contours_overlay.py
+/mnt/c/workspace/ipt-cityspace-engine/legacy/auto_20260211_133921/offline/geo/contours
+/mnt/c/workspace/ipt-cityspace-engine/legacy/cleanup_20260305_164029/geo/contours
+/mnt/c/workspace/ipt-cityspace-engine/legacy/cleanup_20260305_164029/geo/contours/csv_to_contours.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/data/output/maquete_final/curvas_nivel_auto_mask_relativo.png
+/mnt/c/workspace/ipt-cityspace-engine/offline/data/output/maquete_final/curvas_nivel_offset_v42.png
+/mnt/c/workspace/ipt-cityspace-engine/offline/data/output/maquete_final/curvas_nivel_profissional_v1.png
+/mnt/c/workspace/ipt-cityspace-engine/offline/data/output/maquete_final/curvas_nivel_relativo_v42.png
+/mnt/c/workspace/ipt-cityspace-engine/offline/data/output/maquete_final/curvas_nivel_vector_masked.png
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/generate_contours_cartographic.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/generate_contours_cartographic_v2.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/generate_contours_cartographic_v3.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/generate_contours_from_dtm.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/generate_contours_matplotlib.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/generate_contours_methodB.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/generate_contours_simple.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/generate_contours_tiles.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/generate_terrain_contours.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific/grid_contours_clean.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific/grid_contours_rotated_146.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific/grid_contours_rotated_scientific.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/snapshots/1cm_rotated/layer_curvas_TESTE.png
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/snapshots/1cm_rotated/layer_curvas_TOPOGRAFICO.png
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/contours
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/contours/terrain_contours_audit.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/contours/tmp_contours.geojson
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/contours/tmp_contours.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_cartograficas.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_cartograficas_v2.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_cartograficas_v3.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_2m.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_clean.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_dtm_simple.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_final.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_mesa_space.geojson
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_methodB.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_overlay.png
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_pixel_v41.geojson
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_terreno_1m_5m.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_terreno_clean.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_terreno_overlay_transparente.png
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_terreno_suavizadas_UI.geojson
+/mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/tmp_contours.gpkg
+/mnt/c/workspace/ipt-cityspace-engine/offline/tests/test_generate_contours_layer.py
+/mnt/c/workspace/ipt-cityspace-engine/offline/tests/test_generate_contours_topografico.py
+
+========================================
+2) GPKG/GeoJSON/JSON/PNG RELACIONADOS
+========================================
+-rwxrwxrwx 1 carlos carlos 1.3M Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_methodB.gpkg
+-rwxrwxrwx 1 carlos carlos 1.3M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_methodB.gpkg
+-rwxrwxrwx 1 carlos carlos 1.3M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_methodB.gpkg
+-rwxrwxrwx 1 carlos carlos 124K Apr  8 11:21 /mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/products/snapshots/final_freeze_20260408_1121/scientific/grid_contours_rotated_146.gpkg
+-rwxrwxrwx 1 carlos carlos 124K Apr 25 16:31 /mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific/grid_contours_rotated_scientific.gpkg
+-rwxrwxrwx 1 carlos carlos 128K Apr 21 20:23 /mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific/grid_contours_rotated_146.gpkg
+-rwxrwxrwx 1 carlos carlos 128K Apr 25 16:31 /mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific/grid_contours_clean.gpkg
+-rwxrwxrwx 1 carlos carlos 14M Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/contours/tmp_contours.geojson
+-rwxrwxrwx 1 carlos carlos 14M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/contours/tmp_contours.geojson
+-rwxrwxrwx 1 carlos carlos 14M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/contours/tmp_contours.geojson
+-rwxrwxrwx 1 carlos carlos 180K Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_terreno_clean.gpkg
+-rwxrwxrwx 1 carlos carlos 180K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_terreno_clean.gpkg
+-rwxrwxrwx 1 carlos carlos 180K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_terreno_clean.gpkg
+-rwxrwxrwx 1 carlos carlos 2.2M Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_dtm_simple.gpkg
+-rwxrwxrwx 1 carlos carlos 2.2M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_dtm_simple.gpkg
+-rwxrwxrwx 1 carlos carlos 2.2M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_dtm_simple.gpkg
+-rwxrwxrwx 1 carlos carlos 2.4M Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_2m.gpkg
+-rwxrwxrwx 1 carlos carlos 2.4M Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/tmp_contours.gpkg
+-rwxrwxrwx 1 carlos carlos 2.4M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_2m.gpkg
+-rwxrwxrwx 1 carlos carlos 2.4M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/tmp_contours.gpkg
+-rwxrwxrwx 1 carlos carlos 2.4M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_2m.gpkg
+-rwxrwxrwx 1 carlos carlos 2.4M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/tmp_contours.gpkg
+-rwxrwxrwx 1 carlos carlos 216K Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/contours/terrain_contours_audit.gpkg
+-rwxrwxrwx 1 carlos carlos 216K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/contours/terrain_contours_audit.gpkg
+-rwxrwxrwx 1 carlos carlos 216K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/contours/terrain_contours_audit.gpkg
+-rwxrwxrwx 1 carlos carlos 4.3M Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_cartograficas_v2.gpkg
+-rwxrwxrwx 1 carlos carlos 4.3M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_cartograficas_v2.gpkg
+-rwxrwxrwx 1 carlos carlos 4.3M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_cartograficas_v2.gpkg
+-rwxrwxrwx 1 carlos carlos 4.5M Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_cartograficas.gpkg
+-rwxrwxrwx 1 carlos carlos 4.5M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_cartograficas.gpkg
+-rwxrwxrwx 1 carlos carlos 4.5M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_cartograficas.gpkg
+-rwxrwxrwx 1 carlos carlos 4.6M Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_terreno_1m_5m.gpkg
+-rwxrwxrwx 1 carlos carlos 4.6M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_terreno_1m_5m.gpkg
+-rwxrwxrwx 1 carlos carlos 4.6M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_terreno_1m_5m.gpkg
+-rwxrwxrwx 1 carlos carlos 404K Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_cartograficas_v3.gpkg
+-rwxrwxrwx 1 carlos carlos 404K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_cartograficas_v3.gpkg
+-rwxrwxrwx 1 carlos carlos 404K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_cartograficas_v3.gpkg
+-rwxrwxrwx 1 carlos carlos 6.8M Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_clean.gpkg
+-rwxrwxrwx 1 carlos carlos 6.8M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_clean.gpkg
+-rwxrwxrwx 1 carlos carlos 6.8M Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_clean.gpkg
+-rwxrwxrwx 1 carlos carlos 96K Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/contours/tmp_contours.gpkg
+-rwxrwxrwx 1 carlos carlos 96K Mar 24 11:02 /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/curvas_nivel_final.gpkg
+-rwxrwxrwx 1 carlos carlos 96K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/contours/tmp_contours.gpkg
+-rwxrwxrwx 1 carlos carlos 96K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/curvas_nivel_final.gpkg
+-rwxrwxrwx 1 carlos carlos 96K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/contours/tmp_contours.gpkg
+-rwxrwxrwx 1 carlos carlos 96K Mar 24 11:04 /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/curvas_nivel_final.gpkg
+
+========================================
+3) INSPECIONAR GPKGs DE CONTOUR
+========================================
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/contours/terrain_contours_audit.gpkg
+rows: 73
+crs: EPSG:31983
+bounds: [4658.31313289 1095.17040837 6764.72934466 1875.99717236]
+columns: ['geometry']
+geom types: {'Polygon': 73}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/contours/tmp_contours.gpkg
+rows: 0
+crs: EPSG:31983
+bounds: [nan nan nan nan]
+columns: ['ID', 'elevation', 'geometry']
+elevation min/max: nan nan
+geom types: {}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/backup_git_20260317_191244/products/terrain/tmp_contours.gpkg
+rows: 726
+crs: EPSG:31983
+bounds: [ 322159.92569862 7393481.03296243  323126.34898388 7394125.23875747]
+columns: ['ID', 'elevation', 'geometry']
+elevation min/max: -10.0 24.0
+geom types: {'LineString': 726}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/contours/terrain_contours_audit.gpkg
+rows: 73
+crs: EPSG:31983
+bounds: [4658.31313289 1095.17040837 6764.72934466 1875.99717236]
+columns: ['geometry']
+geom types: {'Polygon': 73}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/contours/tmp_contours.gpkg
+rows: 0
+crs: EPSG:31983
+bounds: [nan nan nan nan]
+columns: ['ID', 'elevation', 'geometry']
+elevation min/max: nan nan
+geom types: {}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/backup_scientific_20260317_155605/offline_snapshot/products/terrain/tmp_contours.gpkg
+rows: 726
+crs: EPSG:31983
+bounds: [ 322159.92569862 7393481.03296243  323126.34898388 7394125.23875747]
+columns: ['ID', 'elevation', 'geometry']
+elevation min/max: -10.0 24.0
+geom types: {'LineString': 726}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean/offline/products/snapshots/final_freeze_20260408_1121/scientific/grid_contours_rotated_146.gpkg
+rows: 113
+crs: EPSG:31983
+bounds: [   0.            0.         1129.56176592 1035.13682051]
+columns: ['elevation', 'geometry']
+elevation min/max: 0.2799197904646222 26.45163375893477
+geom types: {'LineString': 113}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific/grid_contours_clean.gpkg
+rows: 114
+crs: EPSG:31983
+bounds: [4447.00964534 1235.47904852 5776.99428999 1856.13854936]
+columns: ['elevation', 'geometry']
+elevation min/max: 0.1360474941252143 26.643004147820623
+geom types: {'LineString': 114}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific/grid_contours_rotated_146.gpkg
+rows: 107
+crs: EPSG:31983
+bounds: [   0.            0.         1455.88756679 1126.59202307]
+columns: ['elevation', 'geometry']
+elevation min/max: 0.230080518479212 26.65269553571769
+geom types: {'LineString': 107}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/offline/products/scientific/grid_contours_rotated_scientific.gpkg
+rows: 114
+crs: EPSG:31983
+bounds: [   0.            0.         1462.58740234 1106.3123722 ]
+columns: ['elevation', 'geometry']
+elevation min/max: 0.1360474941252143 26.643004147820623
+geom types: {'LineString': 114}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/contours/terrain_contours_audit.gpkg
+rows: 73
+crs: EPSG:31983
+bounds: [4658.31313289 1095.17040837 6764.72934466 1875.99717236]
+columns: ['geometry']
+geom types: {'Polygon': 73}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/contours/tmp_contours.gpkg
+rows: 0
+crs: EPSG:31983
+bounds: [nan nan nan nan]
+columns: ['ID', 'elevation', 'geometry']
+elevation min/max: nan nan
+geom types: {}
+
+FILE: /mnt/c/workspace/ipt-cityspace-engine/offline/products/terrain/tmp_contours.gpkg
+rows: 726
+crs: EPSG:31983
+bounds: [ 322159.92569862 7393481.03296243  323126.34898388 7394125.23875747]
+columns: ['ID', 'elevation', 'geometry']
+elevation min/max: -10.0 24.0
+geom types: {'LineString': 726}

@@ -1,0 +1,27 @@
+19:THIS_FILE = Path(__file__).resolve()
+20:CORE_ROOT = THIS_FILE.parents[2]
+21:PROJECT_ROOT = CORE_ROOT.parent
+23:CSV_PATH = CORE_ROOT / "offline/products/scientific/grid_metrics_utm.csv"
+25:PNG_CANDIDATES = [
+30:NORTH_CANDIDATES = [
+37:GRID_ROWS = 8
+38:GRID_COLS = 16
+40:OFFSET_X = -0.90
+41:OFFSET_Y = -0.10
+42:PNG_SCALE_X = 0.76
+43:PNG_SCALE_Y = 0.60
+44:PNG_OPACITY = 0.80
+45:GRID_OPACITY = 0.88
+47:VIRTUAL_INTERVAL_MS = 250
+48:REAL_INTERVAL_MS = 1200
+50:TETO_MAX_M = 40.0
+51:PINO_MAX_CM = 10.0
+447:PNG_PATH = first_existing(PNG_CANDIDATES)
+448:NORTH_PATH = first_existing(NORTH_CANDIDATES, required=False)
+450:DF = pd.read_csv(CSV_PATH)
+459:PNG_URI = image_to_data_uri(PNG_PATH)
+460:NORTH_URI = image_to_data_uri(NORTH_PATH) if NORTH_PATH is not None else None
+462:TERRAIN_CONTOURS = contour_segments(Z_TERRAIN_M, interval_m=2.0)
+463:TOTAL_CONTOURS = contour_segments(Z_TOTAL_M, interval_m=5.0)
+465:ZIGZAG_PATH = build_zigzag_path()
+466:TOTAL_STEPS = len(ZIGZAG_PATH)

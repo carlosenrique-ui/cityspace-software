@@ -1,0 +1,195 @@
+offline/pipeline/03_generate_contours_clean.py:67:angle = 0
+offline/pipeline/03_generate_contours_clean.py:68:contours['geometry'] = contours['geometry'].apply(lambda g: rotate(g, angle, origin='center'))
+offline/pipeline/05_apply_rotation_to_contours.PRE_IMPORT_FIX.bak:15:ANGLE = ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.PRE_IMPORT_FIX.bak:31:print("Rotação:", ANGLE)
+offline/pipeline/05_apply_rotation_to_contours.PRE_IMPORT_FIX.bak:37:    lambda g: rotate(g, ANGLE, origin=(cx, cy), use_radians=False)
+offline/pipeline/05_apply_rotation_to_contours.PRE_RENAME.bak:15:ANGLE = ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.PRE_RENAME.bak:31:print("Rotação:", ANGLE)
+offline/pipeline/05_apply_rotation_to_contours.PRE_RENAME.bak:37:    lambda g: rotate(g, ANGLE, origin=(cx, cy), use_radians=False)
+offline/pipeline/05_apply_rotation_to_contours.py:15:ANGLE = ROTATION_DEG
+offline/pipeline/05_apply_rotation_to_contours.py:31:print("Rotação:", ANGLE)
+offline/pipeline/05_apply_rotation_to_contours.py:37:    lambda g: rotate(g, ANGLE, origin=(cx, cy), use_radians=False)
+offline/processing/apply_rigid_transform_vector_scientific.py:22:def apply_transform(geoms, angle, cx, cy, dx, dy):
+offline/processing/apply_rigid_transform_vector_scientific.py:25:        g = rotate(geom, angle, origin=(cx, cy), use_radians=False)
+offline/processing/apply_rigid_transform_vector_scientific.py:31:def process_layer(input_path, output_path, angle, cx, cy, dx, dy):
+offline/processing/apply_rigid_transform_vector_scientific.py:36:    new_geoms = apply_transform(geoms, angle, cx, cy, dx, dy)
+offline/processing/apply_rigid_transform_vector_scientific.py:57:    angle = params["theta_rotation_deg"]
+offline/processing/apply_rigid_transform_vector_scientific.py:62:    print(f"Rotação (deg): {angle}")
+offline/processing/apply_rigid_transform_vector_scientific.py:67:    process_layer(BUILDINGS_PATH, OUT_BUILDINGS, angle, cx, cy, dx, dy)
+offline/processing/apply_rigid_transform_vector_scientific.py:70:    process_layer(ENVELOPE_PATH, OUT_ENVELOPE, angle, cx, cy, dx, dy)
+offline/processing/build_official_urban_envelope_rotated.py:118:    angle = params["theta_rotation_deg"]
+offline/processing/build_official_urban_envelope_rotated.py:125:    envelope_rot = rotate(envelope, angle, origin=(cx, cy), use_radians=False)
+offline/render_dxf_ipt_para_mesa_16x8.py:25:ANGLE_DEG = 154.63  # rotação trigonométrica validada
+offline/render_dxf_ipt_para_mesa_16x8.py:32:    print(f"Rotação: {ANGLE_DEG}°")
+offline/render_dxf_ipt_para_mesa_16x8.py:52:            ANGLE_DEG,
+offline/tools/05_recompute_rotation_from_grid.py:47:angle_rad = np.arctan2(direction[1], direction[0])
+offline/tools/05_recompute_rotation_from_grid.py:48:angle_deg = np.degrees(angle_rad)
+offline/tools/05_recompute_rotation_from_grid.py:51:print("📐 ANGLE DETECTED")
+offline/tools/05_recompute_rotation_from_grid.py:54:print(f"Angle (deg): {angle_deg:.6f}")
+offline/tools/05_recompute_rotation_from_grid.py:57:angle_norm = angle_deg % 360
+offline/tools/05_recompute_rotation_from_grid.py:58:print(f"Angle normalized: {angle_norm:.6f}")
+offline/tools/05_recompute_rotation_from_grid.py:64:    "rotation_detected_deg": float(angle_norm),
+offline/tools/06_recompute_rotation_true.py:45:angle = np.degrees(np.arctan2(R[1,0], R[0,0]))
+offline/tools/06_recompute_rotation_true.py:51:print(f"Angle (deg): {angle:.6f}")
+offline/tools/06_recompute_rotation_true.py:53:angle_norm = angle % 360
+offline/tools/06_recompute_rotation_true.py:54:print(f"Angle normalized: {angle_norm:.6f}")
+offline/tools/07_detect_rotation_from_envelope.py:32:angle_rad = np.arctan2(direction[1], direction[0])
+offline/tools/07_detect_rotation_from_envelope.py:33:angle_deg = np.degrees(angle_rad)
+offline/tools/07_detect_rotation_from_envelope.py:35:angle_norm = angle_deg % 360
+offline/tools/07_detect_rotation_from_envelope.py:38:print("📐 ANGLE DETECTED")
+offline/tools/07_detect_rotation_from_envelope.py:41:print(f"Angle (deg): {angle_deg:.6f}")
+offline/tools/07_detect_rotation_from_envelope.py:42:print(f"Angle normalized: {angle_norm:.6f}")
+offline/tools/07_detect_rotation_from_envelope.py:47:    "rotation_detected_deg": float(angle_norm),
+offline/tools/apply_rigid_transform_raster_scientific.py:27:    angle = p["rotation_deg"]
+offline/tools/apply_rigid_transform_raster_scientific.py:34:    R = Affine.rotation(angle)
+offline/tools/desrotate_urban_envelope.py:29:    angle = params["theta_rotation_deg"]
+offline/tools/desrotate_urban_envelope.py:42:            -angle,
+offline/tools/fix_scientific_raster_transform.py:12:R1 = Affine.rotation(angle)
+offline/tools/fix_scientific_raster_transform.py:14:R2 = Affine.rotation(-angle)
+offline/tools/fix_urban_envelope_geometry.py:29:    angle = params["theta_rotation_deg"]
+offline/tools/fix_urban_envelope_geometry.py:42:            -angle,
+offline/tools/rebuild_scientific_raster_runner.py:66:    angle = params["theta_rotation_deg"]
+offline/tools/rebuild_scientific_raster_runner.py:81:        R  = Affine.rotation(angle)
+offline/tools/recompute_rigid_transform.py:59:    angle = np.degrees(np.arctan2(R[1, 0], R[0, 0]))
+offline/tools/recompute_rigid_transform.py:61:    return angle
+offline/tools/recompute_rigid_transform.py:77:    angle = compute_rotation(A, B)
+offline/tools/recompute_rigid_transform.py:87:        "theta_rotation_deg": float(angle),
+offline/tools/recompute_rigid_transform_utm_to_local.py:33:    angle = np.degrees(np.arctan2(R[1, 0], R[0, 0]))
+offline/tools/recompute_rigid_transform_utm_to_local.py:35:    return angle, A_mean, B_mean
+offline/tools/recompute_rigid_transform_utm_to_local.py:45:    angle, center_A, center_B = compute_rigid(A, B)
+offline/tools/recompute_rigid_transform_utm_to_local.py:51:        "rotation_deg": float(angle),
+offline/validate_dxf_ipt_original_rotated_clean.py:33:ANGLE_DEG = 154.63
+offline/validate_dxf_ipt_original_rotated_clean.py:47:    log(f"Rotação aplicada: {ANGLE_DEG:.2f}°")
+offline/validate_dxf_ipt_original_rotated_clean.py:69:        lambda g: rotate(g, ANGLE_DEG, origin=(cx, cy), use_radians=False)
+offline/validation/contract_registry.py:130:            "north_tilt_angle_parameterized": True,
+offline/validation/contract_registry.py:139:                    "angle_deg": 154.63,
+offline/validation/contract_registry.py:144:                    "angle_deg": 146.82,
+offline/validation/reports/contract_registry_expanded.txt:136:            "north_tilt_angle_parameterized": True,
+offline/validation/reports/contract_report.json:184:      "recommendation": "Registrar e validar north_tilt_angle_deg nos metadados.",
+offline/validation/reports/rotation_pca_grid_report.json:8:    "principal_angle_deg": 0.0
+offline/validation/reports/rotation_pca_grid_report.json:11:    "pca_angle_deg": 0.0,
+offline/validation/reports/rotation_pca_grid_stdout.txt:4:pca principal angle (deg): 0.0
+offline/validation/reports/rotation_pca_grid_stdout_v2.txt:4:pca principal angle (deg): 0.0
+offline/validation/validate_contract_master.py:310:    if contract["geometry"]["north_tilt_angle_parameterized"]:
+offline/validation/validate_contract_master.py:316:            recommendation="Registrar e validar north_tilt_angle_deg nos metadados.",
+offline/validation/validate_rigid_transform_parameters.py:36:def compute_angle(p1, p2):
+offline/validation/validate_rigid_transform_parameters.py:77:    angle_orig = compute_angle(p1_orig, p2_orig)
+offline/validation/validate_rigid_transform_parameters.py:78:    angle_rot  = compute_angle(p1_rot, p2_rot)
+offline/validation/validate_rigid_transform_parameters.py:80:    angle_aplicado = angle_rot - angle_orig
+offline/validation/validate_rigid_transform_parameters.py:82:    print(f"Ângulo original bbox : {angle_orig:.6f}°")
+offline/validation/validate_rigid_transform_parameters.py:83:    print(f"Ângulo rotacionado   : {angle_rot:.6f}°")
+offline/validation/validate_rigid_transform_parameters.py:84:    print(f"Ângulo estimado      : {angle_aplicado:.6f}°")
+offline/validation/validate_rotation_pca_grid.py:18:def normalize_0_180(angle_deg: float) -> float:
+offline/validation/validate_rotation_pca_grid.py:19:    angle = angle_deg % 180.0
+offline/validation/validate_rotation_pca_grid.py:20:    if angle < 0:
+offline/validation/validate_rotation_pca_grid.py:21:        angle += 180.0
+offline/validation/validate_rotation_pca_grid.py:22:    return angle
+offline/validation/validate_rotation_pca_grid.py:25:def normalize_signed_180(angle_deg: float) -> float:
+offline/validation/validate_rotation_pca_grid.py:26:    angle = angle_deg % 360.0
+offline/validation/validate_rotation_pca_grid.py:27:    if angle > 180.0:
+offline/validation/validate_rotation_pca_grid.py:28:        angle -= 360.0
+offline/validation/validate_rotation_pca_grid.py:29:    if angle <= -180.0:
+offline/validation/validate_rotation_pca_grid.py:30:        angle += 360.0
+offline/validation/validate_rotation_pca_grid.py:31:    return angle
+offline/validation/validate_rotation_pca_grid.py:34:def angle_from_vector(vx: float, vy: float) -> float:
+offline/validation/validate_rotation_pca_grid.py:38:def pca_angle_from_xy(x: np.ndarray, y: np.ndarray) -> float:
+offline/validation/validate_rotation_pca_grid.py:53:    return angle_from_vector(vx, vy)
+offline/validation/validate_rotation_pca_grid.py:56:def compute_grid_fit(pca_angle_deg: float) -> Dict[str, float]:
+offline/validation/validate_rotation_pca_grid.py:57:    pca = normalize_0_180(pca_angle_deg)
+offline/validation/validate_rotation_pca_grid.py:75:        "pca_angle_deg": round(pca, 6),
+offline/validation/validate_rotation_pca_grid.py:91:def compare_with_rotation_state(pca_angle_deg: float, rotation_state: Dict[str, Any]) -> Dict[str, Any]:
+offline/validation/validate_rotation_pca_grid.py:108:                normalize_signed_180(pca_angle_deg - float(current["current_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:112:                normalize_signed_180(pca_angle_deg - float(geo["target_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:116:                normalize_signed_180(pca_angle_deg - float(phy["target_pca_deg"])),
+offline/validation/validate_rotation_pca_grid.py:131:    current_pca = float(report["pca"]["principal_angle_deg"])
+offline/validation/validate_rotation_pca_grid.py:175:    pca_angle_deg = pca_angle_from_xy(x, y)
+offline/validation/validate_rotation_pca_grid.py:176:    grid_fit = compute_grid_fit(pca_angle_deg)
+offline/validation/validate_rotation_pca_grid.py:179:    contract_cmp = compare_with_rotation_state(pca_angle_deg, rotation_state)
+offline/validation/validate_rotation_pca_grid.py:188:            "principal_angle_deg": round(pca_angle_deg, 6),
+offline/validation/validate_rotation_pca_grid.py:209:    print("pca principal angle (deg):", report["pca"]["principal_angle_deg"])
+offline/vector/core/apply_rigid_transform_clean.py:123:    angle = params["theta_rotation_deg"]
+offline/vector/core/apply_rigid_transform_clean.py:128:    print(f"Ângulo: {angle}")
+offline/vector/core/apply_rigid_transform_clean.py:157:                    angle,
+online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:7:from matplotlib.patches import FancyArrowPatch, Rectangle
+online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:61:cursor = Rectangle(
+online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:78:ax.add_patch(Rectangle((scale_x, scale_y + 0.1), 1, 0.2, color="white"))
+online/renderers/faseC/FASE_C_4_1_renderer_canonico.py:81:ax.add_patch(Rectangle((scale_x + 1.2, scale_y + 0.1), 2, 0.2, color="white"))
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:17:from matplotlib.patches import Rectangle
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v3_gif.py:172:            Rectangle(
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:17:from matplotlib.patches import Rectangle
+online/renderers/ipt_fase2_semantic/mesa_virtual_debug_v4_gif.py:159:            Rectangle(
+online/renderers/render_mesa_ipt_2d25_integrada.py:29:from matplotlib.patches import Rectangle, FancyArrow
+online/renderers/render_mesa_ipt_2d25_integrada.py:54:ANGLE_DEG = 154.63
+online/renderers/render_mesa_ipt_2d25_integrada.py:55:theta = radians(ANGLE_DEG)
+online/renderers/render_mesa_ipt_2d25_integrada.py:123:    log(f"[DXF] Aplicando rotação {ANGLE_DEG:.2f}°")
+online/renderers/render_mesa_ipt_2d25_integrada.py:125:        lambda g: rotate(g, ANGLE_DEG, origin="center", use_radians=False)
+online/renderers/render_mesa_ipt_2d25_integrada.py:177:    ax.add_patch(Rectangle((c, r), 1, 1, fill=False, edgecolor="white", linewidth=3, zorder=10))
+online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:14:from matplotlib.patches import Rectangle
+online/renderers/render_mesa_ipt_2d25_scanner_zigzag.py:122:    ax.add_patch(Rectangle((c, r), 1, 1,
+online/renderers/render_mesa_ipt_animacao_zigzag.py:29:from matplotlib.patches import Rectangle
+online/renderers/render_mesa_ipt_animacao_zigzag.py:46:ANGLE_DEG = 154.63
+online/renderers/render_mesa_ipt_animacao_zigzag.py:79:    log(f"Aplicando rotação trigonométrica: {ANGLE_DEG:.2f}°")
+online/renderers/render_mesa_ipt_animacao_zigzag.py:81:        lambda g: rotate(g, ANGLE_DEG, origin=(cx, cy), use_radians=False)
+online/renderers/render_mesa_ipt_animacao_zigzag.py:191:            Rectangle((c, r), 1, 1,
+online/renderers/render_mesa_ipt_animacao_zigzag.py:199:            Rectangle((c, r), 1, 1,
+online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:128:active_rect = patches.Rectangle(
+online/renderers/render_mesa_ipt_animacao_zigzag_iptdxf_colorido.py:137:fill_rect = patches.Rectangle(
+online/renderers/render_mesa_ipt_validacao_geometrica.py:30:from matplotlib.patches import Rectangle
+online/renderers/render_mesa_ipt_validacao_geometrica.py:56:ANGLE_DEG = 154.63  # alinhamento IPT ↔ eixo físico da mesa
+online/renderers/render_mesa_ipt_validacao_geometrica.py:114:    log(f"[DXF] Aplicando rotação trigonométrica: {ANGLE_DEG:.2f}°")
+online/renderers/render_mesa_ipt_validacao_geometrica.py:116:        lambda g: rotate(g, ANGLE_DEG, origin="center", use_radians=False)
+online/renderers/render_mesa_ipt_validacao_geometrica.py:177:        Rectangle(
+online/renderers/render_mesa_ipt_zigzag_alturas_gif.py:103:            rect = patches.Rectangle(
+online/renderers/render_mesa_ipt_zigzag_alturas_gif_verbose.py:157:                rect = patches.Rectangle(
+online/renderers/render_mesa_ipt_zigzag_canonico.py:28:from matplotlib.patches import Rectangle
+online/renderers/render_mesa_ipt_zigzag_canonico.py:180:            Rectangle(
+online/renderers/render_mesa_ipt_zigzag_integrada_final.py:26:from matplotlib.patches import Rectangle
+online/renderers/render_mesa_ipt_zigzag_integrada_final.py:136:                Rectangle((x, y), 1, 1, fill=False, edgecolor="white", linewidth=2)
+online/renderers/render_temporal_gif_v41_2.py:188:                plt.Rectangle(
+online/tests/test_offline_product_loader.py:58:    assert "rotation_angle_deg" in metadata, "rotation_angle_deg ausente no metadata"
+online/ui/dash_v125_polygon_alignment_calibrator.py:104:def transform_polygon(poly_grid, dx, dy, sx, sy, angle):
+online/ui/dash_v125_polygon_alignment_calibrator.py:107:    g = rotate(g, angle, origin=origin, use_radians=False)
+online/ui/dash_v125_polygon_alignment_calibrator.py:214:def make_fig(layers, dx, dy, sx, sy, angle):
+online/ui/dash_v125_polygon_alignment_calibrator.py:215:    poly_t = transform_polygon(POLY_GRID, dx, dy, sx, sy, angle)
+online/ui/dash_v125_polygon_alignment_calibrator.py:299:        html.Label("angle"),
+online/ui/dash_v125_polygon_alignment_calibrator.py:300:        dcc.Slider(-180, 180, 1, value=0, id="angle", marks={-180: "-180", 0: "0", 180: "180"}),
+online/ui/dash_v125_polygon_alignment_calibrator.py:333:    Input("angle", "value"),
+online/ui/dash_v125_polygon_alignment_calibrator.py:335:def update(layers, dx, dy, sx, sy, angle):
+online/ui/dash_v125_polygon_alignment_calibrator.py:341:        f"ANGLE = {angle:.1f}\n"
+online/ui/dash_v125_polygon_alignment_calibrator.py:344:    return make_fig(layers or [], dx, dy, sx, sy, angle), txt
+online/ui/dash_v128_2_fixed_no_regression.py:262:        textangle=-90,
+online/ui/dash_v128_4_final_sem_regressao.py:327:        textangle=-90,
+online/ui/dash_v128_7_10_final_ajustes_finos.py:333:        textangle=-90,
+online/ui/dash_v128_7_11_menu_final.py:313:        textangle=-90,
+online/ui/dash_v128_7_12_sem_projetor_labels.py:315:        textangle=-90,
+online/ui/dash_v128_7_13_sem_projetor_usp_norte.py:315:        textangle=-90,
+online/ui/dash_v128_7_14_sem_projetor_usp_alinhado.py:315:        textangle=-90,
+online/ui/dash_v128_7_15_fix_duplicate_projector_mode.py:315:        textangle=-90,
+online/ui/dash_v128_7_16_safe_visual_cleanup.py:315:        textangle=-90,
+online/ui/dash_v128_7_17_menu_final_sem_projetor.py:315:        textangle=-90,
+online/ui/dash_v128_7_18_menu_sem_projetor_usp.py:315:        textangle=-90,
+online/ui/dash_v128_7_19_menu_final.py:315:        textangle=-90,
+online/ui/dash_v128_7_1_final_visual_adjust.py:337:        textangle=-90,
+online/ui/dash_v128_7_20_work_from_719.py:315:        textangle=-90,
+online/ui/dash_v128_7_2_north_scale_readable.py:336:        textangle=-90,
+online/ui/dash_v128_7_3_north_position.py:336:        textangle=-90,
+online/ui/dash_v128_7_4_scroll_2x2.py:336:        textangle=-90,
+online/ui/dash_v128_7_5_north_visible.py:331:        textangle=-90,
+online/ui/dash_v128_7_6b_sem_projetor.py:331:        textangle=-90,
+online/ui/dash_v128_7_6_north_left_final.py:331:        textangle=-90,
+online/ui/dash_v128_7_7_north_left_micro.py:331:        textangle=-90,
+online/ui/dash_v128_7_final_operational_ui.py:336:        textangle=-90,
+online/ui/dash_v128_8_1_final_sem_projetor_fix.py:144:        textangle=-90,
+online/ui/dash_v128_8_final_sem_projetor.py:338:        textangle=-90,
+online/ui/dash_v128_8_final_visual_fix.py:176:        textangle=-90,
+online/ui/dash_v128_final_clean_operational_ui.py:276:        textangle=-90,
+online/ui/dash_v47_frame_player_overlay.py:68:    draw.rectangle([x0, y0, x1, y1], outline="white", width=3)
+online/ui/dash_v96_watermark_pca_calibrator.py:14:def pca_angle(points):
+online/ui/dash_v96_watermark_pca_calibrator.py:41:angle_grid = pca_angle(colored) if len(colored) > 2 else 0.0
+online/ui/dash_v96_watermark_pca_calibrator.py:51:angle_img = pca_angle(sample) if len(sample) > 2 else 0.0
+online/ui/dash_v96_watermark_pca_calibrator.py:53:AUTO_ROTATE = angle_grid - angle_img
+online/ui/dash_v96_watermark_pca_calibrator.py:124:        f"AUTO angle_grid={angle_grid:.2f}\n"
+online/ui/dash_v96_watermark_pca_calibrator.py:125:        f"AUTO angle_img={angle_img:.2f}\n"
+online/ui/dash_v96_watermark_pca_calibrator.py:171:    print(f"angle_grid={angle_grid:.2f}", flush=True)
+online/ui/dash_v96_watermark_pca_calibrator.py:172:    print(f"angle_img={angle_img:.2f}", flush=True)
+online/ui/_baseline_locked/dash_v128_7_19_menu_final_LOCKED.py:315:        textangle=-90,
