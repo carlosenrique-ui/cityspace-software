@@ -1,6 +1,9 @@
 #!/bin/bash
 
-cd /mnt/c/workspace/ipt-cityspace-engine/ipt_core_clean || exit 1
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT" || exit 1
+
+mkdir -p _diagnosticos
 
 echo
 echo "======================================"
