@@ -1,16 +1,24 @@
 # Globe-CitySpace
 
-> **An Open-Source Platform for Multi-Scale Urban Digital Twins, Geospatial Exploration and Tangible City Modeling**
+## Open Geospatial Platform for Urban Digital Twins
 
 Developed at the **Institute for Technological Research (IPT)**, São Paulo, Brazil.
 
 ---
 
-## Overview
+# Mission
 
-Globe-CitySpace is an open-source geospatial platform designed to transform any location on Earth into a scientific, interactive, and tangible urban model.
+Globe-CitySpace is an extensible geospatial platform for building multi-scale Urban Digital Twins through global visualization, scientific raster processing, and tangible interfaces.
 
-The platform integrates:
+The platform integrates geospatial technologies, scientific processing pipelines, and projection mapping to support research, education, planning, simulation, and decision-making.
+
+---
+
+# Overview
+
+Globe-CitySpace transforms any location on Earth into a scientific and interactive urban model.
+
+The platform combines:
 
 - 🌍 Global 3D visualization
 - 📍 Latitude / Longitude navigation
@@ -22,42 +30,88 @@ The platform integrates:
 - 🧩 Projection Mapping
 - 🏗 Virtual and Physical Tangible Tables
 
-The project supports research in **Urban Digital Twins**, **Smart Cities**, **Geospatial Artificial Intelligence**, and **Carbon Neutral Cities**.
+The project supports research in:
+
+- Urban Digital Twins
+- Smart Cities
+- Geospatial Artificial Intelligence
+- Carbon Neutral Cities
+- Urban Planning
+- Scientific Visualization
 
 ---
 
-# Features
+# Quick Start
+
+## Requirements
+
+- Windows 10 / 11
+- WSL2
+- Ubuntu
+- Visual Studio Code
+- Docker Desktop
+- Docker Compose
+- Python 3.11+
+- Conda
+- Conda Environment: `geo_env_2018`
+
+## Running the Demonstration
+
+> Scientific datasets are maintained separately from this repository.
+
+```bash
+./start_demo2.sh
+```
+
+After startup:
+
+| Service | URL |
+|----------|-----|
+| Globe-CitySpace | http://localhost:8088/demo.html |
+| IPT-CitySpace | http://localhost:8050 |
+| Virtual Table | http://localhost:8060 |
+
+---
+
+# Core Capabilities
 
 ## Globe Navigation
 
 - Global 3D visualization
 - CesiumJS interface
-- ESRI imagery
+- ESRI World Imagery
 - City catalog
 - Latitude / Longitude navigation
+
+---
 
 ## Area Selection
 
 Users can define an Area of Interest (AOI) anywhere on Earth.
 
-The selected region becomes a **CitySpace Area**, which serves as the input for the scientific processing pipeline.
+The selected region becomes a **CitySpace Area**, serving as the input for the scientific processing pipeline.
+
+---
 
 ## Scientific Raster Pipeline
 
 The platform automatically generates:
 
-- Cartographic grids
-- Terrain models
-- Building models
-- Height maps
-- Gray-scale maps
-- Scientific metadata
-- CSV outputs
-- BMP outputs
+- Cartographic Grids
+- Terrain Models (DTM)
+- Surface Models (DSM)
+- Building Models
+- Height Maps
+- Gray-scale Maps
+- Scientific Metadata
+- CSV Products
+- BMP Products
+
+---
 
 ## IPT-CitySpace Integration
 
-The Globe-CitySpace platform is fully integrated with IPT-CitySpace, enabling:
+Globe-CitySpace integrates directly with IPT-CitySpace, enabling:
 
 - Projection Mapping
 - Virtual Tangible Table
@@ -69,7 +123,7 @@ The Globe-CitySpace platform is fully integrated with IPT-CitySpace, enabling:
 
 # System Architecture
 
-```
+```text
                  Globe-CitySpace
                         │
                         ▼
@@ -96,20 +150,26 @@ The Globe-CitySpace platform is fully integrated with IPT-CitySpace, enabling:
 
 ---
 
-# Project Structure
+# Repository Structure
 
-```
+```text
 globe_cityspace_open/
 │
-├── frontend/
-├── backend/
-├── docs/
-│
-offline/
-online/
-runner/
-config/
-│
+├── frontend/                 User Interface
+├── backend/                  Globe Services
+├── core/                     Core Components
+├── contracts/                System Contracts
+├── data/                     Internal Resources
+├── docs/                     Module Documentation
+└── projects/                 Project Configurations
+
+offline/                      Scientific Processing Pipeline
+online/                       Runtime Environment
+runner/                       Execution Engine
+config/                       System Configuration
+scripts/                      Utility Scripts
+tests/                        Automated Tests
+
 Dockerfile
 docker-compose.yml
 requirements-docker.txt
@@ -122,63 +182,49 @@ README.md
 
 # Technologies
 
+## Programming Languages
+
 - Python
 - JavaScript
-- CesiumJS
-- Docker
-- Dash
+
+## Geospatial Processing
+
 - GDAL
 - Rasterio
 - NumPy
+
+## Visualization
+
+- CesiumJS
+- Dash
 - OpenStreetMap
 - ESRI World Imagery
 
----
+## Deployment
 
-# Running the Demo
-
-## Requirements
-
-- Docker Desktop
+- Docker
 - Docker Compose
-- Python 3.11+
-- Conda
-- geo_env_2018
-
-## Start
-
-```bash
-./start_demo2.sh
-```
-
----
-
-## Services
-
-| Service | URL |
-|----------|-----|
-| Globe-CitySpace | http://localhost:8088 |
-| IPT-CitySpace | http://localhost:8050 |
-| Virtual Table | http://localhost:8060 |
+- WSL2
+- Ubuntu Linux
 
 ---
 
 # Scientific Workflow
 
-```
+```text
 City
    │
 Latitude / Longitude
    │
 Area Selection
    │
-Scientific Pipeline
+Scientific Raster Pipeline
    │
 Terrain + Buildings
    │
 Cartographic Grid
    │
-BMP / CSV
+BMP / CSV Products
    │
 Projection Mapping
    │
@@ -196,14 +242,15 @@ The scientific pipeline produces:
 - Cartographic Grids
 - Height Maps
 - Gray-scale Maps
-- BMP files
-- CSV files
-- Metadata
+- BMP Files
+- CSV Files
+- Scientific Metadata
 - Scientific Reports
+- Projection Mapping Products
 
 ---
 
-# Data Policy
+# Scientific Data
 
 Large scientific datasets are **not included** in this repository.
 
@@ -212,38 +259,78 @@ Examples include:
 - DSM
 - DTM
 - Height Maps
-- BMP outputs
-- CSV outputs
-- Scientific snapshots
+- Scientific Rasters
+- BMP Products
+- CSV Products
+- Scientific Snapshots
 
-These datasets are maintained separately because of their size.
+Scientific datasets are maintained separately in the project's institutional repository.
+
+---
+
+# Documentation
+
+Project documentation is organized as follows:
+
+```text
+README.md
+
+docs/developer_manual/
+    Globe-CitySpace Engineering Handbook
+
+docs/architecture/
+    System Architecture
+
+docs/development/
+    Development Notes
+
+docs/releases/
+    Release Documentation
+
+docs/reverse_engineering/
+    Historical Technical Documentation
+```
 
 ---
 
 # Research Areas
 
+The platform supports research in:
+
 - Urban Digital Twins
 - Smart Cities
-- Geospatial AI
+- Geographic Information Systems (GIS)
+- Geospatial Artificial Intelligence
 - Urban Planning
-- GIS
 - Projection Mapping
-- Urban Simulation
 - Environmental Monitoring
+- Urban Simulation
 - Carbon Neutral Cities
+
+---
+
+# Project Status
+
+**Status:** Active Research and Development
+
+**Version:** 2.x
+
+**Institution:** Institute for Technological Research (IPT)
+
+**Location:** São Paulo, Brazil
 
 ---
 
 # Roadmap
 
-Future developments include:
+Current development focuses on:
 
-- Multi-scale global navigation
-- Automated scientific raster pipeline
-- AI-assisted geospatial analysis
-- Advanced Digital Twin generation
-- Municipal Spatial Data Infrastructure (SDI) integration
-- Carbon Neutral City applications
+- Multi-scale Global Navigation
+- Automated Scientific Raster Processing
+- AI-assisted Geospatial Analysis
+- Advanced Digital Twin Generation
+- Municipal Spatial Data Infrastructure (SDI) Integration
+- Carbon Neutral City Applications
 
 ---
 
@@ -253,10 +340,10 @@ Contributions are welcome.
 
 Please use GitHub Issues for:
 
-- Bug reports
-- Feature requests
-- Documentation improvements
-- Scientific enhancements
+- Bug Reports
+- Feature Requests
+- Documentation Improvements
+- Scientific Enhancements
 
 ---
 
@@ -268,13 +355,19 @@ Please refer to the project license before redistribution or commercial use.
 
 ---
 
-# Author
+# Project Maintainer
 
 **Carlos Enrique Hernandez Simoes**
 
 Institute for Technological Research (IPT)
 
 São Paulo, Brazil
+
+Research Areas:
+
+- Urban Digital Twins
+- Geospatial Systems
+- Scientific Visualization
 
 ---
 
@@ -286,6 +379,31 @@ This project builds upon the open-source geospatial ecosystem, including:
 - GDAL
 - Rasterio
 - NumPy
-- OpenStreetMap
 - Dash
+- OpenStreetMap
+- ESRI World Imagery
 - Python
+
+---
+
+# Engineering Handbook
+
+Complete technical documentation is available in:
+
+```text
+docs/developer_manual/
+```
+
+The Engineering Handbook describes:
+
+- System Architecture
+- Development Environment
+- Scientific Data Organization
+- Offline Scientific Pipeline
+- Globe-CitySpace
+- IPT-CitySpace
+- Virtual Table
+- GitHub Workflow
+- Microsoft Teams Organization
+- Backup and Recovery Procedures
+- Project Roadmap

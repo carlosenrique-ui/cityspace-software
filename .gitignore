@@ -34,3 +34,4 @@ _releases/
 __pycache__/
 *.pyc
 *.pyo
+engineering_inventory/
