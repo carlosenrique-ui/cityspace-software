@@ -154,3 +154,8 @@ docs/reverse_engineering/validated_baselines/V128_7_20_VALIDATION.md
 docs/reverse_engineering/validated_baselines/dash_v128_7_20_VALIDATED.py
 docs/todo/TODO_IPT_CITYSPACE_LAYER_SEMANTICS.md
 docs/📄 ROADMAP DE CONSOLIDAÇÃO ARQUITETURAL.docx
+
+13_GLOSSARY.md
+14_ARCHITECTURE_DECISIONS.md
+15_TROUBLESHOOTING.md
+16_CONTRIBUTING.md

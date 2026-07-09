@@ -407,3 +407,7 @@ The Engineering Handbook describes:
 - Microsoft Teams Organization
 - Backup and Recovery Procedures
 - Project Roadmap
+- Glossary
+- Architecture Decisions
+- Troubleshooting
+- Contributing Guidelines

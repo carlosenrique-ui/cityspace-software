@@ -978,6 +978,6 @@ Following these recommendations ensures consistent installations, reliable scien
 
 =====================================
 
-FIM DO DOCUMENTO
+END OF DOCUMENT
 
 =====================================

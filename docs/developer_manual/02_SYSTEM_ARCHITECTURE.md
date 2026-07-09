@@ -1445,5 +1445,5 @@ Additional implementation details are presented in the following chapters of thi
 ---
 
 ===========================
-FIM DO DOCUMENTO
+END OF DOCUMENT
 ===========================

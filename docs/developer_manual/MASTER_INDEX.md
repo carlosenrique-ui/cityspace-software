@@ -62,3 +62,10 @@ D. Development Notes
 
 E. FAQ
 
+
+## Additional Chapters
+
+- Chapter 13 — Glossary
+- Chapter 14 — Architecture Decisions
+- Chapter 15 — Troubleshooting
+- Chapter 16 — Contributing
